@@ -1,3 +1,7 @@
+// Header
+$header-height-desktop: 76px;
+$header-bottom-spacing: 3.3rem;
+
 // Text colors
 $color-body-text: var(--color-body-text);
 
@@ -10,7 +14,7 @@ $placeholder-color-background: #f9fafb;
 
 // Other colors
 $color-accent: var(--color-accent);
-$color-border: var(--color-border);
+$color-border: #000000;
 
 // Helper colors for form error states
 $color-disabled: #000000;
@@ -21,11 +25,11 @@ $color-success: #000000;
 $color-success-bg: #000000;
 
 // Typography
-$font-heading: var(--font-heading);
-$font-body: var(--font-body);
-$font-body-weight: var(--font-body-weight);
-$font-body-style: var(--font-body-style);
-$font-body-bold-weight: var(--font-body-bold-weight);
+$font-heading: 'SansGuiltMBMedium';
+$font-body: "adobe-garamond-pro";
+$font-body-weight: normal;
+$font-body-style: normal;
+$font-body-bold-weight: 600;
 
 // Transitions
 $transition-duration: 250ms;
@@ -36,7 +40,9 @@ $grid-medium: 46.85em;
 $grid-large: 61.85em;
 $grid-widescreen: 87.5em;
 $grid-max-width: 73.75em;
-$grid-gutter: 30px;
+$grid-gutter-desktop: 30px;
+
+$grid-gutter-mobile: 10px;
 
 // Breakpoints used with the media-query mixin
 $small: 'small';
@@ -58,3 +64,14 @@ $breakpoints: (
   $large-up '(min-width: #{$grid-large})',
   $widescreen '(min-width: #{$grid-widescreen})'
 );
+
+
+
+/*============================================================================
+  Generate breakpoint-specific column widths and push classes
+    - Default column widths: $breakpoint-has-widths: ($small, $medium-up);
+    - Default is no push classes
+    - Will not work if `styles/global/grid.scss` is removed
+==============================================================================*/
+$breakpoint-has-widths: ($small, $medium-up, $medium-down, $large-up);
+

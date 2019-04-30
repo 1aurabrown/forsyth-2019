@@ -22,8 +22,13 @@
     td {
       display: block;
       margin: 0;
-      padding: $grid-gutter / 2;
       text-align: right;
+      @include media-query($small) {
+        padding: $grid-gutter-mobile / 2;
+      }
+      @include media-query($medium-up) {
+        padding: $grid-gutter-desktop / 2;
+      }
     }
 
     td::before {
@@ -39,14 +44,25 @@
   tfoot > .responsive-table-row:first-child {
     position: relative;
     margin-top: 10px;
-    padding-top: $grid-gutter / 2;
 
+      @include media-query($small) {
+        padding-top: $grid-gutter-mobile / 2;
+      }
+      @include media-query($medium-up) {
+        padding-top: $grid-gutter-desktop / 2;
+      }
     &::after {
       content: '';
       position: absolute;
       top: 0;
-      right: $grid-gutter / 2;
-      left: $grid-gutter / 2;
+      @include media-query($small) {
+        left: $grid-gutter-mobile / 2;
+        right: $grid-gutter-mobile / 2;
+      }
+      @include media-query($medium-up) {
+        left: $grid-gutter-desktop / 2;
+        right: $grid-gutter-desktop / 2;
+      }
       display: block;
       border-bottom: 1px solid $color-border;
     }

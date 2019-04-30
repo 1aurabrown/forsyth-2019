@@ -11,7 +11,12 @@
 
   ul,
   ol {
-    margin: 0 0 ($grid-gutter / 2) $grid-gutter;
+    @include media-query($small) {
+      margin: 0 0 ($grid-gutter-mobile / 2) $grid-gutter-mobile;
+    }
+    @include media-query($medium-up) {
+      margin: 0 0 ($grid-gutter-desktop / 2) $grid-gutter-desktop;
+    }
   }
 
   strong {

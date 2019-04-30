@@ -15,7 +15,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-heading;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
 }
 
 body,
@@ -29,4 +32,65 @@ select {
 
 a:focus {
   color: inherit;
+}
+
+
+b, strong {
+  font-weight: $font-body-bold-weight;
+}
+
+
+@mixin responsive-typography($breakpoint: '') {
+  // sass-lint:disable no-important
+
+  .#{$breakpoint}sans-serif {
+    font-family: $font-heading;
+    letter-spacing: .01em;
+  }
+  .#{$breakpoint}sans-serif-uppercase {
+    @extend .#{$breakpoint}sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .#{$breakpoint}serif {
+    font-family: $font-body;
+  }
+
+  // Sans-serif
+  .#{$breakpoint}sans-serif-l {
+    @extend .#{$breakpoint}sans-serif;
+  }
+  .#{$breakpoint}sans-serif-m {
+    @extend .#{$breakpoint}sans-serif;
+    font-size: 1.4rem;
+  }
+  .#{$breakpoint}sans-serif-s {
+    @extend .#{$breakpoint}sans-serif;
+  }
+
+  // Sans-serif Uppercase
+
+  .#{$breakpoint}sans-serif-uppercase-l {
+    @extend .#{$breakpoint}sans-serif-uppercase;
+  }
+  .#{$breakpoint}sans-serif-uppercase-m {
+    @extend .#{$breakpoint}sans-serif-uppercase;
+    font-size: 1.4rem;
+  }
+  .#{$breakpoint}sans-serif-uppercase-s {
+    @extend .#{$breakpoint}sans-serif-uppercase;
+  }
+
+  // Serif
+
+  .#{$breakpoint}serif-l {
+    @extend .#{$breakpoint}serif;
+  }
+  .#{$breakpoint}serif-m {
+    @extend .#{$breakpoint}serif;
+  }
+  .#{$breakpoint}serif-s {
+    @extend .#{$breakpoint}serif;
+  }
 }

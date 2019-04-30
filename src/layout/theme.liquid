@@ -30,6 +30,8 @@
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
+  {{ settings.font_embed_html }}
+
   {% include 'social-meta-tags' %}
   {% include 'style-tags', layout: 'theme' %}
   {% include 'css-variables' %}
