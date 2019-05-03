@@ -1,0 +1,32 @@
+<div class="header__nav small--hide">
+  <div class="header__nav__inner header__nav__inner--right">
+    {% include 'search-form' %}
+
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <div>
+          {% if customer.first_name != blank %}
+            {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+            {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+          {% else %}
+            <a href="/account">{{ 'layout.customer.account' | t }}</a>
+          {% endif %}
+        </div>
+        <div>
+          {{ 'layout.customer.log_out' | t | customer_logout_link }}
+        </div>
+      {% else %}
+        <div>
+          {{ 'layout.customer.log_in' | t | customer_login_link }}
+        </div>
+        {% comment %}<div>
+          {{ 'layout.customer.create_account' | t | customer_register_link }}
+        </div>{% endcomment %}
+      {% endif %}
+    {% endif %}
+
+    <a href="/cart">
+      {{ 'layout.cart.title' | t }}&thinsp;&middot;&thinsp;{{ cart.item_count }}
+    </a>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+.search-form {
+  &__entry {
+    display: none;
+  }
+  &.expanded {
+    .search-form__entry {
+      display: block;
+    }
+  }
+  &__input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+    &:focus {
+      outline: none;
+    }
+    ::placeholder {
+      color: $transparent-black;
+    }
+  }
+  &__button {
+
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+    svg{
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

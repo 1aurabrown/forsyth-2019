@@ -46,6 +46,7 @@ b, strong {
   .#{$breakpoint}sans-serif {
     font-family: $font-heading;
     letter-spacing: .01em;
+    text-transform: none;
   }
   .#{$breakpoint}sans-serif-uppercase {
     @extend .#{$breakpoint}sans-serif;

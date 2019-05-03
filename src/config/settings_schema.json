@@ -13,9 +13,9 @@
       {
         "type": "html",
         "id": "font_embed_html",
-        "default": "<link rel=\"stylesheet\" href=\"https://use.typekit.net/szp7lci.css\"><link rel=\"stylesheet\" media=\"screen\" href=\"https://fontlibrary.org/face/sans-guilt\" type=\"text/css\"/>",
+        "default": "<link rel=\"stylesheet\" href=\"https://use.typekit.net/szp7lci.css\">",
         "label": "Font Embed HTML",
-        "info": "snippets to embed fonts from Adobe Typekit (ie. Adobe Garamond Pro) and fontlibrary.org (Sans Guilt)"
+        "info": "snippets to embed fonts from Adobe Typekit (ie. Adobe Garamond Pro) "
       }
     ]
   },

@@ -1,0 +1,45 @@
+{% assign has_active = false %}
+{% assign is_active = false %}
+<div class="sidebar">
+  <div class="sidebar__inner">
+
+    {% include 'sidebar-list', list: linklists[section.settings.shop_menu_a] %}
+
+    {% include 'sidebar-list', list: linklists[section.settings.shop_menu_b] %}
+
+    <div class="sidebar__separator">
+    </div>
+
+    {% include 'sidebar-list', list: linklists[section.settings.pages_menu] %}
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Sidebar",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "shop_menu_a",
+        "label": "Left Shop Menu Group 1",
+        "default": "main-menu",
+        "info": "Product Type Collections"
+      },
+      {
+        "type": "link_list",
+        "id": "shop_menu_b",
+        "label": "Left Shop Menu Group 2",
+        "default": "main-menu",
+        "info": "Other Product Collections"
+      },
+      {
+        "type": "link_list",
+        "id": "pages_menu",
+        "label": "Left Pages Menu",
+        "default": "main-menu",
+        "info": "About Pages, other Pages"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,9 +1,15 @@
 // Header
-$header-height-desktop: 76px;
-$header-bottom-spacing: 3.3rem;
+$header-height-desktop: 7.6rem;
+$header-bottom-spacing-desktop: 3.3rem;
+
+$header-height-mobile: 4.0rem;
+
+$nav-inset-desktop: 3.0rem;
+$nav-inset-mobile: 1.4rem;
 
 // Text colors
 $color-body-text: var(--color-body-text);
+$transparent-black: rgba(0,0,0,.25);
 
 // Background colors
 $color-body: var(--color-main-background);
@@ -36,9 +42,9 @@ $transition-duration: 250ms;
 $transition-timing: ease-in-out;
 
 // Grid
-$grid-medium: 46.85em;
-$grid-large: 61.85em;
-$grid-widescreen: 87.5em;
+$grid-medium: 800px;
+$grid-large: 1000px;
+$grid-widescreen: 1300px;
 $grid-max-width: 73.75em;
 $grid-gutter-desktop: 30px;
 
@@ -73,5 +79,5 @@ $breakpoints: (
     - Default is no push classes
     - Will not work if `styles/global/grid.scss` is removed
 ==============================================================================*/
-$breakpoint-has-widths: ($small, $medium-up, $medium-down, $large-up);
+$breakpoint-has-widths: ($small, $medium, $medium-up, $medium-down, $large, $large-up, $large-down, $widescreen);
 

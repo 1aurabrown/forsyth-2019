@@ -1,0 +1,26 @@
+<ul class="sidebar__nav-outer sans-serif-uppercase-m">
+  {% for link in list.links %}
+    {% if link.links != blank %}
+      <li class="sidebar__nav-outer__item {%if link.child_active %}{% unless has_active %}expanded{% assign has_active = true %}{% endunless %}{% endif %}">
+        <span class="sidebar__nav-outer__item__title">
+          {{ link.title }}
+        </span>
+        <ul class="sidebar__nav-inner">
+          {% for childlink in link.links %}
+            <li class="sidebar__nav-inner__item sans-serif-m {% if childlink.active %}{% unless is_active %}active{% assign is_active = true %}{% endunless %}{% endif %}">
+              <a href="{{ childlink.url }}" class="sidebar__nav-inner__item__title">
+                {{ childlink.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% else %}
+      <li class="sidebar__nav-outer__item {% if link.active %}{% unless is_active %}active{% assign is_active = true %}{% endunless %}{% endif %}">
+        <a href="{{ link.url }}" class="sidebar__nav-outer__item__title">
+          {{ link.title }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

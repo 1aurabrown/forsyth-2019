@@ -10,102 +10,31 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section data-section-id="{{ section.id }}" data-section-type="header" class="header">
-  <nav role="navigation" class="header__nav">
-    <ul class="header__nav__inner header__nav__inner--left">
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
+<section data-section-id="{{ section.id }}" data-section-type="header" class="header sans-serif-uppercase-m">
 
-  <header role="banner">
-    {% if template.name == 'index' %}
-      <h1>
-    {% else %}
-      <div class="h1">
-    {% endif %}
-        <a href="/">
-          <img class="header__logo-image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
-        </a>
-    {% if template.name == 'index' %}
-      </h1>
-    {% else %}
-      </div>
-    {% endif %}
+    {% include 'nav-top-left-desktop' %}
+    {% include 'nav-top-left-mobile' %}
 
-  </header>
-
-  <div class="header__nav mobile--hide">
-    <div class="header__nav__inner header__nav__inner--right">
-      <form action="/search" method="get" role="search" class="search-form">
-        <label for="Search-{{ section.id }}" class="label-hidden search-form__label">
-          {{ 'general.search.placeholder' | t }}
-        </label>
-
-        <input type="search"
-          class="search-form__input"
-          name="q"
-          id="Search-{{ section.id }}"
-          value="{{ search.terms | escape }}"
-          placeholder="{{ 'general.search.placeholder' | t }}">
-
-        <button type="submit" class="button search-form__button">
-          {% include 'icon-search' %}
-          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-        </button>
-      </form>
-
-      {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <div>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </div>
-          <div>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </div>
-        {% else %}
-          <div>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </div>
-          {% comment %}<div>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </div>{% endcomment %}
-        {% endif %}
+    <header role="banner" class="header__logo">
+      {% if template.name == 'index' %}
+        <h1>
+      {% else %}
+        <div class="h1">
+      {% endif %}
+          <a href="/">
+            <img class="header__logo-image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+          </a>
+      {% if template.name == 'index' %}
+        </h1>
+      {% else %}
+        </div>
       {% endif %}
 
-      <a href="/cart">
-        {{ 'layout.cart.title' | t }}&thinsp;&middot;&thinsp;{{ cart.item_count }}
-      </a>
-    </div>
-  </div>
+    </header>
+
+    {% include 'nav-top-right-desktop' %}
+    {% include 'nav-top-right-mobile' %}
+
 </section>
 
 {% if section.settings.logo != blank %}
@@ -123,7 +52,7 @@
     "settings": [
       {
         "type": "link_list",
-        "id": "menu",
+        "id": "main_menu",
         "label": "Main Menu",
         "default": "main-menu"
       }
