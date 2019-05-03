@@ -1,17 +1,23 @@
-.sidebar {
+#shopify-section-sidebar {
   @include media-query($medium-up) {
     position: absolute;
-    top: $header-height-desktop;
+    min-width: 2.0rem;
   }
+}
+.sidebar {
+  min-width: 100%;
   &__inner {
     @include media-query($medium-up) {
       padding-left: $nav-inset-desktop;
-      margin-top: $header-bottom-spacing-desktop;
+      padding-right:$nav-inset-desktop;
+      padding-bottom: $nav-inset-desktop;
+      padding-top: $header-height-desktop + $header-bottom-spacing-desktop;
     }
   }
 
   &__separator {
     height: 1px;
+    margin: $left-primary-line-height * .76em 0 $left-primary-line-height * .74em;
     @include media-query($medium-up) {
       width: 2rem;
       margin-right: auto
@@ -20,9 +26,10 @@
   }
   &__nav-outer {
     line-height: $left-primary-line-height;
-    margin: $left-primary-line-height * .74em 0 $left-primary-line-height * .76em
   }
-
+  &__nav-outer + &__nav-outer {
+    margin-top: $left-primary-line-height * .75em;
+  }
   &__nav-outer__item.expanded {
     .sidebar__nav-inner {
       display: block;

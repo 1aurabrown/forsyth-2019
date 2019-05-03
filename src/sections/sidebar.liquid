@@ -1,6 +1,6 @@
 {% assign has_active = false %}
 {% assign is_active = false %}
-<div class="sidebar">
+<section data-section-id="{{ section.id }}" data-section-type="sidebar" class="sidebar">
   <div class="sidebar__inner">
 
     {% include 'sidebar-list', list: linklists[section.settings.shop_menu_a] %}
@@ -13,7 +13,7 @@
     {% include 'sidebar-list', list: linklists[section.settings.pages_menu] %}
 
   </div>
-</div>
+</section>
 
 {% schema %}
   {

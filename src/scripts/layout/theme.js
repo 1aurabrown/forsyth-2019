@@ -13,6 +13,7 @@ import {cookiesEnabled} from '@shopify/theme-cart';
 
 import {load} from '@shopify/theme-sections';
 import '../sections/header';
+import '../sections/sidebar';
 
 load('*');
 
