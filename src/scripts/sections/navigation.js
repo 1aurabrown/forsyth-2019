@@ -47,20 +47,17 @@ register('navigation', {
 
   enterDesktop() {
     console.log('enter desktop')
+    this.unsetSidebarTopHeight()
+    this.hideExpandedMenu();
+    this.$titles.show();
+    this.$activeInnerMenu.show();
     this.createStickySidebar();
-    this.initDesktopNestedMenus();
   },
 
   exitDesktop () {
     this.destroyStickySidebar();
     this.hideSidebar();
     this.hideExpandedMenu();
-  },
-
-  initDesktopNestedMenus() {
-    this.hideExpandedMenu();
-    this.$activeInnerMenu.show();
-    this.unsetSidebarTopHeight()
   },
 
   menuTitleClicked(e) {
@@ -77,24 +74,24 @@ register('navigation', {
     this.hideMenu(this.$innerMenus, animated)
   },
 
-  hideMenu($el, animated) {
-    var show = function() {
+  hideMenu($el, animated = false) {
+    var hide = function() {
       this.$slideArea.removeClass('expanded')
       $el.hide();
       this.$titles.show();
       this.setSidebarTopHeight()
     }.bind(this)
     if (Breakpoints.is('desktop')) {
-      $el.slideUp();
+      $el.slideUp( animated ? 250 : 0);
     } else {
       this.$back.removeClass('visible');
       if(animated) {
         animateCSS($el, 'fadeOut', function() {
-          show()
+          hide()
           animateCSS(this.$titles, 'fadeIn')
         }.bind(this))
       } else {
-        show()
+        hide()
       }
     }
   },

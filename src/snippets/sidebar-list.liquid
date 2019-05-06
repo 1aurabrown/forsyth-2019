@@ -1,4 +1,4 @@
-<ul class="sidebar__nav-outer">
+<ul class="sidebar__nav-outer {{ class }}">
   {% for link in list.links %}
     {% if expandable and link.links != blank %}
       <li class="sidebar__nav-outer__item has-children {% if link.child_active %}{% unless has_active %}has-active-child{% assign has_active = true %}{% endunless %}{% endif %}">

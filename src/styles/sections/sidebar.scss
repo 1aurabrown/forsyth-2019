@@ -44,6 +44,50 @@ $sidebar-min-width: 20.0rem;
     }
   }
 
+  &__gradient {
+    width: 100%;
+    left: 0;
+    pointer-events: none;
+
+    @include media-query($medium-down) {
+      position: absolute;
+
+      $gradient-height-mobile: 1.5rem;
+      $top-gradient-height-mobile: 1.2 * $header-height-mobile;
+      $top-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$top-gradient-height-mobile);
+      $bottom-gradient-height-mobile: 2.5rem;
+      $bottom-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$bottom-gradient-height-mobile);
+
+      &--top {
+        z-index: 1;
+        top: 0;
+        height: $top-gradient-height-mobile;
+        background-image: linear-gradient(white $top-precent-gradient-mobile, transparent);
+      }
+
+      &--bottom {
+        transform: rotate(180deg);
+        bottom: 0;
+        height: $bottom-gradient-height-mobile;
+        background-image: linear-gradient(rgba(255,255,255,1) $bottom-precent-gradient-mobile, rgba(255,255,255,0));
+      }
+    }
+    @include media-query($large-up) {
+      $gradient-height-desktop: 3rem;
+      $top-gradient-height-desktop: $header-height-desktop;
+      $top-precent-gradient-desktop: 100% - (100% * $gradient-height-desktop/$top-gradient-height-desktop);
+
+      position: fixed;
+      &--top {
+        z-index: 1;
+        top: 0;
+        height: $top-gradient-height-desktop;
+        background-image: linear-gradient(white $top-precent-gradient-desktop, transparent);
+      }
+    }
+
+  }
+
 
   @include media-query($medium-down) {
     position: fixed;
@@ -78,7 +122,7 @@ $sidebar-min-width: 20.0rem;
       width: 100%;
       position: absolute;
       justify-content: space-between;
-      z-index: 1;
+      z-index: 2;
     }
     &__close, &__back {
       cursor: pointer;
@@ -98,29 +142,7 @@ $sidebar-min-width: 20.0rem;
       }
     }
 
-    &__gradient {
-      position: absolute;
-      width: 100%;
-      height: $mobile-inset-l;
-      left: 0;
-      $gradient-height: 1rem;
-      $top-gradient-height: $gradient-height + .9 * $header-height-mobile;
-      $top-precent-gradient: 100% - (100% * $gradient-height/$top-gradient-height);
-      $bottom-gradient-height: 2rem;
-      $bottom-precent-gradient: 100% - (100% * $gradient-height/$bottom-gradient-height);
-      &--top {
-        z-index: -1;
-        top: 0;
-        height: $top-gradient-height;
-        background-image: linear-gradient(rgba(255,255,255,1) $top-precent-gradient, rgba(255,255,255,0));
-      }
-      &--bottom {
-        transform: rotate(180deg);
-        height: $bottom-gradient-height;
-        bottom: 0;
-        background-image: linear-gradient(rgba(255,255,255,1) $bottom-precent-gradient, rgba(255,255,255,0));
-      }
-    }
+
     &__inner {
       padding: $header-height-mobile $mobile-inset-l $mobile-inset-l;
       display: flex;
@@ -164,6 +186,7 @@ $sidebar-min-width: 20.0rem;
   }
 
   @include media-query($large-up) {
+    mix-blend-mode: darken;
     &__inner {
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
