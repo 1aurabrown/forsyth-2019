@@ -1,59 +1,57 @@
 $left-primary-line-height: 1.8;
 $left-secondary-line-height: 1.5;
+#header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 .header {
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  @include media-query($medium-up) {
+  @include media-query($large-up) {
     height: $header-height-desktop;
     padding-left: $nav-inset-desktop;
     padding-right: $nav-inset-desktop;
   }
 
-  @include media-query($small) {
+  @include media-query($medium-down) {
     height: $header-height-mobile;
-    padding-left: $nav-inset-mobile;
-    padding-right: $nav-inset-mobile;
+    padding-left: $mobile-inset-s;
+    padding-right: $mobile-inset-s;
   }
   &__nav {
-    flex-grow: 1;
+    flex: 1;
+    &__item {
+      line-height: $underline-line-height;
+    }
+    &__item.active {
+      @include faux-underline();
+    }
     &__inner {
       display: flex;
       align-items: center;
       > * {
-        @include media-query($medium-up) {
+        cursor: pointer;
+        @include media-query($large-up) {
           margin-left: 20px;
           margin-right: 20px;
         }
       }
       &--left {
         justify-content: flex-start;
-        @include media-query($medium-up) {
+        @include media-query($large-up) {
           margin-left: -20px;
         }
       }
       &--right {
         justify-content: flex-end;
-        @include media-query($medium-up) {
+        @include media-query($large-up) {
           margin-right: -20px;
         }
       }
-    }
-  }
-  &__logo-image {
-    padding-top: 10%;
-    @include media-query($medium) {
-      max-width: 150px;
-    }
-    @include media-query($small) {
-      max-width: 120px;
-    }
-    @include media-query($large-up) {
-      max-width: 205px;
     }
   }
 

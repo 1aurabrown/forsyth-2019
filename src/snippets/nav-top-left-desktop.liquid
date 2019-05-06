@@ -1,29 +1,11 @@
-<nav role="navigation" class="header__nav small--hide">
+<nav role="navigation" class="header__nav medium-down--hide">
   <ul class="header__nav__inner header__nav__inner--left">
     {% for link in linklists[section.settings.main_menu].links %}
-      {% if link.links != blank %}
-        <li>
-          <a href="{{ link.url }}">
-            {{ link.title }}
-            {% include 'icon-arrow-down' %}
-          </a>
-          <ul>
-            {% for childlink in link.links %}
-              <li>
-                <a href="{{ childlink.url }}">
-                  {{ childlink.title }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </li>
-      {% else %}
-        <li>
-          <a href="{{ link.url }}">
-            {{ link.title }}
-          </a>
-        </li>
-      {% endif %}
+      <li class="header__nav__item {% if link.active %}active{% endif %}">
+        <a href="{{ link.url }}">
+          {{ link.title }}
+        </a>
+      </li>
     {% endfor %}
   </ul>
 </nav>

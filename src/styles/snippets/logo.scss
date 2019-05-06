@@ -1,0 +1,32 @@
+.logo {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: $logo-z-index;
+  width: 100%;
+  pointer-events: none;
+  @include media-query($medium-down) {
+    height: $header-height-mobile;
+  }
+  @include media-query($large-up) {
+    height: $header-height-desktop;
+  }
+  h1 {
+    margin: 0;
+  }
+  &__link {
+    display: block;
+    pointer-events: all;
+
+    &__image {
+      padding-top: 10%;
+      @include media-query($medium-down) { // mobile
+        max-width: 120px;
+      }
+      @include media-query($large-up) { // large desktop
+        max-width: 205px;
+      }
+    }
+  }
+}

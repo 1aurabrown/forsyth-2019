@@ -28,6 +28,20 @@
   }
 }
 
+@mixin faux-underline() {
+  position: relative;
+  line-height: $underline-line-height;
+  &::after {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    background-color: $color-border;
+    left: 0;
+    width: 100%;
+  };
+}
+
 
 /*================ Responsive Show/Hide Helper ================*/
 @mixin responsive-display-helper($breakpoint: '') {

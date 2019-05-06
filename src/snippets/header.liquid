@@ -10,55 +10,17 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section data-section-id="{{ section.id }}" data-section-type="header" class="header sans-serif-uppercase-m">
+<div id="header-container">
+  <div class="header sans-serif-uppercase-m">
 
     {% include 'nav-top-left-desktop' %}
     {% include 'nav-top-left-mobile' %}
 
-    <header role="banner" class="header__logo">
-      {% if template.name == 'index' %}
-        <h1>
-      {% else %}
-        <div class="h1">
-      {% endif %}
-          <a href="/">
-            <img class="header__logo-image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
-          </a>
-      {% if template.name == 'index' %}
-        </h1>
-      {% else %}
-        </div>
-      {% endif %}
-
-    </header>
-
     {% include 'nav-top-right-desktop' %}
     {% include 'nav-top-right-mobile' %}
 
-</section>
-
-{% if section.settings.logo != blank %}
-  <style>
-    .logo-image {
-      display: block;
-      max-width: {{ section.settings.logo_max_width }}px;
-    }
-  </style>
-{% endif %}
-
-{% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "main_menu",
-        "label": "Main Menu",
-        "default": "main-menu"
-      }
-    ]
-  }
-{% endschema %}
+  </div>
+</div>
 
 <script type="application/ld+json">
 {

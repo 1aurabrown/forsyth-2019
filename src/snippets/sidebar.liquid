@@ -1,0 +1,41 @@
+{% assign has_active = false %}
+{% assign is_active = false %}
+<div id="sidebar-container">
+  <div class="sidebar sans-serif-uppercase-m">
+      <div class="sidebar__buttons">
+        <div class="sidebar__back large-up--hide"><-</div>
+        <div class="sidebar__close large-up--hide">X</div>
+        <div class="sidebar__gradient sidebar__gradient--top"></div>
+      </div>
+      <div class="sidebar__gradient sidebar__gradient--bottom"></div>
+
+    <div class="sidebar__inner">
+      <div class="sidebar__scroll__top">
+        <div class="sidebar__slide-area">
+          {% include 'sidebar-list', list: linklists[section.settings.shop_menu_a], expandable: true %}
+          {% include 'sidebar-list', list: linklists[section.settings.shop_menu_b], expandable: true %}
+        </div>
+      </div>
+      <div class="sidebar__bottom">
+        <hr class="sidebar__separator large-up--hide"/>
+
+        <div class="sidebar__nav-outer large-up--hide">
+          {% include 'customer-links', item_class: "sidebar__nav-outer__item" active_class: "active" %}
+          <div class="sidebar__nav-outer__item {% if template.name=='search' %}active{% endif %}">
+            {% include 'search-form' %}
+          </div>
+        </div>
+
+        <hr class="sidebar__separator small"/>
+
+        <div class="sidebar__bottom__split">
+          {% include 'sidebar-list', list: linklists[section.settings.main_menu] %}
+          {% include 'sidebar-list', list: linklists[section.settings.pages_menu] %}
+        </div>
+        <div class="sidebar__top-right-menu large-up--hide">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

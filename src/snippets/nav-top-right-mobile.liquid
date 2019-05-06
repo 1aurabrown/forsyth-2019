@@ -1,7 +1,9 @@
-<div class="header__nav medium-up--hide">
+<div class="header__nav large-up--hide">
   <div class="header__nav__inner header__nav__inner--right">
-    <a href="/cart">
-      {{ 'layout.cart.title' | t }}&thinsp;&middot;&thinsp;{{ cart.item_count }}
-    </a>
+    <div class="header__nav__item {% if template.name == 'cart' %}active{% endif %}">
+      <a href="/cart">
+        {{ 'layout.cart.title' | t }}&thinsp;&middot;&thinsp;{{ cart.item_count }}
+      </a>
+    </div>
   </div>
 </div>

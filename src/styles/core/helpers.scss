@@ -63,12 +63,12 @@
   background-color: $color-body;
   color: $color-body-text;
   transition: none;
-  @include media-query($medium-up) {
+  @include media-query($large-up) {
     padding: $grid-gutter-desktop / 2;
   }
 
 
-  @include media-query($small) {
+  @include media-query($medium-down) {
     padding: $grid-gutter-mobile / 2;
   }
 }

@@ -50,6 +50,7 @@ SearchForm.prototype.destroy = function() {
 // -----------------------------------------------------------------------------
 
 SearchForm.prototype._onLabelClick = function(options, event) {
+  console.log('label click')
   this.element.classList.toggle(options.activeClass);
   if (options.onSearchClick) {
     options.onFormSubmit(event);
@@ -57,10 +58,11 @@ SearchForm.prototype._onLabelClick = function(options, event) {
 };
 
 SearchForm.prototype._onInputBlur = function(options, event) {
+  console.log('input blur')
   setTimeout(function() {
     this.element.classList.remove(options.activeClass);
     if (options._onInputBlur) {
       options.onFormSubmit(event);
     }
-  }.bind(this), 10)
+  }.bind(this), 20)
 };

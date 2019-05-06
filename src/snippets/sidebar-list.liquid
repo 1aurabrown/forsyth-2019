@@ -1,7 +1,7 @@
-<ul class="sidebar__nav-outer sans-serif-uppercase-m">
+<ul class="sidebar__nav-outer">
   {% for link in list.links %}
-    {% if link.links != blank %}
-      <li class="sidebar__nav-outer__item {%if link.child_active %}{% unless has_active %}expanded{% assign has_active = true %}{% endunless %}{% endif %}">
+    {% if expandable and link.links != blank %}
+      <li class="sidebar__nav-outer__item has-children {% if link.child_active %}{% unless has_active %}has-active-child{% assign has_active = true %}{% endunless %}{% endif %}">
         <span class="sidebar__nav-outer__item__title">
           {{ link.title }}
         </span>

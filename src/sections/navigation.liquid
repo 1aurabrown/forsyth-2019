@@ -1,24 +1,19 @@
-{% assign has_active = false %}
-{% assign is_active = false %}
-<section data-section-id="{{ section.id }}" data-section-type="sidebar" class="sidebar">
-  <div class="sidebar__inner">
-
-    {% include 'sidebar-list', list: linklists[section.settings.shop_menu_a] %}
-
-    {% include 'sidebar-list', list: linklists[section.settings.shop_menu_b] %}
-
-    <div class="sidebar__separator">
-    </div>
-
-    {% include 'sidebar-list', list: linklists[section.settings.pages_menu] %}
-
-  </div>
+<section data-section-id="{{ section.id }}" data-section-type="navigation">
+  {% include 'logo' %}
+  {% include 'header' %}
+  {% include 'sidebar' %}
 </section>
 
 {% schema %}
   {
-    "name": "Sidebar",
+    "name": "Navigation",
     "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu",
+        "default": "main-menu"
+      },
       {
         "type": "link_list",
         "id": "shop_menu_a",

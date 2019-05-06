@@ -13,8 +13,6 @@ html {
 
 main {
   height: 100%;
-  outline: 1px solid red;
-  background: pink;
 }
 
 *,
@@ -46,4 +44,8 @@ li {
 a, a:active, a:visited {
   text-decoration: none;
   color: inherit;
+}
+
+.faux-underline {
+  @include faux-underline();
 }
