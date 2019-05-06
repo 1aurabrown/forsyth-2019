@@ -74,7 +74,7 @@ $sidebar-min-width: 20.0rem;
       height: $header-height-mobile;
       display: flex;
       align-items: center;
-      padding: 0 $mobile-inset-s;
+      padding: 0 1.5 * $mobile-inset-s;
       width: 100%;
       position: absolute;
       justify-content: space-between;
@@ -82,6 +82,20 @@ $sidebar-min-width: 20.0rem;
     }
     &__close, &__back {
       cursor: pointer;
+      display: block;
+    }
+    &__back {
+      opacity: 0;
+      transition: opacity $transition-duration-long;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    &__close {
+      svg {
+        width: 1.4rem;
+        height: 1.1rem;
+      }
     }
 
     &__gradient {

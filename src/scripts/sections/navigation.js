@@ -30,6 +30,7 @@ register('navigation', {
     this.$innerMenus = $(selectors.innerMenu, this.$slideArea);
     this.$activeInnerMenu = $(selectors.activeTopMenuItem, this.$slideArea).find(selectors.innerMenu)
     this.$titles = $(selectors.titles, this.$slideArea);
+    this.$back = $(selectors.back, this.$container);
 
     this.searchFormElement = this.container.querySelector(selectors.searchForm);
     this.searchForm = new SearchForm(this.searchFormElement, { activeClass: "expanded" });
@@ -86,7 +87,7 @@ register('navigation', {
     if (Breakpoints.is('desktop')) {
       $el.slideUp();
     } else {
-
+      this.$back.removeClass('visible');
       if(animated) {
         animateCSS($el, 'fadeOut', function() {
           show()
@@ -111,6 +112,7 @@ register('navigation', {
         animateCSS($el, 'fadeIn')
         $el.show();
         this.setSidebarTopHeight()
+        this.$back.addClass('visible');
       }.bind(this))
     }
   },

@@ -19,8 +19,7 @@ $left-secondary-line-height: 1.5;
 
   @include media-query($medium-down) {
     height: $header-height-mobile;
-    padding-left: $mobile-inset-s;
-    padding-right: $mobile-inset-s;
+    padding: 0 1.5 * $mobile-inset-s;
   }
   &__nav {
     flex: 1;
