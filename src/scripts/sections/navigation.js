@@ -9,7 +9,8 @@ import _ from 'lodash';
 
 const selectors = {
   sidebar: '.sidebar',
-  searchForm: '.search-form',
+  headerSearchForm: '.header .search-form',
+  sidebarSearchForm: '.sidebar .search-form',
   mobileMenuButton: '.header__mobile-menu-toggle',
   closeSidebar: '.sidebar__close',
   back: '.sidebar__back',
@@ -36,8 +37,10 @@ register('navigation', {
     this.$titles = $(selectors.titles, this.$slideArea);
     this.$back = $(selectors.back, this.$container);
 
-    this.searchFormElement = this.container.querySelector(selectors.searchForm);
-    this.searchForm = new SearchForm(this.searchFormElement, { activeClass: "expanded" });
+    this.headerSearchFormElement = this.container.querySelector(selectors.headerSearchForm);
+    this.headerSearchForm = new SearchForm(this.headerSearchFormElement, { activeClass: "expanded" });
+    this.sidebarSearchFormElement = this.container.querySelector(selectors.sidebarSearchForm);
+    this.sidebarSearchForm = new SearchForm(this.sidebarSearchFormElement, { activeClass: "expanded" });
 
     Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
     $container.on('click' + this.namespace, selectors.mobileMenuButton, this.showSidebar.bind(this) );
@@ -160,7 +163,8 @@ register('navigation', {
 
   onUnload() {
     this.stickySidebar.destroy();
-    this.searchForm.destroy();
+    this.headerSearchForm.destroy();
+    this.sidebarSearchForm.destroy();
     this.container.off(this.namespace)
     Breakpoints.off('desktop')
     Breakpoints.off('mobile tablet')

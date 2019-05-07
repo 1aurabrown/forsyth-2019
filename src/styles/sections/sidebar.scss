@@ -9,7 +9,7 @@ $sidebar-min-width: 20.0rem;
   min-width: $sidebar-min-width;
   &__separator {
     height: 1px;
-    background-color: $transparent-black;
+    background-color: $transparent-gray-medium;
     margin: 0;
     padding: 0;
     border: none;
@@ -172,6 +172,13 @@ $sidebar-min-width: 20.0rem;
           width: 50%;
           padding-right: 10px;
           margin-right: 10px;
+        }
+      }
+    }
+    .search-form {
+      &.expanded {
+        .search-form__label {
+          display: none;
         }
       }
     }

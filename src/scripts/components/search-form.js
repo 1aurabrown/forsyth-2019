@@ -52,8 +52,11 @@ SearchForm.prototype.destroy = function() {
 SearchForm.prototype._onLabelClick = function(options, event) {
   console.log('label click')
   this.element.classList.toggle(options.activeClass);
+  if (this.element.classList.contains(options.activeClass)) {
+    this.input.focus();
+  }
   if (options.onSearchClick) {
-    options.onFormSubmit(event);
+    options.onSearchClick(event);
   }
 };
 
@@ -61,8 +64,8 @@ SearchForm.prototype._onInputBlur = function(options, event) {
   console.log('input blur')
   setTimeout(function() {
     this.element.classList.remove(options.activeClass);
-    if (options._onInputBlur) {
-      options.onFormSubmit(event);
+    if (options.onInputBlur) {
+      options.onInputBlur(event);
     }
   }.bind(this), 20)
 };

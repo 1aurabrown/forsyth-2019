@@ -58,7 +58,7 @@
       .search-form__entry {
         display: block;
         position: absolute;
-        top: calc(100% + 5px);
+        top: calc(100% + #{$v-space});
         left: 0;
         width: 150px;
       }

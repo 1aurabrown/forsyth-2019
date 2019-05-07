@@ -13,11 +13,12 @@
     border-left: 0;
     border-right: 0;
     background: transparent;
+    width: 12rem;
     &:focus {
       outline: none;
     }
-    ::placeholder {
-      color: $transparent-black;
+    &::placeholder {
+      color: $transparent-gray-dark;
     }
   }
   &__button {
