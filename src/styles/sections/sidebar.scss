@@ -52,9 +52,11 @@ $sidebar-min-width: 20.0rem;
     @include media-query($medium-down) {
       position: absolute;
 
-      $gradient-height-mobile: 1.5rem;
+      $gradient-height-mobile: .3 * $header-height-mobile;
+
       $top-gradient-height-mobile: 1.2 * $header-height-mobile;
       $top-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$top-gradient-height-mobile);
+
       $bottom-gradient-height-mobile: 2.5rem;
       $bottom-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$bottom-gradient-height-mobile);
 
@@ -73,8 +75,8 @@ $sidebar-min-width: 20.0rem;
       }
     }
     @include media-query($large-up) {
-      $gradient-height-desktop: 3rem;
-      $top-gradient-height-desktop: $header-height-desktop;
+      $gradient-height-desktop: .3 * $header-height-desktop;
+      $top-gradient-height-desktop: 1.2 * $header-height-desktop;
       $top-precent-gradient-desktop: 100% - (100% * $gradient-height-desktop/$top-gradient-height-desktop);
 
       position: fixed;
@@ -118,7 +120,7 @@ $sidebar-min-width: 20.0rem;
       height: $header-height-mobile;
       display: flex;
       align-items: center;
-      padding: 0 1.5 * $mobile-inset-s;
+      padding: 0 1.5 * $inset-1;
       width: 100%;
       position: absolute;
       justify-content: space-between;
@@ -144,7 +146,7 @@ $sidebar-min-width: 20.0rem;
 
 
     &__inner {
-      padding: $header-height-mobile $mobile-inset-l $mobile-inset-l;
+      padding: $header-height-mobile $inset-2 $inset-2;
       display: flex;
       flex-direction: column;
       justify-content: space-between;

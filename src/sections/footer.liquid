@@ -1,48 +1,36 @@
-<footer>
-
-  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-  <ul>
-    {% for social in social_accounts %}
-      {%- assign social_handle = social | handleize -%}
-      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
-
-      {% if settings[social_link] != blank %}
-        <li>
-          <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-            {% include social_icon %}
-            <span class="icon-fallback-text">{{ social }}</span>
-          </a>
-        </li>
-      {% endif %}
-
-    {% endfor %}
-  </ul>
-
-  {% if section.settings.show_payment_icons %}
-    {% unless shop.enabled_payment_types == empty %}
-      <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
-      <ul class="payment-icons">
-        {% for type in shop.enabled_payment_types %}
-          <li>
-            {{ type | payment_type_svg_tag: class: 'icon' }}
-          </li>
+<section data-section-id="{{ section.id }}" data-section-type="footer">
+<footer class="footer sans-serif-m max-width" >
+  {%- assign footer_linklist = section.settings.footer_linklist -%}
+  {%- assign footer_legal_linklist = section.settings.footer_legal_linklist -%}
+  {%- assign footer_size = linklists[footer_linklist].links.size -%}
+  {%- assign halfway = footer_size | divided_by: 2 | round -%}
+  {% if footer_size > 0 %}
+    <div class="footer__links">
+      <ul>
+        {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% if forloop.index == halfway %}
+            <div class="breaker large-up--hide small--hide"></div>
+          {% endif %}
         {% endfor %}
       </ul>
-    {% endunless %}
+    </div>
   {% endif %}
+  <div class="footer__bottom">
+    <div class="footer__newsletter">
+      Newlsetter <br/> ________________________________->
+    </div>
+    <div class="footer__legal">
+      <ul>
+        {% for link in linklists[footer_legal_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
 
-  {%- assign footer_linklist = section.settings.footer_linklist -%}
-  {% if linklists[footer_linklist].links.size > 0 %}
-    <ul>
-      {% for link in linklists[footer_linklist].links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  <div>
-    <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
+      <div class="footer__copyright">
+        &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -53,14 +41,14 @@
       {
         "type": "link_list",
         "id": "footer_linklist",
-        "label": "First menu",
+        "label": "Menu",
         "default": "footer"
       },
       {
-        "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "Show payment icons",
-        "default": false
+        "type": "link_list",
+        "id": "footer_legal_linklist",
+        "label": "Legal menu",
+        "default": "footer"
       }
     ]
   }

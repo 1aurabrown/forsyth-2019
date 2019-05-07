@@ -50,7 +50,7 @@ b, strong {
   }
   .#{$breakpoint}sans-serif-uppercase {
     @extend .#{$breakpoint}sans-serif;
-    letter-spacing: .04em;
+    letter-spacing: .036em;
     text-transform: uppercase;
   }
 

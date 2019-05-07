@@ -5,6 +5,7 @@ import SearchForm from '../components/search-form';
 import {register} from '@shopify/theme-sections';
 import $ from 'jquery';
 import animateCSS from '../components/animation';
+import _ from 'lodash';
 
 const selectors = {
   sidebar: '.sidebar',
@@ -17,15 +18,18 @@ const selectors = {
   innerMenu: '.sidebar__nav-inner',
   outerMenu: '.sidebar__nav-outer',
   top: '.sidebar__scroll__top',
-  slideArea: '.sidebar__slide-area'
+  slideArea: '.sidebar__slide-area',
+  inner: '.sidebar__inner'
 };
 
 register('navigation', {
   onLoad() {
+    this.count = 0
     this.namespace = '.navigation';
     var $container = $(this.container);
     this.$slideArea = $(selectors.slideArea, this.$container)
     this.$sidebar = $(selectors.sidebar, $container);
+    this.$inner = $(selectors.inner, $container);
 
     this.$innerMenus = $(selectors.innerMenu, this.$slideArea);
     this.$activeInnerMenu = $(selectors.activeTopMenuItem, this.$slideArea).find(selectors.innerMenu)
@@ -46,12 +50,11 @@ register('navigation', {
   },
 
   enterDesktop() {
-    console.log('enter desktop')
+    this.createStickySidebar();
     this.unsetSidebarTopHeight()
     this.hideExpandedMenu();
     this.$titles.show();
-    this.$activeInnerMenu.show();
-    this.createStickySidebar();
+    this.expandMenu(this.$activeInnerMenu)
   },
 
   exitDesktop () {
@@ -64,7 +67,7 @@ register('navigation', {
     var $innerMenu = $(e.target).next(selectors.innerMenu);
     if (!$innerMenu.length > 0) return
     if ($innerMenu.is(':visible')) {
-      this.hideMenu($innerMenu);
+      this.hideMenu($innerMenu, true);
     } else {
       this.expandMenu($innerMenu)
     }
@@ -75,15 +78,22 @@ register('navigation', {
   },
 
   hideMenu($el, animated = false) {
-    var hide = function() {
-      this.$slideArea.removeClass('expanded')
-      $el.hide();
-      this.$titles.show();
-      this.setSidebarTopHeight()
-    }.bind(this)
     if (Breakpoints.is('desktop')) {
-      $el.slideUp( animated ? 250 : 0);
+      if (animated) {
+        $el.slideUp(250, function() {
+          this.stickySidebar.updateSticky()
+        }.bind(this))
+      } else {
+        $el.hide();
+        this.stickySidebar.updateSticky();
+      }
     } else {
+      var hide = function() {
+        this.$slideArea.removeClass('expanded')
+        $el.hide();
+        this.$titles.show();
+        this.setSidebarTopHeight()
+      }.bind(this)
       this.$back.removeClass('visible');
       if(animated) {
         animateCSS($el, 'fadeOut', function() {
@@ -97,13 +107,13 @@ register('navigation', {
   },
 
   expandMenu($el) {
-    console.log('expand')
     if (Breakpoints.is('desktop')) {
-      this.$innerMenus.not($el).slideUp();
-      $el.slideDown();
+      $el.slideDown(250, function() {
+        this.stickySidebar.updateSticky()
+      }.bind(this))
+      this.hideMenu(this.$innerMenus.not($el), true)
     } else {
       animateCSS(this.$titles, 'fadeOut', function() {
-        console.log($el, this.$titles[0])
         this.$slideArea.addClass('expanded')
         this.$titles.hide();
         animateCSS($el, 'fadeIn')
@@ -125,15 +135,16 @@ register('navigation', {
   },
 
   createStickySidebar() {
-    this.stickySidebar = new StickySidebar(this.$sidebar[0], {
+    this.count ++;
+    window.sidebar = this.stickySidebar = new StickySidebar(this.$sidebar[0], {
       containerSelector: '#container',
-      innerWrapperSelector: '.sidebar__inner'
+      innerWrapperSelector: selectors.inner
     });
+    this.stickySidebar.id = this.count
   },
 
   destroyStickySidebar() {
     if (this.stickySidebar) {
-      console.log('destroy sidebar')
       this.stickySidebar.destroy();
     }
   },
@@ -149,8 +160,9 @@ register('navigation', {
 
   onUnload() {
     this.stickySidebar.destroy();
-    delete this.stickySidebar;
     this.searchForm.destroy();
-    this._listeners.removeAll();
+    this.container.off(this.namespace)
+    Breakpoints.off('desktop')
+    Breakpoints.off('mobile tablet')
   }
 });

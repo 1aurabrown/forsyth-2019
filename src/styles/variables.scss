@@ -1,16 +1,31 @@
 // Header
-$header-height-desktop: 7.6rem;
-$header-bottom-spacing-desktop: 3.3rem;
+$base-font-size: 1.4rem;
 
-$header-height-mobile: 4.0rem;
+// vertical space
+$v-space: $base-font-size;
 
-$nav-inset-desktop: 3.0rem;
+// horizontal space
+$inset-1: 1.0rem; // mobile images
+$inset-2: $inset-1 * 2; // mobile text, tablet content
+$inset-3: $inset-1 * 3; // desktop nav
+$inset-4: $inset-1 * 4; // some things with bigger margins
+$inset-5: $inset-1 * 5; // some things with bigger margins
+$inset-6: $inset-1 * 6; // some things with bigger margins
+$inset-7: $inset-1 * 7; // some things with bigger margins
+$inset-8: $inset-1 * 8; // some things with bigger margins
+
+$header-height-desktop: 5 * $v-space;
+$header-bottom-spacing-desktop: 3 * $v-space;
+
+$header-height-mobile: 3 * $v-space;
+$nav-inset-desktop: $inset-3;
+$nav-inset-mobile: $base-font-size;
 
 $logo-z-index: 70;
 $sidebar-z-index: 40;
 
-$mobile-inset-s: 1.0rem;
-$mobile-inset-l: $mobile-inset-s * 2;
+$left-primary-line-height: 1.8;
+$left-secondary-line-height: 1.5;
 
 $underline-line-height: 1.3;
 // Text colors

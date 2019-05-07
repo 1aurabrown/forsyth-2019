@@ -187,6 +187,7 @@
 @include grid-column-generator();
 @include responsive-display-helper();
 @include responsive-typography();
+@include responsive-text-align-helper();
 
 /*================ Build Responsive Grid Classes ================*/
 @each $breakpoint in $breakpoint-has-widths {
@@ -194,5 +195,6 @@
     @include grid-column-generator('#{$breakpoint}--');
     @include responsive-display-helper('#{$breakpoint}--');
     @include responsive-typography('#{$breakpoint}--');
+    @include responsive-text-align-helper('#{$breakpoint}--');
   }
 }
