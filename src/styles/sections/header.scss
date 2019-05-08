@@ -17,7 +17,7 @@
 
   @include media-query($medium-down) {
     height: $header-height-mobile;
-    padding: 0 1.5 * $inset-1;
+    padding: 0 1.5 * $inset;
   }
   &__nav {
     flex: 1;

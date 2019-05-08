@@ -4,15 +4,30 @@ html {
   font-size: 62.5%;
 }
 
+
+:focus {
+  outline: none;
+}
+
 #container {
-  background-color: #aaaacc ;
-  min-height: 200%;
-  height: 200%;
-  outline: 1px solid blue;
+  min-height: 100%;
 }
 
 main {
   height: 100%;
+  z-index: -1;
+  position: relative;
+
+  @include media-query($large-up) {
+    padding-top: $content-top-margin-desktop;
+  }
+  @include media-query($medium-down) {
+    padding-top: $header-height-mobile;
+  }
+}
+
+#main-inner {
+  height: 400px;
 }
 
 .max-width {
@@ -20,6 +35,22 @@ main {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+.margins {
+  @include media-query($small) {
+    margin-left: $inset;
+    margin-right: $inset;
+  }
+  @include media-query($medium) {
+    margin-left: $inset-2;
+    margin-right: $inset-2;
+  }
+
+  @include media-query($large-up) {
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 }
 

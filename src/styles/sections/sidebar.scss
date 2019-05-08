@@ -3,6 +3,7 @@ $sidebar-min-width: 20.0rem;
   min-width: $sidebar-min-width;
   @include media-query($large-up) {
     position: absolute;
+    top: 0;
   }
 }
 .sidebar {
@@ -120,7 +121,7 @@ $sidebar-min-width: 20.0rem;
       height: $header-height-mobile;
       display: flex;
       align-items: center;
-      padding: 0 1.5 * $inset-1;
+      padding: 0 1.5 * $inset;
       width: 100%;
       position: absolute;
       justify-content: space-between;
@@ -200,7 +201,7 @@ $sidebar-min-width: 20.0rem;
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
       padding-bottom: $nav-inset-desktop;
-      padding-top: $header-height-desktop + $header-bottom-spacing-desktop;
+      padding-top: $content-top-margin-desktop;
     }
 
   }

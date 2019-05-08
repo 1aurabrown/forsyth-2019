@@ -1,6 +1,6 @@
 import Listeners from './listeners';
 
-var selectors = {
+const selectors = {
   label: 'label',
   input: '[name^="q"]',
 };

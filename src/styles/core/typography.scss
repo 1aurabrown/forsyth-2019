@@ -56,6 +56,7 @@ b, strong {
 
   .#{$breakpoint}serif {
     font-family: $font-body;
+    line-height: $paragraph-line-height;
   }
 
   // Sans-serif

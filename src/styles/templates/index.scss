@@ -1,0 +1,16 @@
+body.template-index {
+  .homepage-section:not(:last-child) {
+    margin-bottom: 10 * $v-space;
+  }
+  .logo {
+    opacity: 0;
+    transition: opacity $transition-duration;
+    &.homepage-visible {
+      opacity: 1;
+    }
+  }
+  main {
+    position: relative;
+    padding-top: 0;
+  }
+}

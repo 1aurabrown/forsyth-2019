@@ -1,4 +1,3 @@
-import Listeners from '../components/listeners';
 import Breakpoints from 'breakpoints-js';
 import StickySidebar from 'sticky-sidebar';
 import SearchForm from '../components/search-form';
@@ -25,7 +24,6 @@ const selectors = {
 
 register('navigation', {
   onLoad() {
-    this.count = 0
     this.namespace = '.navigation';
     var $container = $(this.container);
     this.$slideArea = $(selectors.slideArea, this.$container)
@@ -138,12 +136,10 @@ register('navigation', {
   },
 
   createStickySidebar() {
-    this.count ++;
     window.sidebar = this.stickySidebar = new StickySidebar(this.$sidebar[0], {
       containerSelector: '#container',
       innerWrapperSelector: selectors.inner
     });
-    this.stickySidebar.id = this.count
   },
 
   destroyStickySidebar() {

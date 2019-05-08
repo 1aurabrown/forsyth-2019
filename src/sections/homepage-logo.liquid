@@ -1,0 +1,26 @@
+<section data-section-id="{{ section.id }}" data-section-type="homepage-logo" class="homepage-logo {{ section.settings.layout }}">
+  <img class="homepage-logo__image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+</section>
+{% schema %}
+  {
+    "name": "Homepage Logo",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Logo Style",
+        "default": "over-content",
+        "options": [
+          {
+            "value": "over-content",
+            "label": "Superimposed on content"
+          },
+          {
+            "value": "before-content",
+            "label": "Before content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
