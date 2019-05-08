@@ -1,6 +1,9 @@
 body.template-index {
   .homepage-section:not(:last-child) {
     margin-bottom: 10 * $v-space;
+    @include media-query($small) {
+      margin-bottom: 6 * $v-space;
+    }
   }
   .logo {
     opacity: 0;

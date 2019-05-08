@@ -1,4 +1,5 @@
 .hero {
+  margin-bottom: 10 * $v-space;
   img {
     display: block;
   }
@@ -42,17 +43,18 @@
   &__caption {
     text-align: center;
     padding: 0;
-    margin-top: 1.5em;
+    margin: 1.5em auto;
     margin-left: auto;
-    margin-right: auto;
     max-width: 40rem;
     p {
       margin: .5em 0;
     }
-
-    @include media-query($small) {
-      padding-left: $inset-4;
-      padding-right: $inset-4;
+  }
+  @include media-query($small) {
+    margin-bottom: 5 * $v-space;
+    &__caption {
+      margin: 5 * $v-space auto;
+      padding: 0 $inset-4;
     }
   }
 }

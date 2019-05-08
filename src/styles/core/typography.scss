@@ -34,12 +34,6 @@ a:focus {
   color: inherit;
 }
 
-
-b, strong {
-  font-weight: $font-body-bold-weight;
-}
-
-
 @mixin responsive-typography($breakpoint: '') {
   // sass-lint:disable no-important
 
@@ -57,6 +51,10 @@ b, strong {
   .#{$breakpoint}serif {
     font-family: $font-body;
     line-height: $paragraph-line-height;
+
+    b, strong {
+      font-weight: $font-body-bold-weight;
+    }
   }
 
   // Sans-serif

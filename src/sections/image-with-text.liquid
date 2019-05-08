@@ -12,18 +12,21 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-<section class="image-with-text">
+<section class="image-with-text max-width">
   {% capture image_layout %}
     <div class="image-with-text__image">
-      {% if section.settings.image != blank %}
-        {% include 'responsive-image' with
-          image: section.settings.image,
-          max_width: 545,
-          max_height: 545
-        %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
+      <div class="image-with-text__image__wrapper">
+        {% if section.settings.image != blank %}
+          {% include 'responsive-image-only' with
+            image: section.settings.image,
+            max_width: 545,
+            max_height: 545,
+            image_class: "image-with-text__image__inner"
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-with-text__image__inner' }}
+        {% endif %}
+      </div>
     </div>
   {% endcapture %}
 
@@ -32,18 +35,20 @@
   {% endif %}
 
   <div class="image-with-text__text">
-    {% if section.settings.title != blank %}
-      <h2>{{ section.settings.title | escape }}</h2>
-    {% endif %}
-    {% if section.settings.text != blank %}
-      <div>{{ section.settings.text }}</div>
-    {% endif %}
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <a href="{{ section.settings.button_link }}">
-        {{ section.settings.button_label | escape }}
-      </a>
-    {% endif %}
-  </div>
+    <div class="image-with-text__text__inner">
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div>{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+</div>
 
   {% if section.settings.layout == 'right' %}
     {{ image_layout }}
@@ -53,6 +58,7 @@
 {% schema %}
   {
     "name": "Image with text",
+    "class": "homepage-section",
     "settings": [
       {
         "type": "image_picker",

@@ -11,6 +11,7 @@ html {
 
 #container {
   min-height: 100%;
+  overflow: hidden; // prevent top & bottom marign collapse
 }
 
 main {

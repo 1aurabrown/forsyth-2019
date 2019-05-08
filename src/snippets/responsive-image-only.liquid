@@ -1,6 +1,6 @@
 {%- capture responsive_image_counter %}{% increment responsive_image_counter %}{% endcapture -%}
 
-{% assign src_width = default_width | default: 300  | append: 'x' %}
+{% assign src_width = default_width | default: 500  | append: 'x' %}
 
 {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 {%- assign image_widths = '180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024' | split: ',' -%}
