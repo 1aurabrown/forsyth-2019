@@ -19,7 +19,7 @@
     {% endif %}
   </div>
   {% if section.settings.caption.size > 0 %}
-    <div class="hero__caption serif-m">
+    <div class="hero__caption medium-down--serif-body-m large-up--serif-body-l">
       {{ section.settings.caption }}
     </div>
   {% endif %}
@@ -28,6 +28,7 @@
   {
     "name": "Hero with caption",
     "max_blocks": 2,
+    "class": "homepage-section hero-with-caption-section",
     "settings": [
       {
         "type": "select",

@@ -2,18 +2,45 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 $inset;
+  a, img {
+    display: block;
+  }
+  &__text {
+    &__inner {
+      &__copy, &__cta {
+        margin: 1.5em 0;
+      }
+      &__heading {
+        margin: .5em 0;
+      }
+    }
+  }
   @include media-query ($small) {
     &__image {
-      flex: 0 1 100%,
+      flex: 0 1 100%;
+      &__inner {
+        width: 100%;
+      }
     }
     &__text {
       flex: 0 1 100%;
       padding: 0 $inset;
+      &__inner {
+        :last-child {
+          margin-bottom: 0;
+        }
+        &__heading {
+          margin-top: 3 * $v-space;
+        }
+      }
     }
   }
 
   @include media-query ($medium-up) {
     align-items: stretch;
+    &.right {
+      flex-direction: row-reverse;
+    }
     &__image {
       padding: 0 $inset;
       flex: 0 1 55%;
@@ -53,7 +80,7 @@
       padding: 0 $inset-2;
     }
     &__text {
-      padding: $inset * 3 $inset * 6;
+      padding: 0 $inset-6;
       &__inner {
         max-width: 400px;
         margin: 0 auto;

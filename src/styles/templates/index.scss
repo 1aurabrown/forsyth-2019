@@ -1,8 +1,15 @@
 body.template-index {
   .homepage-section:not(:last-child) {
-    margin-bottom: 10 * $v-space;
+    @include media-query($medium-up) {
+      margin-bottom: 10 * $v-space;
+    }
     @include media-query($small) {
-      margin-bottom: 6 * $v-space;
+      margin-bottom: 5 * $v-space;
+    }
+    &.hero-with-caption-section {
+      @include media-query($small) {
+        margin-bottom: 0;
+      }
     }
   }
   .logo {

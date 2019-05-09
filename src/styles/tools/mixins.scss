@@ -31,6 +31,7 @@
 @mixin faux-underline() {
   position: relative;
   line-height: $underline-line-height;
+  display: inline-block;
   &::after {
     content:'';
     position: absolute;

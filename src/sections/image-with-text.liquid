@@ -12,47 +12,37 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-<section class="image-with-text max-width">
-  {% capture image_layout %}
-    <div class="image-with-text__image">
-      <div class="image-with-text__image__wrapper">
-        {% if section.settings.image != blank %}
-          {% include 'responsive-image-only' with
-            image: section.settings.image,
-            max_width: 545,
-            max_height: 545,
-            image_class: "image-with-text__image__inner"
-          %}
-        {% else %}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-with-text__image__inner' }}
-        {% endif %}
-      </div>
+<section class="image-with-text max-width {{ section.settings.layout }}">
+  <div class="image-with-text__image">
+    <div class="image-with-text__image__wrapper">
+      {% if section.settings.image != blank %}
+        {% include 'responsive-image-only' with
+          image: section.settings.image,
+          max_width: 545,
+          max_height: 545,
+          image_class: "image-with-text__image__inner"
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-with-text__image__inner' }}
+      {% endif %}
     </div>
-  {% endcapture %}
-
-  {% if section.settings.layout == 'left' %}
-    {{ image_layout }}
-  {% endif %}
+  </div>
 
   <div class="image-with-text__text">
     <div class="image-with-text__text__inner">
       {% if section.settings.title != blank %}
-        <h2>{{ section.settings.title | escape }}</h2>
+        <h2 class="image-with-text__text__inner__heading large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ section.settings.title | escape }}</i></h2>
       {% endif %}
       {% if section.settings.text != blank %}
-        <div>{{ section.settings.text }}</div>
+        <div class="image-with-text__text__inner__copy large-up--serif-body-l medium-down--serif-body-m">{{ section.settings.text }}</div>
       {% endif %}
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}">
-          {{ section.settings.button_label | escape }}
+        <a class="large-up--sans-serif-uppercase-l medium-down--sans-serif-uppercase-m image-with-text__text__inner__cta" href="{{ section.settings.button_link }}">
+          <span class="faux-underline ">{{ section.settings.button_label | escape }}</span>
         </a>
       {% endif %}
     </div>
-</div>
-
-  {% if section.settings.layout == 'right' %}
-    {{ image_layout }}
-  {% endif %}
+  </div>
 </section>
 
 {% schema %}

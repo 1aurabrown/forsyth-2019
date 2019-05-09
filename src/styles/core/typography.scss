@@ -60,10 +60,11 @@ a:focus {
   // Sans-serif
   .#{$breakpoint}sans-serif-l {
     @extend .#{$breakpoint}sans-serif;
+    font-size: 1.6rem;
   }
   .#{$breakpoint}sans-serif-m {
     @extend .#{$breakpoint}sans-serif;
-    font-size: 1.4rem;
+    font-size: $base-font-size;
   }
   .#{$breakpoint}sans-serif-s {
     @extend .#{$breakpoint}sans-serif;
@@ -73,24 +74,42 @@ a:focus {
 
   .#{$breakpoint}sans-serif-uppercase-l {
     @extend .#{$breakpoint}sans-serif-uppercase;
+    @extend .#{$breakpoint}sans-serif-l;
   }
   .#{$breakpoint}sans-serif-uppercase-m {
     @extend .#{$breakpoint}sans-serif-uppercase;
-    font-size: 1.4rem;
+    @extend .#{$breakpoint}sans-serif-m;
+    font-size: $base-font-size;
   }
   .#{$breakpoint}sans-serif-uppercase-s {
     @extend .#{$breakpoint}sans-serif-uppercase;
+    @extend .#{$breakpoint}sans-serif-s;
   }
 
-  // Serif
+  // Serif Heading
 
-  .#{$breakpoint}serif-l {
+  .#{$breakpoint}serif-heading-xl {
     @extend .#{$breakpoint}serif;
+    font-size: 3.0rem;
   }
-  .#{$breakpoint}serif-m {
+
+  .#{$breakpoint}serif-heading-l {
     @extend .#{$breakpoint}serif;
+    font-size: 2.4rem;
   }
-  .#{$breakpoint}serif-s {
+  .#{$breakpoint}serif-heading-m {
     @extend .#{$breakpoint}serif;
+    font-size: 2.0rem
+  }
+
+  // Serif Body
+
+  .#{$breakpoint}serif-body-l {
+    @extend .#{$breakpoint}serif;
+    font-size: 1.6rem;
+  }
+  .#{$breakpoint}serif-body-m {
+    @extend .#{$breakpoint}serif;
+    font-size: $base-font-size;
   }
 }
