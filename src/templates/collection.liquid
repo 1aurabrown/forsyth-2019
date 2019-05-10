@@ -1,4 +1,4 @@
-{% paginate collection.products by 12 %}
+{% comment %}{% paginate collection.products by 12 %}
   <header role="banner">
     <h1>{{ collection.title }}</h1>
     {% if collection.description != blank %}
@@ -100,3 +100,4 @@
     {% include 'pagination' %}
   {% endif %}
 {% endpaginate %}
+{% endcomment %}

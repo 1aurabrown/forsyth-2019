@@ -10,7 +10,7 @@ $sidebar-min-width: 20.0rem;
   min-width: $sidebar-min-width;
   &__separator {
     height: 1px;
-    background-color: $transparent-gray-medium;
+    background-color: $gray-medium;
     margin: 0;
     padding: 0;
     border: none;
@@ -76,17 +76,7 @@ $sidebar-min-width: 20.0rem;
       }
     }
     @include media-query($large-up) {
-      $gradient-height-desktop: .3 * $header-height-desktop;
-      $top-gradient-height-desktop: 1.2 * $header-height-desktop;
-      $top-precent-gradient-desktop: 100% - (100% * $gradient-height-desktop/$top-gradient-height-desktop);
-
-      position: fixed;
-      &--top {
-        z-index: 1;
-        top: 0;
-        height: $top-gradient-height-desktop;
-        background-image: linear-gradient(white $top-precent-gradient-desktop, transparent);
-      }
+      display: none;
     }
 
   }
@@ -148,6 +138,9 @@ $sidebar-min-width: 20.0rem;
 
     &__inner {
       padding: $header-height-mobile $inset-2 $inset-2;
+      height: 100%;
+    }
+    &__content {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -196,7 +189,6 @@ $sidebar-min-width: 20.0rem;
   }
 
   @include media-query($large-up) {
-    mix-blend-mode: darken;
     &__inner {
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;

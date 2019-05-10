@@ -1,0 +1,9 @@
+.homepage-newsletter {
+  padding-bottom: 3 * $v-space;
+  @extend .sans-serif-l;
+  &__feedback {
+    a {
+      @extend .faux-underline;
+    }
+  }
+}

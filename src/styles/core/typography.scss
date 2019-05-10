@@ -39,7 +39,7 @@ a:focus {
 
   .#{$breakpoint}sans-serif {
     font-family: $font-heading;
-    letter-spacing: .01em;
+    letter-spacing: .02em;
     text-transform: none;
   }
   .#{$breakpoint}sans-serif-uppercase {
@@ -58,6 +58,10 @@ a:focus {
   }
 
   // Sans-serif
+  .#{$breakpoint}sans-serif-xl {
+    @extend .#{$breakpoint}sans-serif;
+    font-size: 1.8rem;
+  }
   .#{$breakpoint}sans-serif-l {
     @extend .#{$breakpoint}sans-serif;
     font-size: 1.6rem;
@@ -95,7 +99,7 @@ a:focus {
 
   .#{$breakpoint}serif-heading-l {
     @extend .#{$breakpoint}serif;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
   }
   .#{$breakpoint}serif-heading-m {
     @extend .#{$breakpoint}serif;
@@ -104,6 +108,10 @@ a:focus {
 
   // Serif Body
 
+  .#{$breakpoint}serif-body-xl {
+    @extend .#{$breakpoint}serif;
+    font-size: 1.8rem;
+  }
   .#{$breakpoint}serif-body-l {
     @extend .#{$breakpoint}serif;
     font-size: 1.6rem;

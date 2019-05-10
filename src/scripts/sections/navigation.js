@@ -56,6 +56,7 @@ register('navigation', {
     this.hideExpandedMenu();
     this.$titles.show();
     this.expandMenu(this.$activeInnerMenu)
+    this.updateSticky();
   },
 
   exitDesktop () {
@@ -82,11 +83,11 @@ register('navigation', {
     if (Breakpoints.is('desktop')) {
       if (animated) {
         $el.slideUp(250, function() {
-          this.stickySidebar.updateSticky()
+          this.updateSticky()
         }.bind(this))
       } else {
         $el.hide();
-        this.stickySidebar.updateSticky();
+        this.updateSticky();
       }
     } else {
       var hide = function() {
@@ -107,10 +108,16 @@ register('navigation', {
     }
   },
 
+  updateSticky() {
+    setTimeout(function(){
+      this.stickySidebar.updateSticky();
+    }.bind(this), 0)
+  },
+
   expandMenu($el) {
     if (Breakpoints.is('desktop')) {
       $el.slideDown(250, function() {
-        this.stickySidebar.updateSticky()
+        this.updateSticky()
       }.bind(this))
       this.hideMenu(this.$innerMenus.not($el), true)
     } else {

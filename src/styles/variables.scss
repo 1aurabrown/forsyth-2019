@@ -31,8 +31,6 @@ $underline-line-height: 1.3;
 $paragraph-line-height: 1.5;
 // Text colors
 $color-body-text: var(--color-body-text);
-$transparent-gray-medium: rgba(0,0,0,.4);
-$transparent-gray-dark: rgba(0,0,0,.6);
 
 // Background colors
 $color-body: var(--color-main-background);
@@ -44,6 +42,9 @@ $placeholder-color-background: #f9fafb;
 // Other colors
 $color-accent: var(--color-accent);
 $color-border: #000000;
+$transparent-gray-dark: rgba(0,0,0,.6);
+$gray-medium: lighten( $color-border, 60% );
+$gray-dark: lighten( $color-border, 40% );
 
 // Helper colors for form error states
 $color-disabled: #000000;
@@ -68,7 +69,7 @@ $transition-timing: ease-in-out;
 // Grid
 $grid-medium: 768px;
 $grid-large: 992px;
-$grid-widescreen: 1200px;
+$grid-widescreen: 1300px;
 $grid-max-width: 73.75em;
 $grid-gutter-desktop: 30px;
 

@@ -1,7 +1,7 @@
 <div class="hero">
   <div class="hero__images {{ section.settings.layout }}">
 
-    {% if settings.layout == 'inset' %}
+    {% if section.settings.layout == 'inset' %}
       {% if section.blocks[0].settings.image != blank %}
         {% include 'responsive-image', image: section.blocks[0].settings.image, wrapper_class: "hero__image" %}
       {% else %}
@@ -19,7 +19,7 @@
     {% endif %}
   </div>
   {% if section.settings.caption.size > 0 %}
-    <div class="hero__caption medium-down--serif-body-m large-up--serif-body-l">
+    <div class="hero__caption serif-body-l">
       {{ section.settings.caption }}
     </div>
   {% endif %}

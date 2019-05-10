@@ -1,3 +1,21 @@
+.reset {
+  float: unset;
+  clear: unset;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: $color-body;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  background: transparent;
+  min-height: unset;
+  height: unset;
+  width: unset;
+  text-indent: unset;
+}
+
 html {
   background-color: $color-body;
   box-sizing: border-box;
@@ -22,28 +40,23 @@ p {
   margin: .5em 0;
 }
 
+#shopify-section-navigation {
+  position: relative;z-index: 1;
+}
 main {
   height: 100%;
-  z-index: -1;
   position: relative;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
 
   @include media-query($large-up) {
     padding-top: $content-top-margin-desktop;
+    padding-bottom: $nav-inset-desktop;
   }
   @include media-query($medium-down) {
     padding-top: $header-height-mobile;
-  }
-}
-
-#main-inner {
-  height: 400px;
-}
-
-.max-width {
-  @include media-query($widescreen) {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 

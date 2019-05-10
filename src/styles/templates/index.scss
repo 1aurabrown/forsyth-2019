@@ -1,6 +1,9 @@
 body.template-index {
   .homepage-section:not(:last-child) {
-    @include media-query($medium-up) {
+    @include media-query($large-up) {
+      margin-bottom: 14 * $v-space;
+    }
+    @include media-query($medium) {
       margin-bottom: 10 * $v-space;
     }
     @include media-query($small) {

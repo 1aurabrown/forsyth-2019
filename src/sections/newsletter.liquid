@@ -6,53 +6,102 @@
   - Heading: title of the newsletter section
   - Subheading: description of the newsletter section
 {%- endcomment -%}
-<section>
-  {% if section.settings.section_title != blank %}
-    <label for="Email">{{ section.settings.section_title | escape }}</label>
-  {% endif %}
-  {% if section.settings.subheading != blank %}
-    <p>{{ section.settings.subheading | escape }}</p>
-  {% endif %}
 
-  {% form 'customer' %}
-    {{ form.errors | default_errors }}
-    {% if form.posted_successfully? %}
-      <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+<section class="image-with-text max-width {{ section.settings.layout }}" data-section-id="{{ section.id }}" data-section-type="newsletter">
+  <div class="image-with-text__image">
+    {% if section.settings.image != blank %}
+      {% include 'responsive-image' with
+        image: section.settings.image,
+        max_width: 545,
+        max_height: 545,
+        wrapper_class: "image-with-text__image__wrapper",
+        image_class: "image-with-text__image__inner"
+      %}
     {% else %}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="email"
-        name="contact[email]"
-        id="Email"
-        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-        autocorrect="off"
-        autocapitalize="off">
-      <button type="submit" name="commit" id="Subscribe">
-        <span>{{ 'general.newsletter_form.submit' | t }}</span>
-      </button>
+      <div class="image-with-text__image__wrapper">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-with-text__image__inner' }}
+      </div>
     {% endif %}
-  {% endform %}
+  </div>
+
+  <div class="image-with-text__text">
+    <div class="image-with-text__text__inner">
+      {% if section.settings.title != blank %}
+        <h2 class="image-with-text__text__inner__heading large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ section.settings.title | escape }}</i></h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="image-with-text__text__inner__copy serif-body-l">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% include 'newsletter-signup', success: section.settings.success, placeholder: section.settings.placeholder, class: 'homepage-newsletter' %}
+    </div>
+  </div>
 </section>
 
 {% schema %}
   {
     "name": "Newsletter",
+    "class": "homepage-section",
     "settings": [
       {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
         "type": "text",
-        "id": "section_title",
+        "id": "title",
         "label": "Heading",
-        "default": "Subscribe to our newsletter"
+        "default": "Newsletter"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
       },
       {
         "type": "text",
-        "id": "subheading",
-        "label": "Subheading",
-        "default": "A short sentence describing what someone will receive by subscribing"
+        "id": "success",
+        "label": "Success Message",
+        "default": "Thank you."
       },
       {
-        "type": "paragraph",
-        "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder",
+        "default": "your email address"
       }
     ],
     "presets": [{

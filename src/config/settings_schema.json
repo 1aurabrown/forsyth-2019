@@ -20,6 +20,17 @@
     ]
   },
   {
+    "name": "Mailchimp",
+    "settings": [
+      {
+        "type": "html",
+        "id": "embed",
+        "label": "Mailchimp embed code",
+        "info": "Copy the 'UNSTYLED' form embed code from Mailchimp"
+      }
+    ]
+  },
+  {
     "name": "Social media",
     "settings": [
       {

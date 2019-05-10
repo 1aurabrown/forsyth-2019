@@ -2,6 +2,7 @@ import Listeners from './listeners';
 
 const selectors = {
   label: 'label',
+  button: 'button',
   input: '[name^="q"]',
 };
 
@@ -16,9 +17,9 @@ const selectors = {
 
 export default function SearchForm(element, options = {}) {
   this.element = element;
-
   this.input = this.element.querySelector(selectors.input);
   this.label = this.element.querySelector(selectors.label);
+  this.button = this.element.querySelector(selectors.button);
 
   this._listeners = new Listeners();
 
@@ -50,7 +51,6 @@ SearchForm.prototype.destroy = function() {
 // -----------------------------------------------------------------------------
 
 SearchForm.prototype._onLabelClick = function(options, event) {
-  console.log('label click')
   this.element.classList.toggle(options.activeClass);
   if (this.element.classList.contains(options.activeClass)) {
     this.input.focus();
@@ -61,8 +61,8 @@ SearchForm.prototype._onLabelClick = function(options, event) {
 };
 
 SearchForm.prototype._onInputBlur = function(options, event) {
-  console.log('input blur')
   setTimeout(function() {
+    if (document.activeElement == this.button) return;
     this.element.classList.remove(options.activeClass);
     if (options.onInputBlur) {
       options.onInputBlur(event);
