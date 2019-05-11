@@ -195,6 +195,9 @@ $sidebar-min-width: 20.0rem;
       padding-bottom: $nav-inset-desktop;
       padding-top: $content-top-margin-desktop;
     }
+    &__content {
+      margin-top: $left-primary-line-height * -.25em; // ensure sidebar aligns with top of main content
+    }
 
   }
 

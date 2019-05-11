@@ -10,6 +10,7 @@ import {getUrlWithVariant, ProductForm} from '@shopify/theme-product-form';
 import {formatMoney} from '@shopify/theme-currency';
 import {register} from '@shopify/theme-sections';
 import {forceFocus} from '@shopify/theme-a11y';
+import Breakpoints from 'breakpoints-js';
 
 const classes = {
   hide: 'hide',
@@ -33,6 +34,9 @@ const selectors = {
   thumbnail: '[data-product-single-thumbnail]',
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: '[data-product-single-thumbnail][aria-current]',
+  rightColumn: '.product__content__text',
+  rightColumnInner: '.product__content__text__inner',
+  content: '.product__content'
 };
 
 register('product', {
@@ -48,9 +52,14 @@ register('product', {
 
     this.onThumbnailClick = this.onThumbnailClick.bind(this);
     this.onThumbnailKeyup = this.onThumbnailKeyup.bind(this);
-
+    this.rightColumn = this.container.querySelector(selectors.rightColumn);
     this.container.addEventListener('click', this.onThumbnailClick);
     this.container.addEventListener('keyup', this.onThumbnailKeyup);
+
+    Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
+
+    Breakpoints.on('desktop', 'enter', this.enterDesktop.bind(this))
+    Breakpoints.on('mobile tablet', 'enter', this.exitDesktop.bind(this))
   },
 
   onUnload() {
@@ -58,11 +67,39 @@ register('product', {
     this.removeEventListener('click', this.onThumbnailClick);
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
+  createSticky () {
+    window.productSticky = this.sticky = new StickySidebar(this.rightColumn, {
+      containerSelector: selectors.container,
+      innerWrapperSelector: selectors.rightColumnInner
+    });
+  },
+
+
+  destroySticky() {
+    if (this.sticky) {
+      this.sticky.destroy();
+    }
+  },
 
   getProductJson(handle) {
     return fetch(`/products/${handle}.js`).then((response) => {
       return response.json();
     });
+  },
+
+  enterDesktop() {
+    this.createSticky();
+    this.updateSticky();
+  },
+
+  exitDesktop () {
+    this.destroySticky();
+  },
+
+  updateSticky() {
+    setTimeout(function(){
+      this.sticky.updateSticky();
+    }.bind(this), 0)
   },
 
   onFormOptionChange(event) {

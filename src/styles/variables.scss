@@ -18,9 +18,10 @@ $header-height-desktop: 5 * $v-space;
 $header-bottom-spacing-desktop: 3 * $v-space;
 $content-top-margin-desktop: $header-height-desktop + $header-bottom-spacing-desktop;
 
+$left-nav-padding: 21rem;
 $header-height-mobile: 3 * $v-space;
 $nav-inset-desktop: $inset-3;
-$nav-inset-mobile: $base-font-size;
+$nav-inset-mobile: $nav-inset-desktop / 2;
 
 $logo-z-index: 70;
 $sidebar-z-index: 40;

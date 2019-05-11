@@ -143,7 +143,7 @@ register('navigation', {
   },
 
   createStickySidebar() {
-    window.sidebar = this.stickySidebar = new StickySidebar(this.$sidebar[0], {
+    window.navSidebar = this.stickySidebar = new StickySidebar(this.$sidebar[0], {
       containerSelector: '#container',
       innerWrapperSelector: selectors.inner
     });
