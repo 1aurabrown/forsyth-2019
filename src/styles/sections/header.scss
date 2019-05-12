@@ -23,7 +23,7 @@
   &__nav {
     flex: 1;
     &__item {
-      line-height: $underline-line-height;
+      line-height: $sans-serif-underline-line-height;
     }
     &__item.active {
       @include faux-underline();

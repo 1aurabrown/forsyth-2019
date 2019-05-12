@@ -1,5 +1,5 @@
 import Breakpoints from 'breakpoints-js';
-import StickySidebar from 'sticky-sidebar';
+import StickySidebar from '../components/sticky-sidebar';
 import SearchForm from '../components/search-form';
 import {register} from '@shopify/theme-sections';
 import $ from 'jquery';
@@ -25,6 +25,7 @@ const selectors = {
 register('navigation', {
   onLoad() {
     this.namespace = '.navigation';
+    this.updateSticky = _.debounce(this._updateSticky, 50).bind(this)
     var $container = $(this.container);
     this.$slideArea = $(selectors.slideArea, this.$container)
     this.$sidebar = $(selectors.sidebar, $container);
@@ -45,6 +46,8 @@ register('navigation', {
     $container.on('click' + this.namespace, selectors.closeSidebar, this.hideSidebar.bind(this) );
     $container.on('click' + this.namespace, selectors.back, this.hideExpandedMenu.bind(this) );
     $container.on('click' + this.namespace, selectors.titles, this.menuTitleClicked.bind(this))
+
+    $(window).on('resize', this.updateSticky)
 
     Breakpoints.on('desktop', 'enter', this.enterDesktop.bind(this))
     Breakpoints.on('mobile tablet', 'enter', this.exitDesktop.bind(this))
@@ -108,9 +111,12 @@ register('navigation', {
     }
   },
 
-  updateSticky() {
+  _updateSticky() {
     setTimeout(function(){
-      this.stickySidebar.updateSticky();
+      if (!this.stickySidebar) return;
+      if (!Breakpoints.is('desktop')) return;
+      console.log('update sticky sidebar')
+      this.stickySidebar.forceUpdate();
     }.bind(this), 0)
   },
 
@@ -145,13 +151,18 @@ register('navigation', {
   createStickySidebar() {
     window.navSidebar = this.stickySidebar = new StickySidebar(this.$sidebar[0], {
       containerSelector: '#container',
-      innerWrapperSelector: selectors.inner
+      innerWrapperSelector: selectors.inner,
+      bottomSpacing: 30
     });
   },
 
   destroyStickySidebar() {
+    console.log('destroy sidebar')
     if (this.stickySidebar) {
       this.stickySidebar.destroy();
+      console.log(this.stickySidebar.sidebar.classList)
+      delete this.stickySidebar;
+
     }
   },
 
@@ -171,5 +182,6 @@ register('navigation', {
     this.container.off(this.namespace)
     Breakpoints.off('desktop')
     Breakpoints.off('mobile tablet')
+    $(window).off('resize', this.updateSticky)
   }
 });

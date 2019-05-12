@@ -1,0 +1,14 @@
+<h3>{{ section.settings.shipping_heading }}</h3>
+
+{% for block in section.blocks %}
+  {% if product.tags contains block.settings.tag %}
+    {% assign shipping_message = block.settings.message %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if shipping_message.size > 0 %}
+  {{ shipping_message }}
+{% else %}
+  {{ section.settings.default_shipping_message }}
+{% endif %}
