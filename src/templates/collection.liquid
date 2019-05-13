@@ -1,26 +1,26 @@
 <section class="collection">
-  {% paginate collection.products by 12 %}
-    <header role="banner" class="collection__header">
-      <h1 class="collection__header__title large-up--hide sans-serif-uppercase-l">{{ collection.title }}</h1>
-      {% if collection.image != blank %}
-        <div class="collection__header__image">
-          {% include 'responsive-image' with
-            image: collection.image,
-            max_width: 700,
-            max_height: 800
-          %}
-        </div>
-      {% endif %}
-      
-      {% if collection.description != blank %}
-        <div 
-          class="collection__header__description small--serif-body medium--serif-body-l large-up--serif-body-xl"
-        >
-          {{ collection.description }}
-        </div>
-      {% endif %}
-    </header>
+  <header role="banner" class="collection__header">
+    <h1 class="collection__header__title large-up--hide sans-serif-uppercase-l">{{ collection.title }}</h1>
+    {% if collection.image != blank %}
+      <div class="collection__header__image">
+        {% include 'responsive-image' with
+          image: collection.image,
+          max_width: 700,
+          max_height: 800
+        %}
+      </div>
+    {% endif %}
+    
+    {% if collection.description != blank %}
+      <div 
+        class="collection__header__description small--serif-body medium--serif-body-l large-up--serif-body-xl"
+      >
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </header>
 
+  {% paginate collection.products by 12 %}
     <div class="collection__content grid">
       {% for product in collection.products %}
         <div class="collection__content__product grid__item medium-up--one-third small--one-half">
@@ -29,7 +29,9 @@
               {% include 'responsive-image' with
                 image: product.featured_image,
                 max_width: 700,
-                max_height: 700
+                max_height: 560,
+                aspect_ratio: 1.25,
+                image_class: "collection__content__product__image"
               %}
             </a>
           {% endif %}
@@ -46,13 +48,13 @@
 
             <p>
               {% if product.available %}
+              {% comment %} On sale {% endcomment %}
                 {% if product.compare_at_price > product.price %}
                   <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
                   <s class="collection__content__product__metadata__strikethrough_price">
                     {{ product.compare_at_price | money_without_trailing_zeros }}
                   </s>
-
-                  {% comment %} Will there be product variants? {% endcomment %}
+                  &nbsp;
                   {% if product.price_varies %}
                     {%- assign sale_price = product.price | money -%}
                     {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
@@ -61,7 +63,7 @@
                   {% endif %}
 
                 {% else %}
-
+                {% comment %} Available; not on sale {% endcomment %}
                   {% if product.price_varies %}
                     {%- assign price = product.price | money -%}
                     {{ 'products.product.from_text_html' | t: price: price }}
@@ -71,9 +73,11 @@
                 {% endif %}
 
               {% else %}
+              {% comment %} Sold {% endcomment %}
                 <s class="collection__content__product__metadata__strikethrough_price">
                   {{ product.price | money_without_trailing_zeros }}
                 </s>
+                &nbsp;
                 <i>{{ 'products.product.sold_out' | t }}</i>
               {% endif %}
             </p>
@@ -81,24 +85,7 @@
         </div>
 
       {% else %}
-        {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-          {% for i in (1..8) %}
-            <a href="#">
-              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-            </a>
-
-            <p>
-              <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
-            </p>
-
-            <p>
-              {{ 1999 | money }}
-            </p>
-          {% endfor %}
-        {% else %}
           <p>{{ 'collections.general.no_matches' | t }}</p>
-        {% endif %}
       {% endfor %}
     </div>
 

@@ -1,0 +1,5 @@
+{% paginate products by 20 %}
+  {% for product in products%}
+    {{product.title}}
+  {% endfor %}
+{% endpaginate %}

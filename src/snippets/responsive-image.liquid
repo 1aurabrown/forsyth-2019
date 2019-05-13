@@ -9,6 +9,7 @@
     Accepts:
     - max_width: {Number} Max width of the image container
     - max_height: {Number} Max height of the image container
+    - aspect_ratio: {Number} Aspect ratio to enforce
     - image: {Object} Image object
     - image_class: {String} class name of the <img />
     - image_attributes: {String}  additional HTML attributes of the <img />
@@ -52,7 +53,20 @@
       When you change the window screen width, we want to make sure that the container's size is proportionally calculated.
       Note regarding padding percentage: The percentage is calculated with respect to the width of the generated box's containing block (source: http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#padding-properties)
     {%- endcomment -%}
-    padding-top:{{ 100 | divided_by: image.aspect_ratio }}%;
+
+    {%- comment -%}
+      This will enforce the provided aspect ratio if there is one. The image behavior should be set in 
+      the image_class (e.g. object-fit, object-center)
+    {%- endcomment-%}
+
+    {%- capture wrapper_aspect_ratio -%}
+      {%- if aspect_ratio != blank -%}
+        {{ aspect_ratio }}
+      {%- else -%}
+        {{ image.aspect_ratio }}
+      {%- endif -%}
+    {%- endcapture -%}
+    padding-top:{{ 100 | divided_by: wrapper_aspect_ratio }}%;
   }
 </style>
 
