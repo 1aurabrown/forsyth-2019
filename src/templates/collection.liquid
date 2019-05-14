@@ -19,12 +19,17 @@
       </div>
     {% endif %}
   </header>
-  
   <div class="collection__content">
     {% if collection.products_count > 0 %}
-      {% include 'product-grid' with 
+      {% paginate collection.products by 48 %}
+        {% include 'product-grid' with 
           products: collection.products
-      %}
+        %}
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      {% endpaginate %}
     {% else %}
       <p>{{ 'collections.general.no_matches' | t }}</p>
     {% endif %}
