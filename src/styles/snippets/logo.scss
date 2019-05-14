@@ -21,12 +21,14 @@
     pointer-events: all;
 
     &__image {
-      padding-top: 10%;
       @include media-query($medium-down) { // mobile
         max-width: 120px;
       }
       @include media-query($large-up) { // large desktop
         max-width: 205px;
+      }
+      img {
+        display: block;
       }
     }
   }

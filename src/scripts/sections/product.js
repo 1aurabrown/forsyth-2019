@@ -10,9 +10,16 @@ import {getUrlWithVariant, ProductForm} from '@shopify/theme-product-form';
 import {formatMoney} from '@shopify/theme-currency';
 import {register} from '@shopify/theme-sections';
 import {forceFocus} from '@shopify/theme-a11y';
+import Breakpoints from 'breakpoints-js';
+import $ from 'jquery';
+import TabbedSections from '../components/tabbed-sections';
+import _ from 'lodash';
+import StickySidebar from '../components/sticky-sidebar';
 
 const classes = {
   hide: 'hide',
+  sectionHeading: 'product__text__description__headings__heading',
+  sectionText: 'product__text__description__texts__text',
 };
 
 const keyboardKeys = {
@@ -25,32 +32,70 @@ const selectors = {
   comparePrice: '[data-compare-price]',
   comparePriceText: '[data-compare-text]',
   priceWrapper: '[data-price-wrapper]',
-  imageWrapper: '[data-product-image-wrapper]',
-  visibleImageWrapper: `[data-product-image-wrapper]:not(.${classes.hide})`,
-  imageWrapperById: (id) => `${selectors.imageWrapper}[data-image-id='${id}']`,
   productForm: '[data-product-form]',
   productPrice: '[data-product-price]',
-  thumbnail: '[data-product-single-thumbnail]',
-  thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
-  thumbnailActive: '[data-product-single-thumbnail][aria-current]',
+  rightColumn: '.product__text',
+  rightColumnInner: '.product__text__inner',
+  description: '.product__text__description',
+  originalDescription: '.product__text__description__original',
+  headingsContainer: '.product__text__description__headings',
+  sectionHeading: '.' + classes.sectionHeading,
+  sectionText: '.' + classes.sectionText,
+  textsContainer: '.product__text__description__texts',
+  content: '.product__content'
 };
 
 register('product', {
   async onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
-
+    this.updateSticky = _.debounce(this._updateSticky, 50).bind(this);
     this.product = await this.getProductJson(
-      productFormElement.dataset.productHandle,
+      productFormElement.dataset.productHandle
     );
     this.productForm = new ProductForm(productFormElement, this.product, {
       onOptionChange: this.onFormOptionChange.bind(this),
     });
 
-    this.onThumbnailClick = this.onThumbnailClick.bind(this);
-    this.onThumbnailKeyup = this.onThumbnailKeyup.bind(this);
-
+    this.rightColumn = this.container.querySelector(selectors.rightColumn);
     this.container.addEventListener('click', this.onThumbnailClick);
     this.container.addEventListener('keyup', this.onThumbnailKeyup);
+    this.formatSections();
+
+    Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
+
+    Breakpoints.on('desktop tablet', 'enter', this.exitMobile.bind(this))
+    Breakpoints.on('mobile', 'enter', this.enterMobile.bind(this))
+  },
+
+  formatSections() {
+    var $originalDescription = $(selectors.originalDescription, $(this.container))
+    var $headingsContainer = $(selectors.headingsContainer, $(this.container))
+    var $textsContainer = $(selectors.textsContainer, $(this.container))
+    $('h1, h2, h3', $originalDescription).replaceWith(function() {
+      return `<h3 class="${classes.sectionHeading}"><span>` + this.innerHTML + '</span></h3>';
+    });
+    var $headings = $(selectors.sectionHeading, $(this.container))
+    var $sectionTexts = $($headings.map(function(i) {
+      var $contents;
+      if (i < $headings.length - 1 ) {
+        $contents = $(this).nextUntil($headings)
+      } else {
+        $contents = $(this).nextUntil()
+      }
+      $contents.filter(function() { return ! $.trim($(this).text()) }).remove();
+      return $contents.wrapAll(`<div class="${ classes.sectionText }" />`).parent().get();
+    })).hide();
+    $headingsContainer.append($headings);
+    $textsContainer.append($sectionTexts);
+    $originalDescription.remove();
+    this.tabbedSections = new TabbedSections(
+      this.container.querySelector(selectors.description), {
+        headings: selectors.sectionHeading,
+        contents: selectors.sectionText,
+        contentsContainer: selectors.textsContainer,
+        resizeCallback: this.updateSticky.bind(this)
+      }
+    )
   },
 
   onUnload() {
@@ -58,11 +103,45 @@ register('product', {
     this.removeEventListener('click', this.onThumbnailClick);
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
+  createSticky () {
+    window.productSticky = this.sticky = new StickySidebar(this.rightColumn, {
+      containerSelector: selectors.container,
+      innerWrapperSelector: selectors.rightColumnInner,
+      bottomSpacing: 10,
+      topSpacing: function() {
+        return $(this.rightColumn).offset().top
+      }.bind(this)
+    });
+  },
+
+  destroySticky() {
+    if (this.sticky) {
+      this.sticky.destroy();
+      delete this.sticky;
+    }
+  },
 
   getProductJson(handle) {
     return fetch(`/products/${handle}.js`).then((response) => {
       return response.json();
     });
+  },
+
+  exitMobile() {
+    this.createSticky();
+    this.updateSticky();
+  },
+
+  enterMobile () {
+    this.destroySticky();
+  },
+
+  _updateSticky() {
+    setTimeout(function(){
+      if (!this.sticky) return;
+      if (Breakpoints.is('mobile')) return;
+      this.sticky.forceUpdate();
+    }.bind(this), 0)
   },
 
   onFormOptionChange(event) {
@@ -74,34 +153,6 @@ register('product', {
     this.renderSubmitButton(variant);
 
     this.updateBrowserHistory(variant);
-  },
-
-  onThumbnailClick(event) {
-    const thumbnail = event.target.closest(selectors.thumbnail);
-
-    if (!thumbnail) {
-      return;
-    }
-
-    event.preventDefault();
-
-    this.renderFeaturedImage(thumbnail.dataset.thumbnailId);
-    this.renderActiveThumbnail(thumbnail.dataset.thumbnailId);
-  },
-
-  onThumbnailKeyup(event) {
-    if (
-      event.keyCode !== keyboardKeys.ENTER ||
-      !event.target.closest(selectors.thumbnail)
-    ) {
-      return;
-    }
-
-    const visibleFeaturedImageWrapper = this.container.querySelector(
-      selectors.visibleImageWrapper,
-    );
-
-    forceFocus(visibleFeaturedImageWrapper);
   },
 
   renderSubmitButton(variant) {
@@ -120,15 +171,6 @@ register('product', {
       submitButton.disabled = true;
       submitButtonText.innerText = theme.strings.soldOut;
     }
-  },
-
-  renderImages(variant) {
-    if (!variant || variant.featured_image === null) {
-      return;
-    }
-
-    this.renderFeaturedImage(variant.featured_image.id);
-    this.renderActiveThumbnail(variant.featured_image.id);
   },
 
   renderPrice(variant) {
@@ -172,34 +214,6 @@ register('product', {
       compareTextElement.classList.add(classes.hide);
       comparePriceElement.classList.add(classes.hide);
     }
-  },
-
-  renderActiveThumbnail(id) {
-    const activeThumbnail = this.container.querySelector(
-      selectors.thumbnailById(id),
-    );
-    const inactiveThumbnail = this.container.querySelector(
-      selectors.thumbnailActive,
-    );
-
-    if (activeThumbnail === inactiveThumbnail) {
-      return;
-    }
-
-    inactiveThumbnail.removeAttribute('aria-current');
-    activeThumbnail.setAttribute('aria-current', true);
-  },
-
-  renderFeaturedImage(id) {
-    const activeImage = this.container.querySelector(
-      selectors.visibleImageWrapper,
-    );
-    const inactiveImage = this.container.querySelector(
-      selectors.imageWrapperById(id),
-    );
-
-    activeImage.classList.add(classes.hide);
-    inactiveImage.classList.remove(classes.hide);
   },
 
   updateBrowserHistory(variant) {

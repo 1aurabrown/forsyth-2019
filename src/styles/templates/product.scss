@@ -1,7 +1,112 @@
-.product-single__thumbnail-image {
-  border: 2px solid transparent;
-
-  .active-thumbnail & {
-    border-color: $color-border;
+.product {
+  &__text {
+    &__inner {
+      padding-bottom: $inset;
+    }
+    &__description {
+      &__headings {
+        display: flex;
+        justify-content: space-between;
+        &__heading {
+          cursor: pointer;
+          margin-right: 10%;
+          white-space: nowrap;
+          span {
+            line-height: $sans-serif-underline-line-height;
+          }
+          &.active span {
+            @extend .faux-underline;
+          }
+        }
+      }
+      &__texts {
+        margin-top: 1.5 * $v-space;
+        min-height: 300px;
+        transition: min-height $transition-duration-long;
+        overflow: hidden;
+        &__text {
+          p {
+            margin: .5em 0 0;
+          }
+          h4, h5, h6 {
+            margin: .5em 0 0;
+            + p {
+              margin-top: 0;
+            }
+          }
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    &__form {
+      margin-top: 5 * $v-space;
+    }
+    &__more-info {
+      margin-top: 3 * $v-space;
+    }
+    &__top {
+      &__vendor {
+        margin-bottom: .4rem;
+        a {
+          line-height: 1;
+        }
+      }
+      margin-bottom: 4 * $v-space;
+    }
+  }
+  @include media-query($small) {
+    &__content {
+      padding: 0 $inset;
+    }
+    &__images {
+      &__image {
+        margin: $inset 0;
+      }
+    }
+  }
+  @include media-query($medium-up) {
+    padding-left: $inset-2;
+    padding-right: $inset-3;
+    &__content {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    &__images {
+      width: 55%;
+      margin-right: $inset-3 / 2;
+      margin-top: -$inset-2;
+      &__image {
+        margin-top: $inset-2;
+      }
+    }
+    &__text {
+      width: 45%;
+      margin-left: $inset-3/2;
+    }
+  }
+  @include media-query($large-up) {
+    padding-left: $left-nav-padding;
+  }
+  @include media-query($large) {
+    &__images {
+      width: 50%;
+    }
+    &__text {
+      width: 50%;
+    }
+  }
+  @include media-query($widescreen) {
+    padding-right: $inset-8;
+    &__content {
+      display: flex;
+    }
+     &__images {
+      margin-right: $inset-3;
+    }
+    &__text {
+      margin-left: $inset-3;
+    }
   }
 }

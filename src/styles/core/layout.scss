@@ -22,7 +22,6 @@ html {
   font-size: 62.5%;
 }
 
-
 :focus {
   outline: none;
 }
@@ -46,14 +45,12 @@ p {
 main {
   height: 100%;
   position: relative;
-  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
 
   @include media-query($large-up) {
     padding-top: $content-top-margin-desktop;
-    padding-bottom: $nav-inset-desktop;
   }
   @include media-query($medium-down) {
     padding-top: $header-height-mobile;

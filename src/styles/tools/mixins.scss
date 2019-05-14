@@ -28,9 +28,17 @@
   }
 }
 
+@mixin top-space() {
+  @include media-query($large-up) {
+    padding-top: $content-top-margin-desktop;
+  }
+  @include media-query($medium-down) {
+    padding-top: $header-height-mobile;
+  }
+}
+
 @mixin faux-underline() {
   position: relative;
-  line-height: $underline-line-height;
   display: inline-block;
   &::after {
     content:'';

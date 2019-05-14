@@ -29,6 +29,7 @@ $sidebar-min-width: 20.0rem;
   &__nav-outer__item, &__nav-inner__item {
     &.active a {
       @include faux-underline();
+      line-height: $sans-serif-underline-line-height;
     }
 
     &__title {
@@ -89,7 +90,7 @@ $sidebar-min-width: 20.0rem;
     top: 0;
     height: 100%;
     background: white;
-    transition: transform $transition-duration;
+    transition: transform $transition-duration-long;
     &.visible {
       transform: translate3d(100%, 0, 0);
     }
@@ -154,6 +155,7 @@ $sidebar-min-width: 20.0rem;
     &__nav-outer__item.has-active-child {
       .sidebar__nav-outer__item__title {
         @include faux-underline();
+        line-height: $sans-serif-underline-line-height;
       }
     }
     &__bottom {
@@ -192,8 +194,11 @@ $sidebar-min-width: 20.0rem;
     &__inner {
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
-      padding-bottom: $nav-inset-desktop;
+      padding-bottom: 0;
       padding-top: $content-top-margin-desktop;
+    }
+    &__content {
+      margin-top: $left-primary-line-height * -.25em; // ensure sidebar aligns with top of main content
     }
 
   }

@@ -4,6 +4,7 @@
   &__feedback {
     a {
       @extend .faux-underline;
+      line-height: $sans-serif-underline-line-height;
     }
   }
 }
