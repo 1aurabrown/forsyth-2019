@@ -43,6 +43,7 @@
 // Snippets
 @import './snippets/logo';
 @import './snippets/newsletter-signup';
+@import './snippets/product-grid.scss';
 
 // Sections
 @import './sections/image-with-text';
@@ -53,3 +54,5 @@
 @import './templates/gift_card';
 @import './templates/product';
 @import './templates/index';
+@import './templates/collection';
+@import './templates/search.scss';

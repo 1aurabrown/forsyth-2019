@@ -1,0 +1,22 @@
+.product-grid {
+  &__product {
+    &__image {
+      object-fit: cover;
+      object-position: center;
+    }
+    &__metadata {
+      line-height: 1;
+      padding: $v-space;
+
+      &__strikethrough_price {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  @include media-query($small) {
+    &__product {
+      padding-bottom: 2 * $v-space;
+    }
+  }
+}

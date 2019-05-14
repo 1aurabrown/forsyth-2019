@@ -48,10 +48,10 @@
         "other": "Search results"
       },
       "results_with_count": {
-        "one": "{{ count }} result for \"{{ terms }}\"",
-        "other": "{{ count }} results for \"{{ terms }}\""
+        "one": "Your search for \"{{ terms }}\" returned {{ count }} result:",
+        "other": "Your search for \"{{ terms }}\" returned {{ count }} results:"
       },
-      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>."
+      "no_results_html": "Your search for \"{{ terms }}\" did not return any results."
     },
     "newsletter_form": {
       "newsletter_email": "Join our mailing list",
