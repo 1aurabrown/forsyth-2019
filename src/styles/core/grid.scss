@@ -9,7 +9,7 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  @include media-query($medium-down) {
+  @include media-query($small) {
     margin-left: -$grid-gutter-mobile;
     margin-top: -$grid-gutter-mobile * 2;
   }
@@ -20,7 +20,7 @@
 }
 
 .grid__item {
-  @include media-query($medium-down) {
+  @include media-query($small) {
     padding-left: $grid-gutter-mobile;
     padding-top: $grid-gutter-mobile * 2;
   }

@@ -75,7 +75,7 @@
     }
   }
   @include media-query($large-up) {
-    padding: 11 * $v-space - $nav-inset-desktop $inset-3 $inset-3 ;
+    padding: 10 * $v-space $inset-3 $inset-3 ;
   }
   @include media-query($medium-down) {
     padding: 10 * $v-space $inset-2 $inset-2;
