@@ -33,9 +33,7 @@
   }
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
-    padding-right: $inset-12; // should this be a new css variable for big desktop insets?
-      // it looks like the right inset matches the left one, and both are bigger
-      // than the biggest $inset-* variable
+    padding-right: $left-nav-padding;
 
     &__header {
       padding: 0 $inset-12;
