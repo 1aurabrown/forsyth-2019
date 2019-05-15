@@ -19,9 +19,11 @@ export default function Newsletter(element, options = {}) {
   this.arrowSubmit = this.element.querySelector(selectors.arrowSubmit);
   this.sectionSettings = JSON.parse(this.element.querySelector(selectors.data).innerHTML)
 
-  originalSubmit.parentNode.appendChild(this.arrowSubmit)
-  originalSubmit.remove();
-  this.arrowSubmit.classList.remove('hide');
+  if (originalSubmit.parentNode) {
+    originalSubmit.parentNode.appendChild(this.arrowSubmit)
+    originalSubmit.remove();
+    this.arrowSubmit.classList.remove('hide');
+  }
 
   this.email = this.element.querySelector(selectors.email);
   this.email.placeholder = this.sectionSettings.placeholder

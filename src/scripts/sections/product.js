@@ -15,6 +15,8 @@ import $ from 'jquery';
 import TabbedSections from '../components/tabbed-sections';
 import _ from 'lodash';
 import StickySidebar from '../components/sticky-sidebar';
+import MobileWaypoints from '../components/product-mobile-waypoints';
+import formatSections from '../components/format-sections';
 
 const classes = {
   hide: 'hide',
@@ -38,17 +40,20 @@ const selectors = {
   rightColumnInner: '.product__text__inner',
   description: '.product__text__description',
   originalDescription: '.product__text__description__original',
-  headingsContainer: '.product__text__description__headings',
+  headingsBar: '[js-headings]',
+  headingsBarContainer: '[js-headings-container]',
   sectionHeading: '.' + classes.sectionHeading,
   sectionText: '.' + classes.sectionText,
   textsContainer: '.product__text__description__texts',
-  content: '.product__content'
+  content: '.product__content',
+  bottomMobileSticky: '[data-bottom-sticky]',
+  bottomMobileStickyContainer: '[data-bottom-sticky-container]',
+  imagesContainer: '[data-images-container]'
 };
 
 register('product', {
   async onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
-    this.updateSticky = _.debounce(this._updateSticky, 50).bind(this);
     this.product = await this.getProductJson(
       productFormElement.dataset.productHandle
     );
@@ -56,46 +61,28 @@ register('product', {
       onOptionChange: this.onFormOptionChange.bind(this),
     });
 
+
     this.rightColumn = this.container.querySelector(selectors.rightColumn);
     this.container.addEventListener('click', this.onThumbnailClick);
     this.container.addEventListener('keyup', this.onThumbnailKeyup);
-    this.formatSections();
+    this.updateDesktopSticky = _.debounce(this._updateDesktopSticky, 50).bind(this);
 
-    Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
+    formatSections(this.container, selectors, classes);
 
-    Breakpoints.on('desktop tablet', 'enter', this.exitMobile.bind(this))
-    Breakpoints.on('mobile', 'enter', this.enterMobile.bind(this))
-  },
-
-  formatSections() {
-    var $originalDescription = $(selectors.originalDescription, $(this.container))
-    var $headingsContainer = $(selectors.headingsContainer, $(this.container))
-    var $textsContainer = $(selectors.textsContainer, $(this.container))
-    $('h1, h2, h3', $originalDescription).replaceWith(function() {
-      return `<h3 class="${classes.sectionHeading}"><span>` + this.innerHTML + '</span></h3>';
-    });
-    var $headings = $(selectors.sectionHeading, $(this.container))
-    var $sectionTexts = $($headings.map(function(i) {
-      var $contents;
-      if (i < $headings.length - 1 ) {
-        $contents = $(this).nextUntil($headings)
-      } else {
-        $contents = $(this).nextUntil()
-      }
-      $contents.filter(function() { return ! $.trim($(this).text()) }).remove();
-      return $contents.wrapAll(`<div class="${ classes.sectionText }" />`).parent().get();
-    })).hide();
-    $headingsContainer.append($headings);
-    $textsContainer.append($sectionTexts);
-    $originalDescription.remove();
+    this.mobileWaypoints = new MobileWaypoints(this.container, selectors);
     this.tabbedSections = new TabbedSections(
       this.container.querySelector(selectors.description), {
         headings: selectors.sectionHeading,
         contents: selectors.sectionText,
         contentsContainer: selectors.textsContainer,
-        resizeCallback: this.updateSticky.bind(this)
+        resizeCallback: this.updateDesktopSticky.bind(this),
+        selectCallback: this.mobileScrollToTextTop.bind(this)
       }
     )
+
+    Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
+    Breakpoints.on('desktop tablet', 'enter', this.exitMobile.bind(this))
+    Breakpoints.on('mobile', 'enter', this.enterMobile.bind(this))
   },
 
   onUnload() {
@@ -103,8 +90,23 @@ register('product', {
     this.removeEventListener('click', this.onThumbnailClick);
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
-  createSticky () {
-    window.productSticky = this.sticky = new StickySidebar(this.rightColumn, {
+
+  // Helpers for formatting description text
+
+
+
+  // Mobile section tab selection callback
+
+  mobileScrollToTextTop() {
+    if(Breakpoints.is('mobile')) {
+      $(document.scrollingElement).animate({ scrollTop: $(selectors.headingsBarContainer, this.container).offset().top + 1 }, 500)
+    }
+  },
+
+  // Methods relating to right-hand sticky text area on tablet & desktop
+
+  createDesktopSticky () {
+    this.desktopSticky = new StickySidebar(this.rightColumn, {
       containerSelector: selectors.container,
       innerWrapperSelector: selectors.rightColumnInner,
       bottomSpacing: 10,
@@ -114,34 +116,39 @@ register('product', {
     });
   },
 
-  destroySticky() {
-    if (this.sticky) {
-      this.sticky.destroy();
-      delete this.sticky;
+  _updateDesktopSticky() {
+    if (Breakpoints.is('mobile')) return;
+    if (this.desktopSticky) {
+      this.desktopSticky.forceUpdate();
     }
   },
+
+  destroySticky() {
+    if (this.desktopSticky) {
+      this.desktopSticky.destroy();
+      delete this.desktopSticky;
+    }
+  },
+
+  // Breakpoint set-up and tear-down
+
+  exitMobile() {
+    this.createDesktopSticky();
+    this.updateDesktopSticky();
+    this.mobileWaypoints.removeListeners();
+  },
+
+  enterMobile () {
+    this.destroySticky();
+    this.mobileWaypoints.addListeners().update();
+  },
+
+  // Slate boilerplate methods
 
   getProductJson(handle) {
     return fetch(`/products/${handle}.js`).then((response) => {
       return response.json();
     });
-  },
-
-  exitMobile() {
-    this.createSticky();
-    this.updateSticky();
-  },
-
-  enterMobile () {
-    this.destroySticky();
-  },
-
-  _updateSticky() {
-    setTimeout(function(){
-      if (!this.sticky) return;
-      if (Breakpoints.is('mobile')) return;
-      this.sticky.forceUpdate();
-    }.bind(this), 0)
   },
 
   onFormOptionChange(event) {

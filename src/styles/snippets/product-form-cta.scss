@@ -1,0 +1,17 @@
+.product__form__cta {
+  display: block;
+  border-width: 1px 0;
+  border-color: $gray-medium;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $inset;
+  &__price {
+    padding-top: .2em;
+    &__compare {
+      color: $gray-medium;
+      margin-right: .5em;
+    }
+  }
+}

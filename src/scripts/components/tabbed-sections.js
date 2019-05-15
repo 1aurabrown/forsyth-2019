@@ -17,21 +17,18 @@ export default function TabbedSections(element, options = {}) {
   this.$contents = $(options.contents, this.element);
   this.$contentsContainer = $(options.contentsContainer, this.element)
   this.resizeCallback = options.resizeCallback;
-  console.log(this.$contentsContainer)
+  this.selectCallback = options.selectCallback;
   this.$contentsContainer.css('position', 'relative')
   this.$contents.css({ 'position': 'absolute', 'top': 0, 'left': 0, 'width': '100%'})
   this.$el.on('click' + this.namespace, options.headings, this._onHeadingClick.bind(this));
-  $(window).on('resize' + this.namespace, this._onWindowResize.bind(this));
+  this.onWindowResize = _.debounce(this._onWindowResize.bind(this), 100);
+  $(window).on('resize' + this.namespace, this.onWindowResize.bind(this));
 
   this.selectTab(0, false)
 }
-
-/**
- * Cleans up all event handlers that were assigned when the Product Form was constructed.
- * Useful for use when a section needs to be reloaded in the theme editor.
- */
 TabbedSections.prototype.destroy = function() {
-
+  this.$el.off('click' + this.namespace);
+  $(window).off('resize' + this.namespace);
 };
 
 
@@ -45,8 +42,8 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
   $selectedHeading.addClass('active')
 
   if(animated) {
-    this.$contents.filter(':visible').fadeOut(500, function() {
-      $selectedContent.fadeIn(500);
+    this.$contents.filter(':visible').fadeOut(250, function() {
+      $selectedContent.fadeIn(250);
     })
   } else {
     this.$contents.filter(':visible').hide();
@@ -63,12 +60,18 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
 // -----------------------------------------------------------------------------
 
 TabbedSections.prototype._onHeadingClick = function(e) {
+  let index = this.$headings.index(e.currentTarget)
   this.selectTab(this.$headings.index(e.currentTarget))
+  if (this.selectCallback && _.isFunction(this.selectCallback)) {
+    this.selectCallback(e.currentTarget, index);
+  }
 };
 TabbedSections.prototype._setHeight = function($content) {
   var contentHeight = $content.outerHeight(true)
   this.$contentsContainer.css('min-height', contentHeight + 'px')
-  this.resizeCallback();
+  if (this.resizeCallback && _.isFunction(this.resizeCallback)) {
+    this.resizeCallback();
+  }
 };
 TabbedSections.prototype._onWindowResize = function($content) {
   this._setHeight($(this.$contents[this.selectedIndex]))

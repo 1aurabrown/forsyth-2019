@@ -12,6 +12,7 @@ module.exports = {
       alias: {
         jquery: path.resolve('./node_modules/jquery'),
         'lodash-es': path.resolve('./node_modules/lodash-es'),
+        waypoints: path.resolve('./node_modules/waypoints/lib/noframework.waypoints.js')
       },
     },
   },
