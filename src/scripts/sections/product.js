@@ -65,7 +65,6 @@ register('product', {
     this.rightColumn = this.container.querySelector(selectors.rightColumn);
     this.container.addEventListener('click', this.onThumbnailClick);
     this.container.addEventListener('keyup', this.onThumbnailKeyup);
-    this.updateDesktopSticky = _.debounce(this._updateDesktopSticky, 50).bind(this);
 
     formatSections(this.container, selectors, classes);
 
@@ -106,7 +105,7 @@ register('product', {
   // Methods relating to right-hand sticky text area on tablet & desktop
 
   createDesktopSticky () {
-    this.desktopSticky = new StickySidebar(this.rightColumn, {
+    window.productSticky = this.desktopSticky = new StickySidebar(this.rightColumn, {
       containerSelector: selectors.container,
       innerWrapperSelector: selectors.rightColumnInner,
       bottomSpacing: 10,
@@ -116,11 +115,14 @@ register('product', {
     });
   },
 
-  _updateDesktopSticky() {
+  updateDesktopSticky() {
+    console.log('update product sticky')
     if (Breakpoints.is('mobile')) return;
-    if (this.desktopSticky) {
-      this.desktopSticky.forceUpdate();
-    }
+    setTimeout(function() {
+      if (this.desktopSticky) {
+        this.desktopSticky.forceUpdate();
+      }
+    }.bind(this), 5);
   },
 
   destroySticky() {

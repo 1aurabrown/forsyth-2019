@@ -16,23 +16,23 @@ export default function TabbedSections(element, options = {}) {
   this.$headings = $(options.headings, this.element);
   this.$contents = $(options.contents, this.element);
   this.$contentsContainer = $(options.contentsContainer, this.element)
-  this.resizeCallback = options.resizeCallback;
   this.selectCallback = options.selectCallback;
   this.$contentsContainer.css('position', 'relative')
   this.$contents.css({ 'position': 'absolute', 'top': 0, 'left': 0, 'width': '100%'})
   this.$el.on('click' + this.namespace, options.headings, this._onHeadingClick.bind(this));
-  this.onWindowResize = _.debounce(this._onWindowResize.bind(this), 100);
+  this.onWindowResize = _.debounce(this._onWindowResize.bind(this), 200);
   $(window).on('resize' + this.namespace, this.onWindowResize.bind(this));
-
+  this.resizeCallback = options.resizeCallback;
   this.selectTab(0, false)
 }
 TabbedSections.prototype.destroy = function() {
-  this.$el.off('click' + this.namespace);
-  $(window).off('resize' + this.namespace);
+  this.$el.off(this.namespace);
+  $(window).off(this.namespace);
+  this.$contentsContainer.off(this.namespace);
 };
 
 
-TabbedSections.prototype.selectTab = function(index, animated = true) {
+TabbedSections.prototype.selectTab = function(index, animated = false) {
   if (index == this.selectedIndex) return;
 
   var $selectedHeading = $(this.$headings[index])
@@ -50,7 +50,7 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
     $selectedContent.show();
   }
 
-  this._setHeight($(this.$contents[index]))
+  this._setHeight($(this.$contents[index]), animated)
 
   this.selectedIndex = index;
 };
@@ -61,17 +61,18 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
 
 TabbedSections.prototype._onHeadingClick = function(e) {
   let index = this.$headings.index(e.currentTarget)
-  this.selectTab(this.$headings.index(e.currentTarget))
+  this.selectTab(this.$headings.index(e.currentTarget), true)
   if (this.selectCallback && _.isFunction(this.selectCallback)) {
     this.selectCallback(e.currentTarget, index);
   }
 };
-TabbedSections.prototype._setHeight = function($content) {
+TabbedSections.prototype._setHeight = function($content, animated = false) {
   var contentHeight = $content.outerHeight(true)
-  this.$contentsContainer.css('min-height', contentHeight + 'px')
-  if (this.resizeCallback && _.isFunction(this.resizeCallback)) {
-    this.resizeCallback();
-  }
+  this.$contentsContainer.animate({'min-height': contentHeight},
+    {
+      duration: animated ? 500 : 0,
+      complete: this.resizeCallback
+    })
 };
 TabbedSections.prototype._onWindowResize = function($content) {
   this._setHeight($(this.$contents[this.selectedIndex]))

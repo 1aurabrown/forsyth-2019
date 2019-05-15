@@ -1,8 +1,26 @@
+@mixin product-text-formatting() {
+  p {
+    margin: .5em 0 0;
+  }
+  h4, h5, h6 {
+    margin: .5em 0 0;
+    + p {
+      margin-top: 0;
+    }
+  }
+  > :first-child {
+    margin-top: 0;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
 .product {
   position: relative;
   &__text {
     &__inner {
       padding-bottom: $inset;
+      overflow: hidden;
     }
     &__description {
       &__headings {
@@ -25,24 +43,9 @@
       &__texts {
         margin-top: 2 * $v-space;
         min-height: 300px;
-        transition: min-height $transition-duration-long;
         overflow: hidden;
         &__text {
-          p {
-            margin: .5em 0 0;
-          }
-          h4, h5, h6 {
-            margin: .5em 0 0;
-            + p {
-              margin-top: 0;
-            }
-          }
-          > :first-child {
-            margin-top: 0;
-          }
-          a {
-            text-decoration: underline;
-          }
+          @include product-text-formatting();
         }
       }
     }
@@ -51,12 +54,7 @@
     }
     &__more-info {
       margin-top: 3 * $v-space;
-      p {
-        margin: .5em 0 0;
-        &:first-child {
-          margin-top: 0;
-        }
-      }
+      @include product-text-formatting();
     }
     &__top {
       &__vendor {
