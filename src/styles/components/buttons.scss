@@ -8,4 +8,27 @@
   text-decoration: none;
   user-select: none;
   appearance: none;
+  background: black;
+  border: 1px solid;
+  border-color: black;
+  color: white;
+  padding: .7rem 1.5rem .9rem;
+  @extend .sans-serif-uppercase-l;
+  @media (hover: hover) {
+    &:hover {
+      color: black;
+      background: white;
+    }
+  }
+  &:disabled {
+    background: $gray-medium;
+    border-color: $gray-medium;
+    color: white;
+    @media (hover: hover) {
+      &:hover {
+        color: $gray-medium;
+        background: white;
+      }
+    }
+  }
 }

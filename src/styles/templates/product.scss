@@ -1,15 +1,35 @@
+@mixin product-text-formatting() {
+  p {
+    margin: .5em 0 0;
+  }
+  h4, h5, h6 {
+    margin: .5em 0 0;
+    + p {
+      margin-top: 0;
+    }
+  }
+  > :first-child {
+    margin-top: 0;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
 .product {
+  position: relative;
   &__text {
     &__inner {
       padding-bottom: $inset;
+      overflow: hidden;
     }
     &__description {
       &__headings {
-        display: flex;
-        justify-content: space-between;
+        &__content {
+          display: flex;
+          justify-content: space-between;
+        }
         &__heading {
           cursor: pointer;
-          margin-right: 10%;
           white-space: nowrap;
           span {
             line-height: $sans-serif-underline-line-height;
@@ -20,23 +40,11 @@
         }
       }
       &__texts {
-        margin-top: 1.5 * $v-space;
+        margin-top: 2 * $v-space;
         min-height: 300px;
-        transition: min-height $transition-duration-long;
         overflow: hidden;
         &__text {
-          p {
-            margin: .5em 0 0;
-          }
-          h4, h5, h6 {
-            margin: .5em 0 0;
-            + p {
-              margin-top: 0;
-            }
-          }
-          a {
-            text-decoration: underline;
-          }
+          @include product-text-formatting();
         }
       }
     }
@@ -45,6 +53,7 @@
     }
     &__more-info {
       margin-top: 3 * $v-space;
+      @include product-text-formatting();
     }
     &__top {
       &__vendor {
@@ -53,7 +62,6 @@
           line-height: 1;
         }
       }
-      margin-bottom: 4 * $v-space;
     }
   }
   @include media-query($small) {
@@ -61,8 +69,75 @@
       padding: 0 $inset;
     }
     &__images {
+      margin-top: 5 * $v-space;
       &__image {
         margin: $inset 0;
+        padding-bottom: $inset;
+      }
+    }
+    &__text {
+      &__top {
+        margin-bottom: .5em;
+      }
+      &__inner {
+        padding-bottom: 0;
+      }
+      &__description {
+        &__headings {
+          &__content {
+            padding-top: $header-height-mobile;
+            padding-bottom: $v-space;
+            justify-content: space-around;
+            background: white;
+            &.viewport-top {
+              padding-left: $inset;
+              padding-right: $inset;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              border-bottom: 1px solid $gray-medium;
+              z-index: 1;
+            }
+          }
+        }
+        &__texts {
+          margin-top: $v-space;
+        }
+      }
+    }
+    &__mobile-sticky-cta {
+      overflow: hidden;
+      &__content {
+        padding: $v-space 0;
+        border-top: 1px solid white;
+        background: white;
+        transform: translate3d(0,0,0);
+        transition: transform $transition-duration;
+        &.viewport-bottom, &.container-bottom {
+          width: 100%;
+          z-index: 1;
+          left: 0;
+          padding-left: $inset;
+          padding-right: $inset;
+          bottom: 0;
+        }
+        &.viewport-bottom, .hidden {
+          position: fixed;
+          border-top: 1px solid $gray-medium;
+        }
+        &.hidden {
+          transform: translate3d(0,100%,0);
+        }
+      }
+    }
+  }
+  @include media-query($medium-down) {
+    &__description {
+      &__headings {
+        &__heading {
+          margin: 0;
+        }
       }
     }
   }
@@ -84,10 +159,23 @@
     &__text {
       width: 45%;
       margin-left: $inset-3/2;
+      &__top {
+        margin-top: $v-space;
+        margin-bottom: 4 * $v-space;
+      }
     }
   }
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
+    &__text {
+      &__description {
+        &__headings {
+          &__heading {
+            margin-right: 10%;
+          }
+        }
+      }
+    }
   }
   @include media-query($large) {
     &__images {
@@ -99,14 +187,28 @@
   }
   @include media-query($widescreen) {
     padding-right: $inset-8;
+
     &__content {
       display: flex;
     }
-     &__images {
+    &__images {
       margin-right: $inset-3;
     }
     &__text {
       margin-left: $inset-3;
+
+      &__top {
+        margin-top: 1.5 * $v-space;
+      }
+      &__inner {
+        &__centered {
+          max-width: $max-text-width;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
     }
   }
+
+
 }

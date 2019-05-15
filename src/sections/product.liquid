@@ -15,116 +15,46 @@
 
     <div class="product__text">
       <div class="product__text__inner">
-        <div class="product__text__top medium-up--serif-body-xl small--serif-body-m">
-          {% if product.vendor.size > 0 %}
-            <div class="product__text__top__vendor"><a href="" class="faux-underline">{{ product.vendor }}</a></div>
-          {% endif %}
-          <h1 class="product__text__top__title">{{ product.title }}</h1>
-        </div>
+        <div class="product__text__inner__centered">
 
+          <div class="product__mobile-sticky-cta" data-bottom-sticky-container>
+            <div class="product__mobile-sticky-cta__content" data-bottom-sticky>
+              <div class="product__text__top medium-up--serif-body-xl small--serif-body-m">
+                {% if product.vendor.size > 0 %}
+                  <div class="product__text__top__vendor"><a href="" class="faux-underline">{{ product.vendor }}</a></div>
+                {% endif %}
+                <h1 class="product__text__top__title">{{ product.title }}</h1>
+              </div>
 
-        <div class="rte product__text__description">
-          <div class="product__text__description__headings sans-serif-uppercase-m">
-          </div>
-          <div class="product__text__description__texts serif-body-m">
-          </div>
-          <div class="product__text__description__original hide">
-            {{ product.description }}
-            {% include 'product-shipping' %}
-          </div>
-        </div>
-
-        <div class="product__text__form">
-          {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-            {% unless product.has_only_default_variant %}
-              {% for option in product.options_with_values %}
-                <div class="js">
-
-                  {% if forloop.index0 > 0 %}
-
-                    {% for value in option.values %}
-                      <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-                      <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
-                    {% endfor %}
-
-                  {% else %}
-
-                    <label for="Option{{ option.position }}">
-                      {{ option.name }}
-                    </label>
-
-                    <select
-                      id="Option{{ option.position }}"
-                      name="options[{{ option.name | escape }}]">
-                      {% for value in option.values %}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if option.selected_value == value %}selected="selected"{% endif %}>
-                            {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-
-                  {% endif %}
-                </div>
-              {% endfor %}
-            {% endunless %}
-
-            <noscript>
-              <select name="id">
-                {% for variant in product.variants %}
-                  <option
-                    {% if variant == current_variant %}selected="selected"{% endif %}
-                    {% unless variant.available %}disabled="disabled"{% endunless %}
-                    value="{{ variant.id }}">
-                      {{ variant.title }}
-                  </option>
-                {% endfor %}
-              </select>
-            </noscript>
-
-            <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-            <input type="number" id="Quantity" name="quantity" value="1" min="1">
-
-            <div data-price-wrapper>
-              <span data-product-price>
-                {{ current_variant.price | money }}
-              </span>
-
-              {% if product.compare_at_price_max > product.price %}
-                <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-                <s data-compare-price>
-                  {% if current_variant.compare_at_price > current_variant.price %}
-                    {{ current_variant.compare_at_price | money }}
-                  {% endif %}
-                </s>
-              {% endif %}
+              {% include 'product-form', product_form_class: 'medium-up--hide product__form--mobile' %}
             </div>
+          </div>
 
-            <button
-              type="submit"
-              name="add"
-              data-submit-button
-              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                <span data-submit-button-text>
-                  {% if current_variant.available %}
-                    {{ 'products.product.add_to_cart' | t }}
-                  {% else %}
-                    {{ 'products.product.sold_out' | t }}
-                  {% endif %}
-                </span>
-            </button>
-          {% endform %}
+          <div class="rte product__text__description">
+            <div class="product__text__description__headings" js-headings-container>
+              <div class="product__text__description__headings__content sans-serif-uppercase-m" js-headings>
+              </div>
+            </div>
+            <div class="product__text__description__texts serif-body-m">
+            </div>
+            <div class="product__text__description__original hide">
+              {{ product.description }}
+              {% include 'product-shipping' %}
+            </div>
+          </div>
+
+          {% include 'product-form', product_form_class: 'small--hide product__form--desktop' %}
 
           {% if section.settings.show_share_buttons %}
             {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
           {% endif %}
+
+          <div class="product__text__more-info">{{ section.settings.more_info }}</div>
         </div>
-        <div class="product__text__more-info">{{ section.settings.more_info }}</div>
       </div>
     </div>
 
-    <div class="product__images">
+    <div class="product__images" data-images-container>
       {% for image in product.images %}
         {% if forloop.index == 1 %}
           {% assign wrapper_class="small--hide" %}
@@ -155,7 +85,7 @@
         "id": "more_info",
         "label": "More Info Text",
         "info": "displayed below the add-to-cart button",
-        "default": "<p><b>Need more info?</b></p><p>Would you like to see a video of this item, perhaps more photos, maybe a photo of a human sitting in it, need a tear sheet, or just want to talk to us about how cool it is? Inquire Here.</p>"
+        "default": "<p><b>Need more info?</b></p><p>Would you like to see a video of this item, perhaps more photos, maybe a photo of a human sitting in it, need a tear sheet, or just want to talk to us about how cool it is? <a href=\"/pages/contact\">Inquire Here</a>.</p>"
       }
     ]
   }

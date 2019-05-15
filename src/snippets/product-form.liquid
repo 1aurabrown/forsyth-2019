@@ -1,0 +1,53 @@
+{%- capture product_form_counter %}{% increment product_form_counter %}{% endcapture -%}
+<div class="product__form {{ product_form_class }}">
+  {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        <div class="js">
+
+          {% if forloop.index0 > 0 %}
+
+            {% for value in option.values %}
+              <input type="radio" id="Product-form-{{ product_form_counter}}--Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+              <label for="Product-form-{{ product_form_counter}}--Option{{ option.position }}-{{ value }}">{{ value }}</label>
+            {% endfor %}
+
+          {% else %}
+
+            <label for="Product-form-{{ product_form_counter}}--Option{{ option.position }}">
+              {{ option.name }}
+            </label>
+
+            <select
+              id="Product-form-{{ product_form_counter}}--Option{{ option.position }}"
+              name="options[{{ option.name | escape }}]">
+              {% for value in option.values %}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}selected="selected"{% endif %}>
+                    {{ value }}
+                </option>
+              {% endfor %}
+            </select>
+
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endunless %}
+
+    <noscript>
+      <select name="id">
+        {% for variant in product.variants %}
+          <option
+            {% if variant == current_variant %}selected="selected"{% endif %}
+            {% unless variant.available %}disabled="disabled"{% endunless %}
+            value="{{ variant.id }}">
+              {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </noscript>
+    {% include 'product-form-cta' %}
+  {% endform %}
+
+</div>

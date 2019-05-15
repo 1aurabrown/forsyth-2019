@@ -19,6 +19,7 @@
     "document": true,
     "window": true,
     "Shopify": true,
+    "Waypoints": true,
     "theme": true
   }
 }

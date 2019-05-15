@@ -15,6 +15,7 @@ $inset-7: $inset * 7; // some things with bigger margins
 $inset-8: $inset * 8; // some things with bigger margins
 $inset-12: $inset * 12;
 
+$max-text-width: 35em;
 $header-height-desktop: 5 * $v-space;
 $header-bottom-spacing-desktop: 3 * $v-space;
 $content-top-margin-desktop: $header-height-desktop + $header-bottom-spacing-desktop;

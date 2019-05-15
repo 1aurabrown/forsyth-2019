@@ -16,26 +16,23 @@ export default function TabbedSections(element, options = {}) {
   this.$headings = $(options.headings, this.element);
   this.$contents = $(options.contents, this.element);
   this.$contentsContainer = $(options.contentsContainer, this.element)
-  this.resizeCallback = options.resizeCallback;
-  console.log(this.$contentsContainer)
+  this.selectCallback = options.selectCallback;
   this.$contentsContainer.css('position', 'relative')
   this.$contents.css({ 'position': 'absolute', 'top': 0, 'left': 0, 'width': '100%'})
   this.$el.on('click' + this.namespace, options.headings, this._onHeadingClick.bind(this));
-  $(window).on('resize' + this.namespace, this._onWindowResize.bind(this));
-
+  this.onWindowResize = _.debounce(this._onWindowResize.bind(this), 200);
+  $(window).on('resize' + this.namespace, this.onWindowResize.bind(this));
+  this.resizeCallback = options.resizeCallback;
   this.selectTab(0, false)
 }
-
-/**
- * Cleans up all event handlers that were assigned when the Product Form was constructed.
- * Useful for use when a section needs to be reloaded in the theme editor.
- */
 TabbedSections.prototype.destroy = function() {
-
+  this.$el.off(this.namespace);
+  $(window).off(this.namespace);
+  this.$contentsContainer.off(this.namespace);
 };
 
 
-TabbedSections.prototype.selectTab = function(index, animated = true) {
+TabbedSections.prototype.selectTab = function(index, animated = false) {
   if (index == this.selectedIndex) return;
 
   var $selectedHeading = $(this.$headings[index])
@@ -45,15 +42,15 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
   $selectedHeading.addClass('active')
 
   if(animated) {
-    this.$contents.filter(':visible').fadeOut(500, function() {
-      $selectedContent.fadeIn(500);
+    this.$contents.filter(':visible').fadeOut(250, function() {
+      $selectedContent.fadeIn(250);
     })
   } else {
     this.$contents.filter(':visible').hide();
     $selectedContent.show();
   }
 
-  this._setHeight($(this.$contents[index]))
+  this._setHeight($(this.$contents[index]), animated)
 
   this.selectedIndex = index;
 };
@@ -63,12 +60,19 @@ TabbedSections.prototype.selectTab = function(index, animated = true) {
 // -----------------------------------------------------------------------------
 
 TabbedSections.prototype._onHeadingClick = function(e) {
-  this.selectTab(this.$headings.index(e.currentTarget))
+  let index = this.$headings.index(e.currentTarget)
+  this.selectTab(this.$headings.index(e.currentTarget), true)
+  if (this.selectCallback && _.isFunction(this.selectCallback)) {
+    this.selectCallback(e.currentTarget, index);
+  }
 };
-TabbedSections.prototype._setHeight = function($content) {
+TabbedSections.prototype._setHeight = function($content, animated = false) {
   var contentHeight = $content.outerHeight(true)
-  this.$contentsContainer.css('min-height', contentHeight + 'px')
-  this.resizeCallback();
+  this.$contentsContainer.animate({'min-height': contentHeight},
+    {
+      duration: animated ? 500 : 0,
+      complete: this.resizeCallback
+    })
 };
 TabbedSections.prototype._onWindowResize = function($content) {
   this._setHeight($(this.$contents[this.selectedIndex]))
