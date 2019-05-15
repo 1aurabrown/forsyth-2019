@@ -30,7 +30,6 @@
         }
         &__heading {
           cursor: pointer;
-          margin-right: 10%;
           white-space: nowrap;
           span {
             line-height: $sans-serif-underline-line-height;
@@ -101,9 +100,6 @@
               z-index: 1;
             }
           }
-          &__heading {
-            margin: 0;
-          }
         }
         &__texts {
           margin-top: $v-space;
@@ -136,6 +132,15 @@
       }
     }
   }
+  @include media-query($medium-down) {
+    &__description {
+      &__headings {
+        &__heading {
+          margin: 0;
+        }
+      }
+    }
+  }
   @include media-query($medium-up) {
     padding-left: $inset-2;
     padding-right: $inset-3;
@@ -162,6 +167,15 @@
   }
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
+    &__text {
+      &__description {
+        &__headings {
+          &__heading {
+            margin-right: 10%;
+          }
+        }
+      }
+    }
   }
   @include media-query($large) {
     &__images {

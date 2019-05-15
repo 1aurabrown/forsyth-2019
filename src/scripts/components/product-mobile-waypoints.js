@@ -13,8 +13,17 @@ export default function MobileWaypoints(container, selectors, breakpoints) {
   this.update = _.throttle(this._update.bind(this), 50);
 }
 
-MobileWaypoints.prototype.removeListeners = function() {
+MobileWaypoints.prototype.teardown = function() {
   this._listeners.removeAll();
+  this.bottom.classList.remove('hidden')
+  this.bottom.classList.remove('viewport-bottom')
+  this.headingsBar.classList.remove('viewport-top')
+  this.headingsBarContainer.style.height = '';
+}
+
+MobileWaypoints.prototype.setup = function() {
+  this.addListeners();
+  this.update();
 }
 
 MobileWaypoints.prototype.addListeners = function() {

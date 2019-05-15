@@ -137,12 +137,12 @@ register('product', {
   exitMobile() {
     this.createDesktopSticky();
     this.updateDesktopSticky();
-    this.mobileWaypoints.removeListeners();
+    this.mobileWaypoints.teardown();
   },
 
   enterMobile () {
     this.destroySticky();
-    this.mobileWaypoints.addListeners().update();
+    this.mobileWaypoints.setup();
   },
 
   // Slate boilerplate methods
