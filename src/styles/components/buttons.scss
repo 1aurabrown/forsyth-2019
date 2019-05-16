@@ -8,12 +8,15 @@
   text-decoration: none;
   user-select: none;
   appearance: none;
+}
+.button-rect {
+  @extend .button;
+  @extend .sans-serif-uppercase-l;
   background: black;
   border: 1px solid;
   border-color: black;
   color: white;
   padding: .7rem 1.5rem .9rem;
-  @extend .sans-serif-uppercase-l;
   @media (hover: hover) {
     &:hover {
       color: black;
