@@ -20,8 +20,21 @@ $sidebar-min-width: 20.0rem;
       margin-right: auto;
     }
   }
+  &__nav-inner {
+    display: none;
+    line-height: $left-secondary-line-height;
+    margin-left: 1.0rem;
+    @include media-query($large-up) {
+      margin-bottom: .5rem;
+    }
+  }
   &__nav-outer {
     line-height: $left-primary-line-height;
+    &.has-active-child {
+      .sidebar__nav-inner {
+        display: block;
+      }
+    }
   }
   &__nav-outer + &__nav-outer {
     margin-top: $left-primary-line-height * .75em;
@@ -35,14 +48,6 @@ $sidebar-min-width: 20.0rem;
     &__title {
       cursor: pointer;
       display: inline-block;
-    }
-  }
-  &__nav-inner {
-    display: none;
-    line-height: $left-secondary-line-height;
-    margin-left: 1.0rem;
-    @include media-query($large-up) {
-      margin-bottom: .5rem;
     }
   }
 

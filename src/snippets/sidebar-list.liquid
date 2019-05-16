@@ -1,13 +1,39 @@
+{% unless active_item %}
+  {% for link in list.links %}
+    {% if expandable and link.links != blank %}
+      {% for childlink in link.links %}
+
+        {% if template == 'product' %}
+          {% if collection %}
+            {% if collection == link.object %}
+            {% assign is_active_collection = true %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {% if is_active_collection or childlink.active%}
+          {% assign active_item = childlink %}
+          {% assign active_outer = link %}
+        {% endif %}
+
+      {% endfor %}
+    {% else %}
+      {% if link.active %}
+        {% assign active_item = link %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endunless %}
 <ul class="sidebar__nav-outer {{ class }}">
   {% for link in list.links %}
     {% if expandable and link.links != blank %}
-      <li class="sidebar__nav-outer__item has-children nav-item {% if link.child_active %}{% unless has_active %}has-active-child{% assign has_active = true %}{% endunless %}{% endif %}">
+      <li class="sidebar__nav-outer__item has-children nav-item {% if link == active_outer %}{% unless active_already_assigned %}has-active-child{% endunless %}{% endif %}">
         <span class="sidebar__nav-outer__item__title">
           {{ link.title }}
         </span>
         <ul class="sidebar__nav-inner">
           {% for childlink in link.links %}
-            <li class="sidebar__nav-inner__item sans-serif-m secondary-nav-item {% if childlink.active %}{% unless is_active %}active{% assign is_active = true %}{% endunless %}{% endif %}">
+            <li class="sidebar__nav-inner__item sans-serif-m secondary-nav-item {% if childlink == active_item %}{% unless active_already_assigned %}active{% assign active_already_assigned = true %}{% endunless %}{% endif %}">
               <a href="{{ childlink.url }}" class="sidebar__nav-inner__item__title">
                 {{ childlink.title }}
               </a>
@@ -16,7 +42,7 @@
         </ul>
       </li>
     {% else %}
-      <li class="sidebar__nav-outer__item nav-item{% if link.active %}{% unless is_active %}active{% assign is_active = true %}{% endunless %}{% endif %}">
+      <li class="sidebar__nav-outer__item nav-item{% if link == active_item %}{% unless active_already_assigned %}active{% assign active_already_assigned = true %}{% endunless %}{% endif %}">
         <a href="{{ link.url }}" class="sidebar__nav-outer__item__title">
           {{ link.title }}
         </a>
