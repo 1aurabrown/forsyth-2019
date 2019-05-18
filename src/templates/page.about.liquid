@@ -1,0 +1,15 @@
+<section class="about">
+  <header role="banner" class="about__header">
+    <h1 class="about__header sans-serif-uppercase-xl">{{ page.title }}</h1>
+  </header>
+
+  <div class="about__content">
+    <div class="about__content__text serif-body-l">
+      {{ page.content }}
+    </div>
+
+    <div class="about__content__images">
+      {% section 'page-images' %}
+    </div>
+  </div>
+</section>

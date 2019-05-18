@@ -34,9 +34,5 @@
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
     padding-right: $left-nav-padding;
-
-    &__header {
-      padding: 0 $inset-12;
-    }
   }
 }

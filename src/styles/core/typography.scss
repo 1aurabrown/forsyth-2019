@@ -71,7 +71,10 @@ a:focus {
   }
 
   // Sans-serif Uppercase
-
+  .#{$breakpoint}sans-serif-uppercase-xl {
+    @extend .#{$breakpoint}sans-serif-uppercase;
+    @extend .#{$breakpoint}sans-serif-xl;
+  }
   .#{$breakpoint}sans-serif-uppercase-l {
     @extend .#{$breakpoint}sans-serif-uppercase;
     @extend .#{$breakpoint}sans-serif-l;
