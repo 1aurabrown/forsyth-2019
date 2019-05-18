@@ -1,0 +1,19 @@
+<div class="search-no-results">
+  <div class="serif-body-l">
+    {{ section.settings.no_search_results }}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "No Results for Search",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "no_search_results",
+        "label": "No Search Results Message",
+        "default": "<p>Looking for something in particular? <u><a href=\"/pages/contact\">Contact us.</a></u></p>"
+      }
+    ]
+  }
+{% endschema %}

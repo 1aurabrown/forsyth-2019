@@ -26,9 +26,7 @@
           {% endif %}
         {% endpaginate %}
       {% else %}
-        <p class="serif-body-l">
-          Looking for something in particular? <u><a href="/#"=>Contact us.</a></u>
-        </p>
+        {% section 'no-search-results' %}
       {% endif %}
     {% endif %}
     </div>
