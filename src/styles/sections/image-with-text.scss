@@ -49,6 +49,8 @@
 
   @include media-query ($medium-up) {
     align-items: stretch;
+    margin-left: auto;
+    margin-right: auto;
     &.right {
       flex-direction: row-reverse;
     }

@@ -1,0 +1,23 @@
+<section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed">
+  <div id="insta-feed"></div>
+</section>
+{% schema %}
+  {
+    "name": "Instagram feed",
+    "class": "homepage-section",
+    "settings": [
+      {
+        "type": "richtexttext",
+        "id": "text",
+        "label": "Text under feed",
+        "default": "<p></p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram feed",
+        "category": "Social"
+      }
+    ]
+  }
+{% endschema %}
