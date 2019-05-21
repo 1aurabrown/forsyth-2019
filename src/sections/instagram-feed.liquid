@@ -1,0 +1,37 @@
+<section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed">
+  <div id="insta-feed" class="{{ section.settings.color }}"></div>
+</section>
+{% schema %}
+  {
+    "name": "Instagram feed",
+    "class": "homepage-section",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To configure the header and the connection to Instagram, use the Instafeed app."
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Arrow color",
+        "default": "black",
+        "options": [
+          {
+            "value": "black",
+            "label": "Black"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram feed",
+        "category": "Social"
+      }
+    ]
+  }
+{% endschema %}

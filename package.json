@@ -34,6 +34,8 @@
     "@shopify/theme-variants": "^1.0.0-alpha.8",
     "animate.css": "^3.7.0",
     "breakpoints-js": "^1.0.6",
+    "flickity": "^2.2.0",
+    "flickity-imagesloaded": "^2.0.0",
     "intersection-observer": "^0.7.0",
     "jquery": "^3.2.1",
     "lazysizes": "^4.1.1",
