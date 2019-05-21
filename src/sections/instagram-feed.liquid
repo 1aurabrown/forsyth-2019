@@ -1,5 +1,5 @@
 <section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed">
-  <div id="insta-feed"></div>
+  <div id="insta-feed" class="{{ section.settings.color }}"></div>
 </section>
 {% schema %}
   {
@@ -7,10 +7,24 @@
     "class": "homepage-section",
     "settings": [
       {
-        "type": "richtexttext",
-        "id": "text",
-        "label": "Text under feed",
-        "default": "<p></p>"
+        "type": "paragraph",
+        "content": "To configure the header and the connection to Instagram, use the Instafeed app."
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Arrow color",
+        "default": "black",
+        "options": [
+          {
+            "value": "black",
+            "label": "Black"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          }
+        ]
       }
     ],
     "presets": [

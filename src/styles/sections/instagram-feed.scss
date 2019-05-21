@@ -41,6 +41,9 @@ $instagram-image-width-desktop: 20%;
         justify-content: center;
         color: black;
         background: transparent;
+        #insta-feed.white & {
+          color: white;
+        }
         &:focus, &:active {
           outline: none;
           box-shadow: none;

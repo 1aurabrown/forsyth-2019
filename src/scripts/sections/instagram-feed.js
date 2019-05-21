@@ -15,11 +15,11 @@ const selectors = {
 
 register('instagram-feed', {
   onLoad() {
-    console.log('load')
-
+    console.log('on load')
     if ("MutationObserver" in window) {
       this.observe()
     } else {
+      this.shouldPoll = true;
       this.poll()
     }
 
@@ -29,13 +29,15 @@ register('instagram-feed', {
     if (this.isReady()) {
       this.setup()
     } else {
-      setTimeout(this.poll.bind(this), 100);
+      if (this.shouldPoll) {
+        setTimeout(this.poll.bind(this), 100);
+      }
     }
   },
 
   observe() {
-    const observer = new MutationObserver(_.debounce(this.checkMutation.bind(this), 200));
-    observer.observe(this.container, { childList: true, subtree: true });
+    this.observer = new MutationObserver(_.debounce(this.checkMutation.bind(this), 200));
+    this.observer.observe(this.container, { childList: true, subtree: true });
   },
 
   checkMutation(mutationsList, observer) {
@@ -44,7 +46,7 @@ register('instagram-feed', {
       if (mutation.type == 'childList') {
         if (this.isReady()) {
           this.setup();
-          observer.disconnect();
+          this.observer.disconnect();
         }
         break;
       }
@@ -71,15 +73,17 @@ register('instagram-feed', {
       wrapAround: true,
       imagesLoaded: true,
       arrowShape: {
-        x0: 20,
-        x1: 70, y1: 50,
-        x2: 70, y2: 40,
-        x3: 30
+        x0: 0,
+        x1: 50, y1: 50,
+        x2: 52, y2: 48,
+        x3: 4
       }
     });
   },
 
   onUnload() {
-
+    this.shouldPoll = false; // In case polling is still happening
+    if (this.observer) { this.observer.disconnect(); }
+    if (this.flickity) { this.flickity.destroy(); }
   }
 });

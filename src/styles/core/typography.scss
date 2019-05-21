@@ -58,10 +58,6 @@ a:focus {
   }
 
   // Sans-serif
-  .#{$breakpoint}sans-serif-xl {
-    @extend .#{$breakpoint}sans-serif;
-    font-size: 1.8rem;
-  }
   .#{$breakpoint}sans-serif-l {
     @extend .#{$breakpoint}sans-serif;
     font-size: 1.6rem;
