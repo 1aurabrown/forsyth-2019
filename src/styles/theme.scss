@@ -50,6 +50,7 @@
 @import './snippets/product-grid.scss';
 @import './snippets/product-form.scss';
 @import './snippets/product-form-cta.scss';
+@import './snippets/title-header';
 
 // Sections
 @import './sections/image-with-text';
@@ -61,4 +62,5 @@
 @import './templates/product';
 @import './templates/index';
 @import './templates/collection';
-@import './templates/search.scss';
+@import './templates/search';
+@import './templates/press';

@@ -15,7 +15,6 @@ const selectors = {
 
 register('instagram-feed', {
   onLoad() {
-    console.log('on load')
     if ("MutationObserver" in window) {
       this.observe()
     } else {

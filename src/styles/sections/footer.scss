@@ -75,10 +75,10 @@
     }
   }
   @include media-query($large-up) {
-    padding: 10 * $v-space $inset-3 $inset-3 ;
+    padding: $inset-3;
   }
   @include media-query($medium-down) {
-    padding: 10 * $v-space $inset-2 $inset-2;
+    padding: $inset-2;
   }
   @include media-query($medium) {
     &__links {

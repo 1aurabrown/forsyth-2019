@@ -1,0 +1,58 @@
+<section class="press" data-section-id="{{ section.id }}" data-section-type="press" >
+  <div class="press__zoom" data-press-zoom>
+  </div>
+  <div class="grid press__grid">
+    {% for block in section.blocks %}
+      <div class="grid__item small--one-half medium-up--one-third press__grid__item" ">
+        <div data-press-thumb="{{ forloop.index }}" class="press__grid__item__image">
+          {% include 'responsive-image-only', image: block.settings.primary_image %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <script type="application/json" data-press-json>
+    {
+      "blocks": [
+        {%- for block in section.blocks -%}
+        {
+          "image": {{ block.settings.detail_image | default: block.settings.primary_image | json }},
+          "caption": {{ block.settings.caption | json }},
+          "alt": {{ block.settings.caption | strip_html | json }},
+          "index": {{ forloop.index }}
+        }
+        {%- if forloop.index < forloop.length -%}, {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+</section>
+
+{% schema %}
+  {
+    "name": "Press",
+    "blocks": [
+      {
+        "type": "clipping",
+        "name": "Press Clipping",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "primary_image",
+            "label": "Thumbnail Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "detail_image",
+            "label": "Enlarged Image",
+            "info": "Leave blank to use the same image shown in the grid."
+          },
+          {
+            "type": "richtext",
+            "id": "caption",
+            "label": "Caption"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

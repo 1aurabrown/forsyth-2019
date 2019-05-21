@@ -197,6 +197,7 @@ $sidebar-min-width: 20.0rem;
 
   @include media-query($large-up) {
     &__inner {
+      z-index: 1;
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
       padding-bottom: 0;

@@ -28,9 +28,10 @@ html {
 
 #container {
   min-height: 100%;
+  padding-bottom: 10 * $v-space;
   overflow: hidden; // prevent top & bottom marign collapse
   position: relative;
-  z-index: 1;
+  // z-index: 1;
 }
 
 h1, h2, h3, h4, h5 {
@@ -42,14 +43,13 @@ p {
 }
 
 #shopify-section-navigation {
-  position: relative;z-index: 1;
+  // position: relative;z-index: 1;
 }
 main {
-  height: 100%;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  z-index: 0;
+  // z-index: 0;
 
   @include media-query($large-up) {
     padding-top: $content-top-margin-desktop;

@@ -1,5 +1,5 @@
-import Newsletter from '../components/newsletter';
 import {register} from '@shopify/theme-sections';
+import Newsletter from '../components/newsletter';
 
 const selectors = {
   newsletter: '.newsletter',
