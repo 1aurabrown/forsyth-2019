@@ -45,6 +45,7 @@ $placeholder-color-background: #f9fafb;
 // Other colors
 $color-accent: var(--color-accent);
 $color-border: #000000;
+$transparent-gray-medium: rgba(0,0,0,.4);
 $transparent-gray-dark: rgba(0,0,0,.6);
 $gray-medium: lighten( $color-border, 60% );
 $gray-dark: lighten( $color-border, 40% );
