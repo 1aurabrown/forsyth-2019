@@ -26,6 +26,9 @@
         @extend .reset;
         border: none;
         width: 100%;
+        &::placeholder {
+          color: $gray-dark;
+        }
       }
       label {
         display: none;

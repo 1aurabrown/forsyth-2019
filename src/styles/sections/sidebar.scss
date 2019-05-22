@@ -10,7 +10,7 @@ $sidebar-min-width: 20.0rem;
   min-width: $sidebar-min-width;
   &__separator {
     height: 1px;
-    background-color: $gray-medium;
+    background-color: $transparent-gray-medium;
     margin: 0;
     padding: 0;
     border: none;
@@ -197,6 +197,7 @@ $sidebar-min-width: 20.0rem;
 
   @include media-query($large-up) {
     &__inner {
+      z-index: 1;
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
       padding-bottom: 0;

@@ -1,0 +1,5 @@
+.title-header {
+  @include media-query($medium-down) {
+    margin: 3 * $v-space auto 4 * $v-space;
+  }
+}

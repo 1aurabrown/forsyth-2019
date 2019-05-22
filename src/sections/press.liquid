@@ -1,0 +1,65 @@
+<section class="press" data-section-id="{{ section.id }}" data-section-type="press" >
+  <div data-press-zoom class="press__zoom hide" >
+    <div class="press__zoom__inner">
+      <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
+      <div data-press-zoom-content class="press__zoom__content">
+      </div>
+    </div>
+  </div>
+  <div class="grid press__grid">
+    {% for block in section.blocks %}
+      <div class="grid__item small--one-half medium-up--one-third press__grid__item" ">
+        <div data-press-thumb="{{ forloop.index }}" class="press__grid__item__image">
+          {% include 'responsive-image-only', image: block.settings.primary_image %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <script type="application/json" data-press-json>
+    {
+      "blocks": [
+        {%- for block in section.blocks -%}
+        {%- assign block_image = block.settings.detail_image | default: block.settings.primary_image -%}
+        {
+          "image": {{ block_image | json }},
+          "caption": {{ block.settings.caption | json }},
+          "alt": {{ block.settings.caption | strip_html | json }},
+          "index": {{ forloop.index }},
+          "aspect_ratio": {{ block_image.aspect_ratio | json }}
+        }
+        {%- if forloop.index < forloop.length -%}, {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+</section>
+
+{% schema %}
+  {
+    "name": "Press",
+    "blocks": [
+      {
+        "type": "clipping",
+        "name": "Press Clipping",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "primary_image",
+            "label": "Thumbnail Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "detail_image",
+            "label": "Enlarged Image",
+            "info": "Leave blank to use the same image shown in the grid."
+          },
+          {
+            "type": "richtext",
+            "id": "caption",
+            "label": "Caption"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
