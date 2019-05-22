@@ -33,6 +33,10 @@
           {% endif %}
         </div>
       {% endfor %}
+    {% else %}
+      <div class="js">
+        <input type="hidden" name="id" value="{{ current_variant.id }}"/>
+      </div>
     {% endunless %}
 
     <noscript>
@@ -51,3 +55,5 @@
   {% endform %}
 
 </div>
+
+
