@@ -1,17 +1,15 @@
 .search {
-  padding: 0 $inset;
 
   &__header {
-    font-style: italic;
-    margin-bottom: 3 * $v-space;
+    @include italic-header();
   }
+  padding: 0 $inset;
 
   @include media-query($medium-down) {
-    padding: ($v-space * 2) $inset-2;
+    padding: 0 $inset-2;
   }
 
   @include media-query($large-up) {
-    padding-left: $left-nav-padding;
-    padding-right: $inset-12;
+    padding: 0 $left-nav-padding;
   }
 }

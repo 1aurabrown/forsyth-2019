@@ -1,0 +1,17 @@
+{% assign vendor_collection = null %}
+{% for p_collection in product.collections %}
+  {% assign collection_title_downcase = p_collection.title | downcase %}
+  {% assign product_vendor_downcase = product.vendor | downcase %}
+  {% if collection_title_downcase == product_vendor_downcase %}
+    {% assign vendor_collection = p_collection %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if vendor_collection %}
+  <a href="{{ vendor_collection.url }}">
+    {{ product.vendor }}
+  </a>
+{% else if product.vendor != blank %}
+  {{ product.vendor | link_to_vendor }}
+{% endif %}

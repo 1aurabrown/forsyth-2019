@@ -16,29 +16,10 @@
           {% endif %}
 
           <div class="product-grid__product__metadata serif-body-m">
-            {% assign vendor_collection = null %}
-            {% for p_collection in product.collections %}
-              {% assign collection_title_downcase = p_collection.title | downcase %}
-              {% assign product_vendor_downcase = product.vendor | downcase %}
-              {% if collection_title_downcase == product_vendor_downcase %}
-                {% assign vendor_collection = p_collection %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
+            <p class="product-grid__product__metadata__vendor">
+              <span class="faux-underline">{% include 'vendor-link' %}</span>
+            </p>
 
-            {% if vendor_collection %}
-              <p class="product-grid__product__metadata__vendor">
-                <a class="faux-underline" href="{{ vendor_collection.url }}">
-                  {{ product.vendor }}
-                </a>
-              </p>
-            {% else if product.vendor != blank %}
-              <p class="product-grid__product__metadata__vendor">
-                <span class="faux-underline">
-                  {{ product.vendor | link_to_vendor }}
-                </span>
-              </p>
-            {% endif %}
             <p>
               <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
             </p>
@@ -53,7 +34,7 @@
                   </s>
                   &nbsp;
                   {% if product.price_varies %}
-                    {%- assign sale_price = product.price | money -%}
+                    {%- assign sale_price = product.price | money_without_trailing_zeros -%}
                     {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
                   {% else %}
                     {{ product.price | money_without_trailing_zeros }}
@@ -62,10 +43,10 @@
                 {% else %}
                 {% comment %} Available; not on sale {% endcomment %}
                   {% if product.price_varies %}
-                    {%- assign price = product.price | money -%}
+                    {%- assign price = product.price | money_without_trailing_zeros -%}
                     {{ 'products.product.from_text_html' | t: price: price }}
                   {% else %}
-                    {{ product.price | money }}
+                    {{ product.price | money_without_trailing_zeros }}
                   {% endif %}
                 {% endif %}
 
