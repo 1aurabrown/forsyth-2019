@@ -24,6 +24,12 @@
         display: block;
         object-fit: cover;
       }
+      &.has-caption {
+        padding-bottom: 0;
+        .caption {
+          margin: 1em 0;
+        }
+      }
     }
 
     &.visible {

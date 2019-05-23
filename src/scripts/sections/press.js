@@ -37,8 +37,7 @@ register('press', {
       this.$zoomContainer.removeClass('visible')
     }
     this.$zoomContainer.removeClass('images-loaded');
-    this.$zoomContainer.removeClass('hide');
-    this.$zoomContainer.addClass('visible');
+
     this.$zoomInner.html(this.zoomTemplate(clipping))
     imagesLoaded( this.$zoomInner, function() {
       console.log('images loaded')
@@ -46,6 +45,12 @@ register('press', {
         this.$zoomContainer.addClass('images-loaded');
       }.bind(this), 0);
     }.bind(this))
+
+
+    this.$zoomContainer.removeClass('hide');
+    console.log('unhidden')
+    this.$zoomContainer.addClass('visible');
+    console.log('visible')
   },
 
   zoomClicked(e) {
@@ -60,12 +65,19 @@ register('press', {
       this.$zoomContainer.removeClass('images-loaded');
     }
   },
-
   zoomTemplate(clipping) {
+    const imageUrl = images.getSizedImageUrl(clipping.image, imageSize)
+
+    const caption = $(clipping.caption).html()
+    if (caption && caption.length > 0) {
+      var figureClass = 'has-caption'
+      var figCaption = `<figcaption class='caption serif-body-m'>${caption}</figcaption>`
+    }
+
     return `
-      <figure>
-        <img src='${images.getSizedImageUrl(clipping.image, imageSize)}'' alt='${clipping.alt}/>
-        <figcaption class='caption'>${clipping.caption}</figcaption>
+      <figure class='${figureClass || ''}'>
+        <img src='${imageUrl}' alt='${clipping.alt}'/>
+        ${figCaption || ''}
       </figure>
     `
   },
