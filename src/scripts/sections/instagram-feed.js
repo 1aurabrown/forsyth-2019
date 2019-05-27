@@ -15,6 +15,7 @@ const selectors = {
 
 register('instagram-feed', {
   onLoad() {
+    console.log('register instagram feed')
     if ("MutationObserver" in window) {
       this.observe()
     } else {
@@ -66,7 +67,8 @@ register('instagram-feed', {
   },
 
   createFlickity() {
-    this.flickity = new Flickity( container.querySelector(selectors.imagesContainer), {
+    console.log(this.container.querySelector(selectors.imagesContainer))
+    this.flickity = new Flickity(this.container.querySelector(selectors.imagesContainer), {
       // options
       cellAlign: 'center',
       wrapAround: true,

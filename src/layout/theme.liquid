@@ -69,7 +69,11 @@
       {{ content_for_layout }}
     </main>
   </div>
+  {% if template == "index" %}
+    {% comment %} place after `#container` so that it pushes up the left nav {% endcomment %}
+    {% section 'instagram-feed' %}
 
+  {% endif %}
   {% section 'footer' %}
 
 </body>

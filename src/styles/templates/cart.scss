@@ -1,0 +1,213 @@
+.cart {
+  table, tr {
+    padding: 0;
+  }
+  table, tr, td {
+    vertical-align: top;
+    border-collapse: collapse;
+    border-spacing: 0
+  }
+  &__empty {
+    &__header {
+      @include italic-header();
+    }
+    &__copy {
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+    s {
+      color: $gray-medium;
+    }
+  }
+  &__image {
+    a, img {
+      display: block;
+    }
+  }
+
+  &__text {
+    line-height: 1.25;
+    &__main {
+      p {
+        margin: 0;
+      }
+      p + p {
+        margin: .35em 0 0;
+      }
+
+      &__vendor {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__quantity a {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      top: 50%;
+      left: 50%;
+      transform: translate3D(-50%, -50%, 0);
+    }
+  }
+  &__unit-price, &__price, &__quantity {
+    white-space: nowrap;
+  }
+
+  &__close {
+    width: 1.2rem;
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+
+  &__instructions {
+    margin-top: 6 * $v-space;
+    label, textarea {
+      display: block;
+      width: 100%;
+    }
+    textarea {
+      margin-top: $v-space / 2;
+      border: 1px solid $gray-medium
+    }
+  }
+
+  &__checkout-cta {
+    margin-top: 4 * $v-space;
+  }
+
+  &__shipping-at-checkout {
+    margin-top: $v-space;
+  }
+  @include media-query($medium-up) {
+    &__table-wrapper {
+      margin-top: -2rem;
+      margin-left: -1.5rem;
+    }
+    &__image {
+      width: 22.5%;
+    }
+    &__quantity, &__unit-price, &__price {
+      text-align: right;
+    }
+    &__table td {
+      padding-left: 1.5rem;
+      padding-top: 2rem;
+    }
+    &__instructions {
+      width: 100%;
+    }
+    &__instructions, &__checkout-cta {
+      margin-top: 0;
+    }
+    &__bottom {
+      margin-top: 4 * $v-space;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__right {
+        width: 400px;
+        max-width: 45%;
+        margin-top: 1.5 * $v-space;
+      }
+      &__left {
+        max-width: 45%;
+        flex: 1;
+      }
+    }
+    &__checkout-cta {
+      width: 100%
+    }
+  }
+
+  @include media-query($small) {
+    margin: 0;
+    padding: 0 $inset;
+    position: relative;
+    &__table-wrapper {
+      margin-top: -4 * $v-space;
+    }
+    &__form {
+      margin: 0;
+    }
+    &__image, &__quantity, &__unit-price, &__price {
+      padding: 0;
+    }
+    &__image {
+      img {
+        width: 100%;
+      }
+    }
+    table {
+      tr {
+        padding-top: 4 * $v-space;
+      }
+      td.cart__quantity, td.cart__unit-price {
+        width: auto;
+        clear: none;
+      }
+      td.cart__quantity {
+        float: right;
+        margin-right: $inset-2;
+      }
+      td.cart__text {
+        padding-top: $inset;
+        margin-bottom: .75 * $v-space;
+      }
+      td.cart__price {
+        margin-top: .75 * $v-space;
+      }
+    }
+    &__close {
+      a, svg {
+        display: block;
+      }
+    }
+    &__table {
+      margin: 0;
+      padding: 0;
+    }
+    tbody {
+      padding: 0;
+    }
+    //   tr {
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //   }
+    // }
+    // &__image {
+    //   width: 100%;
+    // }
+    &__close {
+      float: right;
+      display: block
+    }
+  }
+
+  @include media-query($medium) {
+    margin-top: $v-space * 2
+  }
+
+  @include media-query($medium) {
+    padding: 0 $inset-2;
+  }
+  @include media-query($large) {
+    padding: 0 $nav-inset-desktop 0 $left-nav-padding;
+  }
+  @include media-query($widescreen) {
+    padding: 0 $left-nav-padding;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

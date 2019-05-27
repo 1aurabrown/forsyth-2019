@@ -22,49 +22,19 @@
     td {
       display: block;
       margin: 0;
-      text-align: right;
-      @include media-query($small) {
-        padding: $grid-gutter-mobile / 2;
-      }
-      @include media-query($medium-up) {
-        padding: $grid-gutter-desktop / 2;
-      }
+      // @include media-query($small) {
+      //   padding: $grid-gutter-mobile / 2;
+      // }
+      // @include media-query($medium-up) {
+      //   padding: $grid-gutter-desktop / 2;
+      // }
     }
 
-    td::before {
+    td[data-label]::before {
       content: attr(data-label);
       float: left;
       padding-right: 10px;
       text-align: center;
-    }
-  }
-
-  // Add a keyline between rows
-  .responsive-table-row + .responsive-table-row,
-  tfoot > .responsive-table-row:first-child {
-    position: relative;
-    margin-top: 10px;
-
-      @include media-query($small) {
-        padding-top: $grid-gutter-mobile / 2;
-      }
-      @include media-query($medium-up) {
-        padding-top: $grid-gutter-desktop / 2;
-      }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      @include media-query($small) {
-        left: $grid-gutter-mobile / 2;
-        right: $grid-gutter-mobile / 2;
-      }
-      @include media-query($medium-up) {
-        left: $grid-gutter-desktop / 2;
-        right: $grid-gutter-desktop / 2;
-      }
-      display: block;
-      border-bottom: 1px solid $color-border;
     }
   }
 }

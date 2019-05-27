@@ -200,7 +200,7 @@ $sidebar-min-width: 20.0rem;
       z-index: 1;
       padding-left: $nav-inset-desktop;
       padding-right:$nav-inset-desktop;
-      padding-bottom: 0;
+      padding-bottom: $nav-inset-desktop;
       padding-top: $content-top-margin-desktop;
     }
     &__content {

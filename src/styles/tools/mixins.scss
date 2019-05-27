@@ -37,6 +37,16 @@
   }
 }
 
+@mixin italic-header() {
+  font-style: italic;
+  margin: 2 * $v-space 0;
+  @extend .medium-up--serif-heading-l;
+  @extend .small--serif-heading-m;
+  @include media-query($large-up) {
+    margin-top: 0;
+  }
+}
+
 @mixin faux-underline() {
   position: relative;
   display: inline-block;

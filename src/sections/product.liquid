@@ -21,7 +21,7 @@
             <div class="product__mobile-sticky-cta__content" data-bottom-sticky>
               <div class="product__text__top medium-up--serif-body-xl small--serif-body-m">
                 {% if product.vendor.size > 0 %}
-                  <div class="product__text__top__vendor"><a href="" class="faux-underline">{{ product.vendor }}</a></div>
+                  <div class="product__text__top__vendor"><span class="faux-underline">{% include 'vendor-link' %}</span></div>
                 {% endif %}
                 <h1 class="product__text__top__title">{{ product.title }}</h1>
               </div>
