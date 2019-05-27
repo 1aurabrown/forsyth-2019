@@ -1,116 +1,130 @@
 <div class="cart">
   {% if cart.item_count > 0 %}
     <form class="cart__form" action="/cart" method="post" novalidate>
-      <table class="cart__table responsive-table">
-        <tbody>
+      <div class="cart__table-wrapper">
+        <table class="cart__table responsive-table">
+          <tbody>
 
-          {% for item in cart.items %}
+            {% for item in cart.items %}
 
-          {% comment %}
+            {% comment %}
 
-          Cart Item Template
-          =====================
-          The data-label attributes on <td> elements are mobile-friendly
-          helpers used for responsive-table labels
-          {% endcomment %}
+            Cart Item Template
+            =====================
+            The data-label attributes on <td> elements are mobile-friendly
+            helpers used for responsive-table labels
+            {% endcomment %}
 
-            <tr class="cart__table__row responsive-table-row">
+              <tr class="cart__table__row responsive-table-row">
 
-              <td class="cart__image">
+                <td class="cart__image">
 
-                {% if item.image != blank %}
-                  <a href="{{ item.url | within: collections.all }}">
-                    {{ item | img_url: 'medium' | img_tag: item.title }}
-                  </a>
-                {% endif %}
+                  {% if item.image != blank %}
+                    <a href="{{ item.url | within: collections.all }}">
+                      {{ item | img_url: 'medium' | img_tag: item.title }}
+                    </a>
+                  {% endif %}
 
-              </td>
-              <td class="cart__text">
-                <div class="cart__close medium-up--hide">
+                </td>
+                <td class="cart__text">
+                  <div class="cart__close medium-up--hide">
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
+                      {% include 'close.svg' %}
+                    </a>
+                  </div>
+                  <div class="cart__text__main">
+                    <p class="cart__text__main__vendor">{% include 'vendor-link', product: item.product %}</p>
+
+                    <p class="cart__text__main__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+                    {% unless item.product.has_only_default_variant %}
+                      <p>{{ item.variant.title }}</p>
+                    {% endunless %}
+                  </div>
+
+                </td>
+                <td class="cart__unit-price">
+                  {% if item.variant.inventory_quantity > 1 %}
+                    {% if item.product.compare_at_price > item.line_price %}
+                      <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                      <s>{{ item.product.compare_at_price | money_without_trailing_zeros }}</s>&
+                      <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                      {{ item.price | money_without_trailing_zeros }} ea.
+                    {% elsif item.original_line_price != item.line_price %}
+                      <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                      <s>{{ item.original_price | money_without_trailing_zeros }}</s>
+                      <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                      {{ item.price | money_without_trailing_zeros }} ea.
+                    {% else %}
+                      {{ item.price | money_without_trailing_zeros }} ea.
+                    {% endif %}
+                  {% endif %}
+                </td>
+                <td class="cart__quantity">
+                  {% if item.variant.inventory_quantity > 1 %}
+                    <div>
+                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" >
+                        -
+                      </a>&nbsp;
+                      <span>{{ item.quantity }}</span>&nbsp;
+                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" >
+                        +
+                      </a>
+                    </div>
+                  {% endif %}
+                </td>
+                <td class="cart__price">
+                  <strong>
+                    {% if item.product.compare_at_price > item.line_price %}
+                      <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                      <s>{{ item.product.compare_at_price times: item.quantity | money_without_trailing_zeros }}</s>&nbsp;
+                      <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                      {{ item.line_price | money_without_trailing_zeros }}
+                    {% elsif item.original_line_price != item.line_price %}
+                      <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                      <s>{{ item.original_line_price | money_without_trailing_zeros }}</s>&nbsp;
+                      <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                      {{ item.line_price | money_without_trailing_zeros }}
+                    {% else %}
+                      {{ item.line_price | money_without_trailing_zeros }}
+                    {% endif %}
+                  </strong>
+                </td>
+                <td class="cart__close small--hide">
                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
                     {% include 'close.svg' %}
                   </a>
-                </div>
-                <div class="cart__text__main">
-                  <p class="cart__text__main__vendor">{% include 'vendor-link', product: item.product %}</p>
+                </td>
+              </tr>
 
-                  <p class="cart__text__main__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
-                  {% unless item.product.has_only_default_variant %}
-                    <p>{{ item.variant.title }}</p>
-                  {% endunless %}
-                </div>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 
-              </td>
-              <td class="cart__unit-price">
-                {% if item.variant.inventory_quantity > 1 %}
-                  {% if item.product.compare_at_price > item.line_price %}
-                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                    <s>{{ item.product.compare_at_price | money_without_trailing_zeros }}</s>&
-                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                    {{ item.price | money_without_trailing_zeros }} ea.
-                  {% elsif item.original_line_price != item.line_price %}
-                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                    <s>{{ item.original_price | money_without_trailing_zeros }}</s>
-                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                    {{ item.price | money_without_trailing_zeros }} ea.
-                  {% else %}
-                    {{ item.price | money_without_trailing_zeros }} ea.
-                  {% endif %}
-                {% endif %}
-              </td>
-              <td class="cart__quantity">
-                {% if item.variant.inventory_quantity > 1 %}
-                  <div>
-                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" >
-                      -
-                    </a>&nbsp;
-                    <span>{{ item.quantity }}</span>&nbsp;
-                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" >
-                      +
-                    </a>
-                  </div>
-                {% endif %}
-              </td>
-              <td class="cart__price">
-                <strong>
-                  {% if item.product.compare_at_price > item.line_price %}
-                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                    <s>{{ item.product.compare_at_price times: item.quantity | money_without_trailing_zeros }}</s>&nbsp;
-                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                    {{ item.line_price | money_without_trailing_zeros }}
-                  {% elsif item.original_line_price != item.line_price %}
-                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                    <s>{{ item.original_line_price | money_without_trailing_zeros }}</s>&nbsp;
-                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                    {{ item.line_price | money_without_trailing_zeros }}
-                  {% else %}
-                    {{ item.line_price | money_without_trailing_zeros }}
-                  {% endif %}
-                </strong>
-              </td>
-              <td class="cart__close small--hide">
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
-                  {% include 'close.svg' %}
-                </a>
-              </td>
-            </tr>
+      <div class="cart__bottom">
+        <div class="cart__bottom__left">
+          {% if settings.cart_notes_enable %}
+            <div class="cart__instructions">
+              <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}:</label>
+              <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+            </div>
+          {% endif %}
+        </div>
 
-          {% endfor %}
-        </tbody>
-      </table>
-
-      {% if settings.cart_notes_enable %}
-        <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-        <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-      {% endif %}
-
-      <p>{{ 'cart.general.subtotal' | t }}</p>
-      <p>{{ cart.total_price | money_without_trailing_zeros }}</p>
-      {% if cart.total_discounts > 0 %}
-        <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money_without_trailing_zeros }}</p>
-      {% endif %}
-      <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
-      <input type="submit" name="checkout" class="button" value="{{ 'cart.general.checkout' | t }}">
+        <div class="cart__bottom__right">
+          {% capture checkout_left %}
+            <span><b>{{'cart.general.subtotal' | t }}:</b>&ensp;{{ cart.total_price | money_without_trailing_zeros }}</span>
+          {% endcapture %}
+          {% assign checkout_button_text = 'cart.general.checkout' | t %}
+          {% include 'button-row',
+            left_html: checkout_left,
+            button_content: checkout_button_text,
+            button_attributes: 'type="submit" name="checkout"',
+            wrapper_class: "cart__checkout-cta"
+          %}
+          <div class="cart__shipping-at-checkout">{{ 'cart.general.shipping_at_checkout' | t }}</div>
+        </div>
+      </div>
     </form>
   {% else %}
     <h1 class="cart__empty__header">

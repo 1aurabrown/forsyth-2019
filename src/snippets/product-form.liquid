@@ -83,7 +83,7 @@
       {% unless current_variant.available %}disabled="disabled"{% endunless %}
     {% endcapture %}
 
-    {% include 'product-form-cta',
+    {% include 'button-row',
       wrapper_class: "product__form__cta"
       left_attrbutes: "data-price-wrapper",
       left_html: product_price,
