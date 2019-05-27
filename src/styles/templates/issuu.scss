@@ -1,6 +1,9 @@
 .issuu {
   @include media-query($large-up) {
     padding: 0 $left-nav-padding;
+    max-width: 140rem;
+    margin-right: auto;
+    margin-left: auto;
   }
   @include media-query($medium-down) {
     padding: 0 $inset-2;
