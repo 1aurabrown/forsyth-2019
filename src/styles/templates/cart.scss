@@ -88,6 +88,7 @@
 
   &__shipping-at-checkout {
     margin-top: $v-space;
+    padding: 0 $inset;
   }
   @include media-query($medium-up) {
     &__table-wrapper {
@@ -102,7 +103,10 @@
     }
     &__table td {
       padding-left: 1.5rem;
-      padding-top: 2rem;
+      padding-top: 3rem;
+      &.cart__image {
+        padding-top: 2rem;
+      }
     }
     &__instructions {
       width: 100%;
@@ -148,6 +152,10 @@
         width: 100%;
       }
     }
+    &__text, &__unit-price, &__price {
+      padding-left: $inset;
+      padding-right: $inset;
+    }
     table {
       tr {
         padding-top: 4 * $v-space;
@@ -158,10 +166,10 @@
       }
       td.cart__quantity {
         float: right;
-        margin-right: $inset-2;
+        margin-right: $inset-4;
       }
       td.cart__text {
-        padding-top: $inset;
+        padding-top: $v-space;
         margin-bottom: .75 * $v-space;
       }
       td.cart__price {
@@ -191,6 +199,9 @@
     &__close {
       float: right;
       display: block
+    }
+    &__instructions {
+      padding: 0 $inset;
     }
   }
 
