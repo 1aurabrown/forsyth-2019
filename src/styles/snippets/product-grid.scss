@@ -30,7 +30,7 @@ $product-grid-gutter-horizonal-mobile: $inset;
       object-position: center;
     }
     &__metadata {
-      padding: $inset $inset 0;
+      padding: $v-space $inset 0;
       &__vendor {
         .faux-underline {
           line-height: 1.1;
