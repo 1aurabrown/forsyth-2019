@@ -4,13 +4,13 @@
       {% if product.object_type == 'product' %}
         <div class="product-grid__product grid__item medium-up--one-third small--one-half">
           {% if product.featured_image != blank %}
-            <a href="{{ product.url | within: collection }}">
+            <a class="product-grid__product__image-link href="{{ product.url | within: collection }}">
               {% include 'responsive-image' with
                 image: product.featured_image,
                 max_width: 700,
                 max_height: 560,
                 aspect_ratio: 1.25,
-                image_class: "product-grid__product__image"
+                image_class: "product-grid__product__image-link__image"
               %}
             </a>
           {% endif %}
