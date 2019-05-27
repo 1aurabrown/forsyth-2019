@@ -1,7 +1,7 @@
 <div class="cart">
   {% if cart.item_count > 0 %}
     <form class="cart__form" action="/cart" method="post" novalidate>
-      <table class="cart__table">
+      <table class="cart__table responsive-table">
         <tbody>
 
           {% for item in cart.items %}
@@ -14,61 +14,81 @@
           helpers used for responsive-table labels
           {% endcomment %}
 
-            <tr class="responsive-table-row cart__table__row">
+            <tr class="cart__table__row responsive-table-row">
 
-              <td class="cart__table__row__image" data-label="{{ 'customer.order.product' | t }}">
+              <td class="cart__image">
 
                 {% if item.image != blank %}
                   <a href="{{ item.url | within: collections.all }}">
-                    {{ item | img_url: '240x240' | img_tag: item.title }}
+                    {{ item | img_url: 'medium' | img_tag: item.title }}
                   </a>
                 {% endif %}
 
               </td>
-              <td class="cart__table__row__text">
-                <table class="cart__table__row__text__table"><tbody><tr>
-                  <td>
-                    <p class="cart__table__row__text__vendor"><span class="faux-underline">{% include 'vendor-link', product: item.product %}</span></p>
+              <td class="cart__text">
+                <div class="cart__close medium-up--hide">
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
+                    {% include 'close.svg' %}
+                  </a>
+                </div>
+                <div class="cart__text__main">
+                  <p class="cart__text__main__vendor">{% include 'vendor-link', product: item.product %}</p>
 
-                    <p class="cart__table__row__text__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
-                    {% unless item.product.has_only_default_variant %}
-                      <p>{{ item.variant.title }}</p>
-                    {% endunless %}
+                  <p class="cart__text__main__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+                  {% unless item.product.has_only_default_variant %}
+                    <p>{{ item.variant.title }}</p>
+                  {% endunless %}
+                </div>
 
-                    <p class="cart__table__row__text__unit-price small--hide">
-                      {% if item.original_line_price != item.line_price %}
-                        <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
-                        <s>{{ item.original_price | money_without_trailing_zeros }}</s>&nbsp;
-                        <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
-                        {{ item.price | money_without_trailing_zeros }} ea.
-                      {% else %}
-                        {{ item.price | money_without_trailing_zeros }} ea.
-                      {% endif %}
-                    </p>
-
-                  </td>
-                  <td>
-
-                  </td>
-
-                  <td data-label="{{ 'cart.label.quantity' | t }}">
+              </td>
+              <td class="cart__unit-price">
+                {% if item.variant.inventory_quantity > 1 %}
+                  {% if item.product.compare_at_price > item.line_price %}
+                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                    <s>{{ item.product.compare_at_price | money_without_trailing_zeros }}</s>&
+                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                    {{ item.price | money_without_trailing_zeros }} ea.
+                  {% elsif item.original_line_price != item.line_price %}
+                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                    <s>{{ item.original_price | money_without_trailing_zeros }}</s>
+                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                    {{ item.price | money_without_trailing_zeros }} ea.
+                  {% else %}
+                    {{ item.price | money_without_trailing_zeros }} ea.
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td class="cart__quantity">
+                {% if item.variant.inventory_quantity > 1 %}
+                  <div>
                     <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" >
                       -
-                    </a>
-                    <span>{{ item.quantity }}</span>
-
+                    </a>&nbsp;
+                    <span>{{ item.quantity }}</span>&nbsp;
                     <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" >
                       +
                     </a>
-                  </td>
-                </tr></tbody></table>
-
+                  </div>
+                {% endif %}
               </td>
-
-              <td class="cart__table__row__price" data-label="{{ 'cart.label.total' | t }}">
-                {{ item.line_price | money_without_trailing_zeros }}
+              <td class="cart__price">
+                <strong>
+                  {% if item.product.compare_at_price > item.line_price %}
+                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                    <s>{{ item.product.compare_at_price times: item.quantity | money_without_trailing_zeros }}</s>&nbsp;
+                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                    {{ item.line_price | money_without_trailing_zeros }}
+                  {% elsif item.original_line_price != item.line_price %}
+                    <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                    <s>{{ item.original_line_price | money_without_trailing_zeros }}</s>&nbsp;
+                    <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                    {{ item.line_price | money_without_trailing_zeros }}
+                  {% else %}
+                    {{ item.line_price | money_without_trailing_zeros }}
+                  {% endif %}
+                </strong>
               </td>
-              <td class="cart__table__row__close">
+              <td class="cart__close small--hide">
                 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
                   {% include 'close.svg' %}
                 </a>
@@ -90,17 +110,16 @@
         <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money_without_trailing_zeros }}</p>
       {% endif %}
       <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
-      <input type="submit" name="update" value="{{ 'cart.general.update' | t }}">
       <input type="submit" name="checkout" class="button" value="{{ 'cart.general.checkout' | t }}">
     </form>
   {% else %}
-    <h1 class="cart__header">
+    <h1 class="cart__empty__header">
       {{ 'cart.general.empty' | t }}
     </h1>
     {% comment %}
     Cart empty state
     {% endcomment %}
-    <div class="supports-cookies">
+    <div class="supports-cookies cart__empty__copy">
       <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
     </div>
 
@@ -110,7 +129,7 @@
     Browser cookies are required to use the cart. If cookies aren't enabled in the
     browser a message is displayed prompting the user to enable them.
     {% endcomment %}
-    <div class="supports-no-cookies">
+    <div class="supports-no-cookies cart__empty--copy">
       <p>{{ 'cart.general.cookies_required' | t }}</p>
     </div>
   {% endif %}

@@ -51,7 +51,43 @@
         {% endfor %}
       </select>
     </noscript>
-    {% include 'product-form-cta' %}
+
+    {% capture product_price %}
+      {% if product.compare_at_price_max > product.price %}
+        <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+        <s class="product__form__cta__left__compare" data-compare-price>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+          {% endif %}
+        </s>
+      {% endif %}
+      <span class="product__form__cta__left__actual" data-product-price>
+        {{ current_variant.price | money_without_trailing_zeros }}
+      </span>
+    {% endcapture %}
+
+    {% capture button_content %}
+      <span data-submit-button-text>
+        {% if current_variant.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </span>
+    {% endcapture %}
+
+    {% capture button_attributes %}
+      type="submit"
+      name="add"
+      data-submit-button
+      {% unless current_variant.available %}disabled="disabled"{% endunless %}
+    {% endcapture %}
+
+    {% include 'product-form-cta',
+      wrapper_class: "product__form__cta"
+      left_attrbutes: "data-price-wrapper",
+      left_html: product_price,
+      button_content: button_content %}
   {% endform %}
 
 </div>

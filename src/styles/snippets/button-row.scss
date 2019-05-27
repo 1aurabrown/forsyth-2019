@@ -1,4 +1,4 @@
-.product__form__cta {
+.button-row {
   display: block;
   border-width: 1px 0;
   border-color: $gray-medium;
@@ -7,11 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: $inset;
-  &__price {
+  &__left{
     padding-top: .2em;
-    &__compare {
-      color: $gray-medium;
-      margin-right: .5em;
-    }
   }
 }

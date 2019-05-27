@@ -5,4 +5,10 @@
   @include media-query($small) {
 
   }
+  &__cta__left {
+    &__compare {
+      color: $gray-medium;
+      margin-right: .5em;
+    }
+  }
 }
