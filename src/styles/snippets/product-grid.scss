@@ -25,20 +25,27 @@ $product-grid-gutter-horizonal-mobile: $inset;
 
   }
   &__product {
-    &__image {
-      object-fit: cover;
-      object-position: center;
+    &__image-link {
+      display: block;;
+      &__image {
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
     }
     &__metadata {
-      padding: $inset $inset 0;
+      padding: $v-space $inset 0;
       &__vendor {
         .faux-underline {
           line-height: 1.1;
         }
       }
-      > * {
+      p {
         line-height: 1.25;
-        margin: .35em 0;
+        margin: 0;
+      }
+      p + p {
+        margin-top: .35em ;
       }
       &__strikethrough_price {
         color: $gray-medium
