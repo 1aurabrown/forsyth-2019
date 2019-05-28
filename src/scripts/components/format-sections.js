@@ -1,14 +1,5 @@
 import $ from 'jquery'
-function removeEmptyChildrenRecursively($el) {
-  if ($el.children().length) {
-    $el.children().each(function(i, child) {
-      removeEmptyChildrenRecursively($(child));
-    }.bind(this));
-  }
-  if($.trim($el.text()) === "") {
-    $el.remove();
-  }
-}
+import removeEmptyChildrenRecursively from './remove-empty-children-recursively'
 
 export default function formatSections(container, selectors, classes) {
   var $originalDescription = $(selectors.originalDescription, $(container))

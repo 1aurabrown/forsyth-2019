@@ -1,6 +1,6 @@
 {%- capture search_form_counter %}{% increment search_form_counter %}{% endcapture -%}
 <form data-section-id="search-form-{{search_form_counter}}" data-section-type="search-form" action="/search" method="get" role="search" class="search-form {% if expanded %}expanded{% endif %}">
-  <label for="Search-{{ section.id }}" class="search-form__label">
+  <label for="Search-{{ search_form_counter }}" class="search-form__label">
     Search
   </label>
 
@@ -8,7 +8,7 @@
     <input type="search"
       class="search-form__input sans-serif-m"
       name="q"
-      id="Search-{{ section.id }}"
+      id="Search-{{ search_form_counter }}"
       value="{{ search.terms | escape }}"
       placeholder="{{ 'general.search.placeholder' | t }}">
 

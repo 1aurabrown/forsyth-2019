@@ -1,0 +1,35 @@
+.about {
+  &__images {
+    display: block;
+  }
+  @include media-query($small) {
+    padding: 0 $inset;
+  }
+  @include media-query($medium-up) {
+    &__text, &__images {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &__text {
+      max-width: $max-text-width;
+    }
+    &__images {
+      margin-top: $v-space * 5;
+      display: flex;
+      flex-direction: row;
+      max-width: $max-text-width * 1.5;
+      justify-content: center;
+      align-items: flex-end;
+      &__image {
+        flex: 1;
+        margin: 0 1rem;
+      }
+    }
+  }
+  @include media-query($medium) {
+    padding: 0 $inset-2;
+  }
+  @include media-query($large-up) {
+    padding: 0 $left-nav-padding;
+  }
+}
