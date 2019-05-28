@@ -14,16 +14,20 @@ const classes = {
   image: 'page__images__image'
 }
 
-register('page', {
+register('page-section', {
   onLoad() {
-    this.$content = $(selectors.content, this.container);
-    this.$images = $(selectors.images, this.$content);
-    this.$imagesContainer = $(selectors.imagesContainer, this.container);
+    const $content = $(selectors.content, this.container);
+    const $images = $(selectors.images, $content);
+    const $imagesContainer = $(selectors.imagesContainer, this.container);
 
-    this.$imagesContainer.append(this.$images);
-    this.$images.each(function() {
-      $(this).wrap(`<div class="${classes.image}"/>`)
-    })
-    removeEmptyChildrenRecursively(this.$content);
+    if ($images.length > 0) {
+      $imagesContainer.append($images);
+      $images.each(function() {
+        $(this).wrap(`<div class="${classes.image}"/>`)
+      })
+    } else {
+      $imagesContainer.remove()
+    }
+    removeEmptyChildrenRecursively($content);
   },
 });
