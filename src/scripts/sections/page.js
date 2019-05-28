@@ -6,11 +6,15 @@ import removeEmptyChildrenRecursively from '../components/remove-empty-children-
 
 const selectors = {
   images: 'img',
-  content: '.about__text',
-  imagesContainer: '.about__images'
+  content: '.page__text',
+  imagesContainer: '.page__images'
 };
 
-register('about', {
+const classes = {
+  image: 'page__images__image'
+}
+
+register('page', {
   onLoad() {
     this.$content = $(selectors.content, this.container);
     this.$images = $(selectors.images, this.$content);
@@ -18,7 +22,7 @@ register('about', {
 
     this.$imagesContainer.append(this.$images);
     this.$images.each(function() {
-      $(this).wrap(`<div class="about__images__image"/>`)
+      $(this).wrap(`<div class="${classes.image}"/>`)
     })
     removeEmptyChildrenRecursively(this.$content);
   },
