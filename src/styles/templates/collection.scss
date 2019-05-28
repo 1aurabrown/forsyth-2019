@@ -21,13 +21,13 @@
     padding-right: $inset-2;
 
     &__header {
-      padding: 0 $inset-4;
+      padding: 0 6%;
       &__image {
-        margin-bottom: 6 * $v-space;
+        margin-bottom: 5 * $v-space;
       }
       &__description {
-        padding: 0 $inset-6;
-        margin-bottom: 6 * $v-space;
+        padding: 0 5%;
+        margin-bottom: 7 * $v-space;
       }
     }
   }
@@ -36,8 +36,7 @@
     padding-right: $left-nav-padding;
 
     &__header {
-      padding: 0 10%;
-      max-width: 120rem;
+      max-width: 100rem;
       margin-left: auto;
       margin-right: auto;
     }
