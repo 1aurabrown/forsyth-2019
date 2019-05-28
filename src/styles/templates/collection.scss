@@ -34,5 +34,12 @@
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
     padding-right: $left-nav-padding;
+
+    &__header {
+      padding: 0 10%;
+      max-width: 120rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
