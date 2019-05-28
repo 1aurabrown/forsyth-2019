@@ -1,28 +1,48 @@
 .about {
+  &__text, &__images {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &__text {
+    max-width: $max-text-width;
+  }
   &__images {
+    margin-top: $v-space * 5;
     display: block;
   }
   @include media-query($small) {
     padding: 0 $inset;
-  }
-  @include media-query($medium-up) {
-    &__text, &__images {
-      margin-left: auto;
-      margin-right: auto;
-    }
     &__text {
-      max-width: $max-text-width;
+      padding: 0 $inset;
     }
+  }
+  @media screen and (min-width: 420px) {
     &__images {
-      margin-top: $v-space * 5;
       display: flex;
       flex-direction: row;
       max-width: $max-text-width * 1.5;
       justify-content: center;
       align-items: flex-end;
       &__image {
-        flex: 1;
-        margin: 0 1rem;
+        width: 50%;
+        &:not(:first-child) {
+          margin-left: $inset/2;
+        }
+        &:not(:last-child) {
+          margin-right: $inset/2;
+        }
+      }
+    }
+  }
+  @include media-query($medium-up) {
+    &__images {
+      &__image {
+        &:not(:first-child) {
+          margin-left: $inset;
+        }
+        &:not(:last-child) {
+          margin-right: $inset;
+        }
       }
     }
   }
