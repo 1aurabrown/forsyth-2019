@@ -16,6 +16,10 @@
   text-indent: unset;
 }
 
+#preview-bar-iframe {
+  display: none;
+}
+
 html {
   background-color: $color-body;
   box-sizing: border-box;
