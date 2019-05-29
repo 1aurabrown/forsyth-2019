@@ -1,10 +1,10 @@
 @mixin product-text-formatting() {
   p {
-    margin: .5em 0 0;
+    margin: 1em 0 0;
   }
   h4, h5, h6 {
     font-weight: bold;
-    margin: .5em 0 0;
+    margin: 1em 0 0;
     + p {
       margin-top: 0;
     }
@@ -27,7 +27,6 @@
       &__headings {
         &__content {
           display: flex;
-          justify-content: space-between;
         }
         &__heading {
           cursor: pointer;
@@ -37,6 +36,9 @@
           }
           &.active span {
             @extend .faux-underline;
+          }
+          &:not(:last-child) {
+            margin-right: 10%;
           }
         }
       }
@@ -59,8 +61,8 @@
     &__top {
       &__vendor {
         margin-bottom: .4rem;
-        a {
-          line-height: 1;
+        .faux-underline {
+          line-height: 1.1;
         }
       }
     }
@@ -88,9 +90,9 @@
           &__content {
             padding-top: $header-height-mobile;
             padding-bottom: $v-space;
-            justify-content: space-around;
             background: white;
             &.viewport-top {
+              justify-content: center;
               padding-left: $inset;
               padding-right: $inset;
               position: fixed;
@@ -168,15 +170,6 @@
   }
   @include media-query($large-up) {
     padding-left: $left-nav-padding;
-    &__text {
-      &__description {
-        &__headings {
-          &__heading {
-            margin-right: 10%;
-          }
-        }
-      }
-    }
   }
   @include media-query($large) {
     &__images {
