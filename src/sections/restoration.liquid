@@ -1,0 +1,37 @@
+<div class="modular-page stores">
+  <div class="modular-page__blocks restoration__blocks">
+    {% for block in section.blocks %}
+      {% include 'modular-page-block', image: block.settings.image, heading: block.settings.heading, body: block.settings.body, container_class: "restoration" %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Restoration",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "body",
+            "label": "Body"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

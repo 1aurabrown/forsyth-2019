@@ -20,6 +20,10 @@
   display: none;
 }
 
+b, strong {
+  font-weight: $font-body-bold-weight;
+}
+
 html {
   background-color: $color-body;
   box-sizing: border-box;

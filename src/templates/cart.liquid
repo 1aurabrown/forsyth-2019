@@ -113,7 +113,7 @@
 
         <div class="cart__bottom__right">
           {% capture checkout_left %}
-            <span><b>{{'cart.general.subtotal' | t }}:</b>&ensp;{{ cart.total_price | money_without_trailing_zeros }}</span>
+            <span><strong>{{'cart.general.subtotal' | t }}:</strong>&ensp;{{ cart.total_price | money_without_trailing_zeros }}</span>
           {% endcapture %}
           {% assign checkout_button_text = 'cart.general.checkout' | t %}
           {% include 'button-row',

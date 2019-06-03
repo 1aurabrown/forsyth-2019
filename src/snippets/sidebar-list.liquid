@@ -42,7 +42,7 @@
         </ul>
       </li>
     {% else %}
-      <li class="sidebar__nav-outer__item nav-item{% if link == active_item %}{% unless active_already_assigned %}active{% assign active_already_assigned = true %}{% endunless %}{% endif %}">
+      <li class="sidebar__nav-outer__item nav-item {% if link == active_item %}{% unless active_already_assigned %}active{% assign active_already_assigned = true %}{% endunless %}{% endif %}">
         <a href="{{ link.url }}" class="sidebar__nav-outer__item__title">
           {{ link.title }}
         </a>

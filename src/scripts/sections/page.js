@@ -21,13 +21,16 @@ register('page-section', {
     const $imagesContainer = $(selectors.imagesContainer, this.container);
 
     if ($images.length > 0) {
-      $imagesContainer.append($images);
       $images.each(function() {
+        var $originalParent = $(this).parent();
+        $imagesContainer.append($(this));
         $(this).wrap(`<div class="${classes.image}"/>`)
+        if($.trim($originalParent.text()) === "") {
+          $el.remove();
+        }
       })
     } else {
       $imagesContainer.remove()
     }
-    removeEmptyChildrenRecursively($content);
   },
 });
