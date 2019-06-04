@@ -1,0 +1,45 @@
+.contact {
+  &__header {
+    @include italic-header();
+    // margin-bottom: 5 * $v-space;
+  }
+  &__form {
+    .form-success {
+      margin-bottom: 3 * $v-space;
+    }
+    label {
+      display: none;
+    }
+    input, textarea {
+      @extend .reset;
+      margin: $v-space 0;
+      display: block;
+      width: 100%;
+      @include input();
+    }
+    button[type="submit"] {
+      margin-left: auto;
+      display: block;
+    }
+  }
+  &__table {
+    margin-top: 5 * $v-space;
+    table {
+      @extend .responsive-table;
+      td {
+        padding: 0;
+        vertical-align: top;
+        width: 50%;
+        + td {
+          margin-top: 4em;
+        }
+        a {
+          text-decoration: none;
+        }
+        a[href^='mailto:'] {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

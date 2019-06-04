@@ -8,6 +8,7 @@
   {% endif %}
 {% endfor %}
 
+<u>
 {% if vendor_collection %}
   <a href="{{ vendor_collection.url }}">
     {{ product.vendor }}
@@ -15,3 +16,4 @@
 {% else if product.vendor != blank %}
   {{ product.vendor | link_to_vendor }}
 {% endif %}
+</u>

@@ -47,6 +47,15 @@
   }
 }
 
+@mixin input() {
+  @extend .sans-serif-l;
+  padding: .2rem $inset .6rem;
+  border: 1px solid $gray-dark;
+  &::placeholder {
+    color: $gray-dark;
+  }
+}
+
 @mixin faux-underline() {
   position: relative;
   display: inline-block;

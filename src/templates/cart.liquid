@@ -105,8 +105,7 @@
         <div class="cart__bottom__left">
           {% if settings.cart_notes_enable %}
             <div class="cart__instructions">
-              <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}:</label>
-              <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+              <textarea name="note" placeholder="{{ 'cart.general.note' | t | downcase }}" id="CartSpecialInstructions">{{ cart.note }}</textarea>
             </div>
           {% endif %}
         </div>

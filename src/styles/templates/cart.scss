@@ -77,8 +77,9 @@
       width: 100%;
     }
     textarea {
+      @extend .reset;
+      @include input();
       margin-top: $v-space / 2;
-      border: 1px solid $gray-medium
     }
   }
 
