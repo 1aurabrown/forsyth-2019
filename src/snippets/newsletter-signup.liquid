@@ -6,7 +6,11 @@
       "error": {{ error | json }}
     }
   </script>
-  {{ settings.embed }}
+  {% comment %}{% if settings.embed.size > 0 %}{% endcomment %}
+  {% comment %}{{ settings.embed }}{% endcomment %}
+  {% comment %}{% else %}{% endcomment %}
+    <p>Mailchimp is not configured. Please visit Theme settings.</p>
+  {% comment %}{% endif %}{% endcomment %}
   <button class="hide newsletter__button" type="submit">{% include 'forward-arrow.svg' %}</button>
   <div class="newsletter__feedback {{ class }}__feedback">
     <small class="newsletter__feedback__success {{ class }}__feedback__success hide">

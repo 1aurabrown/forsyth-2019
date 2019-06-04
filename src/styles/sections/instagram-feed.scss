@@ -1,4 +1,5 @@
 $instagram-image-width-desktop: 20%;
+$instagram-image-width-mobile: 50%;
 .instagram-feed {
   #insta-feed {
     h2 {
@@ -18,7 +19,9 @@ $instagram-image-width-desktop: 20%;
         display: block;
         height: auto !important;
         @include media-query($small) {
-
+          width: $instagram-image-width-mobile !important;
+          flex: $instagram-image-width-mobile 0 0;
+          margin: 0 2.5%;
         }
         @include media-query($medium-up) {
           width: $instagram-image-width-desktop !important;
@@ -51,6 +54,9 @@ $instagram-image-width-desktop: 20%;
         transform: none;
         @include media-query($medium-up) {
           width:$instagram-image-width-desktop / 2;
+        }
+        @include media-query($small) {
+          width:$instagram-image-width-mobile / 2;
         }
         &.previous {
           left: 0;
