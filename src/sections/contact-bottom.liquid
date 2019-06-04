@@ -1,0 +1,50 @@
+<section data-section-id="{{ section.id }}" data-section-type="contact-bottom">
+<p>
+{{ shop.address.street }}
+<br/>
+{{ shop.address.city }}, {{ shop.address.province_code }} {{ shop.address.zip }}
+</p>
+<p>
+  {{ shop.phone }}
+</p>
+<p>
+  <strong>General Inquiries</strong><br/>
+  <u>{{ shop.email }}</u>
+</section>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_legal_linklist",
+        "label": "Legal menu",
+        "default": "footer"
+      },
+      {
+        "type": "text",
+        "id": "success",
+        "label": "Newsletter success Message",
+        "default": "Thank you."
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Newsletter placeholder",
+        "default": "your email address"
+      },
+      {
+        "type":      "paragraph",
+        "content":   "Configure the connection to Mailchimp globally in the Theme settings."
+      }
+    ]
+  }
+
+{% endschema %}

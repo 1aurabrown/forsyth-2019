@@ -17,6 +17,7 @@
   border-color: black;
   color: white;
   padding: .7rem 1.5rem .9rem;
+  min-width: 15rem;
   @media (hover: hover) {
     &:hover {
       color: black;

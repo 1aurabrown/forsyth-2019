@@ -95,7 +95,6 @@ a:focus {
   .#{$breakpoint}serif-heading-l {
     @extend .#{$breakpoint}serif;
     font-size: 2.6rem;
-    line-height: 1.2;
   }
   .#{$breakpoint}serif-heading-m {
     @extend .#{$breakpoint}serif;
