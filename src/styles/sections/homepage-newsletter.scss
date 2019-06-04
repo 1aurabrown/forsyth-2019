@@ -1,3 +1,12 @@
+.newsletter {
+    .image-with-text {
+    &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
 .homepage-newsletter {
   padding-bottom: 3 * $v-space;
   @extend .sans-serif-l;

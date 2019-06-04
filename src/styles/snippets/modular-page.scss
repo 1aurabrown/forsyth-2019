@@ -1,0 +1,116 @@
+.modular-page {
+  &__blocks {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -6 * $v-space;
+  }
+  &__block {
+    padding-top: 6 * $v-space;
+    &__text {
+      &__heading {
+        line-height: 1.5;
+        margin-bottom: $v-space;
+      }
+    }
+    &__image {
+      &__inner {
+        height: 100%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    }
+  }
+  @include media-query($small) {
+    padding: 0 $inset;
+    &__blocks {
+    }
+    &__block {
+      &__text {
+        padding: 0 $inset;
+        margin-top: 3 * $v-space;
+      }
+    }
+  }
+  @include media-query($medium-up) {
+    &__blocks {
+    }
+    &__block {
+      display: flex;
+      &__image {
+        width: 50%;
+
+      }
+      &__text {
+        width: 50%;
+      }
+    }
+  }
+  @include media-query($medium) {
+    padding: 0 $inset-2;
+    &__block {
+      &__text {
+        padding: $v-space $inset $v-space $inset-3;
+      }
+    }
+  }
+
+  @include media-query($large-up) {
+    padding: 0 $inset-4 0 $left-nav-padding;
+    &__block {
+      &__text {
+        padding: ($v-space) 0 ($v-space) $inset-4;
+      }
+    }
+  }
+  @include media-query($widescreen) {
+    padding: 0 $left-nav-padding;
+    &__block {
+      &__text {
+        padding: (2 * $v-space) 0 (2 * $v-space) $inset-6;
+      }
+    }
+  }
+}
+
+.stores {
+  &__block {
+    p {
+      margin: 0;
+    }
+    @include media-query($medium-up) {
+      flex-direction: row-reverse;
+      &__text {
+        width: 40%;
+        padding: $v-space $inset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &__image {
+        width: 60%;
+      }
+    }
+    &__text {
+
+    }
+    &__contact {
+      &__email a {
+        text-decoration: underline;
+      }
+    }
+    &__address, &__contact, &__note {
+      margin: 1.5em 0;
+    }
+    &__link {
+      margin-top: 2em;
+      .faux-underline {
+        line-height: $sans-serif-underline-line-height;
+      }
+    }
+  }
+}

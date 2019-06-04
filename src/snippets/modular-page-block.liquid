@@ -1,0 +1,17 @@
+<div class="modular-page__block {{ container_class }}__block">
+  <div class="modular-page__block__image {{ container_class }}__block__image">
+    <div class="modular-page__block__image__inner {{ container_class }}__block__image__inner">
+      {% include 'responsive-image-only', image: image %}
+    </div>
+  </div>
+  <div class="modular-page__block__text {{ container_class }}__block__text">
+    <div class="modular-page__block__text__inner">
+      <div class="modular-page__block__text__heading medium-down--serif-heading-l large-up--serif-heading-xl {{ container_class }}__block__text__heading">
+        <i>{{ heading }}</i>
+      </div>
+      <div class="modular-page__block__text__body medium-down--serif-body-m large-up--serif-body-l {{ container_class }}__block__text__body">
+        {{ body }}
+      </div>
+    </div>
+  </div>
+</div>
