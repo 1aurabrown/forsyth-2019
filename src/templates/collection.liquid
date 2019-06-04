@@ -1,6 +1,6 @@
-<section class="collection">
-  <header role="banner" class="collection__header">
-    <h1 class="collection__header__title large-up--hide sans-serif-uppercase-l">{{ collection.title }}</h1>
+{% include 'title-header', title: collection.title %}
+<div class="collection">
+  <div class="collection__header small--serif-body-m medium-up--serif-body-l">
     {% if collection.image != blank %}
       <div class="collection__header__image">
         {% include 'responsive-image' with
@@ -13,12 +13,12 @@
 
     {% if collection.description != blank %}
       <div
-        class="collection__header__description small--serif-body-m medium-up--serif-body-l"
+        class="collection__header__description "
       >
         {{ collection.description }}
       </div>
     {% endif %}
-  </header>
+  </div>
   <div class="collection__content">
     {% if collection.products_count > 0 %}
       {% paginate collection.products by 48 %}
@@ -34,4 +34,4 @@
       <p>{{ 'collections.general.no_matches' | t }}</p>
     {% endif %}
   </div>
-</section>
+</div>
