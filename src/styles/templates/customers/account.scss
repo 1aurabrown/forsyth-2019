@@ -1,0 +1,171 @@
+.account-container {
+  h2 {
+    font-style: italic;
+    margin: 5 * $v-space 0 2 * $v-space;
+  }
+  .order__top, .addresses__top {
+    h2 {
+      margin: 0
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3 * $v-space;
+    @include media-query($medium-up) {
+      margin-top: 6 * $v-space;
+    }
+  }
+  h3 {
+    margin: 3 * $v-space 0 $v-space;
+    font-style: italic;
+  }
+  .order {
+    &__date {
+      margin: 2em 0;
+    }
+    &__table {
+      @include media-query($medium-up) {
+        tfoot tr:first-child td {
+          padding-top: 1em;
+        }
+      }
+      @include media-query($small) {
+        tr.order__table__item + tr.order__table__item, tfoot {
+          &::before {
+            content: '';
+            width: 100%;
+            display: block;
+            height: 1px;
+            background: $gray-medium;
+            margin: 1em 0
+          }
+        }
+      }
+      &__product {
+        a {
+          @include media-query($small) {
+            width: 50%;
+            display: block;
+            float: left
+          }
+        }
+      }
+    }
+  }
+  .addresses {
+    &__default {
+      margin-top: .5em;
+      label, input {
+        display: inline-block;
+      }
+      label {
+        margin: 0 0 0 .5em
+      }
+    }
+    &__delete {
+      display: inline-block;
+    }
+  }
+}
+.account-container {
+  padding-left: $left-nav-padding;
+  padding-right: $left-nav-padding;
+  a {
+    text-decoration: underline;
+  }
+  @include media-query($medium-down) {
+    padding-left: $inset-2;
+    padding-right: $inset-2;
+  }
+  .account-content {
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .account-content, .account-form {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .account-form {
+    max-width: 25em;
+  }
+  .account-content {
+    .responsive-table {
+      border-spacing: 0;
+      @include reset();
+      width: 100%;
+      th, td {
+        vertical-align: top;
+      }
+      @include media-query($small) {
+        td {
+          padding: 0;
+        }
+      }
+
+      @include media-query($medium-up) {
+        td, th {
+          &:not(:last-child) {
+            padding-right: 1em;
+          }
+        }
+      }
+      td[data-label]::before {
+        padding-right: 1em;
+        text-align: left;
+        width: 50%;
+      }
+      th {
+        padding-bottom: .5em;
+        font-weight: $font-body-bold-weight;
+      }
+      tfoot td:first-child {
+        font-weight: $font-body-bold-weight;
+      }
+      @include media-query($small) {
+        tr:not(:first-child) {
+          padding-top: .5em;
+        }
+        td::before {
+          font-weight: $font-body-bold-weight;
+        }
+      }
+    }
+  }
+  input, textarea, select {
+    @include input();
+  }
+  select {
+    border: 0;
+    height: 3.5rem;
+  }
+
+  .account-top-right-link {
+    display: block;
+    text-align: right;
+    text-decoration: underline;
+  }
+  .account-form[data-login-form] {
+    .form-bottom {
+       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .form-bottom {
+    margin-top: $v-space;
+
+  }
+}
+
+.shopify-challenge__container {
+  margin-top: $content-top-margin-desktop;
+  @extend .medium-up--serif-body-l;
+  @extend .small--serif-body-m;
+  input[type="submit"] {
+    @extend .button;
+    @extend .button-rect;
+    display: block;
+  }
+}

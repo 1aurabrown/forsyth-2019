@@ -11,15 +11,12 @@
       display: none;
     }
     input, textarea {
-      @extend .reset;
-      margin: $v-space 0;
-      display: block;
-      width: 100%;
       @include input();
     }
     button[type="submit"] {
       margin-left: auto;
       display: block;
+      margin-top: 1em;
     }
   }
   &__table {

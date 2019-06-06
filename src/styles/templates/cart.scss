@@ -77,8 +77,8 @@
       width: 100%;
     }
     textarea {
-      @extend .reset;
       @include input();
+      width: 100%;
       margin-top: $v-space / 2;
     }
   }

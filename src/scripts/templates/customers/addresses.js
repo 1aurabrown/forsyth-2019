@@ -53,7 +53,6 @@ const addresses = document.querySelectorAll(selectors.addressContainer);
 if (addresses.length) {
 
   const countryProvinceSelector = new CountryProvinceSelector(window.theme.allCountryOptionTags);
-
   addresses.forEach((addressContainer) => {
     initializeAddressForm(countryProvinceSelector, addressContainer);
   });

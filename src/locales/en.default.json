@@ -136,7 +136,7 @@
       "title": "My Account",
       "details": "Account Details",
       "view_addresses": "View Addresses",
-      "return": "Return to Account Details"
+      "return": "Back"
     },
     "activate_account": {
       "title": "Activate Account",
