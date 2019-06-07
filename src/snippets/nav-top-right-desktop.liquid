@@ -3,11 +3,8 @@
     <div class="header__nav__item {% if template.name=='search' %}active{% endif %}">
       {% include 'search-form' %}
     </div>
-
     {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        {% include 'customer-links', item_class: "header__nav__item" active_class: "active" %}
-      {% endif %}
+      {% include 'customer-links', item_class: "header__nav__item" active_class: "active" %}
     {% endif %}
 
     <div class="header__nav__item {% if template.name == 'cart' %}active{% endif %}">

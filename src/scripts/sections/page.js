@@ -6,12 +6,12 @@ import removeEmptyChildrenRecursively from '../components/remove-empty-children-
 
 const selectors = {
   images: 'img',
-  content: '.page__text',
-  imagesContainer: '.page__images'
+  content: '.text-page__text',
+  imagesContainer: '.text-page__images'
 };
 
 const classes = {
-  image: 'page__images__image'
+  image: 'text-page__images__image'
 }
 
 register('page-section', {
@@ -26,7 +26,7 @@ register('page-section', {
         $imagesContainer.append($(this));
         $(this).wrap(`<div class="${classes.image}"/>`)
         if($.trim($originalParent.text()) === "") {
-          $el.remove();
+          $originalParent.remove();
         }
       })
     } else {

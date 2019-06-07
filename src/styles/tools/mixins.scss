@@ -47,11 +47,33 @@
   }
 }
 
+@mixin reset() {
+  float: unset;
+  clear: unset;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: $color-body;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  background: transparent;
+  min-height: unset;
+  height: unset;
+  width: unset;
+  text-indent: unset;
+}
+
 @mixin input() {
   @extend .sans-serif-l;
+  margin-top: $v-space;
+  display: block;
   padding: .2rem $inset .6rem;
   border: 1px solid $gray-dark;
+  background: unset;
   &::placeholder {
+    text-transform: lowercase;
     color: $gray-dark;
   }
 }

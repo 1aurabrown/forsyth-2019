@@ -17,15 +17,43 @@ textarea {
 input,
 textarea,
 select {
+  @extend .reset;
+  @extend .sans-serif-l;
   font-size: 1.6rem;
   max-width: 100%;
-  border: 1px solid $color-border;
-  border-radius: 0;
 
   &[disabled] {
     border-color: $color-disabled-border;
     background-color: $color-disabled;
     cursor: default;
+  }
+}
+
+select {
+  outline: 1px solid $gray-dark;
+  outline-offset: -1px;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  &:focus, &:hover {
+    outline: 1px solid $gray-dark;
+    outline-offset: -1px;
+  }
+}
+
+.flex-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1em;
+  margin-top: -1em;
+  input, select, textarea {
+    margin-left: 1em;
+  }
+  .one-half {
+    width: 100%;
+    @include media-query($medium-up) {
+      width: calc(50% - 1em)
+    }
   }
 }
 

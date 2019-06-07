@@ -1,51 +1,64 @@
-<h1>{{ 'customer.register.title' | t }}</h1>
+<div class="account-container medium-up--serif-body-l small--serif-body-m">
 
-{% form 'create_customer' %}
-  {{ form.errors | default_errors }}
+  <div class="account-form">
+    {% form 'create_customer' %}
 
-  <label for="FirstName" class="label-hidden">
-    {{ 'customer.register.first_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[first_name]"
-    id="FirstName"
-    placeholder="{{ 'customer.register.first_name' | t }}"
-    autofocus
-    {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+      {% assign register_title = 'customer.register.title' | t %}
+      {% include 'title-header', title: register_title, show_on_desktop: true %}
 
-  <label for="LastName" class="label-hidden">
-    {{ 'customer.register.last_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[last_name]"
-    id="LastName"
-    placeholder="{{ 'customer.register.last_name' | t }}"
-    {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+      <p><a class="account-top-right-link" href="/account/login">{{ 'layout.customer.log_in' | t }}</a></p>
 
-  <label for="Email" class="label-hidden">
-    {{ 'customer.register.email' | t }}
-  </label>
-  <input type="email"
-    name="customer[email]"
-    id="Email"
-    class="{% if form.errors contains 'email' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.email' | t }}"
-    value="{% if form.email %}{{ form.email }}{% endif %}"
-    spellcheck="false"
-    autocomplete="off"
-    autocapitalize="off">
+      <p>{{ form.errors | default_errors }}</p>
+      <div class="flex-form">
+        <label for="FirstName" class="label-hidden">
+          {{ 'customer.register.first_name' | t }}
+        </label>
+        <input type="text"
+          class="one-whole"
+          name="customer[first_name]"
+          id="FirstName"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+          autofocus
+          {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
 
-  <label for="CreatePassword" class="label-hidden">
-    {{ 'customer.register.password' | t }}
-  </label>
-  <input type="password"
-    name="customer[password]"
-    id="CreatePassword"
-    class="{% if form.errors contains 'password' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.password' | t }}">
+        <label for="LastName" class="label-hidden">
+          {{ 'customer.register.last_name' | t }}
+        </label>
+        <input type="text"
+          class="one-whole"
+          name="customer[last_name]"
+          id="LastName"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+          {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
 
-  <p>
-    <input type="submit" value="{{ 'customer.register.submit' | t }}" class="button">
-  </p>
-  <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
-{% endform %}
+        <label for="Email" class="label-hidden">
+          {{ 'customer.register.email' | t }}
+        </label>
+        <input type="email"
+          name="customer[email]"
+          id="Email"
+          class="one-whole"
+          class="{% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.email' | t }}"
+          value="{% if form.email %}{{ form.email }}{% endif %}"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off">
+
+        <label for="CreatePassword" class="label-hidden">
+          {{ 'customer.register.password' | t }}
+        </label>
+        <input type="password"
+          name="customer[password]"
+          id="CreatePassword"
+          class="{% if form.errors contains 'password' %}input-error{% endif %} one-whole"
+          placeholder="{{ 'customer.register.password' | t }}">
+      </div>
+      <div class="form-bottom">
+        <button type="submit" class="button button-rect">{{ 'customer.register.submit' | t }}</button>
+
+      </div>
+    {% endform %}
+
+  </div>
+</div>

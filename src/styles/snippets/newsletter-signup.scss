@@ -1,14 +1,14 @@
 .newsletter {
   #mc_embed_signup {
-    @extend .reset;
+    @include reset();
     position: relative;
     max-width: 14em;
     #mc_embed_signup_scroll {
-      @extend .reset;
+      @include reset();
       display: flex;
     }
     #mc-embedded-subscribe-form {
-      @extend .reset;
+      @include reset();
       border-bottom: 1px solid $color-border;
       div.mce_inline_error {
         display: none !important;
@@ -20,10 +20,10 @@
 
 
     .mc-field-group {
-      @extend .reset;
+      @include reset();
       flex-grow: 1;
       input {
-        @extend .reset;
+        @include reset();
         border: none;
         width: 100%;
         &::placeholder {
@@ -35,7 +35,7 @@
       }
     }
     #mc-embedded-subscribe, .newsletter__button {
-      @extend .reset;
+      @include reset();
       @extend .sans-serif-uppercase-m;
     }
   }

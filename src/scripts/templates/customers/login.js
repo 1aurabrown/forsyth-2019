@@ -20,10 +20,12 @@ function onShowHidePasswordForm(evt) {
 }
 
 function checkUrlHash() {
+  console.log(window.location.hash)
   const hash = window.location.hash;
 
   // Allow deep linking to recover password form
   if (hash === '#recover') {
+    console.log('recover')
     toggleRecoverPasswordForm();
   }
 }
@@ -52,7 +54,7 @@ if (document.querySelector(selectors.recoverPasswordForm)) {
   checkUrlHash();
   resetPasswordSuccess();
 
-  document.querySelector(selectors.recoverPasswordFormTriggers).forEach((trigger) => {
+  document.querySelectorAll(selectors.recoverPasswordFormTriggers).forEach((trigger) => {
     trigger.addEventListener('click', onShowHidePasswordForm);
   });
 }

@@ -17,7 +17,7 @@
   border-color: black;
   color: white;
   padding: .7rem 1.5rem .9rem;
-  min-width: 15rem;
+  min-width: 12rem;
   @media (hover: hover) {
     &:hover {
       color: black;
@@ -28,10 +28,21 @@
     background: $gray-medium;
     border-color: $gray-medium;
     color: white;
+    cursor: default;
     @media (hover: hover) {
       &:hover {
-        color: $gray-medium;
-        background: white;
+        background: $gray-medium;
+        border-color: $gray-medium;
+      }
+    }
+  }
+  &--secondary {
+    background: white;
+    color: black;
+    @media (hover: hover) {
+      &:hover {
+        color: white;
+        background: black;
       }
     }
   }

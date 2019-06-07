@@ -1,19 +1,9 @@
 .reset {
-  float: unset;
-  clear: unset;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: $color-body;
-  font-size: inherit;
-  font-family: inherit;
-  line-height: inherit;
-  border-radius: 0;
-  background: transparent;
-  min-height: unset;
-  height: unset;
-  width: unset;
-  text-indent: unset;
+  @include reset();
+}
+
+form .errors {
+  color: #dd0000;
 }
 
 #preview-bar-iframe {
@@ -32,6 +22,7 @@ html {
 
 :focus {
   outline: none;
+  outline-offset: 0;
 }
 
 #container {
