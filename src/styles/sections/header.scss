@@ -3,7 +3,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  @include media-query($large-up) {
+    z-index: 75;
+  }
+  @include media-query($medium-down) {
+    z-index: 1;
+  }
 }
 .header {
   display: flex;

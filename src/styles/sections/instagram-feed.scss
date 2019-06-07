@@ -1,6 +1,12 @@
 $instagram-image-width-desktop: 20%;
 $instagram-image-width-mobile: 50%;
+
+
 .instagram-feed {
+  &__caption {
+    text-align: center;
+    margin: 2 * $v-space 0;
+  }
   #insta-feed {
     h2 {
       display: none !important;
@@ -44,9 +50,8 @@ $instagram-image-width-mobile: 50%;
         justify-content: center;
         color: black;
         background: transparent;
-        #insta-feed.white & {
-          color: white;
-        }
+
+
         &:focus, &:active {
           outline: none;
           box-shadow: none;
@@ -70,6 +75,9 @@ $instagram-image-width-mobile: 50%;
         height: 40px;
         position: static;
       }
+    }
+    &.white .images .flickity-prev-next-button svg{
+      fill: white;
     }
   }
 }
