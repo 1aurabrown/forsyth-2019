@@ -29,9 +29,7 @@
               {% comment %} On sale {% endcomment %}
                 {% if product.compare_at_price > product.price %}
                   <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                  <s class="product-grid__product__metadata__strikethrough_price">
-                    {{ product.compare_at_price | money_without_trailing_zeros }}
-                  </s>
+                  <s class="product-grid__product__metadata__strikethrough_price">{{ product.compare_at_price | money_without_trailing_zeros }}</s>
                   &nbsp;
                   {% if product.price_varies %}
                     {%- assign sale_price = product.price | money_without_trailing_zeros -%}
@@ -52,9 +50,7 @@
 
               {% else %}
               {% comment %} Sold {% endcomment %}
-                <s class="product-grid__product__metadata__strikethrough_price">
-                  {{ product.price | money_without_trailing_zeros }}
-                </s>
+                <s class="product-grid__product__metadata__strikethrough_price">{{ product.price | money_without_trailing_zeros }}</s>
                 &nbsp;
                 <i>{{ 'products.product.sold_out' | t }}</i>
               {% endif %}
