@@ -1,8 +1,6 @@
 <div class="account-container medium-up--serif-body-l small--serif-body-m">
 
-  <div class="form-success hide" data-reset-success>
-    {{ 'customer.recover_password.success' | t }}
-  </div>
+
 
   <div class="account-form" data-login-form>
     {% form 'customer_login' %}
@@ -12,6 +10,9 @@
 
 
       <p><a class="account-top-right-link" href="/account/register">{{ 'layout.customer.create_account' | t }}</a></p>
+      <p class="form-success hide" data-reset-success>
+        {{ 'customer.recover_password.success' | t }}
+      </p>
 
       <p>{{ form.errors | default_errors }}</p>
       <div class="flex-form">
