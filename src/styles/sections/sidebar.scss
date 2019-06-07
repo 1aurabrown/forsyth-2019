@@ -186,6 +186,7 @@ $sidebar-min-width: 20.0rem;
       }
     }
     .search-form {
+      display: inline-block;
       &.expanded {
         .search-form__label {
           display: none;

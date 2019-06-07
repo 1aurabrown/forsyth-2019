@@ -71,7 +71,6 @@
     position: relative;
     &.expanded {
       .search-form__entry {
-        display: block;
         position: absolute;
         top: calc(100% + #{$v-space});
         left: 0;
