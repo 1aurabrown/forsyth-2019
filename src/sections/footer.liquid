@@ -28,10 +28,14 @@
           {% endfor %}
         </ul>
 
-        <div class="footer__copyright">
-          &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: '/' }}
-        </div>
+
       </div>
+    </div>
+    <div class="footer__credit medium-up--text-right small--text-center">
+      <a class="footer__credit__link" href="https://laurabrown.xyz" target="_blank">Website by Laura Brown</a>
+      <span class="footer__credit__copyright">
+          &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}
+        </span>
     </div>
   </footer>
 </section>

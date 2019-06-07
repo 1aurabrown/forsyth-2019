@@ -12,7 +12,7 @@ const selectors = {
   close: '[data-press-zoom-close]',
 };
 
-const imageSize = '1024x';
+const imageSize = '800x';
 const namespace = '.press';
 
 register('press', {

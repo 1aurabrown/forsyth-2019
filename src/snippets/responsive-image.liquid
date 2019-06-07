@@ -55,7 +55,7 @@
     {%- endcomment -%}
 
     {%- comment -%}
-      This will enforce the provided aspect ratio if there is one. The image behavior should be set in 
+      This will enforce the provided aspect ratio if there is one. The image behavior should be set in
       the image_class (e.g. object-fit, object-center)
     {%- endcomment-%}
 
@@ -84,10 +84,12 @@
 {%- endcapture -%}
 {%- assign image_widths = image_widths | strip -%}
 
+{% assign src_width = default_width | default: 600  | append: 'x' %}
+
 <div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
     class="responsive-image__image lazyload {{ image_class }}"
-    src="{{ image | img_url: '300x' }}"
+    src="{{ image | img_url: src_width }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
     data-aspectratio="{{ image.aspect_ratio }}"

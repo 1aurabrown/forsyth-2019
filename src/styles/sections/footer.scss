@@ -1,5 +1,13 @@
 .footer {
   line-height: $left-primary-line-height;
+  a{
+    line-height: $sans-serif-underline-line-height
+  }
+  @media(hover:hover) {
+    a:hover {
+      @include faux-underline;
+    }
+  }
   &__links {
     text-transform: uppercase;
   }
@@ -34,19 +42,29 @@
     }
     &__legal {
       ul {
-        li {
-
+        li:not(:last-child){
           margin-right: $inset-2;
         }
       }
     }
-    &__legal ul, &__copyright {
+    &__credit {
+      &__link {
+        margin-right: $inset-2;
+      }
+    }
+    &__legal ul {
       display: inline-block
     }
   }
   @include media-query($small) {
     &__bottom {
       margin-top: 3 * $v-space;
+    }
+
+    &__credit {
+      &__copyright {
+        display: block;
+      }
     }
     &__legal {
       margin-top: 3 * $v-space;

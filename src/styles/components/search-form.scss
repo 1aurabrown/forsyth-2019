@@ -5,15 +5,18 @@
   }
   &.expanded {
     .search-form__entry {
-      display: block;
+      white-space: nowrap;
+      @include faux-underline;
+
     }
   }
   &__input {
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    // border-bottom: 1px solid $transparent-gray-dark;
     background: transparent;
-    width: 12rem;
+    width: 15rem;
     &::placeholder {
       color: $transparent-gray-dark;
     }
