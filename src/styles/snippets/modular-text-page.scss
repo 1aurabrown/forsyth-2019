@@ -1,4 +1,4 @@
-.modular-page {
+.modular-text-page {
   &__blocks {
     max-width: 1000px;
     margin-left: auto;
@@ -89,7 +89,9 @@
         padding: $v-space $inset;
         display: flex;
         align-items: center;
-        justify-content: center;
+        &__inner {
+          margin-left: calc(50% - 12rem);
+        }
       }
       &__image {
         width: 60%;
