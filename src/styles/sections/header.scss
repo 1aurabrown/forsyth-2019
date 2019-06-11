@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   @include media-query($large-up) {
-    z-index: 75;
+    z-index: 65;
   }
   @include media-query($medium-down) {
     z-index: 1;
