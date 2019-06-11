@@ -1,5 +1,5 @@
 {% include 'title-header', title: page.title %}
-<div class="modular-page stores">
+<div class="modular-text-page stores">
   <div class="modular-text-page__blocks stores__blocks">
     {% for block in section.blocks %}
       {% capture body_html %}
@@ -22,7 +22,7 @@
         <div class="stores__block__link"><p><a class="sans-serif-uppercase-m faux-underline" target="_blank" href="{{ block.settings.link }}">More Info</a></p></div>
       {% endif %}
       {% endcapture %}
-      {% include 'modular-page-block', image: block.settings.image, heading: block.settings.city, body: body_html, container_class: "stores" %}
+      {% include 'modular-text-page-block', image: block.settings.image, heading: block.settings.city, body: body_html, container_class: "stores" %}
     {% endfor %}
   </div>
 </div>

@@ -1,7 +1,7 @@
-<div class="modular-page stores">
+<div class="modular-text-page stores">
   <div class="modular-text-page__blocks restoration__blocks">
     {% for block in section.blocks %}
-      {% include 'modular-page-block', image: block.settings.image, heading: block.settings.heading, body: block.settings.body, container_class: "restoration" %}
+      {% include 'modular-text-page-block', image: block.settings.image, heading: block.settings.heading, body: block.settings.body, container_class: "restoration" %}
     {% endfor %}
   </div>
 </div>
