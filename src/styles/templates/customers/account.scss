@@ -161,8 +161,7 @@
 
 .shopify-challenge__container {
   margin-top: $content-top-margin-desktop;
-  @extend .medium-up--serif-body-l;
-  @extend .small--serif-body-m;
+  @extend .serif-body-m;
   input[type="submit"] {
     @extend .button;
     @extend .button-rect;

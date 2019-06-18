@@ -71,7 +71,7 @@
     padding: 0 $left-nav-padding;
     &__block {
       &__text {
-        padding: (2 * $v-space) 0 (2 * $v-space) $inset-6;
+        padding: ($v-space) 0 ($v-space) $inset-6;
       }
     }
   }

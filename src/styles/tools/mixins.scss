@@ -66,7 +66,7 @@
 }
 
 @mixin input() {
-  @extend .sans-serif-l;
+  @extend .sans-serif-m;
   margin-top: $v-space;
   display: block;
   padding: .2rem $inset .6rem;
