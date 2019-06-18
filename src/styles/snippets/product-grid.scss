@@ -32,6 +32,22 @@ $product-grid-gutter-horizonal-mobile: $inset;
         object-position: center;
         display: block;
       }
+      .grid-image-primary {
+        display: block;
+      }
+      .grid-image-secondary {
+        display: none;
+      }
+      @media (hover:hover) {
+        &:hover {
+          .grid-image-primary {
+            display: none;
+          }
+          .grid-image-secondary {
+            display: block;
+          }
+        }
+      }
     }
     &__metadata {
       padding: $v-space $inset 0;
