@@ -11,8 +11,8 @@
             {{ 'contact.form.post_success' | t }}
           </p>
         {% endif %}
-        <div class="contact__header">
-          {{ page.content | split: '<table' | first }}
+        <div class="contact__content">
+          {{ page.content }}
         </div>
 
         <p class="form-error serif-body-m">
@@ -66,8 +66,6 @@
       {% endform %}
     </div>
 
-    <div class="contact__table serif-body-m">
-      {{ page.content | split: '<table' | last | prepend: '<table' }}
-    </div>
+
   </div>
 </div>
