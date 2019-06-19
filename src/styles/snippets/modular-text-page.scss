@@ -3,10 +3,10 @@
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -6 * $v-space;
+    margin-top: -10 * $v-space;
   }
   &__block {
-    padding-top: 6 * $v-space;
+    padding-top: 10 * $v-space;
     &__text {
       &__heading {
         line-height: 1.5;
@@ -42,11 +42,11 @@
     &__block {
       display: flex;
       &__image {
-        width: 50%;
+        width: 40%;
 
       }
       &__text {
-        width: 50%;
+        width: 60%;
       }
     }
   }
@@ -54,7 +54,7 @@
     padding: 0 $inset-2;
     &__block {
       &__text {
-        padding: $v-space $inset $v-space $inset-3;
+        padding: $v-space $inset $v-space $inset-4;
       }
     }
   }
@@ -63,7 +63,7 @@
     padding: 0 $inset-4 0 $left-nav-padding;
     &__block {
       &__text {
-        padding: ($v-space) 0 ($v-space) $inset-4;
+        padding: ($v-space) 0 ($v-space) $inset-6;
       }
     }
   }
@@ -71,7 +71,7 @@
     padding: 0 $left-nav-padding;
     &__block {
       &__text {
-        padding: ($v-space) 0 ($v-space) $inset-6;
+        padding: ($v-space) 0 ($v-space) $inset * 10;
       }
     }
   }
@@ -85,16 +85,16 @@
     @include media-query($medium-up) {
       flex-direction: row-reverse;
       &__text {
-        width: 40%;
-        padding: $v-space $inset;
+        width: 50%;
+        padding: $v-space 5%;
         display: flex;
         align-items: center;
         &__inner {
-          margin-left: calc(50% - 12rem);
+          margin: 0
         }
       }
       &__image {
-        width: 60%;
+        width: 50%;
       }
     }
     &__text {
