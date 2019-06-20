@@ -25,14 +25,15 @@
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "Organization",
   "name": "{{ shop.name }}",
   "address": {
     "streetAddress": "{{ shop.address.street }}",
     "addressLocality": "{{ shop.address.city }}",
     "addressRegion": "{{ shop.address.province }}",
     "postalCode": "{{ shop.address.zip }}",
-    "addressCountry": "{{ shop.address.country }}"
+    "addressCountry": "{{ shop.address.country }}",
+    "telephone": "{{ shop.phone }}"
   },
   {% if settings.logo %}
     {% assign image_size = settings.logo.width | append:'x' %}
