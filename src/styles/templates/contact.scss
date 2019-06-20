@@ -16,7 +16,10 @@
     }
   }
   &__content {
-    @include italic-header();
+    @extend .serif-body-m;
+    h1, h2, h3, h4, h5 {
+      @include italic-header();
+    }
     margin-bottom: 5 * $v-space;
     table {
       @extend .serif-body-m;
