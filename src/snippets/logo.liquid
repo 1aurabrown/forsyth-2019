@@ -5,7 +5,14 @@
     <div class="h1">
   {% endif %}
       <a href="/" class="logo__link">
-        <img class="logo__link__image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+        <img class="logo__link__image small--hide"
+        src="{{ settings.logo | img_url: '205x' }}"
+        srcset="{{ settings.logo | img_url: '205x' }} 1x, {{ settings.logo | img_url: '410x' }} 2x, {{ settings.logo | img_url: '615x' }} 3x, {{ settings.logo | img_url: '820x' }} 3x"
+        alt="{{ shop.name }}">
+        <img class="logo__link__image medium-up--hide"
+        src="{{ settings.logo | img_url: '130x' }}"
+        srcset="{{ settings.logo | img_url: '130x' }} 1x, {{ settings.logo | img_url: '260x' }} 2x, {{ settings.logo | img_url: '390x' }} 3x, {{ settings.logo | img_url: '520x' }} 3x"
+        alt="{{ shop.name }}">
       </a>
   {% if template.name == 'index' %}
     </h1>

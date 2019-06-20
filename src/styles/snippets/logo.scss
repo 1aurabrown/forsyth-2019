@@ -19,16 +19,13 @@
   &__link {
     display: block;
     pointer-events: all;
-
+    padding-top: 15%;
     &__image {
       @include media-query($medium-down) { // mobile
-        max-width: 120px;
+        width: 130px;
       }
       @include media-query($large-up) { // large desktop
-        max-width: 205px;
-      }
-      img {
-        display: block;
+        width: 205px;
       }
     }
   }

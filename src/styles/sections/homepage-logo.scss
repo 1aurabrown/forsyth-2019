@@ -24,20 +24,14 @@
     margin-top: 5.5 * $v-space;
     margin-bottom: 5 * $v-space;
     &__image {
-      width: 27%;
-      max-width: 30rem;
+      width: 300px;
     }
   }
   @include media-query($medium-down) {
-    margin-top: 4 * $v-space;
-    margin-bottom: 3.5 * $v-space;
+    margin: 3.5 * $v-space 0;
     &__image {
-      max-width: 22rem;
-    }
-  }
-  @include media-query($small) { // mobile
-    &__image {
-      width: 50%;
+      width: 200px;
+      max-width: 50%;
     }
   }
 }

@@ -1,5 +1,8 @@
 <section data-section-id="{{ section.id }}" data-section-type="homepage-logo" class="homepage-logo {{ section.settings.layout }}">
-  <img class="homepage-logo__image" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+  <img class="homepage-logo__image medium-down--hide" src="{{ settings.logo | img_url: '300x' }}"
+        srcset="{{ settings.logo | img_url: '300x' }} 1x, {{ settings.logo | img_url: '600x' }} 2x, {{ settings.logo | img_url: '900' }} 3x, {{ settings.logo | img_url: '1200x' }} 4x," alt="{{ shop.name }}">
+  <img class="homepage-logo__image large-up--hide" src="{{ settings.logo | img_url: '200x' }}"
+        srcset="{{ settings.logo | img_url: '200x' }} 1x, {{ settings.logo | img_url: '400x' }} 2x, {{ settings.logo | img_url: '600x' }} 3x, {{ settings.logo | img_url: '800x' }} 4x," alt="{{ shop.name }}">
 </section>
 {% schema %}
   {
