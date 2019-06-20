@@ -88,7 +88,7 @@
       &__description {
         &__headings {
           &__content {
-            padding-top: $header-height-mobile;
+            padding-top: $header-height-mobile + $v-space;
             padding-bottom: $v-space;
             background: white;
             &.viewport-top {

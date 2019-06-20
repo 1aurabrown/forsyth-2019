@@ -7,7 +7,7 @@
     z-index: 65;
   }
   @include media-query($medium-down) {
-    z-index: 1;
+    z-index: 2;
   }
 
 }
