@@ -8,7 +8,9 @@
   }
 }
 .homepage-newsletter {
-  padding-bottom: 3 * $v-space;
+  @include media-query($medium-up) {
+    padding-bottom: 3 * $v-space;
+  }
   @extend .sans-serif-l;
   &__feedback {
     a {

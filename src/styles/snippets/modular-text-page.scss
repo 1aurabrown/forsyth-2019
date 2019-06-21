@@ -86,7 +86,7 @@
       flex-direction: row-reverse;
       &__text {
         width: 50%;
-        padding: $v-space 5%;
+        padding: $v-space 10% $v-space 5%;
         display: flex;
         align-items: center;
         &__inner {

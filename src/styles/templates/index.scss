@@ -1,5 +1,8 @@
 body.template-index {
-  .homepage-section:not(:last-child) {
+  #container {
+    padding-bottom: 0;
+  }
+  .homepage-section {
     @include media-query($large-up) {
       margin-bottom: 14 * $v-space;
     }
