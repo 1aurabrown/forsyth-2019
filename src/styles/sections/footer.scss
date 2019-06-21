@@ -93,7 +93,7 @@
     }
   }
   @include media-query($large-up) {
-    padding: $inset-3;
+    padding: $inset-2 $inset-3;
   }
   @include media-query($medium-down) {
     padding: $inset-2;
