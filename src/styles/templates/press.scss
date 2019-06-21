@@ -29,6 +29,9 @@
         .caption {
           margin: 1em 0;
           text-align: center;
+          a {
+            text-decoration: underline;
+          }
         }
       }
     }
