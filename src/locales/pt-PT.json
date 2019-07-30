@@ -8,7 +8,7 @@
       "page": "Página {{ page }}"
     },
     "404": {
-      "title": "404 Página não encontrada",
+      "title": "Página não encontrada",
       "subtext_html":
         "A página solicitada não existe. Clique <a href=\"/collections/all\">aqui</a> para voltar para a loja."
     },

@@ -1,0 +1,18 @@
+.not-found {
+
+  &__header {
+    @include italic-header();
+  }
+  padding: 0 $inset;
+
+  @include media-query($medium-down) {
+    padding: 0 $inset-2;
+  }
+
+  @include media-query($large-up) {
+    padding: 0 $left-nav-padding;
+  }
+  a {
+    text-decoration: underline;
+  }
+}

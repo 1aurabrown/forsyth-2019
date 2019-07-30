@@ -8,7 +8,7 @@
       "page": "Pagina {{ page }}"
     },
     "404": {
-      "title": "404 Pagina niet gevonden",
+      "title": "Pagina niet gevonden",
       "subtext_html":
         "De pagina die u zocht bestaat niet. Klik <a href=\"/collections/all\">hier</a> om verder te shoppen."
     },

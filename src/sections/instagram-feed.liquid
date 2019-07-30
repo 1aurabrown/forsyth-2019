@@ -1,8 +1,8 @@
 <section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed">
   <div id="insta-feed" class="{{ section.settings.color }}"></div>
-  {% if section.settings.link.size > 0 and section.settings.link_text.size > 0 %}
+  {% if settings.social_instagram_link.size > 0 and section.settings.link_text.size > 0 %}
     <div class="instagram-feed__caption sans-serif-uppercase-l">
-      <a href="{{ section.settings.link }}" target="_blank">{{ section.settings.link_text }}</a>
+      <a href="{{ settings.social_instagram_link }}" target="_blank">{{ section.settings.link_text }}</a>
     </div>
   {% endif %}
 </section>
@@ -20,11 +20,6 @@
         "id": "link_text",
         "label": "Link Text",
         "default": "@FORSYTHART | SEE MORE"
-      },
-      {
-        "type": "url",
-        "id": "link",
-        "label": "Instagram Link"
       },
       {
         "type": "select",

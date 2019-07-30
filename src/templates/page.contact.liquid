@@ -7,15 +7,15 @@
 
       {% form 'contact' %}
         {% if form.posted_successfully? %}
-          <p class="form-success small--serif-body-m medium-up--serif-body-l">
+          <p class="form-success serif-body-m">
             {{ 'contact.form.post_success' | t }}
           </p>
         {% endif %}
-        <div class="contact__header">
-          {{ page.content | split: '<table' | first }}
+        <div class="contact__content">
+          {{ page.content }}
         </div>
 
-        <p class="form-error small--serif-body-m medium-up--serif-body-l">
+        <p class="form-error serif-body-m">
           {{ form.errors | default_errors }}
         </p>
 
@@ -66,8 +66,6 @@
       {% endform %}
     </div>
 
-    <div class="contact__table medium-up--serif-body-l small--serif-body-m">
-      {{ page.content | split: '<table' | last | prepend: '<table' }}
-    </div>
+
   </div>
 </div>

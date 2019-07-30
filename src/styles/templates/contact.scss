@@ -1,8 +1,4 @@
 .contact {
-  &__header {
-    @include italic-header();
-    // margin-bottom: 5 * $v-space;
-  }
   &__form {
     .form-success {
       margin-bottom: 3 * $v-space;
@@ -19,10 +15,17 @@
       margin-top: 1em;
     }
   }
-  &__table {
-    margin-top: 5 * $v-space;
+  &__content {
+    @extend .serif-body-m;
+    h1, h2, h3, h4, h5 {
+      @include italic-header();
+    }
+    margin-bottom: 5 * $v-space;
     table {
+      @extend .serif-body-m;
       @extend .responsive-table;
+      font-style: normal;
+      margin-top: 5 * $v-space;
       td {
         padding: 0;
         vertical-align: top;
@@ -39,4 +42,5 @@
       }
     }
   }
+
 }

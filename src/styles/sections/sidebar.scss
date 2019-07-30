@@ -60,41 +60,41 @@ $sidebar-min-width: 20.0rem;
     }
   }
 
-  &__gradient {
-    width: 100%;
-    left: 0;
-    pointer-events: none;
+  // &__gradient {
+  //   width: 100%;
+  //   left: 0;
+  //   pointer-events: none;
 
-    @include media-query($medium-down) {
-      position: absolute;
+  //   @include media-query($medium-down) {
+  //     position: absolute;
 
-      $gradient-height-mobile: .3 * $header-height-mobile;
+  //     $gradient-height-mobile: .3 * $header-height-mobile;
 
-      $top-gradient-height-mobile: 1.2 * $header-height-mobile;
-      $top-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$top-gradient-height-mobile);
+  //     $top-gradient-height-mobile: 1.2 * $header-height-mobile;
+  //     $top-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$top-gradient-height-mobile);
 
-      $bottom-gradient-height-mobile: 2.5rem;
-      $bottom-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$bottom-gradient-height-mobile);
+  //     $bottom-gradient-height-mobile: 2.5rem;
+  //     $bottom-precent-gradient-mobile: 100% - (100% * $gradient-height-mobile/$bottom-gradient-height-mobile);
 
-      &--top {
-        z-index: 1;
-        top: 0;
-        height: $top-gradient-height-mobile;
-        background-image: linear-gradient(white $top-precent-gradient-mobile, transparent);
-      }
+  //     &--top {
+  //       z-index: 1;
+  //       top: 0;
+  //       height: $top-gradient-height-mobile;
+  //       background-image: linear-gradient(white $top-precent-gradient-mobile, transparent);
+  //     }
 
-      &--bottom {
-        transform: rotate(180deg);
-        bottom: 0;
-        height: $bottom-gradient-height-mobile;
-        background-image: linear-gradient(rgba(255,255,255,1) $bottom-precent-gradient-mobile, rgba(255,255,255,0));
-      }
-    }
-    @include media-query($large-up) {
-      display: none;
-    }
+  //     &--bottom {
+  //       transform: rotate(180deg);
+  //       bottom: 0;
+  //       height: $bottom-gradient-height-mobile;
+  //       background-image: linear-gradient(rgba(255,255,255,1) $bottom-precent-gradient-mobile, rgba(255,255,255,0));
+  //     }
+  //   }
+  //   @include media-query($large-up) {
+  //     display: none;
+  //   }
 
-  }
+  // }
 
 
   @include media-query($medium-down) {

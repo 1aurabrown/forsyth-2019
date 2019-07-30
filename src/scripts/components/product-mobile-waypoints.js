@@ -3,22 +3,26 @@ import Listeners from './listeners';
 export default function MobileWaypoints(container, selectors, breakpoints) {
   this.bottom = container.querySelector(selectors.bottomMobileSticky)
   this.bottomContainer = container.querySelector(selectors.bottomMobileStickyContainer)
+  console.log(selectors)
+  console.log(selectors.headingsBarContainer)
   this.headingsBarContainer = container.querySelector(selectors.headingsBarContainer)
+  console.log(this.headingsBarContainer)
   this.headingsBar = container.querySelector(selectors.headingsBar)
   this.description = container.querySelector(selectors.description)
   this.images = container.querySelector(selectors.imagesContainer)
 
-  this.previousScroll = 0
+  this.previousScroll = -1;
   this._listeners = new Listeners();
   this.update = _.throttle(this._update.bind(this), 50);
+  this.update();
 }
 
 MobileWaypoints.prototype.teardown = function() {
   this._listeners.removeAll();
   this.bottom.classList.remove('hidden')
   this.bottom.classList.remove('viewport-bottom')
-  this.headingsBar.classList.remove('viewport-top')
-  this.headingsBarContainer.style.height = '';
+  if (this.headingsBar) { this.headingsBar.classList.remove('viewport-top'); }
+  if (this.headingsBarContainer) { this.headingsBarContainer.style.height = ''; }
 }
 
 MobileWaypoints.prototype.setup = function() {
@@ -79,6 +83,7 @@ MobileWaypoints.prototype._updateBottom = function(direction) {
 }
 
 MobileWaypoints.prototype._updateHeaders= function(direction) {
+  if (!this.headingsBarContainer) { return; }
   var headingsBarContainerRect = this.headingsBarContainer.getBoundingClientRect();
   var spaceAboveHeadingsBarContainer = headingsBarContainerRect.top;
 

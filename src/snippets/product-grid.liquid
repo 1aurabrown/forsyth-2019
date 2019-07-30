@@ -10,7 +10,16 @@
                 max_width: 700,
                 max_height: 560,
                 aspect_ratio: 1.25,
-                image_class: "product-grid__product__image-link__image"
+                image_class: "product-grid__product__image-link__image",
+                wrapper_class: "product-grid__product__image-link__image-wrapper grid-image-primary"
+              %}
+              {% include 'responsive-image' with
+                image: product.images[1],
+                max_width: 700,
+                max_height: 560,
+                aspect_ratio: 1.25,
+                image_class: "product-grid__product__image-link__image",
+                wrapper_class: "product-grid__product__image-link__image-wrapper grid-image-secondary"
               %}
             </a>
           {% endif %}

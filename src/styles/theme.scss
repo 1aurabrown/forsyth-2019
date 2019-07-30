@@ -47,9 +47,9 @@
 @import './snippets/logo';
 @import './snippets/newsletter-signup';
 @import './snippets/newsletter-signup';
-@import './snippets/product-grid.scss';
-@import './snippets/product-form.scss';
-@import './snippets/button-row.scss';
+@import './snippets/product-grid';
+@import './snippets/product-form';
+@import './snippets/button-row';
 @import './snippets/title-header';
 @import './snippets/modular-text-page';
 
@@ -71,4 +71,5 @@
 @import './templates/tumblr';
 @import './templates/page';
 @import './templates/contact';
+@import './templates/404';
 @import './templates/restoration';

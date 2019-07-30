@@ -39,6 +39,8 @@
 
 @mixin italic-header() {
   font-style: italic;
+  text-transform: none;
+  letter-spacing: unset;
   margin: 2 * $v-space 0 3 * $v-space;
   @extend .medium-up--serif-heading-l;
   @extend .small--serif-heading-m;
@@ -66,7 +68,7 @@
 }
 
 @mixin input() {
-  @extend .sans-serif-l;
+  @extend .sans-serif-m;
   margin-top: $v-space;
   display: block;
   padding: .2rem $inset .6rem;

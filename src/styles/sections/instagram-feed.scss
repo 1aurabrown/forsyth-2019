@@ -1,8 +1,12 @@
 $instagram-image-width-desktop: 20%;
 $instagram-image-width-mobile: 50%;
 
-
+#shopify-section-instagram-feed {
+  margin-bottom: 0;
+  padding-bottom: $space-above-footer;
+}
 .instagram-feed {
+
   &__caption {
     text-align: center;
     margin: 2 * $v-space 0;

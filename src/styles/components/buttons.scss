@@ -11,7 +11,6 @@
 }
 .button-rect {
   @extend .button;
-  @extend .sans-serif-uppercase-l;
   background: black;
   border: 1px solid;
   border-color: black;
@@ -45,5 +44,11 @@
         background: black;
       }
     }
+  }
+  &:not(&--large){
+    @extend .sans-serif-uppercase-m;
+  }
+  &--large {
+    @extend .sans-serif-uppercase-l;
   }
 }

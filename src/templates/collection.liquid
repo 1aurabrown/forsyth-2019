@@ -1,6 +1,6 @@
 {% include 'title-header', title: collection.title %}
 <div class="collection">
-  <div class="collection__header small--serif-body-m medium-up--serif-body-l">
+  <div class="collection__header serif-body-m">
     {% if collection.image != blank %}
       <div class="collection__header__image">
         {% include 'responsive-image' with
@@ -31,7 +31,7 @@
         {% endif %}
       {% endpaginate %}
     {% else %}
-      <div class="small--serif-body-m medium-up--serif-body-l"><i>{{ 'collections.general.no_matches' | t }}</i></div>
+      <div class="serif-body-m"><i>{{ 'collections.general.no_matches' | t }}</i></div>
     {% endif %}
   </div>
 </div>
