@@ -53,13 +53,20 @@ const selectors = {
 
 register('product', {
   async onLoad() {
-    const productFormElement = document.querySelector(selectors.productForm);
+    const productFormElements = document.querySelectorAll(selectors.productForm);
     this.product = await this.getProductJson(
-      productFormElement.dataset.productHandle
+      productFormElements[0].dataset.productHandle
     );
-    this.productForm = new ProductForm(productFormElement, this.product, {
-      onOptionChange: this.onFormOptionChange.bind(this),
-    });
+    this.productForms = [];
+    Array.prototype.forEach.call(productFormElements, function(element) {
+      this.productForms.push(
+        new ProductForm(
+          element,
+          this.product,
+          { onOptionChange: this.onFormOptionChange.bind(this) }
+        )
+      )
+    }.bind(this))
 
 
     this.rightColumn = this.container.querySelector(selectors.rightColumn);
@@ -85,7 +92,7 @@ register('product', {
   },
 
   onUnload() {
-    this.productForm.destroy();
+    this.productForms.slice.call('destroy');
     this.removeEventListener('click', this.onThumbnailClick);
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
@@ -156,7 +163,7 @@ register('product', {
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
 
-    this.renderImages(variant);
+    // this.renderImages(variant);
     this.renderPrice(variant);
     this.renderComparePrice(variant);
     this.renderSubmitButton(variant);
@@ -165,33 +172,29 @@ register('product', {
   },
 
   renderSubmitButton(variant) {
-    const submitButton = this.container.querySelector(selectors.submitButton);
-    const submitButtonText = this.container.querySelector(
-      selectors.submitButtonText,
-    );
+    const $submitButtons = $(selectors.submitButton, this.container);
+    const $submitButtonTexts = $(selectors.submitButtonText, this.container);
 
     if (!variant) {
-      submitButton.disabled = true;
-      submitButtonText.innerText = theme.strings.unavailable;
+      $submitButtons.attr('disabled', true);
+      $submitButtonTexts.text(theme.strings.unavailable)
     } else if (variant.available) {
-      submitButton.disabled = false;
-      submitButtonText.innerText = theme.strings.addToCart;
+      $submitButtons.attr('disabled', false);
+      $submitButtonTexts.text(theme.strings.addToCart);
     } else {
-      submitButton.disabled = true;
-      submitButtonText.innerText = theme.strings.soldOut;
+      $submitButtons.attr('disabled', true);
+      $submitButtonTexts.text(theme.strings.soldOut);
     }
   },
 
   renderPrice(variant) {
-    const priceElement = this.container.querySelector(selectors.productPrice);
-    const priceWrapperElement = this.container.querySelector(
-      selectors.priceWrapper,
-    );
+    const $priceElements =$(selectors.productPrice, this.container);
+    const $priceWrapperElements = $(selectors.priceWrapper, this.container);
 
-    priceWrapperElement.classList.toggle(classes.hide, !variant);
+    $priceWrapperElements.toggleClass(classes.hide, !variant);
 
     if (variant) {
-      priceElement.innerText = formatMoney(variant.price, theme.moneyFormat);
+      $priceElements.text(formatMoney(variant.price, theme.moneyFormat))
     }
   },
 
@@ -200,35 +203,29 @@ register('product', {
       return;
     }
 
-    const comparePriceElement = this.container.querySelector(
-      selectors.comparePrice,
-    );
-    const compareTextElement = this.container.querySelector(
-      selectors.comparePriceText,
-    );
+    const $comparePriceElements = $(selectors.comparePrice, this.container);
+    const $compareTextElements = $(selectors.comparePriceText, this.container);
 
-    if (!comparePriceElement || !compareTextElement) {
+    if (!$comparePriceElements.length > 0 || !$compareTextElements.length > 0) {
       return;
     }
-
     if (variant.compare_at_price > variant.price) {
-      comparePriceElement.innerText = formatMoney(
-        variant.compare_at_price,
-        theme.moneyFormat,
-      );
-      compareTextElement.classList.remove(classes.hide);
-      comparePriceElement.classList.remove(classes.hide);
+      $comparePriceElements.text(
+        formatMoney(
+          variant.compare_at_price,
+          theme.moneyFormat,
+        )).removeClass(classes.hide)
+      $compareTextElements.removeClass(classes.hide)
     } else {
-      comparePriceElement.innerText = '';
-      compareTextElement.classList.add(classes.hide);
-      comparePriceElement.classList.add(classes.hide);
+      $comparePriceElements.text('').addClass(classes.hide)
+      $compareTextElements.addClass(classes.hide)
     }
   },
 
   updateBrowserHistory(variant) {
-    const enableHistoryState = this.productForm.element.dataset
+    const enableHistoryState = this.productForms[0].element.dataset
       .enableHistoryState;
-
+    console.log(enableHistoryState)
     if (!variant || enableHistoryState !== 'true') {
       return;
     }

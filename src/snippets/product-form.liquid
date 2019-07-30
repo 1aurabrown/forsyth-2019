@@ -13,22 +13,23 @@
             {% endfor %}
 
           {% else %}
+            <div class="product__form__option-row">
+              <label class="serif-m" for="Product-form-{{ product_form_counter}}--Option{{ option.position }}">
+                <strong>{{ option.name }}</strong>
+              </label>
 
-            <label for="Product-form-{{ product_form_counter}}--Option{{ option.position }}">
-              {{ option.name }}
-            </label>
-
-            <select
-              id="Product-form-{{ product_form_counter}}--Option{{ option.position }}"
-              name="options[{{ option.name | escape }}]">
-              {% for value in option.values %}
-                <option
-                  value="{{ value | escape }}"
-                  {% if option.selected_value == value %}selected="selected"{% endif %}>
-                    {{ value }}
-                </option>
-              {% endfor %}
-            </select>
+              <select class="sans-serif-m"
+                id="Product-form-{{ product_form_counter}}--Option{{ option.position }}"
+                name="options[{{ option.name | escape }}]">
+                {% for value in option.values %}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}selected="selected"{% endif %}>
+                      {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
 
           {% endif %}
         </div>
@@ -53,14 +54,16 @@
     </noscript>
 
     {% capture product_price %}
-      {% if product.compare_at_price_max > product.price %}
-        <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-        <s class="product__form__cta__left__compare" data-compare-price>
-          {% if current_variant.compare_at_price > current_variant.price %}
-            {{ current_variant.compare_at_price | money_without_trailing_zeros }}
-          {% endif %}
-        </s>
-      {% endif %}
+      <span class="visually-hidden {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-text>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          {{ 'products.product.regular_price' | t }}
+        {% endif %}
+      </span>
+      <s class="product__form__cta__left__compare {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-price>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+        {% endif %}
+      </s>
       <span class="product__form__cta__left__actual" data-product-price>
         {{ current_variant.price | money_without_trailing_zeros }}
       </span>
