@@ -11,4 +11,13 @@
       margin-right: .5em;
     }
   }
+  &__option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
 }
