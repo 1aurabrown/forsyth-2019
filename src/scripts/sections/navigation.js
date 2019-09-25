@@ -19,7 +19,8 @@ const selectors = {
   outerMenu: '.sidebar__nav-outer',
   top: '.sidebar__scroll__top',
   slideArea: '.sidebar__slide-area',
-  inner: '.sidebar__inner'
+  inner: '.sidebar__inner',
+  blogSidebarToggles: '.header__nav__item[data-blog-menu-toggle]'
 };
 
 register('navigation', {
@@ -27,14 +28,14 @@ register('navigation', {
     this.namespace = '.navigation';
     this.updateSticky = _.debounce(this._updateSticky, 50).bind(this)
     var $container = $(this.container);
-    this.$slideArea = $(selectors.slideArea, this.$container)
+    this.$slideArea = $(selectors.slideArea, $container)
     this.$sidebar = $(selectors.sidebar, $container);
     this.$inner = $(selectors.inner, $container);
 
     this.$innerMenus = $(selectors.innerMenu, this.$slideArea);
     this.$activeInnerMenu = $(selectors.activeTopMenuItem, this.$slideArea).find(selectors.innerMenu)
     this.$titles = $(selectors.titles, this.$slideArea);
-    this.$back = $(selectors.back, this.$container);
+    this.$back = $(selectors.back, $container);
 
     this.headerSearchFormElement = this.container.querySelector(selectors.headerSearchForm);
     this.headerSearchForm = new SearchForm(this.headerSearchFormElement, { activeClass: "expanded" });
@@ -60,6 +61,7 @@ register('navigation', {
     this.$titles.show();
     this.expandMenu(this.$activeInnerMenu)
     this.updateSticky();
+    $(container).on('click' + this.namespace, selectors.blogSidebarToggles, this.toggleBlogSidebar.bind(this))
   },
 
   exitDesktop () {
@@ -109,6 +111,28 @@ register('navigation', {
         hide()
       }
     }
+  },
+
+  toggleBlogSidebar({ currentTarget }) {
+    debugger;
+    const menu = currentTarget.getAttribute('data-blog-menu-toggle')
+    const $el = this.$sidebar.find(`[data-blog-menu=${ menu }]`)
+    if (Breakpoints.is('desktop')) {
+      if ($el.is(':visible')) {
+        animateCSS($el, 'fadeOut')
+      } else {
+        animateCSS($el, 'fadeIn')
+      }
+    }
+  },
+
+  showBlogSidebar($el) {
+    animateCSS($el, 'fadeIn')
+  },
+
+
+  hideBlogSidebar($el) {
+    animateCSS($el, 'fadeOut')
   },
 
   _updateSticky() {

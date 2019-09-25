@@ -1,0 +1,30 @@
+
+<div class="sidebar__content {{ class }}">
+  <div class="sidebar__scroll__top">
+    <div class="sidebar__slide-area">
+      {{ top }}
+    </div>
+  </div>
+  <div class="sidebar__bottom {% unless bottom.size > 0 %}large-up--hide{% endunless %}">
+    <hr class="sidebar__separator large-up--hide"/>
+
+    <div class="sidebar__nav-outer large-up--hide">
+      {% include 'customer-links', item_class: "sidebar__nav-outer__item" active_class: "active" %}
+      <div class="sidebar__nav-outer__item {% if template.name=='search' %}active{% endif %}">
+        {% include 'search-form' %}
+      </div>
+    </div>
+
+    <hr class="sidebar__separator small"/>
+
+    <div class="sidebar__bottom__split">
+      {{ bottom }}
+    </div>
+    <div class="sidebar__top-right-menu large-up--hide">
+
+    </div>
+  </div>
+</div>
+
+{% assign top = blank %}
+{% assign bottom = blank %}

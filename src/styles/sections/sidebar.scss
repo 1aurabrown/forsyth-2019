@@ -96,7 +96,6 @@ $sidebar-min-width: 20.0rem;
 
   // }
 
-
   @include media-query($medium-down) {
     position: fixed;
     z-index: $sidebar-z-index;
