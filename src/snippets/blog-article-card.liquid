@@ -1,0 +1,5 @@
+<div class="blog-article-card">
+  {% include 'responsive-image', image: article.image, wrapper_class: "blog-article-card__image" %}
+  <div class="large-up--serif-heading-xl"><i>{{ article.title }}</i></div>
+  <div class="large-up--serif-body-l">{{ article.excerpt_or_content| truncatewords: 30 }}</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="blog-grid {{ class }}">
+{% for article in articles %}
+  <div class="blog-grid__card {{ card_class }}">
+    {% include 'blog-article-card' %}
+  </div>
+{% endfor %}
+
+{% assign class = blank %}
+{% assign card_class = blank %}
