@@ -1,7 +1,7 @@
 {% assign has_active = false %}
 {% assign is_active = false %}
 <div id="sidebar-container">
-  <div class="sidebar sans-serif-uppercase-m">
+  <div class="sidebar sans-serif-uppercase-m {% if blog %}sidebar--blog{% endif %}">
     <div class="sidebar__buttons">
       <div class="sidebar__back large-up--hide">{% include 'back-arrow.svg' %}</div>
       <div class="sidebar__close large-up--hide">{% include 'close.svg' %}</div>
@@ -13,47 +13,41 @@
     {% endcapture %}
 
     {% capture bottom_menus %}
-      {% unless blog %}
-        {% include 'sidebar-list', list: linklists[section.settings.main_menu], class: 'large-up--hide' %}
-      {% endunless %}
+      {% include 'sidebar-list', list: linklists[section.settings.main_menu], class: 'large-up--hide' %}
       {% include 'sidebar-list', list: linklists[section.settings.pages_menu] %}
     {% endcapture %}
 
 
     {% if blog %}
-      <div class="sidebar__inner sidebar__inner medium-down--hide">
+      <div class="sidebar__inner medium-down--hide">
         {% capture blog_more_top %}
           {% include 'sidebar-list', list: linklists[section.settings.main_menu] %}
         {% endcapture %}
 
-        <div class="sidebar__blog-more" data-blog-menu='more'>
-          <!-- Desktop Blog 'More' Sidebar -->
-          {% include 'sidebar-content' with
-            class: 'sidebar__content--blog-more'
-            top: blog_more_top
-            bottom: bottom_menus
-          %}
-        </div>
+        <!-- Desktop Blog 'More' Sidebar -->
+        {% include 'sidebar-content' with
+          class: 'sidebar__content--blog-more'
+          top: blog_more_top
+          bottom: bottom_menus
+          attributes: "data-blog-menu='more'"
+        %}
 
         <!-- Desktop Blog 'Shop' Sidebar -->
-        <div class="sidebar__blog-shop" data-blog-menu='shop'>
-          {% include 'sidebar-content' with
-            class: 'sidebar__content--blog-shop'
-            top: shop_menus
-          %}
-        </div>
+        {% include 'sidebar-content' with
+          class: 'sidebar__content--blog-shop'
+          top: shop_menus,
+          attributes: "data-blog-menu='shop'"
+        %}
       </div>
     {% endif %}
 
     <!-- Desktop/Mobile Regular Sidebar, Mobile Blog Sidebar -->
     <div class="sidebar__inner {% if blog %} large-up--hide {% endif %}">
-      <div class="sidebar__standard">
-        {% include 'sidebar-content' with
-          class: 'sidebar__content--blog-shop'
-          top: shop_menus
-          bottom: bottom_menus
-        %}
-      </div>
+      {% include 'sidebar-content' with
+        class: 'sidebar__content--blog-shop'
+        top: shop_menus
+        bottom: bottom_menus
+      %}
     </div>
 
   </div>
