@@ -1,9 +1,12 @@
 <div class="blog-grid {{ class }}">
-{% for article in articles %}
-  <div class="blog-grid__card {{ card_class }}">
-    {% include 'blog-article-card' %}
+  <div class="grid">
+    {% for article in articles %}
+      <div class="grid__item blog-grid__card {{ card_class }}">
+        {% include 'blog-article-card' %}
+      </div>
+    {% endfor %}
   </div>
-{% endfor %}
-
+</div>
 {% assign class = blank %}
 {% assign card_class = blank %}
+{% assign max_image_height = blank %}

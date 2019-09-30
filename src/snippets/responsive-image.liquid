@@ -30,7 +30,7 @@
     - less than 1.0 is portrait
     - exactly 1.0 is square
     - greater than 1.0 is landscape
-
+z
   {%- if image.aspect_ratio <= 1 -%}
     {%- assign max_height_image = image.height | at_most: max_height -%}
     {%- assign max_width_image = max_height_image | times: image.aspect_ratio -%}

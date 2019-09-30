@@ -1,23 +1,25 @@
-{% paginate blog.articles by 48 %}
+<div class="blog">
+  {% paginate blog.articles by 48 %}
 
-  {%- assign blog_title = blog.title -%}
+    {%- assign blog_title = blog.title -%}
 
-  {% comment %}<h1>{{ blog_title }}</h1>{% endcomment %}
+    {% comment %}<h1>{{ blog_title }}</h1>{% endcomment %}
 
 
 
-  {% comment %}
+    {% comment %}
 
-  Article Previews
-  ====================
-  {% endcomment %}
+    Article Previews
+    ====================
+    {% endcomment %}
 
-  {% include 'blog-grid', articles: blog.articles %}
+    {% include 'blog-grid', articles: blog.articles, class: 'blog__grid', max_image_height: 600, card_class: 'blog__grid__item medium-up--one-half' %}
 
-  {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
+    {% if paginate.pages > 1 %}
+      {% include 'pagination' %}
+    {% endif %}
 
-{% endpaginate %}
+  {% endpaginate %}
 
-{% section 'newsletter' %}
+  {% section 'newsletter' %}
+</div>
