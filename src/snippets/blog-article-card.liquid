@@ -1,6 +1,7 @@
 <div class="blog-article-card">
-  <div class="blog-article-card__image">{% include 'responsive-image-only', image: article.image %}</div>
-  <div class="blog-article-card__title large-up--serif-heading-xl"><i>{{ article.title }}</i></div>
-  <div class="blog-article-card__excerpt large-up--serif-body-l">{{ article.excerpt }}</div>
+  <a href="{{article.url}}">
+    <div class="blog-article-card__image">{% include 'responsive-image-only', image: article.image %}</div>
+    <div class="blog-article-card__title large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ article.title }}</i></div>
+    <div class="blog-article-card__excerpt large-up--serif-body-l medium-down--serif-body-m">{{ article.excerpt }}</div>
+  </a>
 </div>
-

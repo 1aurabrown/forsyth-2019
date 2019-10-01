@@ -1,4 +1,6 @@
+{% include 'title-header', title: 'Journal' %}
 <div class="blog">
+
   {% paginate blog.articles by 48 %}
 
     {%- assign blog_title = blog.title -%}
@@ -13,6 +15,8 @@
     ====================
     {% endcomment %}
 
+
+
     {% include 'blog-grid', articles: blog.articles, class: 'blog__grid', max_image_height: 600, card_class: 'blog__grid__item medium-up--one-half' %}
 
     {% if paginate.pages > 1 %}
@@ -20,6 +24,7 @@
     {% endif %}
 
   {% endpaginate %}
+  <hr />
 
   {% section 'newsletter' %}
 </div>

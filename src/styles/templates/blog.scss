@@ -3,6 +3,10 @@
     --grid-padding: calc(#{$inset});
     --grid-item-padding: calc(#{$inset});
     @include media-query($medium-up) {
+      --grid-padding: 10%;
+      --grid-item-padding: 8rem;
+    }
+    @include media-query($large-up) {
       --grid-padding: 12%;
       --grid-item-padding: 10rem;
     }
@@ -11,20 +15,74 @@
     }
   }
 }
-.blog {
-  .blog-grid .grid {
-    margin-left: calc(-1 * var(--grid-item-padding));
-    margin-top: calc(-1 * var(--grid-item-padding));
-    &__item {
-      padding-left: var(--grid-item-padding);
-      padding-top: var(--grid-item-padding);
+.template-blog, .template-article {
+  main {
+    hr {
+      margin: 5.6rem $inset-3;
+      max-width: 700px;
+      border: none;
+      background: $transparent-gray-medium;
+      height: 1px;
+      @include media-query($medium-up) {
+        margin: 8rem auto;
+      }
+      @include media-query($large-up) {
+        margin: 12rem auto;
+      }
     }
   }
+}
+.blog {
   .blog-grid {
-    padding: 0 var(--grid-padding);
+
+    .blog-article-card {
+      a {
+        display: block;
+      }
+      &__image img {
+        width: 100%;
+      }
+      &__title {
+        margin-top: 1.5em
+      }
+
+      &__excerpt {
+        margin-top: 1em
+      }
+    }
   }
-  @include media-query($large-up) {
+  @include media-query($small) {
     .blog-grid {
+      .grid {
+        display: block;
+        margin: 0 $inset;
+      }
+      .grid .grid__item {
+        padding: 0 0;
+      }
+      .blog-article-card {
+        &__title, &__excerpt {
+          margin-left: $inset;
+          margin-right: $inset
+        }
+      }
+      &__card:not(:first-child) {
+        margin-top: 8.4rem;
+      }
+    }
+  }
+
+  @include media-query($medium-up) {
+    .blog-grid .grid {
+      margin-left: calc(-1 * var(--grid-item-padding));
+      margin-top: calc(-1 * var(--grid-item-padding));
+      &__item {
+        padding-left: var(--grid-item-padding);
+        padding-top: var(--grid-item-padding);
+      }
+    }
+    .blog-grid {
+      padding: 0 var(--grid-padding);
       max-width: 140em;
       margin-left: auto;
       margin-right: auto;
@@ -35,16 +93,9 @@
 
       }
       .blog-article-card {
-        width: 30vw;
         max-width: 50rem;
         margin: 0 auto;
-        &__title {
-          margin-top: 1.5em
-        }
 
-        &__excerpt {
-          margin-top: 1em
-        }
 
         img {
           object-fit: cover;
@@ -53,5 +104,13 @@
         }
       }
     }
+  }
+  @include media-query($large-up) {
+    .blog-grid {
+      .blog-article-card {
+        width: 30vw;
+      }
+    }
+
   }
 }
