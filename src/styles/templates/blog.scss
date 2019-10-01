@@ -1,5 +1,5 @@
 :root {
-  .blog {
+  .blog, .article {
     --grid-padding: calc(#{$inset});
     --grid-item-padding: calc(#{$inset});
     @include media-query($medium-up) {
