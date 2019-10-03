@@ -38,12 +38,8 @@
 <article role="article" class="article">
 
   {% if article.image %}
-    <div class="hero-banner hero-banner--article lazyload article__main-image" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
-
-    <noscript>
       {%- assign image_size = article.image.width | append: 'x' -%}
-      <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
-    </noscript>
+      <div class="article__main-image"><img src="{{ article.image | img_url: image_size }}" /></div>
   {% endif %}
 
   <header role="banner" class="article__title text-center">
@@ -51,7 +47,7 @@
   </header>
 
 
-  <section class="article__content" data-section-id="article-content" data-section-type="article-content">
+  <section class="article__content small-down--serif-body-m medium-up--serif-body-l large-up--serif-body-xl" data-section-id="article-content" data-section-type="article-content">
     {{ article.content }}
   </section>
 

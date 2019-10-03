@@ -1,3 +1,25 @@
+.article {
+  &__content {
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6,
+    > blockquote {
+      text-align: center;
+      @extend .large-up--serif-heading-l;
+      @extend .medium--serif-heading-m;
+      @extend .small--serif-body-xl;
+    }
+
+    > .image-container {
+      span, img {
+        display: block;
+      }
+    }
+  }
+}
 @include media-query($small) {
   .article {
     padding: 0 $inset;
@@ -8,16 +30,59 @@
       margin-bottom: 4 * $v-space
     }
     &__content {
-      .image-container img {
+      > .image-container img {
         width: 100%;
       }
-      p {
-        margin: $v-space $inset-2;
+      > .text-container,
+      > h1,
+      > h2
+      > h3,
+      > h4,
+      > h5,
+      > h6,
+      > blockquote {
+        margin-left:  $inset;
+        margin-right:  $inset;
+      }
+
+      > h1,
+      > h2
+      > h3,
+      > h4,
+      > h5,
+      > h6,
+      > blockquote,
+      .image-container {
+        &:not(:last-child){
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: $v-space * 4;
+          margin-bottom: $v-space * 4;
+        }
       }
       .image-container {
-        margin: $v-space * 4 $inset;
-        &--one-image, &--two-images {
-          display: flex;
+        img {
+          max-height: 85vw;
+          width: 100%;
+          object-fit: contain;
+        }
+        &--two-images {
+          .img:not(:first-child) {
+            margin-top: $v-space * 4;
+          }
+        }
+        &--many-images {
+          max-height: 85vw;
+          .img {
+            width: 100%;
+            margin-right: $inset;
+            height: auto;
+          }
+          &.flickity-enabled {
+            img {
+              height: 100%;
+            }
+          }
         }
       }
     }
@@ -26,31 +91,52 @@
 
 @include media-query($medium-up) {
   .article {
+    padding: 0 var(--grid-padding);
+    max-width: 140em;
     &__main-image {
-      margin-bottom: 5 * $v-space;
+      margin: 5 * $v-space auto;
+      width: 60%;
+      max-width: 70rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      img {
+        max-height: 70rem;
+      }
     }
     &__title {
       margin-bottom: 4 * $v-space
     }
     &__content {
-      padding: 0 var(--grid-padding);
-      max-width: 140em;
-      p {
-        margin: $v-space $inset-2;
+      > .text-container {
+        margin: $v-space auto;
+        max-width: $max-text-width;
       }
-      .image-container {
-        margin: $v-space * 4 $inset;
+      > h1, > h2, > h3, > h4, > h5, > h6, > blockquote {
+        margin: $v-space * 6 auto;
+        max-width: $max-text-width;
+      }
+      > .image-container {
+        span, img {
+          display: block;
+        }
+        margin: $v-space * 6 0;
         &--one-image, &--two-images {
           display: flex;
           align-items: center;
-          justify-content: space-around
+          justify-content: space-around;
         }
         &--one-image img {
-          flex: 1;
-
+          max-width: 60%;
         }
-        &--two-images .image-wrapper {
-          max-width: 40%;
+        &--two-images {
+          margin-left: -6vw;
+          img {
+            flex-grow: 1;
+            padding-left: 6vw;
+            max-width: 46vw;
+            max-height: 46vw;
+          }
         }
       }
     }
