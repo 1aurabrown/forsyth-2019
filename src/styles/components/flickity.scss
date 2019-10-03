@@ -1,0 +1,31 @@
+.flickity-prev-next-button {
+  border-radius: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background: transparent;
+
+  &:hover {
+    background: transparent;
+  }
+  &:focus, &:active {
+    outline: none;
+    box-shadow: none;
+  }
+  transform: none;
+
+  &.previous {
+    left: 0;
+  }
+  &.next {
+    right: 0;
+  }
+  .flickity-button-icon {
+    width: 30px;
+    height: 40px;
+    position: static;
+  }
+}

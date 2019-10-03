@@ -17,6 +17,23 @@
       span, img {
         display: block;
       }
+      &--many-images {
+        display: flex;
+        img {
+          flex-shrink: 0;
+          height: auto;
+        }
+        &.flickity-enabled {
+          display: block;
+        }
+        &.flickity-enabled .flickity-viewport .flickity-slider img {
+          min-height: 100%;
+        }
+
+        .flickity-prev-next-button {
+          width: 50%;
+        }
+      }
     }
   }
 }
@@ -25,6 +42,9 @@
     padding: 0 $inset;
     &__main-image {
       margin-bottom: 5 * $v-space;
+      img {
+        width: 100%;
+      }
     }
     &__title {
       margin-bottom: 4 * $v-space
@@ -52,7 +72,7 @@
       > h5,
       > h6,
       > blockquote,
-      .image-container {
+      > .image-container {
         &:not(:last-child){
           margin-left: auto;
           margin-right: auto;
@@ -60,27 +80,35 @@
           margin-bottom: $v-space * 4;
         }
       }
-      .image-container {
+      > .image-container {
         img {
           max-height: 85vw;
           width: 100%;
           object-fit: contain;
         }
         &--two-images {
-          .img:not(:first-child) {
+          img:not(:first-child) {
             margin-top: $v-space * 4;
           }
         }
         &--many-images {
           max-height: 85vw;
-          .img {
-            width: 100%;
-            margin-right: $inset;
-            height: auto;
+          img, .flickity-viewport {
+            max-height: 85vw;
           }
-          &.flickity-enabled {
-            img {
-              height: 100%;
+          img {
+            width: 100%;
+            padding: 0 10%;
+          }
+          .flickity-prev-next-button {
+
+            &.previous {
+              left: -$inset;
+              padding-right: 40%;
+            }
+            &.next {
+              right: -$inset;
+              padding-left: 40%;
             }
           }
         }
@@ -136,6 +164,20 @@
             padding-left: 6vw;
             max-width: 46vw;
             max-height: 46vw;
+          }
+        }
+        &--many-images {
+          max-height: 40vw;
+          img, .flickity-viewport {
+            max-height: 40vw;
+          }
+          .flickity-prev-next-button {
+            &.previous {
+              justify-content: flex-start;
+            }
+            &.next {
+              justify-content: flex-end;
+            }
           }
         }
       }

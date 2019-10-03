@@ -35,6 +35,7 @@
     "animate.css": "^3.7.0",
     "breakpoints-js": "^1.0.6",
     "flickity": "^2.2.0",
+    "flickity-fade": "^1.0.0",
     "flickity-imagesloaded": "^2.0.0",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.2.1",

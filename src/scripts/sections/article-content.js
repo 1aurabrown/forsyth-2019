@@ -1,5 +1,6 @@
 import {register} from '@shopify/theme-sections';
 import Flickity from 'flickity-imagesloaded';
+import 'flickity-fade';
 
 const selectors = {
   slideshows: '.image-container--many-images'
@@ -45,14 +46,20 @@ register('article-content', {
   },
 
   createSlideshow(el) {
+    console.log(el)
     if (!this.slideshows) {
       this.slideshows = []
     }
     const flkty = new Flickity( el, {
-      // options
       wrapAround: true,
       pageDots: false,
-      prevNextButtons: false
+      fade: true,
+      arrowShape: {
+        x0: 20,
+        x1: 70, y1: 50,
+        x2: 72, y2: 48,
+        x3: 24
+      }
     })
     this.slideshows.push(flkty)
   },
