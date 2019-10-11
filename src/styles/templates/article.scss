@@ -1,3 +1,23 @@
+:root {
+  .more-articles {
+    --grid-padding: calc(#{$inset});
+    --grid-item-padding: calc(#{$inset});
+    --grid-item-padding-v: calc(#{$inset});
+    @include media-query($medium-up) {
+      --grid-padding: calc(#{$inset-8});
+      --grid-item-padding: calc(#{$inset-4});
+      --grid-item-padding-v: calc(#{$inset-4});
+    }
+    @include media-query($large-up) {
+      --grid-padding: calc(#{$inset * 10});
+      --grid-item-padding: calc(#{$inset-4});
+    }
+    @include media-query($widescreen) {
+     --grid-item-padding: calc(#{$inset-6});
+    }
+  }
+}
+
 .article {
   &__content {
     > h1,
@@ -74,10 +94,11 @@
       > h6,
       > blockquote,
       > .image-container {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: $v-space * 4;
+
         &:not(:last-child){
-          margin-left: auto;
-          margin-right: auto;
-          margin-top: $v-space * 4;
           margin-bottom: $v-space * 4;
         }
       }
@@ -178,4 +199,24 @@
       }
     }
   }
+}
+.more-articles {
+  @include media-query($medium-up) {
+  }
+  @include media-query($large-up) {
+  }
+  // .grid {
+  //   display: block;
+  //   margin: 0 $inset;
+  // }
+  // .grid .grid__item {
+  //   padding: 0 0;
+  // }
+  // &__carousel {
+  //   &__card {
+  //     &:not(:first-child) {
+  //       margin-top: 8.4rem;
+  //     }
+  //   }
+  // }
 }
