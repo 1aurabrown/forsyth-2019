@@ -21,7 +21,8 @@
         display: flex;
         img {
           flex-shrink: 0;
-          height: auto;
+          width: 100%;
+          object-fit: contain;
         }
         &.flickity-enabled {
           display: block;
@@ -84,7 +85,6 @@
         img {
           max-height: 85vw;
           width: 100%;
-          object-fit: contain;
         }
         &--two-images {
           img:not(:first-child) {
@@ -92,12 +92,8 @@
           }
         }
         &--many-images {
-          max-height: 85vw;
-          img, .flickity-viewport {
-            max-height: 85vw;
-          }
           img {
-            width: 100%;
+            height: 65vw;
             padding: 0 10%;
           }
           .flickity-prev-next-button {
@@ -160,16 +156,15 @@
         &--two-images {
           margin-left: -6vw;
           img {
-            flex-grow: 1;
             padding-left: 6vw;
             max-width: 46vw;
             max-height: 46vw;
           }
         }
         &--many-images {
-          max-height: 40vw;
-          img, .flickity-viewport {
-            max-height: 40vw;
+          img {
+            height: 40vw;
+            width: 100%;
           }
           .flickity-prev-next-button {
             &.previous {

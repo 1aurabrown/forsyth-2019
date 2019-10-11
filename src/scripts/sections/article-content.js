@@ -53,6 +53,7 @@ register('article-content', {
     const flkty = new Flickity( el, {
       wrapAround: true,
       pageDots: false,
+      setGalleryHeight: false,
       fade: true,
       arrowShape: {
         x0: 20,
