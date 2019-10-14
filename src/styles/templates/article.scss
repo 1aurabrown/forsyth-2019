@@ -41,7 +41,6 @@
         display: flex;
         img {
           flex-shrink: 0;
-          width: 100%;
           object-fit: contain;
         }
         &.flickity-enabled {
@@ -185,14 +184,14 @@
         &--many-images {
           img {
             height: 40vw;
-            width: 100%;
+            width: 60%;
           }
           .flickity-prev-next-button {
             &.previous {
-              justify-content: flex-start;
+              padding-right: 25%;
             }
             &.next {
-              justify-content: flex-end;
+              padding-left: 25%;
             }
           }
         }
