@@ -1,21 +1,17 @@
 :root {
   .blog {
-    --grid-padding: calc(#{$inset});
-    --grid-item-padding: calc(#{$inset});
-    --grid-item-padding-v: 8rem;
     @include media-query($medium-up) {
       --grid-padding: 10%;
-      --grid-item-padding: 8rem;
-      --grid-item-padding-v: 8rem;
+      --grid-item-padding: calc(#{6 * $v-space});
     }
     @include media-query($large-up) {
       --grid-padding: 12%;
-      --grid-item-padding: 10rem;
-      --grid-item-padding-v: 10rem;
+      --grid-item-padding: calc(#{7 * $v-space});
+      --grid-item-padding-v: calc(#{7 * $v-space});
     }
     @include media-query($widescreen) {
-      --grid-item-padding: 15rem;
-      --grid-item-padding-v: 15rem;
+      --grid-item-padding: calc(#{12 * $v-space});
+      --grid-item-padding-v: calc(#{12 * $v-space});
     }
   }
 }

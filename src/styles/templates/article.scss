@@ -1,19 +1,15 @@
 :root {
   .more-articles {
-    --grid-padding: calc(#{$inset});
-    --grid-item-padding: calc(#{$inset});
-    --grid-item-padding-v: calc(#{$inset});
     @include media-query($medium-up) {
-      --grid-padding: calc(#{$inset-8});
+      --grid-padding: calc(#{$inset-4});
       --grid-item-padding: calc(#{$inset-4});
-      --grid-item-padding-v: calc(#{$inset-4});
     }
     @include media-query($large-up) {
-      --grid-padding: calc(#{$inset * 10});
-      --grid-item-padding: calc(#{$inset-4});
+      --grid-padding: calc(#{$inset * 8});
+      --grid-item-padding: calc(#{$inset-8});
     }
     @include media-query($widescreen) {
-     --grid-item-padding: calc(#{$inset-6});
+     --grid-item-padding: calc(#{$inset-4});
     }
   }
 }
@@ -174,11 +170,14 @@
           max-width: 60%;
         }
         &--two-images {
-          margin-left: -6vw;
+          padding-left: 8vw;
+          padding-right: 8vw;
           img {
-            padding-left: 6vw;
-            max-width: 46vw;
-            max-height: 46vw;
+            &:not(:first-child) {
+              margin-left: $inset-6
+            }
+            max-width: 36vw;
+            max-height: 36vw;
           }
         }
         &--many-images {
