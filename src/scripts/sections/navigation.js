@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 const selectors = {
   sidebar: '.sidebar',
+  blogSidebar: '.sidebar--blog',
   headerSearchForm: '.header .search-form',
   sidebarSearchForm: '.sidebar .search-form',
   mobileMenuButton: '.header__mobile-menu-toggle',
@@ -19,7 +20,8 @@ const selectors = {
   outerMenu: '.sidebar__nav-outer',
   top: '.sidebar__scroll__top',
   slideArea: '.sidebar__slide-area',
-  inner: '.sidebar__inner'
+  inner: '.sidebar__inner',
+  blogSidebarToggles: '.header__nav__item[data-blog-menu-toggle]'
 };
 
 register('navigation', {
@@ -27,14 +29,15 @@ register('navigation', {
     this.namespace = '.navigation';
     this.updateSticky = _.debounce(this._updateSticky, 50).bind(this)
     var $container = $(this.container);
-    this.$slideArea = $(selectors.slideArea, this.$container)
+    this.$slideArea = $(selectors.slideArea, $container)
     this.$sidebar = $(selectors.sidebar, $container);
+    this.$blogSidebar = $(selectors.blogSidebar, $container);
     this.$inner = $(selectors.inner, $container);
 
     this.$innerMenus = $(selectors.innerMenu, this.$slideArea);
     this.$activeInnerMenu = $(selectors.activeTopMenuItem, this.$slideArea).find(selectors.innerMenu)
     this.$titles = $(selectors.titles, this.$slideArea);
-    this.$back = $(selectors.back, this.$container);
+    this.$back = $(selectors.back, $container);
 
     this.headerSearchFormElement = this.container.querySelector(selectors.headerSearchForm);
     this.headerSearchForm = new SearchForm(this.headerSearchFormElement, { activeClass: "expanded" });
@@ -54,15 +57,26 @@ register('navigation', {
   },
 
   enterDesktop() {
+    if (this.$blogSidebar.length > 0) {
+      this.$blogSidebar.hide()
+      this.$blogSidebar.find('[data-blog-menu]').hide()
+      $(container).on('click' + this.namespace, selectors.blogSidebarToggles, this.toggleBlogSidebar.bind(this))
+    }
     this.createStickySidebar();
     this.unsetSidebarTopHeight()
     this.hideExpandedMenu();
     this.$titles.show();
     this.expandMenu(this.$activeInnerMenu)
     this.updateSticky();
+
   },
 
   exitDesktop () {
+    if (this.$blogSidebar.length > 0) {
+      this.$blogSidebar.show()
+      this.$blogSidebar.find('[data-blog-menu]').show()
+      $(container).off('click' + this.namespace, selectors.blogSidebarToggles)
+    }
     this.destroyStickySidebar();
     this.hideSidebar();
     this.hideExpandedMenu();
@@ -109,6 +123,48 @@ register('navigation', {
         hide()
       }
     }
+  },
+
+  toggleBlogSidebar({ currentTarget }) {
+    const menu = currentTarget.getAttribute('data-blog-menu-toggle')
+    const $el = this.$blogSidebar.find(`[data-blog-menu=${ menu }]`)
+    if (Breakpoints.is('desktop')) {
+      if ($el.is(':visible')) {
+        console.log('is visible')
+        this.hideBlogSidebar($el)
+      } else {
+        console.log('is not visible')
+        this.showBlogSidebar($el)
+      }
+    }
+  },
+
+  showBlogSidebar($el) {
+    function show() {
+      this.hideExpandedMenu();
+      $el.show();
+      animateCSS($el, 'fadeIn')
+      this.updateSticky()
+    }
+    const $visible = this.$blogSidebar.find('[data-blog-menu]:visible')
+    if ($visible.length > 0) {
+      animateCSS($visible, 'fadeOut', function() {
+        $visible.hide()
+        show.bind(this)()
+      }.bind(this))
+    } else {
+      this.$blogSidebar.show()
+      show.bind(this)()
+    }
+  },
+
+
+  hideBlogSidebar($el) {
+    animateCSS($el, 'fadeOut', function() {
+      $el.hide();
+      this.$blogSidebar.hide()
+      this.updateSticky()
+    }.bind(this))
   },
 
   _updateSticky() {

@@ -74,10 +74,10 @@ register('instagram-feed', {
       wrapAround: true,
       imagesLoaded: true,
       arrowShape: {
-        x0: 0,
-        x1: 50, y1: 50,
-        x2: 52, y2: 48,
-        x3: 4
+        x0: 20,
+        x1: 70, y1: 50,
+        x2: 72, y2: 48,
+        x3: 24
       }
     });
   },

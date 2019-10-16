@@ -1,0 +1,12 @@
+<div class="blog-grid {{ class }}">
+  <div class="grid">
+    {% for article in articles %}
+      <div class="grid__item blog-grid__card {{ card_class }}">
+        {% include 'blog-article-card', titleClass: 'large-up--serif-heading-xl medium-down--serif-heading-l', textClass: 'large-up--serif-body-l medium-down--serif-body-m' %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% assign class = blank %}
+{% assign card_class = blank %}
+{% assign max_image_height = blank %}

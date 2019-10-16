@@ -6,6 +6,7 @@ $sidebar-min-width: 20.0rem;
 }
 .sidebar {
   min-width: $sidebar-min-width;
+
   &__separator {
     height: 1px;
     background-color: $transparent-gray-medium;
@@ -95,7 +96,6 @@ $sidebar-min-width: 20.0rem;
   //   }
 
   // }
-
 
   @include media-query($medium-down) {
     position: fixed;
@@ -218,5 +218,12 @@ $sidebar-min-width: 20.0rem;
     }
 
   }
-
+  &--blog {
+    @include media-query($large-up) {
+      display: none;
+      [data-blog-menu] {
+        display: none;
+      }
+    }
+  }
 }

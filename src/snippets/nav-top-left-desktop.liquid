@@ -1,11 +1,25 @@
 <nav role="navigation" class="header__nav medium-down--hide">
   <ul class="header__nav__inner header__nav__inner--left">
-    {% for link in linklists[section.settings.main_menu].links %}
-      <li class="header__nav__item {% if link.active %}active{% endif %}">
-        <a href="{{ link.url }}">
-          {{ link.title }}
+    {% if blog %}
+      <li class="header__nav__item active">
+        <a href="{{ blog.url }}">
+          Journal
         </a>
       </li>
-    {% endfor %}
+      <li class="header__nav__item" data-blog-menu-toggle='shop'>
+        <span>Shop</span>
+      </li>
+      <li class="header__nav__item" data-blog-menu-toggle='more'>
+        <span>More</span>
+      </li>
+    {% else %}
+      {% for link in linklists[section.settings.main_menu].links %}
+        <li class="header__nav__item {% if link.active %}active{% endif %}">
+          <a href="{{ link.url }}">
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    {% endif %}
   </ul>
 </nav>

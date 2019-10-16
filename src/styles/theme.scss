@@ -32,6 +32,7 @@
 @import './components/responsive-images';
 @import './components/search-form';
 @import './components/menu-animation';
+@import './components/flickity';
 
 // Sections
 @import './sections/image-with-text';
@@ -73,3 +74,8 @@
 @import './templates/contact';
 @import './templates/404';
 @import './templates/restoration';
+
+@import './templates/blog';
+@import './templates/article';
+@import './components/blog-article-card-grid';
+
