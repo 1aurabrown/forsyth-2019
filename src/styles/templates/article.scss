@@ -28,6 +28,9 @@
       @extend .medium--serif-heading-m;
       @extend .small--serif-body-xl;
     }
+    a {
+      text-decoration: underline;
+    }
 
     > .image-container {
       span, img {
