@@ -38,7 +38,7 @@
     "flickity-fade": "^1.0.0",
     "flickity-imagesloaded": "^2.0.0",
     "imagesloaded": "^4.1.4",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.0",
     "lazysizes": "^4.1.1",
     "lodash-es": "^4.17.4",
     "normalize.css": "^7.0.0",
