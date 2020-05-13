@@ -24,8 +24,10 @@
 {%- comment -%} Added incremental number to avoid conflict styling code when the same images are using this snippet {%- endcomment -%}
 {%- capture responsive_image_counter %}{% increment responsive_image_counter %}{% endcapture -%}
 
-{% if aspect_ration == blank %}
-  {% assign aspect_ratio = image.aspect_ratio %}
+{% assign aspect_ratio_fallback = aspect_ratio %}
+
+{% if aspect_ratio_fallback == blank  %}
+  {% assign aspect_ratio_fallback = image.aspect_ratio %}
 {% endif %}
 
 <style>
@@ -40,7 +42,7 @@
       the image_class (e.g. object-fit, object-center)
     {%- endcomment-%}
 
-    padding-top:{{ 100 | divided_by: aspect_ratio }}%;
+    padding-top:{{ 100 | divided_by: aspect_ratio_fallback }}%;
   }
 </style>
 
@@ -58,10 +60,20 @@
 {%- endcapture -%}
 {%- assign image_widths = image_widths | strip -%}
 
-{% assign default_width = default_width | default: 600 %}
-{% assign default_height = default_width | times: aspect_ratio %}
-{% assign img_url_string = default_width | append: 'x' | append: default_height %}
-{% assign default_image_url = image | img_url: img_url_string %}
+{% if default_width == blank or default_width < 100 %}
+  {% assign default_width = default_width | default: 500 %}
+{% endif %}
+{% assign img_url_string = default_width | append: 'x' %}
+
+{% if aspect_ratio %}
+  {% assign default_height = default_width | times: aspect_ratio | round %}
+  {% assign img_url_string = img_url_string | append: default_height %}
+  {% assign default_image_url = image | img_url: img_url_string | crop: 'center' %}
+{% else %}
+  {% assign default_image_url = image | img_url: img_url_string %}
+{% endif %}
+
+
 
 <div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
   <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
@@ -69,7 +81,7 @@
     src="{{ default_image_url }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
-    data-aspectratio="{{ image.aspect_ratio }}"
+    data-aspectratio="{{ aspect_ratio_fallback }}"
     data-sizes="auto"
     tabindex="-1"
     alt="{{ image.alt | escape }}"
