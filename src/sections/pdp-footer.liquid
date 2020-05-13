@@ -1,0 +1,89 @@
+<div class="pdp-links">
+<div class="pdp-links__heading sans-serif-uppercase-l">
+</div>
+<div class="pdp-links__blocks">
+  {% for block in section.blocks %}
+    {% if image == blank %}
+      {% if block.type == 'product' %}
+        {% assign image = all_products[block.product].featured_image %}
+      {% elsif block.type == 'collection' %}
+        {% assign image = collections[block.collection].image %}
+      {% endif %}
+    {% endif %}
+
+    <div class="pdp-links__block">
+      {% assign image = block.settings.image %}
+
+      {% include 'responsive-image' with
+        image: image,
+        max_width: 500,
+        max_height: 500,
+        aspect_ratio: 1,
+        image_class: "pdp-links__image",
+        wrapper_class: "pdp-links__image-wrapper"
+      %}
+      <div class="pdp-links__text text-center sanas-serif-uppercase-m">
+        {{ block.settings.text }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Links",
+    "max_blocks": 6,
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Link",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "name": "Link",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
