@@ -26,6 +26,7 @@ const selectors = {
 
 register('navigation', {
   onLoad() {
+    console.log('nav load')
     this.namespace = '.navigation';
     this.updateSticky = _.debounce(this._updateSticky, 50).bind(this)
     var $container = $(this.container);
