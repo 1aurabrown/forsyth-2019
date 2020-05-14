@@ -10,6 +10,7 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';
 import 'lazysizes/plugins/respimg/ls.respimg';
 
+import * as quicklink from "quicklink";
 import {focusHash, bindInPageLinks} from '@shopify/theme-a11y';
 import cookiesEnabled from './cookies-enabled';
 
@@ -33,6 +34,7 @@ load('*');
 // Common a11y fixes
 focusHash();
 bindInPageLinks();
+quicklink.listen()
 
 // Apply a specific class to the html element for browser support of cookies.
 if (cookiesEnabled()) {
