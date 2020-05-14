@@ -1,0 +1,39 @@
+// 1em = 14
+// $v-space = 14
+// $inset = 10
+// 1rem = 10
+
+.template-product #container {
+  padding-bottom: 8 * $v-space;
+}
+
+.pdp-footer {
+
+  .pdp-footer__text {
+    margin-top: .5em;
+  }
+
+  @include media-query($medium-up) {
+    margin: 0 $inset-3 $space-above-footer;
+  }
+
+  &__blocks {
+    margin-top: 3em;
+    display: grid;
+    grid-gap: $inset-2;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 1fr);
+
+    @include media-query($medium) {
+      grid-gap: $inset-3;
+      grid-template-rows: repeat(2, auto);
+      grid-template-columns: repeat(3, 1fr);
+
+    }
+    @include media-query($large-up) {
+      grid-gap: $inset-3;
+      grid-template-rows: auto;
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}

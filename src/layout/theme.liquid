@@ -89,7 +89,8 @@
   {% if template == "index" %}
     {% comment %} place after `#container` so that it pushes up the left nav {% endcomment %}
     {% section 'instagram-feed' %}
-
+  {% elsif template == "product" %}
+    {% section 'pdp-footer' %}
   {% endif %}
   {% section 'footer' %}
 

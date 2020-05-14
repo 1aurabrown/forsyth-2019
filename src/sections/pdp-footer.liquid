@@ -1,33 +1,35 @@
-<div class="pdp-links">
-<div class="pdp-links__heading sans-serif-uppercase-l">
-</div>
-<div class="pdp-links__blocks">
-  {% for block in section.blocks %}
-    {% if image == blank %}
-      {% if block.type == 'product' %}
-        {% assign image = all_products[block.product].featured_image %}
-      {% elsif block.type == 'collection' %}
-        {% assign image = collections[block.collection].image %}
-      {% endif %}
-    {% endif %}
-
-    <div class="pdp-links__block">
-      {% assign image = block.settings.image %}
-
-      {% include 'responsive-image' with
-        image: image,
-        max_width: 500,
-        max_height: 500,
-        aspect_ratio: 1,
-        image_class: "pdp-links__image",
-        wrapper_class: "pdp-links__image-wrapper"
-      %}
-      <div class="pdp-links__text text-center sanas-serif-uppercase-m">
-        {{ block.settings.text }}
-      </div>
+<div class="pdp-footer">
+  {% if section.settings.heading %}
+    <div class="pdp-footer__heading sans-serif-uppercase-l text-center">
+      {{ section.settings.heading }}
     </div>
-  {% endfor %}
-</div>
+  {% endif %}
+  <div class="pdp-footer__blocks">
+    {% for block in section.blocks %}
+      <div class="pdp-footer__block">
+        {% assign image = block.settings.image %}
+
+        {% if image == blank %}
+          {% if block.type == 'product' %}
+            {% assign image = all_products[block.settings.product].featured_image %}
+          {% elsif block.type == 'collection' %}
+            {% assign image = collections[block.settings.collection].image %}
+          {% endif %}
+        {% endif %}
+
+        {% include 'responsive-image' with
+          image: image,
+          max_width: 300,
+          aspect_ratio: 1,
+          image_class: "pdp-footer__image",
+          wrapper_class: "pdp-footer__image-wrapper"
+        %}
+        <div class="pdp-footer__text text-center sans-serif-uppercase-m">
+          {{ block.settings.text }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% schema %}
@@ -44,7 +46,7 @@
     "blocks": [
       {
         "type": "product",
-        "name": "Link",
+        "name": "Product",
         "settings": [
           {
             "type": "image_picker",
@@ -65,7 +67,7 @@
       },
       {
         "type": "collection",
-        "name": "Link",
+        "name": "Collection",
         "settings": [
           {
             "type": "image_picker",
