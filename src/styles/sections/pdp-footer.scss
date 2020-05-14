@@ -4,34 +4,39 @@
 // 1rem = 10
 
 .template-product #container {
-  padding-bottom: 8 * $v-space;
+  padding-bottom: 5 * $v-space;
+  @include media-query($medium-up) {
+    padding-bottom: 8 * $v-space;
+  }
 }
 
 .pdp-footer {
-
-  .pdp-footer__text {
-    margin-top: .5em;
-  }
+  line-height: $tall-line-height;
+  margin: 0 $inset-2 $space-above-footer;
 
   @include media-query($medium-up) {
     margin: 0 $inset-3 $space-above-footer;
+
+    .pdp-footer__text {
+      margin-top: .5em;
+    }
   }
 
   &__blocks {
-    margin-top: 3em;
+    margin-top: 2 * $v-space;
     display: grid;
-    grid-gap: $inset-2;
+    grid-gap: $v-space $inset-2;
     grid-template-rows: repeat(3, auto);
     grid-template-columns: repeat(2, 1fr);
 
-    @include media-query($medium) {
+    @include media-query($medium-up) {
+      margin-top: 3 * $v-space;
       grid-gap: $inset-3;
       grid-template-rows: repeat(2, auto);
       grid-template-columns: repeat(3, 1fr);
 
     }
     @include media-query($large-up) {
-      grid-gap: $inset-3;
       grid-template-rows: auto;
       grid-template-columns: repeat(6, 1fr);
     }

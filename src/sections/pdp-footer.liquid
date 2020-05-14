@@ -6,17 +6,21 @@
   {% endif %}
   <div class="pdp-footer__blocks">
     {% for block in section.blocks %}
-      <div class="pdp-footer__block">
-        {% assign image = block.settings.image %}
+    {% assign image = block.settings.image %}
 
-        {% if image == blank %}
-          {% if block.type == 'product' %}
-            {% assign image = all_products[block.settings.product].featured_image %}
-          {% elsif block.type == 'collection' %}
-            {% assign image = collections[block.settings.collection].image %}
-          {% endif %}
+      {% if image == blank %}
+        {% if block.type == 'product' %}
+          {% assign featured_product = all_products[block.settings.product] %}
+          {% assign image = featured_product.featured_image %}
+          {% assign url = featured_product.url %}
+        {% elsif block.type == 'collection' %}
+          {% assign featured_collection = collections[block.settings.collection] %}
+          {% assign image = featured_collection.image %}
+          {% assign url = featured_collection.url %}
         {% endif %}
+      {% endif %}
 
+      <a class="pdp-footer__block" href="{{ url }}">
         {% include 'responsive-image' with
           image: image,
           max_width: 300,
@@ -27,7 +31,9 @@
         <div class="pdp-footer__text text-center sans-serif-uppercase-m">
           {{ block.settings.text }}
         </div>
-      </div>
+      </a>
+      {% assign image = blank %}
+      {% assign url = blank %}
     {% endfor %}
   </div>
 </div>
