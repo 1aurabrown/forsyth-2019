@@ -30,10 +30,14 @@ $nav-inset-mobile: $nav-inset-desktop / 2;
 $logo-z-index: 70;
 $sidebar-z-index: 40;
 
-$left-primary-line-height: 1.8;
-$left-secondary-line-height: 1.5;
-$sans-serif-underline-line-height: 1.5;
-$paragraph-line-height: 1.5;
+$standard-line-height: 1.5;
+$tall-line-height: 1.8;
+
+$left-primary-line-height: $standard-line-height;
+$left-secondary-line-height: $standard-line-height;
+$sans-serif-underline-line-height: $standard-line-height;
+$paragraph-line-height: $standard-line-height;
+
 // Text colors
 $color-body-text: var(--color-body-text);
 

@@ -19,10 +19,12 @@
 
   {{ settings.font_embed_html }}
 
-  {% include 'style-tags', layout: 'gift_card' %}
+  {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
 
-  {% include 'script-tags', layout: 'gift_card' %}
+  {{ 'font.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <script type="text/javascript" src="{{ 'theme.js' | asset_url }}" defer></script>
 
   {{ content_for_header }}
 </head>

@@ -6,6 +6,7 @@ body {
   font-family: $font-body;
   font-weight: $font-body-weight;
   font-style: $font-body-style;
+  line-height: $standard-line-height;
   font-size: 1.6rem;
 }
 
@@ -50,7 +51,6 @@ a:focus {
 
   .#{$breakpoint}serif {
     font-family: $font-body;
-    line-height: $paragraph-line-height;
 
     b, strong {
       font-weight: $font-body-bold-weight;
