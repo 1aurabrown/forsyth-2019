@@ -26,7 +26,6 @@ const selectors = {
 
 register('navigation', {
   onLoad() {
-    console.log('nav load')
     this.namespace = '.navigation';
     this.updateSticky = _.debounce(this._updateSticky, 50).bind(this)
     var $container = $(this.container);
@@ -131,10 +130,8 @@ register('navigation', {
     const $el = this.$blogSidebar.find(`[data-blog-menu=${ menu }]`)
     if (Breakpoints.is('desktop')) {
       if ($el.is(':visible')) {
-        console.log('is visible')
         this.hideBlogSidebar($el)
       } else {
-        console.log('is not visible')
         this.showBlogSidebar($el)
       }
     }
@@ -172,7 +169,6 @@ register('navigation', {
     setTimeout(function(){
       if (!this.stickySidebar) return;
       if (!Breakpoints.is('desktop')) return;
-      console.log('update sticky sidebar')
       this.stickySidebar.forceUpdate();
     }.bind(this), 0)
   },
@@ -214,10 +210,8 @@ register('navigation', {
   },
 
   destroyStickySidebar() {
-    console.log('destroy sidebar')
     if (this.stickySidebar) {
       this.stickySidebar.destroy();
-      console.log(this.stickySidebar.sidebar.classList)
       delete this.stickySidebar;
 
     }

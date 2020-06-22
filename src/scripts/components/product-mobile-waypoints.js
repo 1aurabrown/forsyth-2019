@@ -3,10 +3,7 @@ import Listeners from './listeners';
 export default function MobileWaypoints(container, selectors, breakpoints) {
   this.bottom = container.querySelector(selectors.bottomMobileSticky)
   this.bottomContainer = container.querySelector(selectors.bottomMobileStickyContainer)
-  console.log(selectors)
-  console.log(selectors.headingsBarContainer)
   this.headingsBarContainer = container.querySelector(selectors.headingsBarContainer)
-  console.log(this.headingsBarContainer)
   this.headingsBar = container.querySelector(selectors.headingsBar)
   this.description = container.querySelector(selectors.description)
   this.images = container.querySelector(selectors.imagesContainer)
