@@ -25,6 +25,7 @@
   {{ 'font.scss.css' | asset_url | stylesheet_tag }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
   <script type="text/javascript" src="{{ 'theme.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'vendor.js' | asset_url }}" defer></script>
 
   {{ content_for_header }}
 </head>

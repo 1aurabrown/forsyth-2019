@@ -8,6 +8,21 @@ const SassLintPlugin = require('sass-lint-webpack')
 
 var config = {
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        // vendor chunk
+        vendor: {
+          name: 'vendor',
+          // sync + async chunks
+          chunks: 'all',
+          // import file path containing node_modules
+          test: /node_modules(?!\/tailwindcss)/,
+          minSize: 0
+        }
+      }
+    },
     minimizer: [
       new CssnanoPlugin({
         test: /.s?css?$/,
