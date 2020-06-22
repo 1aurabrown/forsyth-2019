@@ -34,7 +34,12 @@ load('*');
 // Common a11y fixes
 focusHash();
 bindInPageLinks();
-quicklink.listen()
+quicklink.listen({
+  ignores: [
+    /\/cart\/?/,
+    uri => uri.includes('#')
+  ]
+})
 
 // Apply a specific class to the html element for browser support of cookies.
 if (cookiesEnabled()) {
