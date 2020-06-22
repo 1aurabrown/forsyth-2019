@@ -37,6 +37,7 @@ bindInPageLinks();
 quicklink.listen({
   ignores: [
     /\/cart\/?/,
+    /\/account\/?/,
     uri => uri.includes('#')
   ]
 })
