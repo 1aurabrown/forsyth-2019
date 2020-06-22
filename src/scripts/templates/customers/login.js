@@ -20,12 +20,10 @@ function onShowHidePasswordForm(evt) {
 }
 
 function checkUrlHash() {
-  console.log(window.location.hash)
   const hash = window.location.hash;
 
   // Allow deep linking to recover password form
   if (hash === '#recover') {
-    console.log('recover')
     toggleRecoverPasswordForm();
   }
 }
