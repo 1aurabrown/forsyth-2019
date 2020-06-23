@@ -12,39 +12,15 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-<section class="image-with-text {{ section.settings.layout }}">
-  <div class="image-with-text__image">
-      {% if section.settings.image != blank %}
-        {% include 'responsive-image' with
-          image: section.settings.image,
-          max_width: 545,
-          max_height: 545,
-          wrapper_class: "image-with-text__image__wrapper",
-          image_class: "image-with-text__image__inner"
-        %}
-      {% else %}
-        <div class="image-with-text__image__wrapper">
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-with-text__image__inner' }}
-        </div>
-      {% endif %}
-  </div>
-
-  <div class="image-with-text__text">
-    <div class="image-with-text__text__inner">
-      {% if section.settings.title != blank %}
-        <h2 class="image-with-text__text__inner__heading large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ section.settings.title | escape }}</i></h2>
-      {% endif %}
-      {% if section.settings.text != blank %}
-        <div class="image-with-text__text__inner__copy serif-body-l">{{ section.settings.text }}</div>
-      {% endif %}
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a class="sans-serif-uppercase-l image-with-text__text__inner__cta" href="{{ section.settings.button_link }}">
-          <span class="faux-underline ">{{ section.settings.button_label | escape }}</span>
-        </a>
-      {% endif %}
-    </div>
-  </div>
-</section>
+{% include 'image-with-text',
+  title: section.settings.title,
+  image: section.settings.image,
+  text: section.settings.text
+  layout: section.settings.layout
+  button_label: section.settings.button_label
+  button_link: section.settings.button_link,
+  class: 'homepage-image-with-text'
+%}
 
 {% schema %}
   {

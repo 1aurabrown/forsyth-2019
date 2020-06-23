@@ -35,7 +35,8 @@
 @import './components/flickity';
 
 // Sections
-@import './sections/image-with-text';
+@import './sections/homepage-image-with-text';
+@import './sections/collection-image-with-text';
 @import './sections/header';
 @import './sections/sidebar';
 @import './sections/footer';
@@ -44,6 +45,7 @@
 @import './sections/homepage-newsletter';
 @import './sections/instagram-feed';
 @import './sections/pdp-footer';
+@import './sections/john-ohara';
 
 // Snippets
 @import './snippets/logo';
@@ -55,10 +57,6 @@
 @import './snippets/title-header';
 @import './snippets/modular-text-page';
 
-// Sections
-@import './sections/image-with-text';
-@import './sections/header';
-@import './sections/sidebar';
 
 // Templates
 @import './templates/customers/account';

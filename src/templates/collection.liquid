@@ -1,24 +1,8 @@
 {% include 'title-header', title: collection.title %}
 <div class="collection">
-  <div class="collection__header serif-body-m">
-    {% if collection.image != blank %}
-      <div class="collection__header__image">
-        {% include 'responsive-image' with
-          image: collection.image,
-          max_width: 700,
-          max_height: 800
-        %}
-      </div>
-    {% endif %}
 
-    {% if collection.description != blank %}
-      <div
-        class="collection__header__description "
-      >
-        {{ collection.description }}
-      </div>
-    {% endif %}
-  </div>
+  {% include 'collection-header', collection: collection %}
+
   <div class="collection__content">
     {% if collection.products_count > 0 %}
       {% paginate collection.products by 48 %}

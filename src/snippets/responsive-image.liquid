@@ -65,14 +65,13 @@
 {% endif %}
 {% assign img_url_string = default_width | append: 'x' %}
 
-{% if aspect_ratio %}
+{% if aspect_ratio != blank %}
   {% assign default_height = default_width | times: aspect_ratio | round %}
   {% assign img_url_string = img_url_string | append: default_height %}
   {% assign default_image_url = image | img_url: img_url_string | crop: 'center' %}
 {% else %}
   {% assign default_image_url = image | img_url: img_url_string %}
 {% endif %}
-
 
 
 <div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
@@ -92,3 +91,15 @@
 <noscript>
   <img class="{{ image_class }}" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}">
 </noscript>
+
+{% assign aspect_ratio = blank %}
+{% assign image = blank %}
+{% assign default_width = blank %}
+{% assign default_height = blank %}
+{% assign default_image_url = blank %}
+{% assign img_url_string = blank %}
+{% assign image_widths = blank %}
+{% assign aspect_ratio_fallback = blank %}
+{% assign image_class = blank %}
+{% assign wrapper_class = blank %}
+{% assign wrapper_attributes = blank %}
