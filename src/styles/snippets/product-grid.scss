@@ -2,6 +2,7 @@ $product-grid-gutter-vertical: $v-space * 5;
 $product-grid-gutter-horizonal-desktop: $inset * 2;
 $product-grid-gutter-horizonal-mobile: $inset;
 .product-grid {
+  overflow: hidden;
   .grid {
     @include media-query($small) {
       margin-left: -$product-grid-gutter-horizonal-mobile;

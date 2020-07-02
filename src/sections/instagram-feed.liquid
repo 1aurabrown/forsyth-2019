@@ -1,19 +1,29 @@
-<section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed">
-  <div id="insta-feed" class="{{ section.settings.color }}"></div>
-  {% if settings.social_instagram_link.size > 0 and section.settings.link_text.size > 0 %}
-    <div class="instagram-feed__caption sans-serif-uppercase-l">
-      <a href="{{ settings.social_instagram_link }}" target="_blank">{{ section.settings.link_text }}</a>
-    </div>
-  {% endif %}
-</section>
+{% if section.settings.enable %}
+
+  <section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed homepage-section">
+    <div id="insta-feed" class="{{ section.settings.color }}"></div>
+    {% if settings.social_instagram_link.size > 0 and section.settings.link_text.size > 0 %}
+      <div class="instagram-feed__caption sans-serif-uppercase-l">
+        <a href="{{ settings.social_instagram_link }}" target="_blank">{{ section.settings.link_text }}</a>
+      </div>
+    {% endif %}
+  </section>
+
+{% endif %}
+
 {% schema %}
   {
     "name": "Instagram feed",
-    "class": "homepage-section",
     "settings": [
       {
         "type": "paragraph",
         "content": "To configure the header and the connection to Instagram, use the Instafeed app."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable Instagram Feed",
+        "default": false
       },
       {
         "type": "text",
