@@ -45,21 +45,8 @@
     %}
 
   {% endif %}
-
 {% else %}
-  {% if collection.products_count > 0 %}
-    {% paginate collection.products by 48 %}
-      {% include 'product-grid' with
-        products: collection.products
-      %}
-
-      {% if paginate.pages > 1 %}
-        {% include 'pagination' %}
-      {% endif %}
-    {% endpaginate %}
-  {% else %}
-    <div class="serif-body-m"><i>{{ 'collections.general.no_matches' | t }}</i></div>
-  {% endif %}
+  {% include 'collection-body' %}
 {% endfor %}
 
 
