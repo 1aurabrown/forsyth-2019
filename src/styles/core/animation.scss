@@ -1,0 +1,18 @@
+[data-animate] {
+  transition-duration: $transition-duration;
+  transition-timing-function: ease-in-out;
+}
+
+[data-animate*="delay"] {
+  transition-delay: 200ms;
+}
+
+[data-animate*='fade-in'] {
+  transition-duration: $transition-duration-long;
+  opacity: 0;
+  transition-property: opacity;
+
+  &.is-visible {
+    opacity: 1;
+  }
+}
