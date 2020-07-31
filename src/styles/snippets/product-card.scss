@@ -1,6 +1,15 @@
 .product-card {
   &__images {
     display: block;
+
+    @media (hover:hover) {
+      &:hover {
+        .product-card__image-wrapper--secondary {
+          display: block;
+          z-index: 1;
+        }
+      }
+    }
   }
 
   &__image {
@@ -16,18 +25,6 @@
 
     &--secondary {
       display: none;
-    }
-
-    @media (hover:hover) {
-      &:hover {
-        &--primary {
-          display: none;
-        }
-
-        &--secondary {
-          display: block;
-        }
-      }
     }
   }
 
