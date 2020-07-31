@@ -39,7 +39,8 @@
     "react-dom": "^16.8.0",
     "regenerator-runtime": "^0.13.5",
     "sass-lint-webpack": "^1.0.3",
-    "sticky-sidebar": "^3.3.1"
+    "sticky-sidebar": "^3.3.1",
+    "svbstrate": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.11",
