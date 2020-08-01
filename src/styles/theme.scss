@@ -5,6 +5,7 @@
  */
 @import '~normalize.css/normalize';
 @import '~flickity/css/flickity';
+@import '~svbstrate/src/lib/positioning';
 
 // Settings
 @import './variables';
@@ -22,6 +23,7 @@
 @import './core/rte';
 @import './core/typography';
 @import './core/grid';
+@import './core/animation';
 
 // Components
 @import './components/buttons';
@@ -51,7 +53,8 @@
 @import './snippets/logo';
 @import './snippets/newsletter-signup';
 @import './snippets/newsletter-signup';
-@import './snippets/product-grid';
+@import './snippets/product-masonry';
+@import './snippets/product-card';
 @import './snippets/product-form';
 @import './snippets/button-row';
 @import './snippets/title-header';

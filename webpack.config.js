@@ -44,11 +44,16 @@ var config = {
       filename: "[name].css",
       sourceMap: true
     }),
-    new CopyWebpackPlugin([{
-      from: '**/*',
-      to: path.join(__dirname, 'dist'),
-      ignore: ['styles/', 'scripts/', '*.js', '*.scss', '*.sass', '*.css', ],
-    }], {}),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: '**/*',
+          to: path.join(__dirname, 'dist'),
+          globOptions: {
+            ignore: ['styles/', 'scripts/', '*.js', '*.scss', '*.sass', '*.css', ]
+          }
+        }
+      ]}, {}),
     new SassLintPlugin(),
   ],
 

@@ -16,7 +16,7 @@
       {% if search.results_count > 0 %}
         {% paginate search.results by 48 %}
           <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
-          {% include 'product-grid' with
+          {% include 'product-masonry' with
             products: search.results
           %}
 

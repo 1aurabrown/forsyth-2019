@@ -1,0 +1,45 @@
+.product-card {
+  &__images {
+    display: block;
+
+    @media (hover:hover) {
+      &:hover {
+        .product-card__image-wrapper--secondary {
+          display: block;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &__image-wrapper {
+    &--primary {
+      display: block;
+    }
+
+    &--secondary {
+      display: none;
+    }
+  }
+
+  &__metadata {
+    padding: $v-space $inset 0;
+    p {
+      line-height: 1.25;
+      margin: 0;
+    }
+    p + p {
+      margin-top: .35em ;
+    }
+  }
+
+  &__strikethrough_price {
+    color: $gray-medium
+  }
+}

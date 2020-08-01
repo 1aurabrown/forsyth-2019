@@ -12,42 +12,40 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-{% for block in section.blocks %}
-  {% if block.type == "collection" %}
-    {% assign block_collection = collections[block.settings.collection] %}
-    <div class="john-ohara-collection-block">
-      <h2 class="large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ block.settings.title }}</i></h2>
+<div data-section-id="{{ section.id }}" data-section-type="john-ohara">
+  {% for block in section.blocks %}
+    {% if block.type == "collection" %}
+      {% assign block_collection = collections[block.settings.collection] %}
+      <section class="john-ohara-collection-block">
+        <h2 class="large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ block.settings.title }}</i></h2>
 
-      {% paginate block_collection.products by 12 %}
-        {% include 'product-grid' with
-          products: block_collection.products
+        {% include 'product-masonry' with
+          masonry_collection: block_collection,
+          infinite_scroll: false,
+          view_all: true,
+          view_more_text: block.settings.link_text
         %}
 
-        {% if paginate.pages > 1 %}
-          <div class="text-center john-ohara-collection-block__see-more">
-            <a class="sans-serif-uppercase-m faux-underline" href="{{ block_collection.url }}">{{ block.settings.link_text }}</a>
-          </div>
-        {% endif %}
-      {% endpaginate %}
-    </div>
+      </section>
 
-  {% elsif block.type == 'image-with-text' %}
+    {% elsif block.type == 'image-with-text' %}
 
-    {% include 'image-with-text',
-      title: block.settings.title,
-      image: block.settings.image,
-      text: block.settings.text
-      layout: block.settings.layout
-      button_label: block.settings.button_label
-      button_link: block.settings.button_link,
-      class: 'john-ohara-image-text collection-image-with-text'
+      {% include 'image-with-text',
+        title: block.settings.title,
+        image: block.settings.image,
+        text: block.settings.text
+        layout: block.settings.layout
+        button_label: block.settings.button_label
+        button_link: block.settings.button_link,
+        class: 'john-ohara-image-text collection-image-with-text'
 
-    %}
+      %}
 
-  {% endif %}
-{% else %}
-  {% include 'collection-body' %}
-{% endfor %}
+    {% endif %}
+  {% else %}
+    {% include 'collection-body' %}
+  {% endfor %}
+</div>
 
 
 {% schema %}
