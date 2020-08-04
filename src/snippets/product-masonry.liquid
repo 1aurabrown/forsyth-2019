@@ -1,9 +1,8 @@
-<div class="product-masonry" {% if infinite_scroll == true %} data-product-infinite-scroll {% endif %} data-collection-url="{{ masonry_collection.url }}">
-  {% if masonry_collection.products.size > 0 %}
-    {% paginate masonry_collection.products by 12 %}
+<div class="product-masonry" {% if infinite_scroll == true %} data-product-infinite-scroll {% endif %} data-masonry-container>
+  {% if masonry_items.size > 0 %}
 
       <div class="product-masonry__container js-hidden">
-        {% for product in masonry_collection.products %}
+        {% for product in masonry_items %}
           {% if product.object_type == 'product' %}
             <div data-animate="fade-in" class="product-masonry__item medium-up--one-third small--one-half">
               {% include 'product-card', card_product: product %}
@@ -22,13 +21,12 @@
         {% endif %}
       </div>
 
-    {% endpaginate %}
       <div class="text-center js product-masonry__bottom">
       {% if infinite_scroll == true %}
         <div class="product-masonry__status">
           <p class="infinite-scroll-request">Loading...</p>
-          <p class="infinite-scroll-last">End of content</p>
-          <p class="infinite-scroll-error">No more pages to load</p>
+          <p class="infinite-scroll-last"></p>
+          <p class="infinite-scroll-error">There was an error.</p>
         </div>
         <p><span class="sans-serif-uppercase-m faux-underline product-masonry__view-more">{{ view_more_text | default: 'See More' }}</span></p>
 

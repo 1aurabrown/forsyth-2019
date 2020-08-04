@@ -50,12 +50,10 @@ export default function initProductMasonry(container) {
   if (infiniteScroll) {
     InfiniteScroll.imagesLoaded = imagesLoaded
 
-    var collectionPath = container.dataset.collectionUrl
     var infScroll = new InfiniteScroll( masonryEl, {
-      path: collectionPath + '?page={{#}}',
+      path: selectors.next,
       append: selectors.item,
       outlayer: msnry,
-      checkLastPage: selectors.next,
       status: selectors.status,
       button: selectors.viewMore,
       // load pages on button click
