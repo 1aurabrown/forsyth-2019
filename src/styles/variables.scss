@@ -65,8 +65,8 @@ $color-success: #000000;
 $color-success-bg: #000000;
 
 // Typography
-$font-heading: 'SansGuiltMBMedium';
-$font-body: "adobe-garamond-pro";
+$font-heading: 'SansGuiltMBMedium', 'Gill Sans', sans-serif;
+$font-body: "adobe-garamond-pro", serif;
 $font-body-weight: normal;
 $font-body-style: normal;
 $font-body-bold-weight: 600;

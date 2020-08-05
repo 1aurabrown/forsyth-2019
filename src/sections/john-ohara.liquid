@@ -19,12 +19,16 @@
       <section class="john-ohara-collection-block">
         <h2 class="large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ block.settings.title }}</i></h2>
 
-        {% include 'product-masonry' with
-          masonry_collection: block_collection,
-          infinite_scroll: false,
-          view_all: true,
-          view_more_text: block.settings.link_text
-        %}
+        {% paginate block_collection.products by 12 %}
+
+          {% include 'product-masonry' with
+            masonry_items: block_collection.products,
+            infinite_scroll: false,
+            view_all: true,
+            view_more_text: block.settings.link_text
+          %}
+
+        {% endpaginate %}
 
       </section>
 

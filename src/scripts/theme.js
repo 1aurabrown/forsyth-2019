@@ -25,21 +25,18 @@ import './sections/newsletter';
 import './sections/page';
 import './sections/press';
 import './sections/product';
-// import './sections/john-ohara';
 
 import './templates/customers/addresses';
 import './templates/customers/login';
 import './templates/gift_card';
 
-import initProductMasonry from './components/product-masonry';
+import initProductMasonries from './components/product-masonry';
 
 load('*');
 
 animations()
 
-document.querySelectorAll('[data-masonry-container]').forEach((el) => {
-  initProductMasonry( el )
-})
+initProductMasonries()
 
 // Common a11y fixes
 focusHash();
