@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "dev": "yarn clean && webpack --colors --mode development && theme deploy && concurrently --prefix name --names 'webpack,theme watch' --prefix-colors yellow,blue \"webpack --watch --colors --mode development\" \"theme watch\"",
+    "dev": "yarn clean && webpack --colors --mode development && theme deploy && yarn watch",
+    "watch": "concurrently --prefix name --names 'webpack,theme watch' --prefix-colors yellow,blue \"webpack --watch --colors --mode development\" \"theme watch\"",
     "start": "yarn dev",
     "download:settings": "theme download config/settings_data.json --dir=src/ --no-ignore",
     "build": "yarn clean && webpack --mode production",
@@ -58,7 +59,6 @@
     "normalize.css": "^8.0.1",
     "postcss-discard-comments": "^4.0.0",
     "postcss-loader": "^3.0.0",
-    "sass-lint": "^1.13.1",
     "sass-loader": "9.0",
     "webpack": "4",
     "webpack-cli": "3.3"
