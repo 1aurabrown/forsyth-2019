@@ -24,8 +24,8 @@
           {% include 'product-masonry' with
             masonry_items: block_collection.products,
             infinite_scroll: false,
-            view_all: true,
-            view_more_text: block.settings.link_text
+            view_all_link: block_collection.url,
+            view_all_text: block.settings.link_text
           %}
 
         {% endpaginate %}

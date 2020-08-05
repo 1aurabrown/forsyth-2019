@@ -32,7 +32,7 @@ import './templates/gift_card';
 
 import initProductMasonries from './components/product-masonry';
 
-load('*');
+load('*')
 
 animations()
 
@@ -48,7 +48,6 @@ quicklink.listen({
     uri => uri.includes('#')
   ]
 })
-
 
 // Apply a specific class to the html element for browser support of cookies.
 if (cookiesEnabled()) {

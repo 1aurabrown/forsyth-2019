@@ -35,6 +35,9 @@
   &__bottom {
     margin-top: $v-space * 4;
     height: 3rem;
+    .last & {
+      display: none;
+    }
   }
 
   &__status {
@@ -43,6 +46,9 @@
 
   &__view-more{
     cursor: pointer;
+    .loading & {
+      display: none;
+    }
   }
 }
 
