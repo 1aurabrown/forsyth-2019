@@ -17,15 +17,19 @@ const selectors = {
   status: '.product-masonry__status'
 }
 
-export default function initProductMasonry(container) {
+export default function initProductMasonries() {
+  document.querySelectorAll(selectors.container).forEach((el) => {
+    initProductMasonry(el)
+  })
+}
+
+function initProductMasonry(container) {
   console.log('init product masonry')
-  if (!container.classList.contains(classes.container)) {
-    container = container.querySelector(selectors.container)
-  }
 
   // attribute data-infinite-scroll is reserved and used by InfiniteScroll
   const infiniteScroll = container.hasAttribute('data-product-infinite-scroll')
   const masonryEl = container.querySelector(selectors.masonry)
+  debugger;
   const viewMoreEl = container.querySelector(selectors.viewMore)
   const msnry = new Masonry( masonryEl, {
     itemSelector: selectors.item,
