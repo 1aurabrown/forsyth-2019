@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin');
 const CssnanoPlugin = require('cssnano-webpack-plugin');
-const SassLintPlugin = require('sass-lint-webpack')
 
 var config = {
   optimization: {
@@ -54,7 +53,6 @@ var config = {
           }
         }
       ]}, {}),
-    new SassLintPlugin(),
   ],
 
   output: {

@@ -17,11 +17,13 @@ const selectors = {
   status: '.product-masonry__status'
 }
 
-export default function initProductMasonry(container) {
-  console.log('init product masonry')
-  if (!container.classList.contains(classes.container)) {
-    container = container.querySelector(selectors.container)
-  }
+export default function initProductMasonries() {
+  document.querySelectorAll(selectors.container).forEach((el) => {
+    initProductMasonry(el)
+  })
+}
+
+function initProductMasonry(container) {
 
   // attribute data-infinite-scroll is reserved and used by InfiniteScroll
   const infiniteScroll = container.hasAttribute('data-product-infinite-scroll')
@@ -47,15 +49,14 @@ export default function initProductMasonry(container) {
   });
 
   msnry.layout();
-  if (infiniteScroll) {
+  if (infiniteScroll && container.querySelector(selectors.next)) {
     InfiniteScroll.imagesLoaded = imagesLoaded
 
-    var collectionPath = container.dataset.collectionUrl
     var infScroll = new InfiniteScroll( masonryEl, {
-      path: collectionPath + '?page={{#}}',
+      path: selectors.next,
       append: selectors.item,
-      outlayer: msnry,
       checkLastPage: selectors.next,
+      outlayer: msnry,
       status: selectors.status,
       button: selectors.viewMore,
       // load pages on button click
@@ -63,13 +64,16 @@ export default function initProductMasonry(container) {
       loadOnScroll: false,
       debug: true
     });
-
-    infScroll.on( 'request', function( response, path ) {
-      viewMoreEl.classList.add('hide')
+    infScroll.on( 'last', ( response, path ) => {
+      container.classList.add('last')
     });
 
-    infScroll.on( 'append', function( response, path, items ) {
-      viewMoreEl.classList.remove('hide')
+    infScroll.on( 'request', ( response, path ) => {
+      container.classList.add('loading')
+    });
+
+    infScroll.on( 'append', ( response, path, items ) => {
+      container.classList.remove('loading')
       animations()
     })
   }

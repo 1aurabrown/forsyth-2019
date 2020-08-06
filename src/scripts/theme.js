@@ -25,16 +25,18 @@ import './sections/newsletter';
 import './sections/page';
 import './sections/press';
 import './sections/product';
-import './sections/collection';
-import './sections/john-ohara';
 
 import './templates/customers/addresses';
 import './templates/customers/login';
 import './templates/gift_card';
 
-load('*');
+import initProductMasonries from './components/product-masonry';
+
+load('*')
 
 animations()
+
+initProductMasonries()
 
 // Common a11y fixes
 focusHash();
@@ -46,7 +48,6 @@ quicklink.listen({
     uri => uri.includes('#')
   ]
 })
-
 
 // Apply a specific class to the html element for browser support of cookies.
 if (cookiesEnabled()) {
