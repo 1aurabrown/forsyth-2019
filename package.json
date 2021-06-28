@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "dev": "npm run clean && webpack --colors --mode development && theme deploy && npm run watch",
-    "watch": "concurrently --prefix name --names 'webpack,theme watch' --prefix-colors yellow,blue \"webpack --watch --colors --mode development\" \"theme watch\"",
+    "dev": "npm run clean && webpack --color --mode development && theme deploy && npm run watch",
+    "watch": "concurrently --prefix name --names 'webpack,theme watch' --prefix-colors yellow,blue \"webpack --watch --color --mode development\" \"theme watch\"",
     "start": "npm run dev",
     "download:settings": "theme download config/settings_data.json --dir=src/ --no-ignore",
     "build": "npm run clean && webpack --mode production",
@@ -57,6 +57,6 @@
     "postcss-discard-comments": "^4.0.0",
     "sass-loader": "^10.2.0",
     "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^4.7.2"
   }
 }
