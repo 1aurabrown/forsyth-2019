@@ -27,9 +27,7 @@ var config = {
         test: /.s?css?$/,
         sourceMap: true
       }),
-      new TerserPlugin({
-        sourceMap: true
-      })
+      new TerserPlugin()
     ]
   },
 
@@ -40,8 +38,7 @@ var config = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      sourceMap: true
+      filename: "[name].css"
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -78,9 +75,9 @@ var config = {
         test: /\.(sa|sc|c)ss$/,
         exclude: /node_modules/,
         use: [
-          { loader: MiniCssExtractPlugin.loader, options: { sourceMap: true }},
-          { loader: 'css-loader', options: { sourceMap: true }},
-          { loader: 'sass-loader', options: { sourceMap: true } }
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader'  }
         ]
       },
     ],
