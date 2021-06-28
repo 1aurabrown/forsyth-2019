@@ -1,5 +1,5 @@
 {
-  "name": "peoples-2020",
+  "name": "forsyth-2019",
   "version": "1.0.0",
   "author": "Laura Brown",
   "license": "MIT",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@babel/core": "7.11",
     "@babel/preset-env": "7.11",
-    "@shopify/themekit": "^1.1.4",
+    "@shopify/themekit": "^1.1.9",
     "autoprefixer": "9.8",
     "babel-loader": "^8.1.0",
     "concurrently": "5.2",
