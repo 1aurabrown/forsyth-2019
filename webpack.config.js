@@ -80,7 +80,6 @@ var config = {
         use: [
           { loader: MiniCssExtractPlugin.loader, options: { sourceMap: true }},
           { loader: 'css-loader', options: { sourceMap: true }},
-          { loader: 'postcss-loader', options: { sourceMap: true }},
           { loader: 'sass-loader', options: { sourceMap: true } }
         ]
       },
