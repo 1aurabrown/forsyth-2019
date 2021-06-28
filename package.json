@@ -47,16 +47,17 @@
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
-    "copy-webpack-plugin": "^6.4.1",
-    "css-loader": "^4.3.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^5.2.6",
     "cssnano-webpack-plugin": "^1.0.3",
     "eslint": "^7.29.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
+    "mini-css-extract-plugin": "^1.6.1",
+    "node-sass": "^6.0.1",
     "normalize.css": "^8.0.1",
     "postcss-discard-comments": "^5.0.1",
-    "sass-loader": "^10.2.0",
-    "webpack": "^4.46.0",
+    "postcss-svgo": "^5.0.2",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.40.0",
     "webpack-cli": "^4.7.2"
   }
 }
