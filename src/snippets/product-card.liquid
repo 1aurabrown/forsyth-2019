@@ -27,7 +27,10 @@
     </p>
 
     <p>
-      {% if product.available %}
+      {% if product.tags contains 'inquire' %}
+        <i><a href="mailto:{{ shop.email }}">Inquire</a></i>
+
+      {% elsif product.available %}
       {% comment %} On sale {% endcomment %}
         {% if product.compare_at_price > product.price %}
           <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>

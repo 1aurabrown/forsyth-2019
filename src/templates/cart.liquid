@@ -116,7 +116,7 @@
           {% endcapture %}
           {% assign checkout_button_text = 'cart.general.checkout' | t %}
           {% include 'button-row',
-            left_html: checkout_left,
+            text: checkout_left,
             button_content: checkout_button_text,
             button_attributes: 'type="submit" name="checkout"',
             wrapper_class: "cart__checkout-cta"
