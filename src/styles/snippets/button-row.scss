@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: space-between;
   padding: $inset;
+  &--centered {
+  justify-content: center
+}
   &__left{
     padding-top: .2em;
   }

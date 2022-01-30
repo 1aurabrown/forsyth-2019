@@ -1,4 +1,16 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
 {%- capture product_form_counter %}{% increment product_form_counter %}{% endcapture -%}
+
+{% assign hide_price_if_sold = false %}
+{% assign no_price_sold_tags = section.settings.no_price_sold_tags | split: ',' %}
+{% for tag in no_price_sold_tags %}
+  {% assign clean_tag = tag | strip %}
+  {% if product.tags contains clean_tag %}
+    {% assign hide_price_if_sold = true %}
+  {% endif %}
+{% endfor %}
+
 <div class="product__form {{ product_form_class }}">
   {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
     {% unless product.has_only_default_variant %}
@@ -52,45 +64,55 @@
         {% endfor %}
       </select>
     </noscript>
+    {% if product.available == true or hide_price_if_sold == false %}
+      {% capture left_html %}
+        <span class="visually-hidden {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-text>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            {{ 'products.product.regular_price' | t }}
+          {% endif %}
+        </span>
+        <s class="product__form__cta__left__compare {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-price>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+          {% endif %}
+        </s>
+        <span class="product__form__cta__left__actual" data-product-price>
+          {{ current_variant.price | money_without_trailing_zeros }}
+        </span>
+      {% endcapture %}
 
-    {% capture product_price %}
-      <span class="visually-hidden {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-text>
-        {% if current_variant.compare_at_price > current_variant.price %}
-          {{ 'products.product.regular_price' | t }}
-        {% endif %}
-      </span>
-      <s class="product__form__cta__left__compare {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-price>
-        {% if current_variant.compare_at_price > current_variant.price %}
-          {{ current_variant.compare_at_price | money_without_trailing_zeros }}
-        {% endif %}
-      </s>
-      <span class="product__form__cta__left__actual" data-product-price>
-        {{ current_variant.price | money_without_trailing_zeros }}
-      </span>
-    {% endcapture %}
+      {% capture button_content %}
+        <span data-submit-button-text>
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+      {% endcapture %}
 
-    {% capture button_content %}
-      <span data-submit-button-text>
-        {% if current_variant.available %}
-          {{ 'products.product.add_to_cart' | t }}
-        {% else %}
+      {% capture button_attributes %}
+        type="submit"
+        name="add"
+        data-submit-button
+        {% unless current_variant.available %}disabled="disabled"{% endunless %}
+      {% endcapture %}
+
+      {% render 'button-row',
+        wrapper_class: "product__form__cta"
+        left_attrbutes: "data-price-wrapper",
+        left_html: left_html,
+        button_content: button_content %}
+
+    {% else %}
+
+      <div class="button-row button-row--centered {{ wrapper_class }}">
+        <div class="serif-body-l {{ wrapper_class }}__left" {{ left_attributes }}>
           {{ 'products.product.sold_out' | t }}
-        {% endif %}
-      </span>
-    {% endcapture %}
+        </div>
+      </div>
 
-    {% capture button_attributes %}
-      type="submit"
-      name="add"
-      data-submit-button
-      {% unless current_variant.available %}disabled="disabled"{% endunless %}
-    {% endcapture %}
-
-    {% include 'button-row',
-      wrapper_class: "product__form__cta"
-      left_attrbutes: "data-price-wrapper",
-      left_html: product_price,
-      button_content: button_content %}
+    {% endif %}
   {% endform %}
 
 </div>
