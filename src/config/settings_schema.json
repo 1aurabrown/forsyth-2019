@@ -128,6 +128,18 @@
     ]
   },
   {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "no_price_sold_tags",
+        "label": "Tags for Price Hidden if Sold",
+        "info": "Products containing the specified tags will not display their price if the product is sold. Separate multiple tags with a comma.",
+        "default": "John O'Hara, Art"
+      }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {
