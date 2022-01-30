@@ -7,10 +7,13 @@
   align-items: center;
   justify-content: space-between;
   padding: $inset;
-  &--centered {
-  justify-content: center
-}
-  &__left{
+  &--center {
+    justify-content: center
+  }
+  &--stretch {
+    justify-content: stretch;
+  }
+  &__text {
     padding-top: .2em;
   }
 }

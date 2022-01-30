@@ -64,8 +64,28 @@
         {% endfor %}
       </select>
     </noscript>
-    {% if product.available == true or hide_price_if_sold == false %}
-      {% capture left_html %}
+
+    {% if product.tags contains 'inquire' %}
+    {% capture button_url %}
+      mailto:{{ shop.email }}?subject=Inquiry: {{ product.vendor }}{% if product.vendor != blank %} - {% endif %}{{ product.title }}
+    {% endcapture %}
+        {% render 'button-row',
+        wrapper_class: "product__form__cta"
+        left_attrbutes: "data-price-wrapper",
+        text: '<i>Price available upon request.</i>',
+        button_content: 'Inquire',
+        button_url: button_url %}
+
+    {% elsif product.available == false and hide_price_if_sold == true %}
+      <div class="button-row button-row--center {{ wrapper_class }}">
+        <div class="button-row__text serif-body-l {{ wrapper_class }}__left" {{ left_attributes }}>
+          <i>{{ 'products.product.sold_out' | t }}</i>
+        </div>
+      </div>
+
+
+    {% else %}
+      {% capture text %}
         <span class="visually-hidden {% unless current_variant.compare_at_price > current_variant.price %}hide{% endunless %}" data-compare-text>
           {% if current_variant.compare_at_price > current_variant.price %}
             {{ 'products.product.regular_price' | t }}
@@ -101,17 +121,8 @@
       {% render 'button-row',
         wrapper_class: "product__form__cta"
         left_attrbutes: "data-price-wrapper",
-        left_html: left_html,
+        text: text,
         button_content: button_content %}
-
-    {% else %}
-
-      <div class="button-row button-row--centered {{ wrapper_class }}">
-        <div class="serif-body-l {{ wrapper_class }}__left" {{ left_attributes }}>
-          {{ 'products.product.sold_out' | t }}
-        </div>
-      </div>
-
     {% endif %}
   {% endform %}
 
