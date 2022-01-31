@@ -21,7 +21,7 @@
 
                   {% if item.image != blank %}
                     <a href="{{ item.url | within: collections.all }}">
-                      {{ item | img_url: 'medium' | img_tag: item.title }}
+                      {% include 'responsive-image', image: item.image, alt: item.title %}
                     </a>
                   {% endif %}
 
