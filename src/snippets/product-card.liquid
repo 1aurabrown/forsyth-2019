@@ -27,7 +27,10 @@
     </p>
 
     <p>
-      {% if product.available %}
+      {% if product.tags contains 'inquire' %}
+        <i><a href="mailto:{{ shop.email }}">Inquire</a></i>
+
+      {% elsif product.available %}
       {% comment %} On sale {% endcomment %}
         {% if product.compare_at_price > product.price %}
           <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
@@ -52,8 +55,16 @@
 
       {% else %}
       {% comment %} Sold {% endcomment %}
-        <s class="product-card__strikethrough_price">{{ product.price | money_without_trailing_zeros }}</s>
-        &nbsp;
+        {% assign hide_price_if_sold = false %}
+        {% assign no_price_sold_tags = settings.no_price_sold_tags | split: ',' %}
+        {% for tag in no_price_sold_tags %}
+          {% assign clean_tag = tag | strip %}
+          {% if product.tags contains clean_tag %}
+            {% assign hide_price_if_sold = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% unless hide_price_if_sold == true %} <s class="product-card__strikethrough_price">{{ product.price | money_without_trailing_zeros }}</s> &nbsp; {% endunless %}
         <i>{{ 'products.product.sold_out' | t }}</i>
       {% endif %}
     </p>

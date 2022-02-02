@@ -1,4 +1,4 @@
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+
 <section data-section-id="{{ section.id }}" data-section-type="product" class="product">
   <div class="product__content">
     <div class="product__first-image medium-up--hide">
@@ -26,7 +26,8 @@
                 <h1 class="product__text__top__title">{{ product.title }}</h1>
               </div>
 
-              {% include 'product-form', product_form_class: 'medium-up--hide product__form--mobile' %}
+              {% render 'product-form', product_form_class: 'medium-up--hide product__form--mobile'
+              %}
             </div>
           </div>
 
@@ -43,7 +44,8 @@
             </div>
           </div>
 
-          {% include 'product-form', product_form_class: 'small--hide product__form--desktop' %}
+          {% render 'product-form', product_form_class: 'small--hide product__form--desktop'
+          %}
 
           {% if section.settings.show_share_buttons %}
             {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
