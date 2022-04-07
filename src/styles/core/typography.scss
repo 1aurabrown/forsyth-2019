@@ -90,15 +90,18 @@ a:focus {
   .#{$breakpoint}serif-heading-xl {
     @extend .#{$breakpoint}serif;
     font-size: 3.0rem;
+    line-height: $tight-line-height;
   }
 
   .#{$breakpoint}serif-heading-l {
     @extend .#{$breakpoint}serif;
     font-size: 2.4rem;
+    line-height: $tight-line-height;
   }
   .#{$breakpoint}serif-heading-m {
     @extend .#{$breakpoint}serif;
-    font-size: 2.0rem
+    font-size: 2.0rem;
+    line-height: $tight-line-height;
   }
 
   // Serif Body

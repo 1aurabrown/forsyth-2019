@@ -23,10 +23,8 @@
     > h5,
     > h6,
     > blockquote {
-      text-align: center;
+      @extend .serif-heading-m;
       @extend .large-up--serif-heading-l;
-      @extend .medium--serif-heading-m;
-      @extend .small--serif-body-xl;
     }
     a {
       text-decoration: underline;
