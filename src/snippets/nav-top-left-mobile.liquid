@@ -1,5 +1,11 @@
 <div class="header__nav large-up--hide">
   <div class="header__nav__inner header__nav__inner--left">
-    <div class="header__mobile-menu-toggle"><a href="#">Menu</a></div>
+    <div class="header__mobile-menu-toggle">
+      {% if section.settings.mobile_button_style == 'text' %}
+        <a href="#">Menu</a>
+      {% elsif section.settings.mobile_button_style == 'hamburger' %}
+        {% include 'hamburger.svg' %}
+      {% endif %}
+    </div>
   </div>
 </div>
