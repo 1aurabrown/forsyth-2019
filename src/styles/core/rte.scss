@@ -1,5 +1,4 @@
 .rte {
-  margin: 0;
 
   img {
     height: auto;
@@ -21,6 +20,34 @@
 
   strong {
     font-weight: $font-body-bold-weight;
+  }
+
+  h2 {
+    @extend .serif-heading-l;
+    @extend .large-up--serif-heading-xl;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  h3 {
+    @extend .serif-heading-m;
+    @extend .large-up--serif-heading-l;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  h4 {
+    @extend .sans-serif-uppercase-m;
+    @extend .large-up--sans-serif-uppercase-l;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  h5 {
+    @extend .sans-serif-uppercase-s;
+    @extend .large-up--sans-serif-uppercase-m;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
   }
 }
 
