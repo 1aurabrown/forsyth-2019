@@ -1,0 +1,21 @@
+<div class="button-row {{ wrapper_class }}">
+  {% if text != blank %}
+    <div class="button-row__text serif-body-l {{ wrapper_class }}__left" {{ left_attributes }}>
+      {{ text }}
+    </div>
+  {% endif %}
+
+  {% if button_content != blank %}
+
+    {% if button_url %}
+      <a {{ button_attributes}} href="{{ button_url }}" class="button-row__button button-rect {{ wrapper_class }}__button button-rect--large" >
+        {{ button_content }}
+      </a>
+    {% else %}
+      <button {{ button_attributes}} class="button-row__button button-rect {{ wrapper_class }}__button button-rect--large" >
+          {{ button_content }}
+      </button>
+    {% endif %}
+  {% endif %}
+</div>
+

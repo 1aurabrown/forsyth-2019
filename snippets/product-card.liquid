@@ -1,0 +1,74 @@
+<div class="product-card">
+  {% if product.featured_image != blank %}
+    <a class="product-card__images rel" href="{{ product.url | within: collection }}">
+      {% include 'responsive-image' with
+        image: product.featured_image,
+        max_width: 700,
+        max_height: 560,
+        image_class: "product-card__image",
+        wrapper_class: "product-card__image-wrapper product-card__image-wrapper--primary"
+      %}
+      <div class="product-card__image-wrapper product-card__image-wrapper--secondary abs x y fill">
+        {% include 'responsive-image-only' with
+          image: product.images[1],
+          image_class: "js product-card__image x y object-cover"
+        %}
+      </div>
+    </a>
+  {% endif %}
+
+  <div class="product-card__metadata serif-body-m">
+    <p class="product-card__vendor">
+      {% include 'vendor-link', product: product %}
+    </p>
+
+    <p>
+      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    </p>
+
+    <p>
+      {% if product.tags contains 'inquire' %}
+        <i><a href="mailto:{{ shop.email }}">Inquire</a></i>
+
+      {% elsif product.available %}
+      {% comment %} On sale {% endcomment %}
+        {% if product.compare_at_price > product.price %}
+          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+          <s class="product-card__strikethrough_price">{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+          &nbsp;
+          {% if product.price_varies %}
+            {%- assign sale_price = product.price | money_without_trailing_zeros -%}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            {{ product.price | money_without_trailing_zeros }}
+          {% endif %}
+
+        {% else %}
+        {% comment %} Available; not on sale {% endcomment %}
+          {% if product.price_varies %}
+            {%- assign price = product.price | money_without_trailing_zeros -%}
+            {{ 'products.product.from_text_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money_without_trailing_zeros }}
+          {% endif %}
+        {% endif %}
+
+      {% else %}
+      {% comment %} Sold {% endcomment %}
+        {% assign hide_price_if_sold = false %}
+        {% assign no_price_sold_tags = settings.no_price_sold_tags | split: ',' %}
+        {% for tag in no_price_sold_tags %}
+          {% assign clean_tag = tag | strip %}
+          {% if product.tags contains clean_tag %}
+            {% assign hide_price_if_sold = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% unless hide_price_if_sold == true %} <s class="product-card__strikethrough_price">{{ product.price | money_without_trailing_zeros }}</s> &nbsp; {% endunless %}
+        <i>{{ 'products.product.sold_out' | t }}</i>
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+{% assign product = blank %}

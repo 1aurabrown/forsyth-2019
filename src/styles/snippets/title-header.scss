@@ -1,7 +1,0 @@
-.title-header {
-  text-align: center;
-  margin-bottom: 4 * $v-space;
-  @include media-query($medium-down) {
-    margin-top: 3.5 * $v-space
-  }
-}

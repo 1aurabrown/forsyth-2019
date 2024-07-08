@@ -1,0 +1,94 @@
+
+<section data-section-id="{{ section.id }}" data-section-type="product" class="product">
+  <div class="product__content">
+    <div class="product__first-image medium-up--hide">
+      {% assign image = product.images | first %}
+      {% include 'responsive-image' with
+        image: image,
+        max_width: 700,
+        image_attributes: "data-product-featured-image",
+        wrapper_class: "product__first-image__image {{ class }}",
+        wrapper_attributes: "data-product-image-wrapper",
+      %}
+    </div>
+
+
+    <div class="product__text">
+      <div class="product__text__inner">
+        <div class="product__text__inner__centered">
+
+          <div class="product__mobile-sticky-cta" data-bottom-sticky-container>
+            <div class="product__mobile-sticky-cta__content" data-bottom-sticky>
+              <div class="product__text__top medium-up--serif-body-xl small--serif-body-m">
+                {% if product.vendor.size > 0 %}
+                  <div class="product__text__top__vendor">{% include 'vendor-link' %}</div>
+                {% endif %}
+                <h1 class="product__text__top__title">{{ product.title }}</h1>
+              </div>
+
+              {% render 'product-form', product_form_class: 'medium-up--hide product__form--mobile'
+              %}
+            </div>
+          </div>
+
+          <div class="product__text__description">
+            <div class="product__text__description__headings" js-headings-container>
+              <div class="product__text__description__headings__content sans-serif-uppercase-m" js-headings>
+              </div>
+            </div>
+            <div class="product__text__description__texts serif-body-m rte">
+            </div>
+            <div class="product__text__description__original hide">
+              {{ product.description }}
+              {% include 'product-shipping' %}
+            </div>
+          </div>
+
+          {% render 'product-form', product_form_class: 'small--hide product__form--desktop'
+          %}
+
+          {% if section.settings.show_share_buttons %}
+            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% endif %}
+
+          <div class="product__text__more-info">{{ section.settings.more_info }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product__images" data-images-container>
+      {% for image in product.images %}
+        {% if forloop.index == 1 %}
+          {% assign wrapper_class="small--hide" %}
+        {% endif %}
+        {% include 'responsive-image' with
+          image: image,
+          max_width: 700,
+          wrapper_class: "product__images__image {{ class }}",
+          wrapper_attributes: "data-product-image-wrapper",
+        %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "more_info",
+        "label": "More Info Text",
+        "info": "displayed below the add-to-cart button",
+        "default": "<p><b>Need more info?</b></p><p>Would you like to see a video of this item, perhaps more photos, maybe a photo of a human sitting in it, need a tear sheet, or just want to talk to us about how cool it is? <a href=\"/pages/contact\">Inquire Here</a>.</p>"
+      }
+    ]
+  }
+{% endschema %}
