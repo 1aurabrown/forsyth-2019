@@ -2,9 +2,7 @@ import {register} from '@shopify/theme-sections';
 import Breakpoints from 'breakpoints-js';
 import StickySidebar from '../components/sticky-sidebar';
 import SearchForm from '../components/search-form';
-import $ from 'jquery';
 import animateCSS from '../components/animation';
-import _ from 'lodash';
 
 const selectors = {
   sidebar: '.sidebar',

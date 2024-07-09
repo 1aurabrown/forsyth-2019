@@ -1,6 +1,4 @@
 import {register} from '@shopify/theme-sections';
-import Flickity from 'flickity-imagesloaded';
-import 'flickity-fade';
 
 const selectors = {
   slideshows: '.image-container--many-images'

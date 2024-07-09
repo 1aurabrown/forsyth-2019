@@ -1,5 +1,3 @@
-import StickySidebar from 'sticky-sidebar';
-
 StickySidebar.prototype.forceUpdate = function() {
   this._reStyle = true;
   this.direction = 'down';
@@ -17,5 +15,3 @@ StickySidebar.prototype.isSidebarFitsViewport = function() {
 
   return this.dimensions.sidebarHeight + topSpacing + bottomSpacing < this.dimensions.viewportHeight;
 }
-
-export default StickySidebar;

@@ -1,19 +1,16 @@
-const classes = {
-  imagesContainer: 'images'
-}
-const selectors = {
-  feedContainer: '#insta-feed',
-  image: '#insta-feed a',
-  imageInner: '.instafeed-container',
-  heading: '#insta-feed h2',
-  imagesContainer: '.' + classes.imagesContainer
-};
-
-
 if (!customElements.get('instagram-feed')) {
   class InstagramFeed extends HTMLElement {
+    static classes = {
+      imagesContainer: 'images'
+    }
+    static selectors = {
+      feedContainer: '#insta-feed',
+      image: '#insta-feed a',
+      imageInner: '.instafeed-container',
+      heading: '#insta-feed h2',
+      imagesContainer: '.' + InstagramFeed.classes.imagesContainer
+    };
     connectedCallback() {
-      console.log('register instagram feed')
       if ("MutationObserver" in window) {
         this.observe()
       } else {
@@ -39,7 +36,6 @@ if (!customElements.get('instagram-feed')) {
     }
 
     checkMutation(mutationsList, observer) {
-      console.log('mutated')
       for(var mutation of mutationsList) {
         if (mutation.type == 'childList') {
           if (this.isReady()) {
@@ -52,7 +48,7 @@ if (!customElements.get('instagram-feed')) {
     }
 
     isReady() {
-      return (this.images = this.querySelectorAll(selectors.image)).length > 0
+      return (this.images = this.querySelectorAll(InstagramFeed.selectors.image)).length > 0
     }
 
     setup() {
@@ -61,9 +57,9 @@ if (!customElements.get('instagram-feed')) {
     }
 
     wrapImages() {
-      let feedContainer = this.querySelector(selectors.feedContainer)
+      let feedContainer = this.querySelector(InstagramFeed.selectors.feedContainer)
       let newContainer = document.createElement("div");
-      newContainer.classList.add(classes.imagesContainer);
+      newContainer.classList.add(InstagramFeed.classes.imagesContainer);
       this.images.forEach(img => {
         newContainer.appendChild(img)
       })
@@ -71,8 +67,7 @@ if (!customElements.get('instagram-feed')) {
     }
 
     createFlickity() {
-      console.log(this.querySelector(selectors.imagesContainer))
-      this.flickity = new Flickity(this.querySelector(selectors.imagesContainer), {
+      this.flickity = new Flickity(this.querySelector(InstagramFeed.selectors.imagesContainer), {
         // options
         cellAlign: 'center',
         wrapAround: true,

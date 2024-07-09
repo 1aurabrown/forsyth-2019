@@ -1,8 +1,16 @@
-<section data-section-id="{{ section.id }}" data-section-type="navigation">
+<script type="text/javascript" src="{{ 'breakpoints-js@1.0.6.js' | asset_url }}"></script>
+<script type="text/javascript" src="{{ 'sticky-sidebar.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'sticky-sidebar-custom.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-search-form.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-navigation.js' | asset_url }}" defer></script>
+{{ 'component-search-form.css' | asset_url | stylesheet_tag }}
+
+
+<site-nav>
   {% include 'logo' %}
   {% include 'header' %}
   {% include 'sidebar' %}
-</section>
+</site-nav>
 
 {% schema %}
   {
