@@ -1,5 +1,7 @@
 {% assign has_active = false %}
 {% assign is_active = false %}
+{{ 'sidebar.css' | asset_url | stylesheet_tag }}
+
 <div id="sidebar-container">
   <div class="sidebar sans-serif-uppercase-m {% if blog %}sidebar--blog{% endif %}">
     <div class="sidebar__buttons">

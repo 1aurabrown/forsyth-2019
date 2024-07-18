@@ -1,8 +1,10 @@
 {% assign class = class | default: "homepage-image-with-text" %}
+
+{{ 'image-with-text.css' | asset_url | stylesheet_tag }}
 <section class="image-with-text {{ class }} {{ layout }}">
   <div class="image-with-text__image">
       {% if image != blank %}
-        {% include 'responsive-image' with
+        {% render 'responsive-image' with
           image: image,
           wrapper_class: "image-with-text__image__wrapper",
           image_class: 'image-with-text__image__inner'

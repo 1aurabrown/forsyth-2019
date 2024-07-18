@@ -6,7 +6,7 @@
       assign aspect_ratio = image.aspect_ratio
     endif
     assign alt = alt | default: image.alt | escape
-    assign class = class | default: ''
+    assign class = image_class | default: ''
     assign class = class | append: ' bg-no-repeat bg-center motion-reduce'
     assign sizes = sizes | default: '(min-width: 768px) 50vw, 100vw'
 
@@ -28,7 +28,7 @@
     endif
 
     if use_padding != false
-      assign class = class | append: ' absolute inset-0 w-full h-full'
+      assign class = class | append: ' abs fill'
     endif
   %}
 
@@ -42,8 +42,8 @@
   {%- assign onload = 'this.style.removeProperty("background-image");' -%}
 
   {% if use_padding != false %}
-    <div class="relative {{ wrapper_class }}">
-      <div style="padding-bottom: {{ 1.00 | divided_by: aspect_ratio | times: 100.00 | append: '%' }} ">
+    <div class="rel {{ wrapper_class }}" {{ wrapper_attributes }}>
+      <div style="padding-top: {{ 1.00 | divided_by: aspect_ratio | times: 100.00 | append: '%' }} ">
   {% endif %}
 
       {{ image | image_url: width: width | image_tag:
@@ -51,7 +51,7 @@
         preload: preload,
         id: id,
         style: style,
-        class: image_class,
+        class: class,
         sizes: sizes,
         widths: widths,
         width: width,

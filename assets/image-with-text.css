@@ -1,0 +1,173 @@
+.image-with-text.homepage-image-with-text {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 1rem;
+	max-width: 140rem
+}
+
+.image-with-text.homepage-image-with-text .image-with-text__image__inner,.image-with-text.homepage-image-with-text .image-with-text__text__inner__cta {
+	display: block
+}
+
+.image-with-text.homepage-image-with-text .image-with-text__text__inner__cta span {
+	line-height: 1.5
+}
+
+.image-with-text.homepage-image-with-text .image-with-text__text__inner__copy,.image-with-text.homepage-image-with-text .image-with-text__text__inner__cta {
+	margin: 1.5em 0
+}
+
+.image-with-text.homepage-image-with-text .image-with-text__text__inner__heading {
+	margin: .5em 0
+}
+
+@media only screen and (max-width: 767px) {
+	.image-with-text.homepage-image-with-text .image-with-text__image {
+		flex:0 1 100%
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__image__inner {
+		width: 100%
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text {
+		flex: 0 1 100%;
+		padding: 0 1rem
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text__inner :last-child {
+		margin-bottom: 0
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text__inner__heading {
+		margin-top: 4.2rem
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.image-with-text.homepage-image-with-text {
+		align-items:stretch;
+		margin-left: auto;
+		margin-right: auto
+	}
+
+	.image-with-text.homepage-image-with-text.right {
+		flex-direction: row-reverse
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__image {
+		padding: 0 1rem;
+		flex: 0 1 55%
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__image__wrapper {
+		height: 100%;
+		max-height: 50rem;
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		margin: 0 auto
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__image__inner {
+		object-fit: contain;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 100%
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text {
+		flex: 1 1 45%;
+		padding: 0 2rem
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width:1299px) {
+	.image-with-text.homepage-image-with-text .image-with-text__image {
+		flex-basis:52%
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.image-with-text.homepage-image-with-text {
+		padding:0 6rem
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__image {
+		padding: 0 2rem
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text {
+		padding: 0 4rem 0 14rem
+	}
+
+	.image-with-text.homepage-image-with-text .image-with-text__text__inner {
+		max-width: 400px;
+		margin: 0 auto
+	}
+
+	.image-with-text.homepage-image-with-text.left .image-with-text__text {
+		padding: 0 12rem 0 6rem
+	}
+}
+
+.image-with-text.collection-image-with-text {
+	max-width: 140rem
+}
+
+.image-with-text.collection-image-with-text .image-with-text__image__inner,.image-with-text.collection-image-with-text .image-with-text__text__inner__cta {
+	display: block
+}
+
+.image-with-text.collection-image-with-text .image-with-text__text__inner__cta span {
+	line-height: 1.5
+}
+
+.image-with-text.collection-image-with-text .image-with-text__text {
+	padding: 0 1rem
+}
+
+.image-with-text.collection-image-with-text .image-with-text__text__inner__heading {
+	margin: .5em 0
+}
+
+.image-with-text.collection-image-with-text .image-with-text__text__inner__copy {
+	margin: 1.5em 0
+}
+
+@media only screen and (max-width: 767px) {
+	.image-with-text.collection-image-with-text .image-with-text__text__inner__heading {
+		margin-top:4.2rem
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.image-with-text.collection-image-with-text {
+		display:flex;
+		align-items: stretch;
+		margin-left: auto;
+		margin-right: auto;
+		flex-direction: row;
+		align-items: center
+	}
+
+	.image-with-text.collection-image-with-text.right {
+		flex-direction: row-reverse
+	}
+
+	.image-with-text.collection-image-with-text .image-with-text__image,.image-with-text.collection-image-with-text .image-with-text__text {
+		width: 50%;
+		flex: 0 0 auto
+	}
+
+	.image-with-text.collection-image-with-text .image-with-text__text {
+		padding: 0 0 0 7%
+	}
+
+	.right .image-with-text.collection-image-with-text .image-with-text__text {
+		padding: 0 7% 0 0
+	}
+}

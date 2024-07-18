@@ -2,6 +2,8 @@
   <script type="text/javascript" src="{{ 'flickity@2.3.0.pkgd.min.js' | asset_url }}"></script>
   <script type="text/javascript" src="{{ 'component-instagram-feed.js' | asset_url }}" defer="defer"></script>
   {{ 'flickity@2.3.0.css' | asset_url | stylesheet_tag }}
+  {{ 'flickity-custom.css' | asset_url | stylesheet_tag }}
+  {{ 'instagram-feed.css' | asset_url | stylesheet_tag }}
 
   <instagram-feed>
       <section data-section-id="{{ section.id }}" data-section-type="instagram-feed" class="instagram-feed homepage-section">

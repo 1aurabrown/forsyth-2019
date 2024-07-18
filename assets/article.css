@@ -1,0 +1,186 @@
+
+.template-article main hr,.template-blog main hr {
+  margin: 5.6rem 3rem;
+  max-width: 700px;
+  border: none;
+  background: rgba(0,0,0,.4);
+  height: 1px
+}
+
+@media only screen and (min-width: 768px) {
+  .template-article main hr,.template-blog main hr {
+    margin:8rem auto
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .template-article main hr,.template-blog main hr {
+    margin:12rem auto
+  }
+}
+
+
+.article__content a {
+  text-decoration: underline
+}
+
+.article__content>.image-container img,.article__content>.image-container span {
+  display: block
+}
+
+.article__content>.image-container--many-images {
+  display: flex
+}
+
+.article__content>.image-container--many-images img {
+  flex-shrink: 0;
+  object-fit: contain
+}
+
+.article__content>.image-container--many-images.flickity-enabled {
+  display: block
+}
+
+.article__content>.image-container--many-images.flickity-enabled .flickity-viewport .flickity-slider img {
+  min-height: 100%
+}
+
+.article__content>.image-container--many-images .flickity-prev-next-button {
+  width: 50%
+}
+
+@media only screen and (max-width: 767px) {
+  .article {
+    padding:0 1rem
+  }
+
+  .article__main-image {
+    margin-bottom: 7rem
+  }
+
+  .article__main-image img {
+    width: 100%
+  }
+
+  .article__title {
+    margin-bottom: 5.6rem
+  }
+
+  .article__content>.text-container,.article__content>blockquote,.article__content>h1,.article__content>h2>h3,.article__content>h4,.article__content>h5,.article__content>h6 {
+    margin-left: 1rem;
+    margin-right: 1rem
+  }
+
+  .article__content>.image-container,.article__content>blockquote,.article__content>h1,.article__content>h2>h3,.article__content>h4,.article__content>h5,.article__content>h6 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5.6rem
+  }
+
+  .article__content>.image-container:not(:last-child),.article__content>blockquote:not(:last-child),.article__content>h1:not(:last-child),.article__content>h2>h3:not(:last-child),.article__content>h4:not(:last-child),.article__content>h5:not(:last-child),.article__content>h6:not(:last-child) {
+    margin-bottom: 5.6rem
+  }
+
+  .article__content>.image-container img {
+    max-height: 85vw;
+    width: 100%
+  }
+
+  .article__content>.image-container--two-images img:not(:first-child) {
+    margin-top: 5.6rem
+  }
+
+  .article__content>.image-container--many-images img {
+    height: 65vw;
+    padding: 0 10%
+  }
+
+  .article__content>.image-container--many-images .flickity-prev-next-button.previous {
+    left: -1rem;
+    padding-right: 40%
+  }
+
+  .article__content>.image-container--many-images .flickity-prev-next-button.next {
+    right: -1rem;
+    padding-left: 40%
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .article {
+    padding:0 var(--grid-padding);
+    max-width: 140em
+  }
+
+  .article__main-image {
+    margin: 7rem auto;
+    width: 60%;
+    max-width: 70rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around
+  }
+
+  .article__main-image img {
+    max-height: 70rem
+  }
+
+  .article__title {
+    margin-bottom: 5.6rem
+  }
+
+  .article__content>.text-container {
+    margin: 1.4rem auto;
+    max-width: 35em
+  }
+
+  .article__content>blockquote,.article__content>h1,.article__content>h2,.article__content>h3,.article__content>h4,.article__content>h5,.article__content>h6 {
+    margin: 8.4rem auto;
+    max-width: 35em
+  }
+
+  .article__content>.image-container {
+    margin: 8.4rem 0
+  }
+
+  .article__content>.image-container img,.article__content>.image-container span {
+    display: block
+  }
+
+  .article__content>.image-container--one-image,.article__content>.image-container--two-images {
+    display: flex;
+    align-items: center;
+    justify-content: space-around
+  }
+
+  .article__content>.image-container--one-image img {
+    max-width: 60%
+  }
+
+  .article__content>.image-container--two-images {
+    padding-left: 8vw;
+    padding-right: 8vw
+  }
+
+  .article__content>.image-container--two-images img {
+    max-width: 36vw;
+    max-height: 36vw
+  }
+
+  .article__content>.image-container--two-images img:not(:first-child) {
+    margin-left: 6rem
+  }
+
+  .article__content>.image-container--many-images img {
+    height: 40vw;
+    width: 60%
+  }
+
+  .article__content>.image-container--many-images .flickity-prev-next-button.previous {
+    padding-right: 25%
+  }
+
+  .article__content>.image-container--many-images .flickity-prev-next-button.next {
+    padding-left: 25%
+  }
+}

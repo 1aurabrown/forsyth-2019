@@ -1,4 +1,5 @@
 {{ 'component-search-form.css' | asset_url | stylesheet_tag }}
+{{ 'search.css' | asset_url | stylesheet_tag }}
 
 <section class="search">
   {% if search.performed %}
@@ -24,21 +25,21 @@
         {% section 'no-search-results' %}
       {% endif %}
     {% else %}
-      <form action="/search" method="get" role="search" class="search-form expanded">
-        <div class="search-form__entry">
-          <input type="search"
-            class="search-form__input serif-heading-l"
-            name="q"
-            id="Search-page"
-            value="{{ search.terms | escape }}"
-            placeholder="{{ 'general.search.placeholder' | t }}">
+      <div class="search-form" class="mr-0 max-w-fit">
+        <form action="/search" method="get" role="search">
+            <input type="search"
+              class="search-form__input serif-heading-l"
+              name="q"
+              id="Search-page"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.placeholder' | t }}">
 
-          <button type="submit" class="button search-form__button">
-            {% include 'icon-search' %}
-            <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-          </button>
-        </div>
-      </form>
+            <button type="submit" class="button search-form__button">
+              {% include 'icon-search' %}
+              <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+            </button>
+        </form>
+      </div>
     {% endif %}
     </div>
 

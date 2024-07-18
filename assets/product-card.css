@@ -1,0 +1,43 @@
+
+
+.product-card__images {
+  display: block
+}
+
+@media (hover: hover) {
+  .product-card__images:hover .product-card__image-wrapper--secondary {
+    display:block;
+    z-index: 1
+  }
+}
+
+.product-card__image {
+  object-fit: cover;
+  object-position: center;
+  display: block
+}
+
+.product-card__image-wrapper--primary {
+  display: block
+}
+
+.product-card__image-wrapper--secondary {
+  display: none
+}
+
+.product-card__metadata {
+  padding: 1.4rem 1rem 0
+}
+
+.product-card__metadata p {
+  line-height: 1.25;
+  margin: 0
+}
+
+.product-card__metadata p+p {
+  margin-top: .35em
+}
+
+.product-card__strikethrough_price {
+  color: #999
+}

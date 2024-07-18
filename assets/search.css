@@ -1,0 +1,29 @@
+
+.search {
+  padding: 0 1rem
+}
+
+.search__header {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: unset;
+  margin: 2.8rem 0 4.2rem
+}
+
+@media only screen and (min-width: 992px) {
+  .search__header {
+    margin-top:0
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .search {
+    padding:0 2rem
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .search {
+    padding:0 21rem
+  }
+}

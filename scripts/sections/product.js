@@ -97,10 +97,6 @@ register('product', {
     this.removeEventListener('keyup', this.onThumbnailKeyup);
   },
 
-  // Helpers for formatting description text
-
-
-
   // Mobile section tab selection callback
 
   mobileScrollToTextTop() {

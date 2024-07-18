@@ -1,3 +1,6 @@
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+
+
 {% include 'title-header', title: collection.title %}
 <div class="collection">
 
@@ -5,7 +8,7 @@
 
   <section class="collection__content" data-section-id="{{ section.id }}"  data-section-type="collection">
   {% paginate collection.products by 24 %}
-    {% include 'product-masonry', masonry_items: collection.products, infinite_scroll: true %}
+    {% include 'product-masonry', collection: collection, masonry_items: collection.products, infinite_scroll: true %}
   {% endpaginate %}
 
   </section>

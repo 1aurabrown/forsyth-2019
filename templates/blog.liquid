@@ -1,4 +1,6 @@
-{% include 'title-header', title: 'Journal' %}
+{{ 'blog.css' | asset_url | stylesheet_tag }}
+
+{% render 'title-header', title: 'Journal' %}
 <div class="blog">
 
   {% paginate blog.articles by 48 %}
@@ -17,10 +19,10 @@
 
 
 
-    {% include 'blog-grid', articles: blog.articles, class: 'blog__grid', max_image_height: 600, card_class: 'blog__grid__item medium-up--one-half' %}
+    {% render 'blog-grid', articles: blog.articles, class: 'blog__grid', max_image_height: 600 %}
 
     {% if paginate.pages > 1 %}
-      {% include 'pagination' %}
+      {% render 'pagination' %}
     {% endif %}
 
   {% endpaginate %}

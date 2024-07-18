@@ -1,3 +1,5 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+
 <div class="cart">
   {% if cart.item_count > 0 %}
     <form class="cart__form" action="/cart" method="post" novalidate>
@@ -21,7 +23,7 @@
 
                   {% if item.image != blank %}
                     <a href="{{ item.url | within: collections.all }}">
-                      {% include 'responsive-image', image: item.image, alt: item.title %}
+                      {% render 'responsive-image', image: item.image, alt: item.title %}
                     </a>
                   {% endif %}
 
@@ -29,11 +31,11 @@
                 <td class="cart__text">
                   <div class="cart__close medium-up--hide">
                     <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
-                      {% include 'close.svg' %}
+                      {% render 'close.svg' %}
                     </a>
                   </div>
                   <div class="cart__text__main">
-                    <p class="cart__text__main__vendor">{% include 'vendor-link', product: item.product %}</p>
+                    <p class="cart__text__main__vendor">{% render 'vendor-link', product: item.product %}</p>
 
                     <p class="cart__text__main__title"><a href="{{ item.url }}">{{ item.product.title }}</a></p>
                     {% unless item.product.has_only_default_variant %}
@@ -91,7 +93,7 @@
                 </td>
                 <td class="cart__close small--hide">
                   <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" >
-                    {% include 'close.svg' %}
+                    {% render 'close.svg' %}
                   </a>
                 </td>
               </tr>
@@ -115,7 +117,7 @@
             <span><strong>{{'cart.general.subtotal' | t }}:</strong>&ensp;{{ cart.total_price | money_without_trailing_zeros }}</span>
           {% endcapture %}
           {% assign checkout_button_text = 'cart.general.checkout' | t %}
-          {% include 'button-row',
+          {% render 'button-row',
             text: checkout_left,
             button_content: checkout_button_text,
             button_attributes: 'type="submit" name="checkout"',
@@ -141,9 +143,13 @@
     ---------------------
     Browser cookies are required to use the cart. If cookies aren't enabled in the
     browser a message is displayed prompting the user to enable them.
-    {% endcomment %}
+
     <div class="supports-no-cookies cart__empty--copy">
       <p>{{ 'cart.general.cookies_required' | t }}</p>
     </div>
+
+
+    {% endcomment %}
+
   {% endif %}
 </div>

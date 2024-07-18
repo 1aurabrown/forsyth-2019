@@ -3,7 +3,6 @@
 <!--
 =====================================================================
 
-                    Theme designed & coded by
 
         █   ▄▀▀▄ █  █ █▀▀▄ ▄▀▀▄   █▀▀▄ █▀▀▄ ▄▀▀▄ █   █ █▀▀▄
         █   █▄▄█ █  █ █▄▄▀ █▄▄█   █▀▀▄ █▄▄▀ █  █ █ ▄ █ █  █
@@ -14,7 +13,7 @@
 =====================================================================
 -->
 
-<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<html class="no-js" lang="{{ shop.locale }}">
 <head>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-963882593"></script>
@@ -76,10 +75,11 @@ gtag('js', new Date()); gtag('config', 'AW-963882593');
   <script src="https://www.powr.io/powr.js?platform=shopify"></script>
   {{ 'normalize@8.0.0.css' | asset_url | stylesheet_tag }}
   {{ 'fonts.css' | asset_url | stylesheet_tag }}
+  {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ 'theme-overrides.css' | asset_url | stylesheet_tag }}
   <script type="text/javascript" src="{{ 'theme.js' | asset_url }}" defer></script>
   <script type="text/javascript" src="{{ 'vendor.js' | asset_url }}" defer></script>
-  <script type="text/javascript" src="{{ 'animate-css.js' | asset_url }}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="{{ 'global.js' | asset_url }}" defer="defer"></script>

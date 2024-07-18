@@ -1,3 +1,6 @@
+{{ 'article.css' | asset_url | stylesheet_tag }}
+
+
 {%- comment -%}
   In order to avoid showing "success" message when we post comments
   with invalid format (eg. blank fields), we added logic to make sure it doesn't show.
@@ -39,6 +42,7 @@
 <script type="text/javascript" src="{{ 'flickity-fade@2.0.0.js' | asset_url }}" defer></script>
 {{ 'flickity@2.3.0.css' | asset_url | stylesheet_tag }}
 {{ 'flickity-fade@2.0.0.css' | asset_url | stylesheet_tag }}
+{{ 'flickity-custom.css' | asset_url | stylesheet_tag }}
 
 <article role="article" class="article">
 
@@ -52,7 +56,7 @@
   </header>
 
 
-  <section class="article__content small-down--serif-body-m medium-up--serif-body-l large-up--serif-body-xl rte" data-section-id="article-content" data-section-type="article-content">
+  <section class="article__content serif-body-m medium-up--serif-body-l large-up--serif-body-xl rte" data-section-id="article-content" data-section-type="article-content">
     {{ article.content }}
   </section>
 

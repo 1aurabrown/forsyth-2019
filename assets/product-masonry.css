@@ -1,0 +1,54 @@
+
+:root {
+  --product-masonry-gap-horizontal: 1rem;
+  --product-masonry-gap-vertical: 3rem
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --product-masonry-gap-horizontal:2rem;
+    --product-masonry-gap-vertical: 4.2rem
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  :root {
+    --product-masonry-gap-horizontal:4rem;
+    --product-masonry-gap-vertical: 7rem
+  }
+}
+
+.product-masonry__container {
+  visibility: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--product-masonry-gap-horizontal)*-1);
+  margin-top: calc(var(--product-masonry-gap-vertical)*-1)
+}
+
+.no-js .product-masonry__container,.product-masonry__container.loaded {
+  visibility: visible
+}
+
+.product-masonry__item {
+  transition: opacity .25s;
+  padding-left: var(--product-masonry-gap-horizontal);
+  padding-top: var(--product-masonry-gap-vertical)
+}
+
+.product-masonry__bottom {
+  margin-top: 5.6rem;
+  height: 3rem
+}
+
+.last .product-masonry__bottom,.product-masonry__status {
+  display: none
+}
+
+.product-masonry__view-more {
+  cursor: pointer
+}
+
+.loading .product-masonry__view-more {
+  display: none
+}

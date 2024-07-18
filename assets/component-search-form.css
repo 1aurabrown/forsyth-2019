@@ -1,47 +1,16 @@
 
-.header .search-form {
-	position: relative
+.search-form summary {
+	display: block;
 }
 
-.header .search-form .search-form__entry {
-	position: absolute;
-	top: calc(100% + 1.4rem);
-	left: 0
-}
-
-.header .search-form__label {
-	display: inline-block;
-	line-height: 1.5
-}
-
-@media (hover: hover) {
-	.header .search-form__label:hover {
-		position:relative;
-		display: inline-block
-	}
-
-	.header .search-form__label:hover:after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		height: 1px;
-		background-color: #000;
-		left: 0;
-		width: 100%
-	}
-}
-
-
-
-.search-form .search-form__entry {
+.search-form form {
+	display: flex;
 	white-space: nowrap;
 	position: relative;
-	display: inline-block;
-	line-height: 1.8;
-	display: flex
+  max-width: max-content;
 }
 
-.search-form .search-form__entry:after {
+.search-form form:after {
 	content: "";
 	position: absolute;
 	bottom: 0;
@@ -51,33 +20,59 @@
 	width: 100%
 }
 
-.search-form__input {
+.search-form form,
+.search-form input {
+	height: 21px;
+}
+
+
+.search-form button {
+	height: 21px;
+}
+.search-form input {
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
 	background: transparent;
-	width: 15rem
+	width: 15rem;
 }
 
-.search-form__input::placeholder {
+.search-form input::placeholder {
 	color: rgba(0,0,0,.6)
 }
 
-.search-form__button {
+.search-form button {
 	padding-left: 0;
 	padding-right: 0;
 	background: transparent
 }
 
-.search-form__button svg {
+.search-form button svg {
 	width: 12px;
 	height: 12px
 }
 
+
+/* Header */
+
+
+.header .search-form {
+	position: relative
+}
+
+.header .search-form form {
+	position: absolute;
+	top: calc(100% + 1.4rem);
+	left: 0
+}
+
+
+/* Sidebar */
+
 @media only screen and (max-width: 991px) {
 
 	.sidebar .search-form {
-		display: inline-block
+		margin-right: auto;
 	}
 
 	.sidebar .search-form details[open] summary {
@@ -85,24 +80,30 @@
 	}
 }
 
+/* Search page */
 
-.search .search-form__input {
+.search .search-form input {
 	font-style: italic;
-	width: 40rem
+	width: 40rem;
 }
 
-.search .search-form__input::placeholder {
+.search .search-form input::placeholder {
 	color: rgba(0,0,0,.6)
 }
 
-.search .search-form__button {
+.search .search-form button {
 	padding-left: 0;
 	padding-right: 0;
 	background: transparent;
 	padding-bottom: .5rem
 }
 
-.search .search-form__button svg {
+.search .search-form button svg {
 	width: 1.8rem;
 	height: 1.8rem
+}
+
+.search .search-form form,
+.search .search-form input {
+	height: 2.8rem;
 }

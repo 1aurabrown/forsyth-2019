@@ -1,0 +1,8 @@
+<div class="product__first-image medium-up--hide">
+  {% assign image = product.featured_image %}
+  {% render 'responsive-image' with
+    image: image,
+    wrapper_class: "product__first-image__image {{ class }}",
+    wrapper_attributes: "data-product-image-wrapper",
+  %}
+</div>

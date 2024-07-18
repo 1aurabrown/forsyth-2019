@@ -16,7 +16,7 @@ const spacing = {
   'thin': '.125rem',
   'gutter-mobile': '10px',
   'gutter-desktop': '30px',
-  'v-space': '0.875';
+  'v-space': '0.875',
   'text-line': '1rem',
    // fractions
   '1/2': 100.0 * 1/2 + '%',
@@ -81,15 +81,14 @@ module.exports = {
       'body-text': 'var(--color-body-text)',
       'body': 'var(--color-main-background)',
       'accent': 'var(--color-accent)',
-
     },
     fontSize: {
       base: '0.875rem',
       small: ['0.625rem', { lineHeight: '1rem', letterSpacing: '0.02em' }],
     },
     fontFamily: {
-      body: ['adobe-garamond-pro', 'serif'],
-      heading: ['SansGuiltMBMedium', 'sans-serif']
+      serif: ['adobe-garamond-pro', 'serif'],
+      sans: ['SansGuiltMBMedium', 'sans-serif']
     },
     letterSpacing: {
       wide: '0.05em',
@@ -105,6 +104,8 @@ module.exports = {
       'lg': '992px',
       'xl': '1300px',
       '2xl': '1536px',
+      'sm-down': { 'max': '767px' },
+      'md-down': { 'max': '991px' },
     },
     extend: {
       gridTemplateColumns: {

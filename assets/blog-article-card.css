@@ -1,0 +1,31 @@
+
+.blog-article-card a {
+  display: block
+}
+
+.blog-article-card__image img {
+  width: 100%;
+  display: block
+}
+
+.blog-article-card__title {
+  margin-top: 1.25em
+}
+
+.blog-article-card__excerpt {
+  margin-top: .75em
+}
+
+.blog-article-card__excerpt,.blog-article-card__title {
+  margin-left: 1rem;
+  margin-right: 1rem
+}
+
+
+
+@media only screen and (min-width: 992px) {
+  .blog .blog-grid .blog-article-card {
+    width:30vw
+  }
+}
+

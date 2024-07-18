@@ -1,0 +1,121 @@
+
+#header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%
+}
+
+@media only screen and (min-width: 992px) {
+  #header-container {
+    z-index:65
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #header-container {
+    z-index:2
+  }
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center
+}
+
+@media only screen and (min-width: 992px) {
+  .header {
+    height:7rem;
+    padding-left: 3rem;
+    padding-right: 3rem
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .header {
+    height:4.2rem;
+    padding: 0 1.5rem
+  }
+}
+
+.header__nav {
+  flex: 1
+}
+
+.header__nav a {
+  line-height: 1.5
+}
+
+@media (hover: hover) {
+  .header__nav a:hover {
+    position:relative;
+    display: inline-block
+  }
+
+  .header__nav a:hover:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    background-color: #000;
+    left: 0;
+    width: 100%
+  }
+}
+
+.header__nav__item {
+  line-height: 1.5
+}
+
+.header__nav__item.active {
+  position: relative;
+  display: inline-block
+}
+
+.header__nav__item.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  background-color: #000;
+  left: 0;
+  width: 100%
+}
+
+.header__nav__inner {
+  display: flex;
+  align-items: center
+}
+
+.header__nav__inner>* {
+  cursor: pointer
+}
+
+@media only screen and (min-width: 992px) {
+  .header__nav__inner>* {
+    margin-left:20px;
+    margin-right: 20px
+  }
+}
+
+.header__nav__inner--left {
+  justify-content: flex-start
+}
+
+@media only screen and (min-width: 992px) {
+  .header__nav__inner--left {
+    margin-left:-20px
+  }
+}
+
+.header__nav__inner--right {
+  justify-content: flex-end
+}
+
+@media only screen and (min-width: 992px) {
+  .header__nav__inner--right {
+    margin-right:-20px
+  }
+}

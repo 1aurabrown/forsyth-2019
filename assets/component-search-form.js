@@ -1,5 +1,3 @@
-
-
 if (!customElements.get('search-form')) {
   class SearchForm extends HTMLElement {
 
@@ -12,7 +10,6 @@ if (!customElements.get('search-form')) {
 		  input: '[name^="q"]',
 		}
     connectedCallback() {
-    	debugger
     	this.details = this.querySelector('details')
 		  this.input = this.querySelector('[name^="q"]');
 		  this.summary = this.querySelector('summary');

@@ -5,19 +5,17 @@
       Search
     </summary>
 
-    <div class="search-form__entry">
-      <form action="/search" method="get" role="search" class="search-form {% if expanded %}expanded{% endif %}">
-        <input type="search"
-          class="search-form__input sans-serif-m"
-          name="q"
-          id="Search-{{ search_form_counter }}"
-          value="{{ search.terms | escape }}"
-          placeholder="{{ 'general.search.placeholder' | t }}">
+    <form action="/search" method="get" role="search">
+      <input type="search"
+        class="search-form__input sans-serif-m"
+        name="q"
+        id="Search-{{ search_form_counter }}"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}">
 
-        <button type="submit" class="button search-form__button">
-          {% include 'icon-search' %}
-          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-        </button>
-      </form>
-    </div>
+      <button type="submit" class="button search-form__button">
+        {% include 'icon-search' %}
+        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
 </search-form>
