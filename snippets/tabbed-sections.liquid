@@ -21,7 +21,7 @@
   assign texts = texts_string | split: token | compact
 %}
 
-<tabbed-sections class="tabbed-sections">
+<tabbed-sections class="tabbed-sections {{ class }}">
   <div class="tabbed-sections__headings" js-headings-container>
     <div class="tabbed-sections__headings__content sans-serif-uppercase-m" js-headings>
       {% for heading in headings %}

@@ -11,7 +11,7 @@
   {% endif %}
 {% endfor %}
 
-<div class="product__form {{ product_form_class }}">
+<product-form class="product__form {{ product_form_class }}">
   {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
     {% unless product.has_only_default_variant %}
       {% for option in product.options_with_values %}
@@ -126,6 +126,6 @@
     {% endif %}
   {% endform %}
 
-</div>
+</product-form>
 
 

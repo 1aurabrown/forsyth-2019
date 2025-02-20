@@ -1,11 +1,20 @@
-import _ from 'lodash';
-import Listeners from './listeners';
-export default function MobileWaypoints(container, selectors, breakpoints) {
+import Listeners from './listeners.js';
+
+const selectors = {
+  bottomMobileSticky: '[data-bottom-sticky]',
+  bottomMobileStickyContainer: '[data-bottom-sticky-container]',
+  imagesContainer: '[data-images-container]',
+  headingsBar: '[js-headings]',
+  headingsBarContainer: '[js-headings-container]',
+
+};
+
+export default function MobileWaypoints(container, breakpoints) {
+  if (!container) { console.warn('MobileWaypoints was not passed a container'); return; }
   this.bottom = container.querySelector(selectors.bottomMobileSticky)
   this.bottomContainer = container.querySelector(selectors.bottomMobileStickyContainer)
   this.headingsBarContainer = container.querySelector(selectors.headingsBarContainer)
   this.headingsBar = container.querySelector(selectors.headingsBar)
-  this.description = container.querySelector(selectors.description)
   this.images = container.querySelector(selectors.imagesContainer)
 
   this.previousScroll = -1;
@@ -52,7 +61,6 @@ MobileWaypoints.prototype._update = function() {
 }
 
 MobileWaypoints.prototype._updateBottom = function(direction) {
-
   var bottomContainerRect = this.bottomContainer.getBoundingClientRect();
   var spaceBelowBottomContainer = window.innerHeight - bottomContainerRect.bottom;
 
