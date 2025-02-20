@@ -22,10 +22,7 @@
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
 
-  {{ 'fonts.css' | asset_url | stylesheet_tag }}
-  {{ 'theme.css' | asset_url | stylesheet_tag }}
-  <script type="text/javascript" src="{{ 'theme.js' | asset_url }}" defer></script>
-  <script type="text/javascript" src="{{ 'vendor.js' | asset_url }}" defer></script>
+  {% render 'assets' %}
 
   {{ content_for_header }}
 </head>
