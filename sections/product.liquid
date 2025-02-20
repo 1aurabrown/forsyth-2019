@@ -1,23 +1,21 @@
-<script type="text/javascript" src="{{ 'breakpoints-js@1.0.6.js' | asset_url }}" defer></script>
-<script type="text/javascript" src="{{ 'sticky-sidebar.js' | asset_url }}" defer></script>
-<script type="text/javascript" src="{{ 'sticky-sidebar-custom.js' | asset_url }}" defer></script>
 
-<!-- <script type="text/javascript" src="{{ 'product-info.js' | asset_url }}" defer></script> -->
-<!-- <script type="text/javascript" src="{{ 'product-form.js' | asset_url }}" defer></script> -->
-<script type="module" src="{{ 'product-old.js' | asset_url }}" defer></script>
-<script type="text/javascript" src="{{ 'tabbed-sections.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'breakpoints-js@1.0.6.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'sticky-sidebar.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'sticky-sidebar-custom.js' | asset_url }}" defer></script>
+
+  <script type="module" src="{{ 'product-forms.js' | asset_url }}" defer></script>
+  <script type="module" src="{{ 'product-layout.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'tabbed-sections.js' | asset_url }}" defer></script>
 
 
-<product-info
+
+<product-layout
   id="MainProduct-{{ section.id }}"
   class="block product"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
   data-url="{{ product.url }}"
-  {% if section.settings.image_zoom == 'hover' %}
-    data-zoom-on-hover
-  {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'tabbed-sections.css' | asset_url | stylesheet_tag }}
@@ -36,7 +34,7 @@
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
-  <div class="product__content">
+  <product-info class="block product__content">
     {% render 'product-featured-image', product: product %}
 
     <div class="product__text">
@@ -81,8 +79,8 @@
 
     <!-- Images -->
     {% render 'product-images' %}
-  </div>
-</main-product>
+  </product-info>
+</product-layout>
 
 {% schema %}
   {

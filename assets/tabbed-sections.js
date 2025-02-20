@@ -6,6 +6,7 @@ if (!customElements.get('tabbed-sections')) {
     	constructor() {
     		super()
 			  this.headings = Array.from(this.querySelectorAll('.tabbed-sections__heading'))
+				if (!this.headings.length) return;
 			  this.contents = Array.from(this.querySelectorAll('.tabbed-sections__text'))
 			  this.textsContainer = this.querySelector('.tabbed-sections__texts')
 
@@ -16,6 +17,7 @@ if (!customElements.get('tabbed-sections')) {
 			}
 
 			connectedCallback() {
+				if (!this.headings.length) return;
 			  // ensure all texts are direct children of texts container
 			  this.contents.forEach(c => {
 			  	this.textsContainer.appendChild(c);
@@ -31,11 +33,11 @@ if (!customElements.get('tabbed-sections')) {
 			}
 
 			disconnectedCallback() {
+				if (!this.headings.length) return;
 				window.removeEventListener('resize', this.boundWindowResize)
 			}
 
 			selectTab(index = 0, animated) {
-
 			  const event = new Event("update");
 				this.dispatchEvent(event);
 
