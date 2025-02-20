@@ -42,7 +42,7 @@
   {%- assign onload = 'this.style.removeProperty("background-image");' -%}
 
   {% if use_padding != false %}
-    <div class="rel {{ wrapper_class }}" {{ wrapper_attributes }}>
+    <div class="rel x {{ wrapper_class }}" {{ wrapper_attributes }}>
       <div style="padding-top: {{ 1.00 | divided_by: aspect_ratio | times: 100.00 | append: '%' }} ">
   {% endif %}
 
