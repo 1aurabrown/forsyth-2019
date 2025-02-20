@@ -39,7 +39,7 @@ if (!customElements.get('product-info')) {
 		    this.tabbedSections.addEventListener('resize', this.updateDesktopSticky.bind(this))
 
 		    // Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
-		    // Breakpoints.on('desktop tablet', 'enter', this.exitMobile.bind(this))
+		    Breakpoints.on('desktop tablet', 'enter', this.exitMobile.bind(this))
 		    // Breakpoints.on('mobile', 'enter', this.enterMobile.bind(this))
 		  }
 
@@ -52,6 +52,7 @@ if (!customElements.get('product-info')) {
 
 		  // Methods relating to right-hand sticky text area on tablet & desktop
 		  createDesktopSticky () {
+		  	debugger
 		    window.productSticky = this.desktopSticky = new StickySidebar(this.rightColumn, {
 		      containerSelector: selectors.container,
 		      innerWrapperSelector: selectors.rightColumnInner,
@@ -83,12 +84,12 @@ if (!customElements.get('product-info')) {
 		  exitMobile() {
 		    this.createDesktopSticky();
 		    this.updateDesktopSticky();
-		    this.mobileWaypoints.teardown();
+		    // this.mobileWaypoints.teardown();
 		  }
 
 		  enterMobile () {
 		    this.destroySticky();
-		    this.mobileWaypoints.setup();
+		    // this.mobileWaypoints.setup();
 		  }
 		}
 	)
