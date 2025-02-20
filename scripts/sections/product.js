@@ -119,7 +119,6 @@ register('product', {
   },
 
   updateDesktopSticky() {
-    console.log('update product sticky')
     if (Breakpoints.is('mobile')) return;
     setTimeout(function() {
       if (this.desktopSticky) {
@@ -221,7 +220,6 @@ register('product', {
   updateBrowserHistory(variant) {
     const enableHistoryState = this.productForms[0].element.dataset
       .enableHistoryState;
-    console.log(enableHistoryState)
     if (!variant || enableHistoryState !== 'true') {
       return;
     }

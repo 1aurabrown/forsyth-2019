@@ -40,7 +40,6 @@ register('press', {
 
     this.$zoomInner.html(this.zoomTemplate(clipping))
     imagesLoaded( this.$zoomInner, function() {
-      console.log('images loaded')
       setTimeout(function() {
         this.$zoomContainer.addClass('images-loaded');
       }.bind(this), 0);
@@ -48,13 +47,10 @@ register('press', {
 
 
     this.$zoomContainer.removeClass('hide');
-    console.log('unhidden')
     this.$zoomContainer.addClass('visible');
-    console.log('visible')
   },
 
   zoomClicked(e) {
-    console.log(e.target)
     if (e.target == this.$zoomContainer[0] || e.target == this.$close[0]) {
       $(this.container).one('transitionend' + namespace, this.$zoomContainer, function() {
         if (this.$zoomContainer.is(':visible')) {

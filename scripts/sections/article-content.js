@@ -44,7 +44,6 @@ register('article-content', {
   },
 
   createSlideshow(el) {
-    console.log(el)
     if (!this.slideshows) {
       this.slideshows = []
     }
