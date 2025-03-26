@@ -1,7 +1,7 @@
 <div class="collection__header serif-body-m">
   {% if collection.image != blank %}
     <div class="collection__header__image">
-      {% include 'responsive-image' with
+      {% render 'responsive-image' with
         image: collection.image
       %}
     </div>

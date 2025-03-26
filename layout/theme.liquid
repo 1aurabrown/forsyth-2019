@@ -53,8 +53,8 @@ gtag('js', new Date()); gtag('config', 'AW-963882593');
 
   {{ settings.font_embed_html }}
 
-  {% include 'social-meta-tags' %}
-  {% include 'css-variables' %}
+  {% render 'social-meta-tags' %}
+  {% render 'css-variables' %}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');

@@ -1,3 +1,9 @@
+<script type="text/javascript" src="{{ 'flickity@2.3.0.pkgd.min.js' | asset_url }}"></script>
+<!-- <script type="text/javascript" src="{{ 'flickity-fade@2.0.0.js' | asset_url }}"></script> -->
+<script type="text/javascript" src="{{ 'component-article-content.js' | asset_url }}" defer></script>
+{{ 'flickity@2.3.0.css' | asset_url | stylesheet_tag }}
+{{ 'flickity-fade@2.0.0.css' | asset_url | stylesheet_tag }}
+{{ 'flickity-custom.css' | asset_url | stylesheet_tag }}
 {{ 'article.css' | asset_url | stylesheet_tag }}
 
 
@@ -8,7 +14,7 @@
   Comment help page:
   http://docs.shopify.com/themes/liquid-variables/comment
 {%- endcomment -%}
-{% include 'title-header', title: 'Journal' %}
+{% render 'title-header', title: 'Journal' %}
 
 
 {%- assign new_comment = false -%}
@@ -38,12 +44,6 @@
 {%- endif -%}
 
 
-<script type="text/javascript" src="{{ 'flickity@2.3.0.pkgd.min.js' | asset_url }}"></script>
-<script type="text/javascript" src="{{ 'flickity-fade@2.0.0.js' | asset_url }}" defer></script>
-{{ 'flickity@2.3.0.css' | asset_url | stylesheet_tag }}
-{{ 'flickity-fade@2.0.0.css' | asset_url | stylesheet_tag }}
-{{ 'flickity-custom.css' | asset_url | stylesheet_tag }}
-
 <article role="article" class="article">
 
   {% if article.image %}
@@ -56,17 +56,17 @@
   </header>
 
 
-  <section class="article__content small-down--serif-body-m medium-up--serif-body-l large-up--serif-body-xl rte" data-section-id="article-content" data-section-type="article-content">
+  <article-content class="block article__content small-down--serif-body-m medium-up--serif-body-l large-up--serif-body-xl rte" data-section-id="article-content" data-section-type="article-content">
     {{ article.content }}
-  </section>
+  </article-content>
 
 
   {% if settings.social_sharing_blog %}
-    {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+    {% render 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
   {% endif %}
 
   {% if blog.comments_enabled? %}
-    {% include 'blog-comments' %}
+    {% render 'blog-comments', article: article %}
   {% endif %}
 
 

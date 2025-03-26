@@ -1,4 +1,3 @@
-console.log('homepage logo loaded')
 if (!customElements.get('homepage-logo')) {
   class HomepageLogo extends HTMLElement {
 

@@ -21,7 +21,7 @@
 
         {% paginate block_collection.products by 12 %}
 
-          {% include 'product-masonry' with
+          {% render 'product-masonry' with
             masonry_items: block_collection.products,
             infinite_scroll: false,
             view_all_link: block_collection.url,
@@ -34,7 +34,7 @@
 
     {% elsif block.type == 'image-with-text' %}
 
-      {% include 'image-with-text',
+      {% render 'image-with-text',
         title: block.settings.title,
         image: block.settings.image,
         text: block.settings.text

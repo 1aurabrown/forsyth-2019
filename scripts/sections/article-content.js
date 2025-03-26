@@ -63,7 +63,6 @@ register('article-content', {
   },
 
   onUnload() {
-    this.newsletter.destroy();
     this.slideshows.forEach(() => {
       this.destroy()
     })

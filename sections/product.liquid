@@ -47,7 +47,7 @@
 
                 <!-- Vendor -->
                 {% if product.vendor.size > 0 %}
-                  <div class="product__text__top__vendor">{% include 'vendor-link' %}</div>
+                  <div class="product__text__top__vendor">{% render 'vendor-link' %}</div>
                 {% endif %}
 
                 <!-- Title -->
@@ -68,7 +68,7 @@
 
           <!-- Social -->
           {% if section.settings.show_share_buttons %}
-            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
           {% endif %}
 
           <!-- More Info -->
