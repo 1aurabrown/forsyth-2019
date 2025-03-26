@@ -2,7 +2,8 @@
   {% if collection.image != blank %}
     <div class="collection__header__image">
       {% render 'responsive-image' with
-        image: collection.image
+        image: collection.image,
+        preload: true
       %}
     </div>
   {% endif %}

@@ -1,39 +1,27 @@
 <script type="text/javascript" src="{{ 'imagesloaded@5.0.0.pkgd.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-press.js' | asset_url }}" defer></script>
 
 <section class="press" data-section-id="{{ section.id }}" data-section-type="press" >
-  <div data-press-zoom class="press__zoom hide" >
-    <div class="press__zoom__inner">
-      <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
-      <div data-press-zoom-content class="press__zoom__content">
-      </div>
-    </div>
-  </div>
   <div class="grid press__grid">
+
     {% for block in section.blocks %}
-      <div class="grid__item small--one-half medium-up--one-third press__grid__item">
-        <div data-press-thumb="{{ forloop.index }}" class="press__grid__item__image">
-          {% include 'responsive-image-only', default_width: 200, image: block.settings.primary_image %}
+      {%- assign block_image = block.settings.detail_image | default: block.settings.primary_image -%}
+      <press-item class="block grid__item small--one-half medium-up--one-third press__grid__item">
+        <div class="press__zoom hide" >
+          <div class="press__zoom__inner rel">
+            <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
+            <figure>
+              {% render 'responsive-image-only', image:block_image, alt: block.settings.caption %}
+              <figcaption>{{ block.settings.caption }}</figcaption>
+            </figure>
+          </div>
         </div>
-      </div>
+        <div class="press__grid__item__image">
+          {% include 'responsive-image', aspect_ratio: 0.8, default_width: 200, image: block.settings.primary_image %}
+        </div>
+      </press-item>
     {% endfor %}
   </div>
-  <script type="application/json" data-press-json>
-    {
-      "blocks": [
-        {%- for block in section.blocks -%}
-        {%- assign block_image = block.settings.detail_image | default: block.settings.primary_image -%}
-        {
-          "image": {{ block_image | json }},
-          "caption": {{ block.settings.caption | json }},
-          "alt": {{ block.settings.caption | strip_html | json }},
-          "index": {{ forloop.index }},
-          "aspect_ratio": {{ block_image.aspect_ratio | json }}
-        }
-        {%- if forloop.index < forloop.length -%}, {%- endif -%}
-        {%- endfor -%}
-      ]
-    }
-  </script>
 </section>
 
 {% schema %}

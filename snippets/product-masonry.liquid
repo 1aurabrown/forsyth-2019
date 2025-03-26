@@ -12,9 +12,15 @@
   {% if masonry_items.size > 0 %}
     <div class="product-masonry__container js-hidden">
       {% for product in masonry_items %}
+        {% liquid
+          assign preload = false
+          if forloop.index < 6
+            assign preload = true
+          endif
+        %}
         {% if product.object_type == 'product' %}
           <div data-animate="fade-in" class="product-masonry__item medium-up--one-third small--one-half">
-            {% render 'product-card', card_product: product %}
+            {% render 'product-card', card_product: product, preload: preload %}
           </div>
         {% endif %}
       {% endfor %}
