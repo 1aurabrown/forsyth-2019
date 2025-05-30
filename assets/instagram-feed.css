@@ -20,14 +20,19 @@
     align-items: center
 }
 
-.instagram-feed #insta-feed .images a {
+.instagram-feed #insta-feed .images .instafeed-new-layout-item {
     margin: 0 10%;
-    display: block;
     height: auto!important
 }
 
+
+.instagram-feed #insta-feed .images .instafeed-new-layout-item a {
+    display: block;
+    aspect-ratio: 1;
+}
+
 @media only screen and (max-width: 767px) {
-    .instagram-feed #insta-feed .images a {
+    .instagram-feed #insta-feed .images .instafeed-new-layout-item {
         width:50%!important;
         flex: 50% 0 0;
         margin: 0 2.5%
@@ -35,14 +40,14 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .instagram-feed #insta-feed .images a {
+    .instagram-feed #insta-feed .images .instafeed-new-layout-item {
         width:20%!important;
         flex: 20% 0 0;
         margin: 0 2.5%
     }
 }
 
-.instagram-feed #insta-feed .images a .instafeed-container {
+.instagram-feed #insta-feed .images .instafeed-new-layout-item .instafeed-container {
     display: block!important;
     width: 100%!important;
     padding-top: 100%!important

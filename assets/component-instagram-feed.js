@@ -5,7 +5,7 @@ if (!customElements.get('instagram-feed')) {
     }
     static selectors = {
       feedContainer: '#insta-feed',
-      image: '#insta-feed a',
+      image: '.instafeed-new-layout-item',
       imageInner: '.instafeed-container',
       heading: '#insta-feed h2',
       imagesContainer: '.' + InstagramFeed.classes.imagesContainer
@@ -62,6 +62,7 @@ if (!customElements.get('instagram-feed')) {
       newContainer.classList.add(InstagramFeed.classes.imagesContainer);
       this.images.forEach(img => {
         newContainer.appendChild(img)
+        img.style =''
       })
       feedContainer.appendChild(newContainer);
     }

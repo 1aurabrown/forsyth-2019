@@ -1994,59 +1994,6 @@ body.template-index main {
 }
 
 
-@media only screen and (min-width: 992px) {
-  .issuu {
-    padding:0 21rem;
-    max-width: 140rem;
-    margin-right: auto;
-    margin-left: auto
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .issuu {
-    padding:0 2rem
-  }
-}
-
-.issuu__inner {
-  position: relative;
-  width: 100%;
-  padding-top: 67%
-}
-
-@media (hover: hover) {
-  .issuu__inner {
-    border:1px solid #999
-  }
-}
-
-.issuu__inner .issuuembed {
-  width: 100%!important;
-  height: 100%!important;
-  left: 0;
-  top: 0;
-  position: absolute
-}
-
-@media only screen and (min-width: 992px) {
-  .tumblr .tumblr__wrapper {
-    padding:0 21rem
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .tumblr .tumblr__wrapper {
-    padding:0 2rem
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .tumblr .tumblr__wrapper {
-    padding:0 2rem
-  }
-}
-
 
 
 /*# sourceMappingURL=theme.css.map*/

@@ -27,9 +27,18 @@
   {{ content_for_header }}
 </head>
 
-<body class="template-giftcard">
-  <main role="main" id="MainContent">
-    {{ content_for_layout }}
-  </main>
+<header role="banner">
+  <a href="{{ shop.url }}">
+    {{ shop.name }}
+  </a>
+</header>
+
+<body class="template-giftcard gift-card">
+  {{ content_for_layout }}
 </body>
+
+
+<script type="text/javascript" src="{{ 'qrcode.js' | asset_url }}" defer="defer"></script>
+<script type="text/javascript" src="{{ 'gift_card.js' | asset_url }}" defer="defer"></script>
+
 </html>
