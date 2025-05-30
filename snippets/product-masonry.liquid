@@ -7,7 +7,7 @@
 {{ 'product-masonry.css' | asset_url | stylesheet_tag }}
 {{ 'product-card.css' | asset_url | stylesheet_tag }}
 
-<product-masonry class="product-masonry" {% if infinite_scroll == true %} data-product-infinite-scroll {% endif %}>
+<product-masonry class="block product-masonry" {% if infinite_scroll == true %} data-product-infinite-scroll {% endif %}>
 
   {% if masonry_items.size > 0 %}
     <div class="product-masonry__container js-hidden">

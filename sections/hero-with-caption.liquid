@@ -3,7 +3,7 @@
 
     {% if section.settings.layout == 'inset' %}
       {% if section.blocks[0].settings.image != blank %}
-        {% render 'responsive-image', image: section.blocks[0].settings.image, wrapper_class: "hero__image" %}
+        {% render 'responsive-image', preload: true, image: section.blocks[0].settings.image, wrapper_class: "hero__image" %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
@@ -11,7 +11,7 @@
     {% else %}
       {% for block in section.blocks %}
         {% if block.settings.image != blank %}
-          {% render 'responsive-image', image: block.settings.image, wrapper_class: "hero__image" %}
+          {% render 'responsive-image', preload: true, image: block.settings.image, wrapper_class: "hero__image" %}
         {% else %}
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
