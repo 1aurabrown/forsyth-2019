@@ -1,3 +1,5 @@
+{{ 'component-press.css' | asset_url | stylesheet_tag }}
+
 <script type="text/javascript" src="{{ 'imagesloaded@5.0.0.pkgd.js' | asset_url }}" defer></script>
 <script type="text/javascript" src="{{ 'component-press.js' | asset_url }}" defer></script>
 
@@ -8,12 +10,14 @@
       {%- assign block_image = block.settings.detail_image | default: block.settings.primary_image -%}
       <press-item class="block grid__item small--one-half medium-up--one-third press__grid__item">
         <div class="press__zoom hide" >
-          <div class="press__zoom__inner rel">
+          <div class="press__zoom__inner">
             <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
-            <figure>
-              {% render 'responsive-image-only', image:block_image, alt: block.settings.caption %}
-              <figcaption>{{ block.settings.caption }}</figcaption>
-            </figure>
+            <div class="press__zoom__content rel">
+              <figure>
+                {% render 'responsive-image-only', image:block_image, alt: block.settings.caption %}
+                {% if block.settings.caption !=blank %}<figcaption>{{ block.settings.caption }}</figcaption>{%  endif %}
+              </figure>
+            </div>
           </div>
         </div>
         <div class="press__grid__item__image">
