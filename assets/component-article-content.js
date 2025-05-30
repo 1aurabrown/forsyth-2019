@@ -5,6 +5,7 @@ if (!customElements.get('article-content')) {
 		}
 
 		static selectors = {
+			slideshows: '.image-container--many-images'
 		};
 
     connectedCallback() {
