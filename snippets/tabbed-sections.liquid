@@ -3,7 +3,11 @@
   assign token = "+|+"
   assign headings_string = ''
   assign texts_string = ''
-  assign split_description = product.description | strip | replace: '<div>', '' | replace: '</div>', '' | split: "<h3>"
+  assign split_description = product.description | strip | split: "<h3>"
+
+  %}
+
+  {% liquid
   for chunk in split_description
     assign split_chunk = chunk | split: '</h3>'
     if split_chunk.size == 2
@@ -21,7 +25,7 @@
   assign texts = texts_string | split: token | compact
 %}
 
-{{ texts[2] }}
+
 <tabbed-sections class="tabbed-sections {{ class }}">
   <div class="tabbed-sections__headings" js-headings-container>
     <div class="tabbed-sections__headings__content sans-serif-uppercase-m" js-headings>
@@ -36,3 +40,4 @@
     {% endfor %}
   </div>
 </tabbed-sections>
+
