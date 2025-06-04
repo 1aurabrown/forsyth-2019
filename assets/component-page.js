@@ -23,7 +23,9 @@ if (!customElements.get('page-section')) {
 	        newImageWrapper.classList.add(classes.image)
 	        newImageWrapper.appendChild(image)
 	        this.imagesContainer.append(newImageWrapper)
-	        originalParent.parentElement.removeChild(originalParent)
+	        
+	        const isEmptyElement = !originalParent.innerHTML.replace(/\s/g, '').length
+	        if (isEmptyElement) originalParent.parentElement.removeChild(originalParent)
 	    	})
 	    } else {
 	      imagesContainer.parentElement.removeChild(imagesContainer)
