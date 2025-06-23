@@ -1,13 +1,14 @@
 {{ 'text-page.css' | asset_url | stylesheet_tag }}
-<script type="text/javascript" src="{{ 'component-page.js' | asset_url }}" defer></script>
 
 <section class="text-page serif-body-m" data-section-id="{{ section.id }}" data-section-type="page-section" >
-  <page-section class="block">
+  <div class="block">
     <div class="text-page__text ">
       {{ page.content }}
     </div>
-
-    <div class="text-page__images">
+    <div class="text-page__images {% if page.metafields.custom.images.value.count > 1 and page.metafields.custom.two_column_image_layout == true %}text-page__images--two-columns{% else %} text-page__images--one-column{% endif %} ">
+        {% for image in page.metafields.custom.images.value %}
+          <img class="text-page__images__image" src="{{ image | image_url }}" class="x block"/>
+        {% endfor %}
     </div>
-  </page-section>
+  </div>
 </section>
