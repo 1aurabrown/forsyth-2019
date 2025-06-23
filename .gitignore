@@ -52,5 +52,4 @@ config.yml
 secrets.json
 .jekyll-metadata
 .ruby-version
-lerna-debug.log
-.changelog/
+.shopify

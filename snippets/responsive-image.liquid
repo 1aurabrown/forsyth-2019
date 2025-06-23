@@ -1,0 +1,67 @@
+{% if image %}
+  {% liquid
+    if aspect_ratio > 0
+      assign aspect_ratio = aspect_ratio
+    else
+      assign aspect_ratio = image.aspect_ratio
+    endif
+    assign alt = alt | default: image.alt | escape
+    assign class = image_class | default: ''
+    assign class = class | append: ' bg-no-repeat bg-center motion-reduce'
+    assign sizes = sizes | default: '(min-width: 768px) 50vw, 100vw'
+
+    assign widths = widths | default: '180, 360, 450, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, ' | append: image.width
+    assign fit = fit | default: 'contain'
+    assign placeholder_width =  180
+
+    assign width = width | default: image.width
+
+    if fit == 'contain'
+      assign class = class | append: ' object-contain bg-contain'
+    elsif fit == 'cover'
+      assign class = class | append: ' object-cover bg-cover'
+    endif
+
+    assign loading = 'lazy'
+    if preload
+      assign loading = 'eager'
+    endif
+
+    if use_padding != false
+      assign class = class | append: ' abs fill x y'
+    endif
+  %}
+
+  {% comment %}
+    If image is marked as preload (above the fold) load low-res image placeholder as background image. We don't do this on other images (which will be lazy-loaded) to reduce network requests.
+  {% endcomment %}
+
+  {%- capture style -%}
+    background-image: url('{{ image | image_url: width: placeholder_width }}');
+  {%- endcapture -%}
+  {%- assign onload = 'this.style.removeProperty("background-image");' -%}
+
+  {% if use_padding != false %}
+    <div class="rel x {{ wrapper_class }}" {{ wrapper_attributes }}>
+      <div style="padding-top: {{ 1.00 | divided_by: aspect_ratio | times: 100.00 | append: '%' }} ">
+  {% endif %}
+
+      {{ image | image_url: width: width | image_tag:
+        loading: loading,
+        preload: preload,
+        id: id,
+        style: style,
+        class: class,
+        sizes: sizes,
+        widths: widths,
+        width: width,
+        onload: onload,
+        alt: alt
+      }}
+
+  {% if use_padding != false %}
+      </div>
+    </div>
+  {% endif %}
+
+{% endif %}

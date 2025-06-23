@@ -1,0 +1,78 @@
+<section data-section-id="{{ section.id }}" data-section-type="footer">
+  <footer class="footer sans-serif-m max-width" >
+    {%- assign footer_linklist = section.settings.footer_linklist -%}
+    {%- assign footer_legal_linklist = section.settings.footer_legal_linklist -%}
+    {%- assign footer_size = linklists[footer_linklist].links.size -%}
+    {%- assign halfway = footer_size | divided_by: 2 | round -%}
+    {% if footer_size > 0 %}
+      <div class="footer__links">
+        <ul>
+          {% for link in linklists[footer_linklist].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% if forloop.index == halfway %}
+              <div class="breaker large-up--hide small--hide"></div>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <div class="footer__bottom">
+      {% include 'newsletter-signup',
+        success: section.settings.success,
+        placeholder: section.settings.placeholder,
+        class: 'footer__newsletter' %}
+      <div class="footer__legal">
+        <ul>
+          {% for link in linklists[footer_legal_linklist].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+
+
+      </div>
+    </div>
+    <div class="footer__credit medium-up--text-right small--text-center">
+      <a class="footer__credit__link" href="https://laurabrown.studio" target="_blank">Website by Laura Brown</a>
+      <span class="footer__credit__copyright">
+          &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}
+        </span>
+    </div>
+  </footer>
+</section>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_legal_linklist",
+        "label": "Legal menu",
+        "default": "footer"
+      },
+      {
+        "type": "text",
+        "id": "success",
+        "label": "Newsletter success Message",
+        "default": "Thank you."
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Newsletter placeholder",
+        "default": "your email address"
+      },
+      {
+        "type":      "paragraph",
+        "content":   "Configure the connection to Mailchimp globally in the Theme settings."
+      }
+    ]
+  }
+
+{% endschema %}

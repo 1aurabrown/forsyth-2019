@@ -1,0 +1,38 @@
+
+.collection {
+  padding: 0 1rem
+}
+
+.collection__header__description,.collection__header__image {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.collection__header__image {
+  margin-bottom: 5.6rem;
+  max-width: 43.75em
+}
+
+.collection__header__description {
+  font-family: adobe-garamond-pro,serif;
+  margin-bottom: 5.6rem;
+  padding: 0 2em;
+  max-width: 39em
+}
+
+@media only screen and (min-width: 768px) {
+  .collection__header__image {
+    margin-bottom:7rem
+  }
+
+  .collection__header__description {
+    margin-bottom: 9.8rem
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .collection {
+    padding-left:21rem;
+    padding-right: 21rem
+  }
+}

@@ -1,0 +1,70 @@
+
+.instagram-feed__caption {
+    text-align: center;
+    margin: 2.8rem 0
+}
+
+.instagram-feed #insta-feed h2 {
+    display: none!important
+}
+
+.instagram-feed #insta-feed .flickity-viewport,.instagram-feed #insta-feed .images {
+    width: 100%
+}
+
+.instagram-feed #insta-feed .images {
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.instagram-feed #insta-feed .images .instafeed-new-layout-item {
+    margin: 0 10%;
+    height: auto!important
+}
+
+
+.instagram-feed #insta-feed .images .instafeed-new-layout-item a {
+    display: block;
+    aspect-ratio: 1;
+}
+
+@media only screen and (max-width: 767px) {
+    .instagram-feed #insta-feed .images .instafeed-new-layout-item {
+        width:50%!important;
+        flex: 50% 0 0;
+        margin: 0 2.5%
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .instagram-feed #insta-feed .images .instafeed-new-layout-item {
+        width:20%!important;
+        flex: 20% 0 0;
+        margin: 0 2.5%
+    }
+}
+
+.instagram-feed #insta-feed .images .instafeed-new-layout-item .instafeed-container {
+    display: block!important;
+    width: 100%!important;
+    padding-top: 100%!important
+}
+
+@media only screen and (min-width: 768px) {
+    .instagram-feed #insta-feed .images .flickity-prev-next-button {
+        width:10%
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .instagram-feed #insta-feed .images .flickity-prev-next-button {
+        width:19%
+    }
+}
+
+.instagram-feed #insta-feed.white .images .flickity-prev-next-button svg {
+    fill: #fff
+}

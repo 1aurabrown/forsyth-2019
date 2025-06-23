@@ -1,0 +1,72 @@
+<div class="product-card">
+  {% if card_product.featured_image != blank %}
+    <a class="product-card__images rel" href="{{ card_product.url | within: collection }}">
+      {% render 'responsive-image' with
+        image: card_product.featured_image,
+        max_width: 700,
+        max_height: 560,
+        image_class: "product-card__image",
+        wrapper_class: "product-card__image-wrapper product-card__image-wrapper--primary"
+      %}
+      <div class="product-card__image-wrapper product-card__image-wrapper--secondary abs fill">
+        {% render 'responsive-image-only' with
+          image: card_product.images[1],
+          image_class: "js product-card__image x y object-cover"
+        %}
+      </div>
+    </a>
+  {% endif %}
+
+  <div class="product-card__metadata serif-body-m">
+    <p class="product-card__vendor">
+      {% render 'vendor-link', product: card_product %}
+    </p>
+
+    <p>
+      <a href="{{ card_product.url | within: collection }}">{{ card_product.title }}</a>
+    </p>
+
+    <p>
+      {% if card_product.tags contains 'inquire' %}
+        <i><a href="mailto:{{ shop.email }}">Inquire</a></i>
+
+      {% elsif card_product.available %}
+      {% comment %} On sale {% endcomment %}
+        {% if card_product.compare_at_price > card_product.price %}
+          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+          <s class="product-card__strikethrough_price">{{ card_product.compare_at_price | money_without_trailing_zeros }}</s>
+          &nbsp;
+          {% if card_product.price_varies %}
+            {%- assign sale_price = card_product.price | money_without_trailing_zeros -%}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            {{ card_product.price | money_without_trailing_zeros }}
+          {% endif %}
+
+        {% else %}
+        {% comment %} Available; not on sale {% endcomment %}
+          {% if card_product.price_varies %}
+            {%- assign price = card_product.price | money_without_trailing_zeros -%}
+            {{ 'products.product.from_text_html' | t: price: price }}
+          {% else %}
+            {{ card_product.price | money_without_trailing_zeros }}
+          {% endif %}
+        {% endif %}
+
+      {% else %}
+      {% comment %} Sold {% endcomment %}
+        {% assign hide_price_if_sold = false %}
+        {% assign no_price_sold_tags = settings.no_price_sold_tags | split: ',' %}
+        {% for tag in no_price_sold_tags %}
+          {% assign clean_tag = tag | strip %}
+          {% if card_product.tags contains clean_tag %}
+            {% assign hide_price_if_sold = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% unless hide_price_if_sold == true %} <s class="product-card__strikethrough_price">{{ card_product.price | money_without_trailing_zeros }}</s> &nbsp; {% endunless %}
+        <i>{{ 'products.product.sold_out' | t }}</i>
+      {% endif %}
+    </p>
+  </div>
+</div>

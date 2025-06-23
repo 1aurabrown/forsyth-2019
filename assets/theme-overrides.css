@@ -1,0 +1,183 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+:root {
+}
+
+@screen md {
+  :root {
+  }
+}
+
+
+body,html {
+  height: 100%
+}
+
+
+html {
+  background-color: var(--color-main-background);
+  box-sizing: border-box
+}
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  font-family: adobe-garamond-pro,serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  font-size: 1.6rem
+}
+
+body {
+  background: white;
+  color: black;
+}
+
+
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="range"],
+input[type="date"],
+input[type="time"],
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+body .shopify-pc__banner__dialog {
+/*  @apply padding-x py-3;*/
+  border-top: 1px solid black;
+  box-shadow: none;
+}
+body .shopify-pc__banner__btns,
+body .shopify-pc__prefs__header-actions {
+  justify-content: flex-end;
+/*  @apply space-x-6*/
+}
+
+body .shopify-pc__banner__btns {
+  min-width: max-content;
+}
+
+body .shopify-pc__banner__dialog button,
+body .shopify-pc__prefs__header-actions button {
+  flex-basis: auto;
+  margin: 0 0 0 0;
+  border: none;
+  text-decoration: none;
+  padding: 0 0 0 0;
+/*  @apply hover:underline;*/
+}
+
+body .shopify-pc__prefs__header-close {
+  top: 30px;
+}
+
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
+   text-decoration: none;
+  /* @apply hover:no-underline; */
+}
+
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept,
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline {
+  border: none;
+}
+
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept,
+body .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline,
+body .shopify-pc__prefs__header-actions button {
+  text-transform: uppercase;
+}
+
+#shopify-pc__banner ~ #shopify-section-footer {
+  padding-bottom: 40px;
+}
+
+/* PDP */
+.product-form__input input[type='radio'] + label {
+  color: rbga(0,0,0,.5);
+  display: inline-block;
+  text-align: center;
+  position: relative;
+}
+
+.product-form__input input[type='radio']:checked + label {
+  color: black;
+}
+
+.product-form__input input[type='radio']:checked + label .value {
+  text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+strong, b {
+  font-weight: 600;
+}
+
+/*
+.shopify-challenge__container {
+  @apply flex flex-col items-center justify-center space-y-4;
+}
+
+.shopify-challenge__container input[type=submit] {
+  @apply button flex mt-8;
+}
+
+.shopify-payment-button__button {
+  @apply mt-1 w-full;
+}
+
+.shopify-payment-button__button,
+.shopify-payment-button__button .shopify-cleanslate,
+.shopify-payment-button__button .shopify-cleanslate [role=button]{
+  @apply !min-h-10 !h-10 !max-h-10 !border-0;
+}
+
+.shopify-payment-button__button .shopify-cleanslate [role=button]{
+  @apply !transition-colors;
+}
+
+.shopify-payment-button__button .shopify-cleanslate [role=button]:focus {
+  @apply !outline-0 !ring-1 !ring-offset-1 !ring-black;
+}
+
+.shopify-payment-button__button .shopify-cleanslate [role=button]:focus:not(:focus-visible) {
+  @apply ring-0 ring-offset-0;
+}
+
+.shopify-payment-button__button .shopify-cleanslate [role=button]:focus-visible {
+  @apply !outline-0 !ring-1 !ring-offset-1 !ring-black;
+}
+
+.shopify-payment-button__more-options {
+  @apply text-link;
+}
+*/

@@ -1,0 +1,59 @@
+{{ 'component-press.css' | asset_url | stylesheet_tag }}
+
+<script type="text/javascript" src="{{ 'imagesloaded@5.0.0.pkgd.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-press.js' | asset_url }}" defer></script>
+
+<section class="press" data-section-id="{{ section.id }}" data-section-type="press" >
+  <div class="grid press__grid">
+
+    {% for block in section.blocks %}
+      {%- assign block_image = block.settings.detail_image | default: block.settings.primary_image -%}
+      <press-item class="block grid__item small--one-half medium-up--one-third press__grid__item">
+        <div class="press__zoom hide" >
+          <div class="press__zoom__inner">
+            <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
+            <div class="press__zoom__content rel">
+              <figure>
+                {% render 'responsive-image-only', image:block_image, alt: block.settings.caption %}
+                {% if block.settings.caption !=blank %}<figcaption>{{ block.settings.caption }}</figcaption>{%  endif %}
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="press__grid__item__image">
+          {% include 'responsive-image', aspect_ratio: 0.8, default_width: 200, image: block.settings.primary_image %}
+        </div>
+      </press-item>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Press",
+    "blocks": [
+      {
+        "type": "clipping",
+        "name": "Press Clipping",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "primary_image",
+            "label": "Thumbnail Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "detail_image",
+            "label": "Enlarged Image",
+            "info": "Leave blank to use the same image shown in the grid."
+          },
+          {
+            "type": "richtext",
+            "id": "caption",
+            "label": "Caption"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

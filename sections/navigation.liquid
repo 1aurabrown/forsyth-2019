@@ -1,0 +1,65 @@
+<script type="text/javascript" src="{{ 'breakpoints-js@1.0.6.js' | asset_url }}"></script>
+<script type="text/javascript" src="{{ 'sticky-sidebar.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'sticky-sidebar-custom.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-search-form.js' | asset_url }}" defer></script>
+<script type="text/javascript" src="{{ 'component-navigation.js' | asset_url }}" defer></script>
+{{ 'component-search-form.css' | asset_url | stylesheet_tag }}
+{{ 'animations.css' | asset_url | stylesheet_tag }}
+
+
+<site-nav>
+  {% include 'logo' %}
+  {% include 'header' %}
+  {% include 'sidebar' %}
+</site-nav>
+
+{% schema %}
+  {
+    "name": "Navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "shop_menu_a",
+        "label": "Left Shop Menu Group 1",
+        "default": "main-menu",
+        "info": "Product Type Collections"
+      },
+      {
+        "type": "link_list",
+        "id": "shop_menu_b",
+        "label": "Left Shop Menu Group 2",
+        "default": "main-menu",
+        "info": "Other Product Collections"
+      },
+      {
+        "type": "link_list",
+        "id": "pages_menu",
+        "label": "Left Pages Menu",
+        "default": "main-menu",
+        "info": "About Pages, other Pages"
+      },
+      {
+        "type": "select",
+        "id": "mobile_button_style",
+        "label": "Mobile Button Style",
+        "default": "text",
+        "options": [
+          {
+            "value": "hamburger",
+            "label": "Hamburger"
+          },
+          {
+            "value": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

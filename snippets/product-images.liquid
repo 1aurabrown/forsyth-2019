@@ -1,0 +1,20 @@
+<div class="product__images" data-images-container>
+  {% for image in product.images %}
+    {% liquid
+      if forloop.index == 1
+        assign wrapper_class="small--hide"
+      endif
+
+      assign preload = false
+      if forloop.index < 2
+        assign preload = true
+      endif
+    %}
+    {% render 'responsive-image' with
+      image: image,
+      preload: preload,
+      wrapper_class: "product__images__image {{ class }}",
+      wrapper_attributes: "data-product-image-wrapper",
+    %}
+  {% endfor %}
+</div>

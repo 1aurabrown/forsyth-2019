@@ -1,0 +1,33 @@
+
+.not-found {
+  padding: 0 1rem
+}
+
+.not-found__header {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: unset;
+  margin: 2.8rem 0 4.2rem
+}
+
+@media only screen and (min-width: 992px) {
+  .not-found__header {
+    margin-top:0
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .not-found {
+    padding:0 2rem
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .not-found {
+    padding:0 21rem
+  }
+}
+
+.not-found a {
+  text-decoration: underline
+}

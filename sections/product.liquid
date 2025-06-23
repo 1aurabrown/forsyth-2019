@@ -1,0 +1,104 @@
+
+  <script type="text/javascript" src="{{ 'breakpoints-js@1.0.6.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'sticky-sidebar.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'sticky-sidebar-custom.js' | asset_url }}" defer></script>
+
+  <script type="module" src="{{ 'product-forms.js' | asset_url }}" defer></script>
+  <script type="module" src="{{ 'product-layout.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'tabbed-sections.js' | asset_url }}" defer></script>
+
+
+
+<product-layout
+  id="MainProduct-{{ section.id }}"
+  class="block product"
+  data-section="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-update-url="true"
+  data-url="{{ product.url }}"
+>
+  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'tabbed-sections.css' | asset_url | stylesheet_tag }}
+  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  {% unless product.has_only_default_variant %}
+    {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {% endunless %}
+  {%- if product.quantity_price_breaks_configured? -%}
+    {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
+
+  <product-info class="block product__content">
+    {% render 'product-featured-image', product: product %}
+
+    <div class="product__text">
+      <div class="product__text__inner">
+        <div class="product__text__inner__centered">
+
+          <div class="product__mobile-sticky-cta" data-bottom-sticky-container>
+            <div class="product__mobile-sticky-cta__content" data-bottom-sticky>
+              <div class="product__text__top medium-up--serif-body-xl small--serif-body-m">
+
+                <!-- Vendor -->
+                {% if product.vendor.size > 0 %}
+                  <div class="product__text__top__vendor">{% render 'vendor-link' %}</div>
+                {% endif %}
+
+                <!-- Title -->
+                <h1 class="product__text__top__title">{{ product.title }}</h1>
+              </div>
+
+              <!-- Mobile Product Form -->
+              {% render 'product-form', product: product, section: section, product_form_class: 'medium-up--hide product__form--mobile'
+              %}
+            </div>
+          </div>
+          <!-- Description -->
+          {% render 'tabbed-sections', product: product, section: section %}
+
+          <!-- Desktop Product Form -->
+          {% render 'product-form', product: product, section: section, product_form_class: 'small--hide product__form--desktop'
+          %}
+
+          <!-- Social -->
+          {% if section.settings.show_share_buttons %}
+            {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% endif %}
+
+          <!-- More Info -->
+          <div class="product__text__more-info">{{ section.settings.more_info }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Images -->
+    {% render 'product-images' %}
+  </product-info>
+</product-layout>
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "more_info",
+        "label": "More Info Text",
+        "info": "displayed below the add-to-cart button",
+        "default": "<p><b>Need more info?</b></p><p>Would you like to see a video of this item, perhaps more photos, maybe a photo of a human sitting in it, need a tear sheet, or just want to talk to us about how cool it is? <a href=\"/pages/contact\">Inquire Here</a>.</p>"
+      }
+    ]
+  }
+{% endschema %}

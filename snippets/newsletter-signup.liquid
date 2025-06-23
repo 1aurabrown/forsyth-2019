@@ -1,0 +1,9 @@
+{{ 'newsletter.css' | asset_url | stylesheet_tag }}
+
+<div class="newsletter {{ class }}">
+  {% if settings.embed.size > 0 %}
+  {{ settings.embed }}
+  {% else %}
+    <p>Klaviyo is not configured. Please visit Theme settings.</p>
+  {% endif %}
+</div>

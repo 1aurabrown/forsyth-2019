@@ -1,0 +1,60 @@
+<script type="text/javascript" src="{{ 'masonry-layout@4.2.2.pkgd.js' | asset_url }}" defer="defer"></script>
+<script type="text/javascript" src="{{ 'imagesloaded@5.0.0.pkgd.js' | asset_url }}" defer="defer"></script>
+<script type="text/javascript" src="{{ 'infinite-scroll@4.0.1.pkgd.js' | asset_url }}" defer="defer"></script>
+<script type="module" src="{{ 'component-product-masonry.js' | asset_url }}" defer="defer"></script>
+
+{{ 'animations.css' | asset_url | stylesheet_tag }}
+{{ 'product-masonry.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<product-masonry class="block product-masonry" {% if infinite_scroll == true %} data-product-infinite-scroll {% endif %}>
+
+  {% if masonry_items.size > 0 %}
+    <div class="product-masonry__container js-hidden">
+      {% for product in masonry_items %}
+        {% liquid
+          assign preload = false
+          if forloop.index < 6
+            assign preload = true
+          endif
+        %}
+        {% if product.object_type == 'product' %}
+          <div data-animate="fade-in" class="product-masonry__item medium-up--one-third small--one-half">
+            {% render 'product-card', card_product: product, preload: preload %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="no-js">
+      {% if paginate.pages > 1 %}
+        {% render 'pagination' %}
+      {% endif %}
+    </div>
+
+    {% if infinite_scroll == true and paginate.next.is_link == true %}
+      <div class="text-center js product-masonry__bottom">
+        <a class="hide product-masonry__next" href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+
+        <div class="product-masonry__status">
+          <p class="infinite-scroll-request">Loading...</p>
+          <p class="infinite-scroll-last"></p>
+          <p class="infinite-scroll-error">There was an error.</p>
+        </div>
+
+        <p><span class="sans-serif-uppercase-m faux-underline product-masonry__view-more">{{ view_more_text | default: 'See More' }}</span></p>
+      </div>
+    {% elsif view_all_link != blank %}
+      <div class="text-center js product-masonry__bottom">
+        <p><a href="{{ view_all_link }}" class="sans-serif-uppercase-m faux-underline product-masonry__view-all">{{ view_all_text | default: 'See More' }}</a></p>
+      </div>
+    {% endif %}
+
+  {% else %}
+    <div class="serif-body-m"><i>{{ 'collections.general.no_matches' | t }}</i></div>
+  {% endif %}
+</product-masonry>
+
+{% assign masonry_collection = blank %}
+{% assign view_more_text = blank %}
+{% assign view_all = false %}
+{% assign infinite_scroll = false %}

@@ -1,0 +1,72 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Header" section in the theme editor.
+
+  Theme Store required settings
+  - Show announcement
+  - Text: message to announce
+  - Link: link of the announcement bar
+
+  Theme Store optional settings
+  - Home page only: only shows on the home page
+{%- endcomment -%}
+<div id="header-container">
+  <div class="header sans-serif-uppercase-m">
+
+    {% include 'nav-top-left-desktop' %}
+    {% include 'nav-top-left-mobile' %}
+
+    {% include 'nav-top-right-desktop' %}
+    {% include 'nav-top-right-mobile' %}
+
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  "address": {
+    "streetAddress": "{{ shop.address.street }}",
+    "addressLocality": "{{ shop.address.city }}",
+    "addressRegion": "{{ shop.address.province }}",
+    "postalCode": "{{ shop.address.zip }}",
+    "addressCountry": "{{ shop.address.country }}",
+    "telephone": "{{ shop.phone }}"
+  },
+  {% if settings.logo %}
+    {% assign image_size = settings.logo.width | append:'x' %}
+    "logo": "https:{{ settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}

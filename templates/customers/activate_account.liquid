@@ -1,0 +1,41 @@
+<div class="account-container serif-body-m">
+
+  <div class="form-success hide" data-reset-success>
+    {{ 'customer.recover_password.success' | t }}
+  </div>
+
+  <div class="account-form" data-login-form>
+    {% form 'activate_customer_password' %}
+      {% assign activate_title = 'customer.activate_account.title' | t %}
+
+      {% include 'title-header', title: activate_title, show_on_desktop: true %}
+
+      <p>{{ 'customer.activate_account.subtext' | t }}</p>
+
+      {{ form.errors | default_errors }}
+      <div class="flex-form">
+        <label for="CustomerPassword" class="label-hidden">
+          {{ 'customer.activate_account.password' | t }}
+        </label>
+        <input type="password"
+          class="one-whole"
+          name="customer[password]"
+          id="CustomerPassword"
+          placeholder="{{ 'customer.activate_account.password' | t }}">
+
+        <label for="CustomerPasswordConfirmation" class="label-hidden">
+          {{ 'customer.activate_account.password_confirm' | t }}
+        </label>
+        <input type="password"
+          class="one-whole"
+          name="customer[password_confirmation]"
+          id="CustomerPasswordConfirmation"
+          placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+      </div>
+      <div class='form-bottom'>
+        <button type="submit" class="1/2 button button-rect">{{ 'customer.activate_account.submit' | t }}</button>
+        <button type="submit" class="1/2 button button-rect button-rect--secondary" name="decline" >{{ 'customer.activate_account.cancel' | t }}</button>
+      </div>
+    {% endform %}
+  </div>
+</div>

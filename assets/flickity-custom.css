@@ -1,0 +1,35 @@
+
+.flickity-prev-next-button {
+    border-radius: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    background: transparent;
+    transform: none
+}
+
+.flickity-prev-next-button:hover {
+    background: transparent
+}
+
+.flickity-prev-next-button:active,.flickity-prev-next-button:focus {
+    outline: none;
+    box-shadow: none
+}
+
+.flickity-prev-next-button.previous {
+    left: 0
+}
+
+.flickity-prev-next-button.next {
+    right: 0
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+    width: 30px;
+    height: 40px;
+    position: static
+}

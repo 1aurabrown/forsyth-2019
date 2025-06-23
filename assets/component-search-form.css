@@ -1,0 +1,109 @@
+
+.search-form summary {
+	display: block;
+}
+
+.search-form form {
+	display: flex;
+	white-space: nowrap;
+	position: relative;
+  max-width: max-content;
+}
+
+.search-form form:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	height: 1px;
+	background-color: #000;
+	left: 0;
+	width: 100%
+}
+
+.search-form form,
+.search-form input {
+	height: 21px;
+}
+
+
+.search-form button {
+	height: 21px;
+}
+.search-form input {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	background: transparent;
+	width: 15rem;
+}
+
+.search-form input::placeholder {
+	color: rgba(0,0,0,.6)
+}
+
+.search-form button {
+	padding-left: 0;
+	padding-right: 0;
+	background: transparent
+}
+
+.search-form button svg {
+	width: 12px;
+	height: 12px
+}
+
+
+/* Header */
+
+
+.header .search-form {
+	position: relative
+}
+
+.header .search-form form {
+	position: absolute;
+	top: calc(100% + 1.4rem);
+	left: 0
+}
+
+
+/* Sidebar */
+
+@media only screen and (max-width: 991px) {
+
+	.sidebar .search-form {
+		margin-right: auto;
+	}
+
+	.sidebar .search-form details[open] summary {
+		display: none
+	}
+}
+
+/* Search page */
+
+.search .search-form input {
+	font-style: italic;
+	width: 40rem;
+}
+
+.search .search-form input::placeholder {
+	color: rgba(0,0,0,.6)
+}
+
+.search .search-form button {
+	padding-left: 0;
+	padding-right: 0;
+	background: transparent;
+	padding-bottom: .5rem
+}
+
+.search .search-form button svg {
+	width: 1.8rem;
+	height: 1.8rem
+}
+
+.search .search-form form,
+.search .search-form input {
+	height: 2.8rem;
+}

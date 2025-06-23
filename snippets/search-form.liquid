@@ -1,0 +1,21 @@
+{%- capture search_form_counter %}{% increment search_form_counter %}{% endcapture -%}
+<search-form class="search-form">
+  <details>
+    <summary for="Search-{{ search_form_counter }}" class="search-form__label">
+      Search
+    </summary>
+
+    <form action="/search" method="get" role="search">
+      <input type="search"
+        class="search-form__input sans-serif-m"
+        name="q"
+        id="Search-{{ search_form_counter }}"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}">
+
+      <button type="submit" class="button search-form__button">
+        {% include 'icon-search' %}
+        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+</search-form>

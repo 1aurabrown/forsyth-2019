@@ -1,0 +1,36 @@
+.modular-text-page__block.stores__block p {
+  margin: 0
+}
+
+@media only screen and (min-width: 768px) {
+  .modular-text-page__block.stores__block {
+    flex-direction:row-reverse
+  }
+
+  .modular-text-page__block.stores__block .stores__block__text {
+    width: 50%;
+    padding: 1.4rem 10% 1.4rem 5%;
+    display: flex;
+    align-items: center
+  }
+
+  .modular-text-page__block.stores__block .stores__block__text__inner {
+    margin: 0
+  }
+
+  .modular-text-page__block.stores__block .stores__block__image {
+    width: 50%
+  }
+}
+
+.modular-text-page__block.stores__block .stores__block__contact__email a {
+  text-decoration: underline
+}
+
+.modular-text-page__block.stores__block .stores__block__address, .modular-text-page__block.stores__block .stores__block__contact, .modular-text-page__block.stores__block .stores__block__note {
+  margin: 1.5em 0
+}
+
+.modular-text-page__block.stores__block .stores__block__link {
+  margin-top: 2em
+}

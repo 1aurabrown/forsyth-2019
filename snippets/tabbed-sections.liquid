@@ -1,0 +1,43 @@
+
+{% liquid
+  assign token = "+|+"
+  assign headings_string = ''
+  assign texts_string = ''
+  assign split_description = product.description | strip | split: "<h3>"
+
+  %}
+
+  {% liquid
+  for chunk in split_description
+    assign split_chunk = chunk | split: '</h3>'
+    if split_chunk.size == 2
+      assign new_heading = split_chunk[0] | strip_html | strip
+      assign new_text = split_chunk[1] | strip
+      assign headings_string = headings_string | append: new_heading
+      assign texts_string = texts_string | append: new_text
+      unless forloop.last
+        assign headings_string = headings_string | append: token
+        assign texts_string = texts_string | append: token
+      endunless
+    endif
+  endfor
+  assign headings = headings_string | split: token | compact
+  assign texts = texts_string | split: token | compact
+%}
+
+
+<tabbed-sections class="tabbed-sections {{ class }}">
+  <div class="tabbed-sections__headings" js-headings-container>
+    <div class="tabbed-sections__headings__content sans-serif-uppercase-m" js-headings>
+      {% for heading in headings %}
+      	<h3 class="tabbed-sections__heading{% if forloop.first %} active{% endif %}"><span>{{ heading }}</span></h3>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="tabbed-sections__texts serif-body-m rte">
+    {% for text in texts %}
+    	<div class="tabbed-sections__text{% unless forloop.first %} hide{% endunless %}">{{ text }}</div>
+    {% endfor %}
+  </div>
+</tabbed-sections>
+

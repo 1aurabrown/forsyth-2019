@@ -1,0 +1,37 @@
+{% assign class = class | default: "homepage-image-with-text" %}
+
+{{ 'image-with-text.css' | asset_url | stylesheet_tag }}
+<section class="image-with-text {{ class }} {{ layout }}">
+  <div class="image-with-text__image">
+      {% if image != blank %}
+        {% render 'responsive-image' with
+          image: image,
+          wrapper_class: "image-with-text__image__wrapper",
+          image_class: 'image-with-text__image__inner'
+        %}
+      {% else %}
+        {% capture placeholder_img_class %}
+          placeholder-svg image-with-text__image__inner
+        {% endcapture %}
+        <div class="image-with-text__image__wrapper">
+          {{ 'image' | placeholder_svg_tag: placeholder_img_class }}
+        </div>
+      {% endif %}
+  </div>
+
+  <div class="image-with-text__text">
+    <div class="image-with-text__text__inner">
+      {% if title != blank %}
+        <h2 class="image-with-text__text__inner__heading large-up--serif-heading-xl medium-down--serif-heading-l"><i>{{ title | escape }}</i></h2>
+      {% endif %}
+      {% if text != blank %}
+        <div class="image-with-text__text__inner__copy serif-body-l">{{ text }}</div>
+      {% endif %}
+      {% if button_label != blank and button_link != blank %}
+        <a class="sans-serif-uppercase-l image-with-text__text__inner__cta" href="{{ button_link }}">
+          <span class="faux-underline ">{{ button_label | escape }}</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+.newsletter .klaviyo-form * {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  background: transparent;
+  min-height: unset;
+  height: unset;
+  width: unset;
+  text-indent: unset
+}

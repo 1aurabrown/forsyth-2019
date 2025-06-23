@@ -1,0 +1,50 @@
+{{ 'more-articles.css' | asset_url | stylesheet_tag }}
+{{ 'blog-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'blog-article-card-grid.css' | asset_url | stylesheet_tag }}
+
+<section data-section-id="{{ section.id }}" data-section-type="more-articles" class="max-width more-articles">
+
+<div class="more-articles__carousel blog-grid">
+  <div class="grid">
+    {% for article in blog.articles %}
+      <div class="grid__item more-articles__carousel__card widescreen--one-quarter medium-up--one-half small--one-whole">
+        {% render 'blog-article-card' with article: article, 'blog-article-card', titleClass: 'serif-heading-l', textClass: 'serif-body-m' %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</section>
+{% schema %}
+  {
+    "name": "Instagram feed",
+    "class": "homepage-section",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To configure the header and the connection to Instagram, use the Instafeed app."
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text",
+        "default": "@FORSYTHART | SEE MORE"
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Arrow color",
+        "default": "black",
+        "options": [
+          {
+            "value": "black",
+            "label": "Black"
+          },
+          {
+            "value": "white",
+            "label": "White"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

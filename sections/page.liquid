@@ -1,0 +1,13 @@
+{{ 'text-page.css' | asset_url | stylesheet_tag }}
+<script type="text/javascript" src="{{ 'component-page.js' | asset_url }}" defer></script>
+
+<section class="text-page serif-body-m" data-section-id="{{ section.id }}" data-section-type="page-section" >
+  <page-section class="block">
+    <div class="text-page__text ">
+      {{ page.content }}
+    </div>
+
+    <div class="text-page__images">
+    </div>
+  </page-section>
+</section>

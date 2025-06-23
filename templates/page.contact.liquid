@@ -1,0 +1,74 @@
+{{ 'text-page.css' | asset_url | stylesheet_tag }}
+{{ 'contact.css' | asset_url | stylesheet_tag }}
+
+{% render 'title-header', title: page.title %}
+
+<div class="text-page contact">
+  <div class="text-page__text contact__container">
+
+    <div class="contact__form">
+
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="form-success serif-body-m">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {% endif %}
+        <div class="contact__content">
+          {{ page.content }}
+        </div>
+
+        <p class="form-error serif-body-m">
+          {{ form.errors | default_errors }}
+        </p>
+
+        <div class="flex-form">
+
+          <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+          <input type="text"
+            name="contact[name]"
+            class="one-whole"
+            id="ContactFormName"
+            placeholder="{{ 'contact.form.name' | t | downcase }}"
+            value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+
+          <label for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+          <input type="email"
+            class="one-whole"
+            name="contact[email]"
+            id="ContactFormEmail"
+            placeholder="{{ 'contact.form.email' | t | downcase }}"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off">
+
+          <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
+          <input type="tel"
+            class="one-whole"
+            name="contact[phone]"
+            id="ContactFormPhone"
+            placeholder="{{ 'contact.form.phone' | t | downcase }}"
+            value="{% if form[phone] %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+            pattern="[0-9\-]*">
+
+          <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+          <textarea rows="10"
+            name="contact[body]"
+            class="one-whole"
+            id="ContactFormMessage"
+            placeholder="{{ 'contact.form.message' | t | downcase }}">
+            {%- if form.body -%}
+              {{- form.body -}}
+            {%- endif -%}
+          </textarea>
+        </div>
+        <button type="submit" class="button button-rect" value="{{ 'contact.form.send' | t }}">{{ 'contact.form.send' | t }}</button>
+
+
+      {% endform %}
+    </div>
+
+
+  </div>
+</div>

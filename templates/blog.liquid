@@ -1,0 +1,32 @@
+{{ 'blog.css' | asset_url | stylesheet_tag }}
+
+{% render 'title-header', title: 'Journal' %}
+<div class="blog">
+
+  {% paginate blog.articles by 48 %}
+
+    {%- assign blog_title = blog.title -%}
+
+    {% comment %}<h1>{{ blog_title }}</h1>{% endcomment %}
+
+
+
+    {% comment %}
+
+    Article Previews
+    ====================
+    {% endcomment %}
+
+
+
+    {% render 'blog-grid', articles: blog.articles, class: 'blog__grid', max_image_height: 600 %}
+
+    {% if paginate.pages > 1 %}
+      {% render 'pagination' %}
+    {% endif %}
+
+  {% endpaginate %}
+  <hr />
+
+  {% section 'newsletter' %}
+</div>

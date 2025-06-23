@@ -1,0 +1,19 @@
+{{ 'component-modular-text-page-block.css' | asset_url | stylesheet_tag }}
+
+<div class="modular-text-page__block {{ container_class }}__block">
+  <div class="modular-text-page__block__image {{ container_class }}__block__image">
+    <div class="modular-text-page__block__image__inner {{ container_class }}__block__image__inner">
+      {% include 'responsive-image-only', image: image, default_width: 400 %}
+    </div>
+  </div>
+  <div class="modular-text-page__block__text {{ container_class }}__block__text">
+    <div class="modular-text-page__block__text__inner  {{ container_class }}__block__text__inner">
+      <div class="modular-text-page__block__text__heading serif-heading-l {{ container_class }}__block__text__heading">
+        <i>{{ heading }}</i>
+      </div>
+      <div class="modular-text-page__block__text__body serif-body-m{{ container_class }}__block__text__body">
+        {{ body }}
+      </div>
+    </div>
+  </div>
+</div>
