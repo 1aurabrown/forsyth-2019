@@ -57,7 +57,7 @@
 
 }
 
-.text-page__images__image img {
+.text-page__images__image {
   width: 100%;
   display: block;
   height: auto;
