@@ -50,7 +50,7 @@
         <div class="image-with-text__text__inner__copy serif-body-l">{{ section.settings.text }}</div>
       {% endif %}
 
-      {% render 'newsletter-signup', success: section.settings.success, placeholder: section.settings.placeholder, class: 'homepage-newsletter' %}
+      {% render 'newsletter-signup', class: 'homepage-newsletter' %}
     </div>
   </div>
 </section>
@@ -96,18 +96,6 @@
         "id": "text",
         "label": "Text",
         "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
-      },
-      {
-        "type": "text",
-        "id": "success",
-        "label": "Success Message",
-        "default": "Thank you."
-      },
-      {
-        "type": "text",
-        "id": "placeholder",
-        "label": "Placeholder",
-        "default": "your email address"
       }
     ],
     "presets": [{
