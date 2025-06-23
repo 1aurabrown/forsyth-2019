@@ -12,6 +12,10 @@
   margin: 0
 }
 
+.text-page__text img {
+  display: none
+}
+
 .text-page__text p+p {
   margin-top: 1em
 }
@@ -46,14 +50,22 @@
   margin-bottom: 1em
 }
 
+/* images */
+
 .text-page__images {
-  margin-top: 7rem
+  margin-top: 10rem;
+  display:grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  max-width: 37.25em;
+
 }
 
 .text-page__images__image img {
   width: 100%;
   display: block;
-  height: auto
+  height: auto;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 767px) {
@@ -69,50 +81,26 @@
 
 @media screen and (min-width: 420px) {
   .text-page__images {
-    display:flex;
-    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+
+  .text-page__images--two-columns {
+    grid-template-columns: 1fr 1fr;
     max-width: 43.75em;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap: wrap
   }
 
   .text-page__images__image {
-    width: 40%;
-    max-width: 85%;
-    flex-grow: 1
-  }
-
-  .text-page__images__image:not(:first-child):not(:nth-child(2)) {
-    padding-top: 1rem
-  }
-
-  .text-page__images__image:not(:first-child) {
-    padding-left: .5rem
-  }
-
-  .text-page__images__image:not(:last-child) {
-    padding-right: .5rem
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .text-page__images__image:not(:first-child):not(:nth-child(2)) {
-    padding-top:2rem
-  }
-
-  .text-page__images__image:not(:first-child) {
-    padding-left: 1rem
-  }
-
-  .text-page__images__image:not(:last-child) {
-    padding-right: 1rem
-  }
-
   .text-page__text {
     padding: 0 4rem;
     max-width: calc(35em + 4rem)
   }
+    .text-page__images--two-columns {
+      gap: 2rem;
 }
 
 @media only screen and (min-width: 768px) and (max-width:991px) {

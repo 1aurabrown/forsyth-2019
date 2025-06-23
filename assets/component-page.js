@@ -22,7 +22,7 @@ if (!customElements.get('page-section')) {
 	        const newImageWrapper = document.createElement('div')
 	        newImageWrapper.classList.add(classes.image)
 	        newImageWrapper.appendChild(image)
-	        this.imagesContainer.append(newImageWrapper)
+	        // this.imagesContainer.append(newImageWrapper)
 	        
 	        const isEmptyElement = !originalParent.innerHTML.replace(/\s/g, '').length
 	        if (isEmptyElement) originalParent.parentElement.removeChild(originalParent)
