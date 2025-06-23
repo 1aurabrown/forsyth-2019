@@ -12,10 +12,6 @@
   margin: 0
 }
 
-.text-page__text img {
-  display: none
-}
-
 .text-page__text p+p {
   margin-top: 1em
 }
