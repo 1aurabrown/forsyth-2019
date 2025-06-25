@@ -22,6 +22,7 @@
         {% paginate block_collection.products by 12 %}
 
           {% render 'product-masonry' with
+            paginate: paginate,
             masonry_items: block_collection.products,
             infinite_scroll: false,
             view_all_link: block_collection.url,
