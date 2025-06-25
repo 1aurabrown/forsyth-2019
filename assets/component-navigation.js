@@ -13,10 +13,7 @@ const animateCSS = function ($el, animationName, callback) {
   $el.on('animationend', handleAnimationEnd)
 }
 
-console.log(animateCSS);
-
 if (!customElements.get('site-nav')) {
-  console.log('site-nav')
   class Navigation extends HTMLElement {
     static selectors = {
       sidebar: '.sidebar',
@@ -45,8 +42,6 @@ if (!customElements.get('site-nav')) {
       this.$activeInnerMenu = $(Navigation.selectors.activeTopMenuItem, this.$slideArea).find(Navigation.selectors.innerMenu)
       this.$titles = $(Navigation.selectors.titles, this.$slideArea);
       this.$back = $(Navigation.selectors.back, this);
-
-      console.log(this.$titles)
 
       Breakpoints({mobile: {min: 0, max: 767 }, tablet: {min: 768, max: 991 }, desktop: {min: 992, max: Infinity } });
       $(this).on('click' + this.namespace, Navigation.selectors.mobileMenuButton, this.showSidebar.bind(this) );

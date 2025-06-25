@@ -19,7 +19,7 @@
       {% if search.results_count > 0 %}
         {% paginate search.results by 24 %}
           <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
-          {% include 'product-masonry', masonry_items: search.results, infinite_scroll: true %}
+          {% render 'product-masonry', paginate: paginate, masonry_items: search.results, infinite_scroll: true %}
         {% endpaginate %}
       {% else %}
         {% section 'no-search-results' %}
@@ -35,7 +35,7 @@
               placeholder="{{ 'general.search.placeholder' | t }}">
 
             <button type="submit" class="button search-form__button">
-              {% include 'icon-search' %}
+              {% render 'icon-search' %}
               <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
             </button>
         </form>

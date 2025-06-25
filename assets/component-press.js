@@ -1,7 +1,6 @@
 if (!customElements.get('press-item')) {
   class PressItem extends HTMLElement {
     connectedCallback() {
-    	console.log('press item')
     	this.isOpen = false;
     	this.thumb = this.querySelector('.press__grid__item__image')
 			this.zoom = this.querySelector('.press__zoom',);

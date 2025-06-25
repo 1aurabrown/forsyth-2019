@@ -42,9 +42,7 @@ if (!customElements.get('product-masonry')) {
 
 		  msnry.layout();
 		  if (infiniteScroll && this.querySelector(selectors.next)) {
-		    InfiniteScroll.imagesLoaded = imagesLoaded
-
-		    var infScroll = new InfiniteScroll( masonryEl, {
+		    var infScroll = new InfiniteScroll( selectors.masonry, {
 		      path: selectors.next,
 		      append: selectors.item,
 		      checkLastPage: selectors.next,
@@ -54,7 +52,7 @@ if (!customElements.get('product-masonry')) {
 		      // load pages on button click
 		      scrollThreshold: false,
 		      loadOnScroll: false,
-		      debug: true
+		      debug: true,
 		    });
 		    infScroll.on( 'last', ( response, path ) => {
 		      this.classList.add('last')
