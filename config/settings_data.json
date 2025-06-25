@@ -934,13 +934,13 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".klaviyo-form-TTg9kw input[type=\"email\"],.klaviyo-form-TTg9kw input[type=\"email\"]::placeholder {border: none !important; height: auto !important; padding-left: 0 !important; padding-bottom: 2px !important; font-family: SansGuiltMBMedium, Gill Sans, sans-serif !important; font-size: 14px !important; color: #000 !important;}",
+      ".klaviyo-form-TTg9kw input[type=\"email\"],.klaviyo-form-TTg9kw input[type=\"email\"]::placeholder {border: none !important; height: auto !important; padding-left: 0 !important; font-family: SansGuiltMBMedium, Gill Sans, sans-serif !important; font-size: 14px !important; color: #000 !important;}",
       ".klaviyo-form-TTg9kw input[type=\"email\"]:focus-visible {outline: none !important;}",
       ".klaviyo-form-TTg9kw input[type=\"email\"]::placeholder {color: #666;}",
-      ".klaviyo-form-TTg9kw form {border-bottom: 1px solid #000 !important; width: 174px !important;}",
+      ".klaviyo-form-TTg9kw form {padding-bottom: 2px !important; border-bottom: 1px solid #000 !important; width: 174px !important;}",
       ".klaviyo-form-TTg9kw form > div > div > div {padding: 0 !important;}",
       ".klaviyo-form-TTg9kw form > div {min-height: auto !important;}",
-      ".klaviyo-form-TTg9kw button {height: auto !important; padding-bottom: 2px !important; padding-right: 0 !important;}"
+      ".klaviyo-form-TTg9kw button {height: auto !important; padding-right: 0 !important;}"
     ]
   }
 }
