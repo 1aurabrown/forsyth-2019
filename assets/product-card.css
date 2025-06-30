@@ -6,7 +6,7 @@
 
 @media (hover: hover) {
   .product-card__images:hover .product-card__image-wrapper--secondary {
-    display:block;
+    visibility: visible;
     z-index: 1
   }
 }
@@ -22,7 +22,7 @@
 }
 
 .product-card__image-wrapper--secondary {
-  display: none
+  visibility: hidden;
 }
 
 .product-card__metadata {

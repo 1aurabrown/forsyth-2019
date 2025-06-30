@@ -38,6 +38,7 @@
 
   {%- capture style -%}
     background-image: url('{{ image | image_url: width: placeholder_width }}');
+    background-color: #ddd;
   {%- endcapture -%}
   {%- assign onload = 'this.style.removeProperty("background-image");' -%}
 

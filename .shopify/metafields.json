@@ -8,7 +8,28 @@
   "location": [],
   "market": [],
   "order": [],
-  "page": [],
+  "page": [
+    {
+      "key": "images",
+      "namespace": "custom",
+      "name": "Images",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "two_column_image_layout",
+      "namespace": "custom",
+      "name": "Two-Column Image Layout",
+      "description": "If set to 'true' and page has more than one image, images will be arranged in two columns.",
+      "type": {
+        "name": "boolean",
+        "category": "TRUE_FALSE"
+      }
+    }
+  ],
   "product": [
     {
       "key": "custom_product",

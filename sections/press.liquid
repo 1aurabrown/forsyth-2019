@@ -14,7 +14,7 @@
             <span class="press__zoom__close" data-press-zoom-close>{% include 'close.svg' %}</span>
             <div class="press__zoom__content rel">
               <figure>
-                {% render 'responsive-image-only', image:block_image, alt: block.settings.caption %}
+                {% render 'responsive-image', use_padding:false, image:block_image, alt: block.settings.caption %}
                 {% if block.settings.caption !=blank %}<figcaption>{{ block.settings.caption }}</figcaption>{%  endif %}
               </figure>
             </div>
