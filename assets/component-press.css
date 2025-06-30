@@ -44,7 +44,8 @@
 
 .press__zoom figure img {
   display: block;
-  object-fit: cover
+  object-fit: cover;
+  width: auto;
 }
 
 .press__zoom figure figcaption p {

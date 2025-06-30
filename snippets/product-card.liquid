@@ -8,7 +8,8 @@
         wrapper_class: "product-card__image-wrapper product-card__image-wrapper--primary"
       %}
       <div class="product-card__image-wrapper product-card__image-wrapper--secondary abs fill">
-        {% render 'responsive-image-only' with
+        {% render 'responsive-image' with
+          use_padding: false,
           image: card_product.images[1],
           image_class: "js product-card__image x y object-cover",
           sizes: "(min-width: 768px) 33vw, 50vw",
